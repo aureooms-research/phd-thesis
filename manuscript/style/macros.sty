@@ -1,5 +1,5 @@
 \usepackage[utf8]{inputenc} % for utf8 characters
-\usepackage[margin=1in]{geometry} % for margins
+%\usepackage[margin=1in]{geometry} % for margins
 % lipics-like
 \usepackage{authblk}
 \usepackage{microtype}
@@ -36,3 +36,5 @@ skip=6pt,list=false,hypcap=false
 \fi
 
 \setcounter{chapter}{-1} % Start chapters at 0
+
+\newcommand{\chapternonum}[1]{\chapter*{#1}\addcontentsline{toc}{chapter}{#1}}
