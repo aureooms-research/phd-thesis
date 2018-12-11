@@ -22,11 +22,11 @@ skip=6pt,list=false,hypcap=false
 \usepackage{amsthm} % \begin{proof}
 \usepackage{textcomp} % n\textdegree{} -> n°
 
-\newtheorem{theorem}{Theorem} % \begin{Theorem}
+\newtheorem{theorem}{Theorem}[chapter] % \begin{Theorem}
 \newtheorem{lemma}[theorem]{Lemma} % \begin{Lemma}
 \newtheorem{definition}[theorem]{Definition} % \begin{Definition}
 \newtheorem{observation}[theorem]{Observation} % \begin{Observation}
-\newtheorem{problem}{Problem} % \begin{Problem}
+\newtheorem{problem}[theorem]{Problem} % \begin{Problem}
 
 \ifcomments
   \usepackage{color}
