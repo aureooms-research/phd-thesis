@@ -1,1 +1,36 @@
 \chapternonum{Summary}
+
+QUOTE Given a set of \(n\) points in the plane \dots
+
+FIGURE Three points on a line.
+
+This thesis is about problems. A problem asks to map a given data to some output.
+In Computer Science, we solve problems with computers: we organize the data
+with data structures, and process the data with algorithms.
+%
+Problems are considered harder if they take more time to solve.
+
+Geometry is about points, lines, bodies, metric, topology.
+%
+This thesis is about geometric problems. The given data is geometric, the
+question about the data is geometric. The proposed algorithms and data
+structures therefore use geometry.
+
+This thesis is about silly geometric problems. Yet, nobody has managed to
+solve them. One of them asks to decide, given \(n\) points in the plane,
+whether three of them lie on a common line. Of course, we can solve this
+problem. What is of interest here is how fast this can be decided.
+
+It is easy to solve this problem by brute force in cubic time and by some
+more involved but standard construction in quadratic time. However, we do not
+know of any reason why this problem would be any harder than sorting, which can
+be solved in near-linear time.
+
+Does this matter at all? Well, it turns out those silly problems appear to
+be bottlenecks of modern day algorithms: unless we manage to improve our
+understanding of those problems, for many other practical problems,
+we are stuck with solutions from the 90's, 80's, sometimes even the 70's, and
+we do not know why.
+
+In this thesis, we expose two novel algorithms and two novel data
+structures related to this problem.
