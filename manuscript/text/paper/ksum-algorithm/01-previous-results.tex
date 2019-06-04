@@ -1,1 +1,148 @@
 \chapter{Uniform and Nonuniform Algorithms}
+
+\section{Definitions and previous work}
+
+\subsection{Definitions}
+We consider the \(k\)-SUM problem for \(k=O(1)\). In what follows, we use the
+notation \([n] = \{\,1,2,\ldots ,n\,\}\).
+\begin{problem}[\(k\)-SUM]
+ Given an input vector \(q\in\mathbb{R}^n\), decide whether there exists a
+ $k$-tuple \((i_1, i_2,\ldots ,i_k) \in {[n]}^k\) such that \(\sum_{j=1}^k
+ q_{i_j} = 0\).
+\end{problem}
+The problem amounts to deciding in $n$-dimensional space, for each hyperplane
+\(H\) of equation \(x_{i_1} + x_{i_2} + \cdots +x_{i_k} = 0\), whether \(q\)
+lies on, above, or below \(H\). Hence this indeed amounts to locating the point
+$q$ in the arrangement formed by those hyperplanes. We emphasize that the set
+of hyperplanes depends only on $k$ and $n$ and not on the actual input vector
+$q$.
+
+Linear degeneracy testing (\(k\)-LDT) is a generalization of \(k\)-SUM where we
+have arbitrary rational coefficients\footnote{The usual definition of \(k\)-LDT
+allows arbitrary \emph{real} coefficients. However, the algorithm we provide
+for Lemma~\ref{lem:multiple} needs the vertices of the arrangement of
+hyperplanes to have rational coordinates.}
+and an independent term in the equations
+of the hyperplanes.
+\begin{problem}[\(k\)-LDT]
+ Given an input vectors \(q\in\mathbb{R}^n\) and
+ $\alpha \in \mathbb{Q}^n$ and constant $c \in \mathbb{Q}$
+ decide whether there exists a
+ $k$-tuple \((i_1, i_2,\ldots ,i_k) \in {[n]}^k\) such that
+ \(c + \sum_{j=1}^k \alpha_j q_{i_j} = 0\).
+ \end{problem}
+Our algorithms apply to this more general problem with only minor changes.
+
+The \emph{\(s\)-linear decision tree model} is a standard model of computation
+in which several lower bounds for \(k\)-SUM\ have been proven. In the decision tree
+model, one may ask well-defined questions to an oracle that are answered
+``yes'' or ``no.'' For $s$-linear decision trees, a well-defined question consists
+of testing the sign of a linear function on at most \(s\) numbers \(q_{i_1},\ldots,q_{i_s}\) of the
+input \(q_1,\ldots,q_n\) and can be written as
+$$
+	c + \alpha_1 q_{i_1} + \cdots + \alpha_s q_{i_s} \ask{\le} 0
+$$
+Each question is defined to cost a single unit. All other operations can be
+carried out for free but may not examine the input vector $q$. We refer to
+$n$-linear decision trees simply as linear decision trees.
+
+In this paper, we consider algorithms in the standard integer RAM model with
+$\Theta(\log n)$-size words, but in which the input $q\in\mathbb{R}^n$ is
+accessible \emph{only} via a linear query oracle. Hence we are not allowed to
+manipulate the input numbers directly. The complexity is measured in two ways:
+by counting the total number of queries, just as in the linear decision tree
+model, and by measuring the overall running time, taking into account the time
+required to determine the sequence of linear queries. This two-track
+computation model, in which the running time is distinguished from the query
+complexity, is commonly used in results on comparison-based sorting problems
+where analyses of both runtime and comparisons are of interest (see for
+instance~\cite{SS95,CFJJM10,CFJJM13}).
+
+\subsection{Previous Results}
+The seminal paper by Gajentaan and Overmars~\cite{GO95} showed the crucial role
+of 3SUM in understanding the complexity of several problems in
+computational geometry.
+Since then, there has been an enormous amount of work focusing on the complexity of
+3SUM and this problem is now considered a key tool of
+complexity-within-P~\cite{GO95,BH99,MO01,BDP08,P10,ACLL14,AVW14,GP14,KPP14,ALW14,AWY15,CL15}.
+The current conjecture is that no $O(n^{2-\delta})$-time algorithm exists for 3SUM.
+It has been known for long that \(k\)-SUM is $W[1]$-hard. Recently, it was shown
+to be $W[1]$-complete by Abboud et al.~\cite{ALW14}.
+
+In Erickson~\cite{E99}, it is shown that we cannot solve 3SUM in
+subquadratic time in the \(3\)-linear decision tree model:
+\begin{theorem}[Erickson~\cite{E99}]
+The optimal depth of a \(k\)-linear decision tree that solves
+the \(k\)-LDT problem is $\Theta(n^{\lceil\frac{k}{2}}\rceil)$.
+\end{theorem}
+The proof uses an adversary argument which can be explained geometrically. As
+we already observed, we can solve \(k\)-LDT problems by modeling them as point
+location problems in an arrangement of hyperplanes. Solving one such problem
+amounts to determining which cell of the arrangement contains the input point.
+The adversary argument of Erickson~\cite{E99} is that there exists a cell having
+$\Omega(n^{\lceil\frac{k}{2}}\rceil)$ boundary facets and in this model point
+location in such a cell requires testing each facet.
+
+Ailon and Chazelle~\cite{AC05} study \(s\)-linear decision trees to solve the \(k\)-SUM problem when
+\(s > k\). In particular, they give an additional proof for the
+$\Omega(n^{\ceil{\frac{k}{2}}})$ lower bound of Erickson~\cite{E99} and
+generalize the lower bound for the \(s\)-linear decision tree model when \(s >
+k\). Note that the exact lower bound given by Erickson~\cite{E99} for \(s = k\) is
+$\Omega({(nk^{-k})}^{\ceil{\frac{k}{2}}})$ while the one given by
+Ailon and Chazelle~\cite{AC05} is $\Omega({(nk^{-3})}^{\ceil{\frac{k}{2}}})$. Their result
+improves therefore the lower bound for \(s = k\) when \(k\) is large.
+The lower bound they prove for \(s > k\) is the following
+\begin{theorem}[Ailon and Chazelle~\cite{AC05}]
+The depth of an $s$-linear decision tree solving the \(k\)-LDT\ problem is
+$$
+\Omega\mleft(\group{nk^{-3}}^{\frac{2k-s}{2\lceil\frac{s-k+1}{2}\rceil}
+(1-\epsilon_k) }\mright),
+$$
+where \(\epsilon_k > 0\) tends to \(0\) as \(k \to\infty\).
+\end{theorem}
+This lower bound breaks down when
+\(k = \Omega(n^{\sfrac{1}{3}})\) or \(s \ge 2 k\) and the cases where \(k < 6\)
+give trivial lower bounds. For example, in the case
+of 3SUM with \(s = 4\) we only get an $\Omega(n)$ lower bound.
+
+As for upper bounds, Baran et al.~\cite{BDP08} gave subquadratic Las Vegas
+algorithms for 3SUM on integer and
+rational numbers in the circuit RAM, word RAM, external memory, and
+cache-oblivious models of computation. The idea of their approach is to exploit
+the parallelism of the models, using linear and universal hashing.
+
+More recently, Gr{\o}nlund and Pettie~\cite{GP14} proved the existence of a linear decision tree
+solving the 3SUM problem using a strongly subquadratic number of linear queries.
+The classical quadratic algorithm for 3SUM uses \(3\)-linear queries
+while the decision tree of Gr{\o}nlund and Pettie uses \(4\)-linear queries and
+requires $O(n^{\sfrac{3}{2}} \sqrt{\log n})$ of them.
+Moreover, they show that their decision tree can be used to get better upper
+bounds for \(k\)-SUM when \(k\) is odd.
+
+They also provide two subquadratic 3SUM
+algorithms. A deterministic one running in
+$O(n^2/{(\log n/\log \log n)}^{\sfrac{2}{3}})$
+time and a randomized one running in
+$O(n^2 {(\log \log n)}^2 / \log n)$ time with high probability.
+These results refuted the long-lived conjecture that
+3SUM cannot be solved in subquadratic time in the RAM model.
+
+Freund~\cite{F15} and Gold and Sharir~\cite{GS15} later gave improvements on the
+results of Gr{\o}nlund and Pettie~\cite{GP14}. Freund~\cite{F15} gave a deterministic algorithm for
+3SUM running in \(O( {n^2\log \log n}/{\log n})\) time.
+Gold and Sharir~\cite{GS15} gave another deterministic algorithm for 3SUM
+with the same running time and shaved off the $\sqrt{\log n}$ factor in the
+decision tree complexities of 3SUM and \(k\)-SUM given by Gr{\o}nlund and Pettie.
+
+Meyer auf der Heide~\cite{M84} gave the first point location algorithm to solve the knapsack
+problem in the linear decision tree model in polynomial time. He thereby
+answers a question raised by Dobkin and Lipton~\cite{DL74,DL78}, Yao~\cite{Y82}
+and others. However, if one uses this algorithm to locate a point in an
+arbitrary arrangement of hyperplanes the running time is increased by a factor
+linear in the greatest coefficient in the equations of all hyperplanes.
+On the other hand, the complexity of Meiser's point location algorithm is
+polynomial in the dimension, logarithmic in the number of hyperplanes and
+does not depend on the value of the coefficients in the equations of the
+hyperplanes. A useful complete description of the latter is also given by
+Bürgisser et al.~\cite{B97} (Section 3.4).
+

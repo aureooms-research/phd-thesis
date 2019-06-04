@@ -21,9 +21,13 @@ skip=6pt,list=false,hypcap=false
 \usepackage{amsmath} % \binom{...}{...}
 \usepackage{amsthm} % \begin{proof}
 \usepackage{textcomp} % n\textdegree{} -> n°
+\usepackage{mathtools} % \DeclarePairedDelimiter
+\usepackage{mleftright} % \mleft \mright
+\usepackage{xfrac} % \sfrac
 
 \newtheorem{theorem}{Theorem}[chapter] % \begin{Theorem}
 \newtheorem{lemma}[theorem]{Lemma} % \begin{Lemma}
+\newtheorem{corollary}[theorem]{Corollary} % \begin{Corollary}
 \newtheorem{definition}[theorem]{Definition} % \begin{Definition}
 \newtheorem{observation}[theorem]{Observation} % \begin{Observation}
 \newtheorem{problem}[theorem]{Problem} % \begin{Problem}
@@ -38,3 +42,102 @@ skip=6pt,list=false,hypcap=false
 \setcounter{chapter}{-1} % Start chapters at 0
 
 \newcommand{\chapternonum}[1]{\chapter*{#1}\addcontentsline{toc}{chapter}{#1}}
+
+
+\newcommand\enet{\(\varepsilon\)-net}
+\newcommand\enets{\(\varepsilon\)-nets}
+\newcommand\enetsize{\frac{n^2}{\varepsilon} \log \frac{n}{\varepsilon}}
+
+\newcommand{\ckt}{{\lceil\frac{k}{2} \rceil}}
+\newcommand{\fkt}{{\lfloor\frac{k}{2}\rfloor}}
+
+\newcommand{\group}[1]{\left(#1\right)}
+\newcommand{\ask}[1]{\mathop{#1}^{?}}
+\newcommand{\set}[1]{\mathcal{#1}}
+\newcommand{\card}[1]{|{#1}|}
+\newcommand{\enum}[1]{\left\{\,{#1}\,\right\}}
+
+\newcommand{\poly}{\operatorname{poly}}
+\newcommand{\polylog}{\operatorname{polylog}}
+
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+\DeclareMathOperator{\op}{op}
+
+\newcommand\R{\mathbb{R}}
+\newcommand\N{\mathbb{N}}
+\newcommand\A{\set{A}}
+\def\B{\set{B}}
+\def\C{\set{C}}
+\newcommand\D{\set{D}}
+\def\S{\set{S}}
+\newcommand\I{\set{I}}
+\newcommand\E{\set{E}}
+\newcommand\Z{\set{Z}}
+\def\U{\set{U}}
+\def\L{\set{L}}
+\def\T{\set{T}}
+\def\P{\set{P}}
+\newcommand\Q{\set{Q}}
+\newcommand\X{X}
+\newcommand\Y{Y}
+
+\newcommand\arrangement{\mathcal{A}}
+\renewcommand{\H}{\set{H}}
+\newcommand\Him{H_i^{-}}
+\newcommand\Hiz{H_i^{0}}
+\newcommand\Hip{H_i^{+}}
+\newcommand\His{H_i^{\sigma}}
+\newcommand\net{\set{N}}
+\newcommand\M{\set{M}}
+\newcommand\NH{\set{N}}
+
+\newcommand\signset{\enum{-, 0, +}}
+\newcommand\lo{\var{lo}}
+\newcommand\hi{\var{hi}}
+
+\newcommand\cell{C}
+\newcommand\simplex{S}
+
+\newcommand{\pblm}[1]{{#1}}
+
+\newcommand{\dsum}[1][d]{\pblm{#1SUM}}
+\newcommand{\dldt}[1][d]{\pblm{#1LDT}}
+
+\newcommand\twoSUM{\dsum[2]}
+\newcommand\threeSUM{\dsum[3]}
+\newcommand\fourSUM{\dsum[4]}
+\newcommand\twoLDT{\dldt[2]}
+\newcommand\fourLDT{\dldt[4]}
+\newcommand\kSUM{\mbox{\(k\)-{SUM}}}
+\newcommand\kLDT{\mbox{\(k\)-{LDT}}}
+
+\newcommand{\sut}{\colon\,}
+\newcommand{\step}[1]{\textbf{#1}}
+
+% ALGORITHMS
+\usepackage{changepage}
+
+\newenvironment{steps}%
+{%
+\vspace{0.25cm}%
+\begin{adjustwidth}{0.3cm}{0cm}%
+\begin{description}%
+}
+{%
+\end{description}%
+\end{adjustwidth}%
+\vspace{0.1cm}%
+}
+
+\newcounter{algorithm}
+\renewcommand{\thealgorithm}{\arabic{algorithm}}%
+\newenvironment{algorithm}[1][]
+{\refstepcounter{algorithm}%
+ \par%
+ %\vspace{.5\baselineskip\@plus.2\baselineskip\@minus.2\baselineskip}% Space above
+ \noindent\textbf{Algorithm~\thealgorithm}\ifx&#1&\else~(#1)\fi\textbf{.}%
+ \begin{steps}}%\begin{algorithm}
+{\end{steps}%
+%\vspace{.5\baselineskip\@plus.2\baselineskip\@minus.2\baselineskip}% Space below
+}

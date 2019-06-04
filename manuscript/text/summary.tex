@@ -1,14 +1,19 @@
-\chapternonum{Summary}
+\chapternonum{To the Profane}
+
+TODO avoid all technical terms here
 
 QUOTE Given a set of \(n\) points in the plane \dots
 
 FIGURE Three points on a line.
 
-This thesis is about problems. A problem asks to map a given data to some output.
+This thesis is about problems.
+Solving a problem consists in mapping a given data to some output in some
+automated way.
 In Computer Science, we solve problems with computers: we organize the data
 with data structures, and process the data with algorithms.
 %
-Problems are considered harder if they take more time to solve.
+Solving problems consumes resources, for example, time.
+Problems are considered harder if they take more resources to solve.
 
 Geometry is about points, lines, bodies, metric, topology.
 %
@@ -16,15 +21,17 @@ This thesis is about geometric problems. The given data is geometric, the
 question about the data is geometric. The proposed algorithms and data
 structures therefore use geometry.
 
-This thesis is about silly geometric problems. Yet, nobody has managed to
-solve them. One of them asks to decide, given \(n\) points in the plane,
+This thesis studies questions about silly geometric problems. Yet, nobody
+has managed to answer them. One of the problems asks to decide, given \(n\) points in the plane,
 whether three of them lie on a common line. Of course, we can solve this
-problem. What is of interest here is how fast this can be decided.
+problem. The question of interest here is how fast this can be decided.
 
-It is easy to solve this problem by brute force in cubic time and by some
-more involved but standard construction in quadratic time. However, we do not
-know of any reason why this problem would be any harder than sorting, which can
-be solved in near-linear time.
+It is easy to solve this problem by testing all possible candidates but that is
+quite inneficient. There is a
+more involved but standard construction that takes significantly less time to
+execute but that is still considered inneficient. As of today, we do not know of
+any reason why this problem would be any harder than sorting, which can be
+solved almost as fast as the time it takes to read the data from begin to end.
 
 Does this matter at all? Well, it turns out those silly problems appear to
 be bottlenecks of modern day algorithms: unless we manage to improve our

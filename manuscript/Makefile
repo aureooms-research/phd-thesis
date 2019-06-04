@@ -18,7 +18,10 @@ figures: $(FIGURES)
 #figures/myfigure.pdf: view=<page>-<view>
 
 figures/%.pdf: figures/figures.ipe
-	ipetoipe -pdf -export -view $(view) figures/figures.ipe $@
+	ipetoipe -pdf -export -view $(view) $< $@
+
+figures/simplex.pdf: figures/simplex.ipe
+	ipetoipe -pdf -export -view 1-1 $< $@
 
 %.pdf: $(BUILDDIR)/%/paper.pdf
 	cp $< $@
@@ -28,7 +31,7 @@ $(BUILDDIR)/dev/src.tex: $(shell texdeps dev.tex)
 
 $(BUILDDIR)/%/src.tex:
 	mkdir -p $(dir $@)
-	flatex --include_sty $< - | texshake | textrim > $@
+	flatex --include_sty $< $@
 
 $(BUILDDIR)/%/paper.bib: $(BUILDDIR)/%/src.tex
 	texcites < $< | \

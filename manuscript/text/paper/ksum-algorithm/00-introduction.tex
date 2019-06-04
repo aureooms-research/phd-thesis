@@ -38,6 +38,157 @@ For fixed \(k\), the \(k\)-SUM problem can be solved in polynomial time
 The interesting question is whether it is possible to improve on
 this brute-force solution.
 
+The \(k\)-SUM problem is defined as follows: given a collection of $n$ real
+numbers decide whether any $k$ of them sum to zero, where $k$ is a constant.
+It is a fixed-parameter version of the subset-sum problem, a standard \textit{NP}-complete
+problem. The \(k\)-SUM problem, and in particular the special case of 3SUM,
+has proved to be a cornerstone of the fine-grained complexity program aiming at
+the construction of a complexity theory for problems in $P$. In particular,
+there are deep connections between the complexity of \(k\)-SUM, the Strong
+Exponential Time Hypothesis~\cite{PW10,CGIMPS15}, and the complexity of many
+other major problems in
+$P$~\cite{GO95,BH99,MO01,P10,ACLL14,AVW14,GP14,KPP14,ALW14,AWY15,CL15}.
+
+It has been long known that the \(k\)-SUM problem can be solved in time
+$O(n^{\frac{k}{2}}\log n)$ for even $k$, and $O(n^{\frac{k+1}{2}})$ for odd
+$k$. Erickson~\cite{E99} proved a near-matching lower bound in the $k$-linear
+decision tree model. In this model, the complexity is measured by the depth of
+a decision tree, every node of which corresponds to a query of the form
+$q_{i_1} + q_{i_2} + \cdots + q_{i_k} \ask{\le} 0$, where $q_1, q_2, \ldots, q_n$ are the
+input numbers. In a recent breakthrough paper, Gr\o nlund and
+Pettie~\cite{GP14} showed that in the $(2k-2)$-linear decision tree model,
+where queries test the sign of weighted sums of up to $2k-2$ input numbers, only
+$O(n^\frac{k}{2}\sqrt{\log n})$ queries are required for odd values of $k$. In
+particular, there exists a $4$-linear decision tree for 3SUM of depth
+$\tilde{O}(n^\frac{3}{2})$ (here the notation $\tilde{O}$ ignores polylogarithmic
+factors), while every 3-linear decision tree has depth $\Omega
+(n^2)$~\cite{E99}. This indicates that increasing the size of the queries,
+defined as the maximum number of input numbers involved in a query, can yield
+significant improvements on the depth of the minimal-height decision tree. Ailon and
+Chazelle~\cite{AC05} slightly extended the range of query sizes for which a
+nontrivial lower bound could be established, elaborating on Erickson's
+technique.
+
+It has been well established that there exist nonuniform
+polynomial-time algorithms for the subset-sum problem. One of them was
+described by Meiser~\cite{M93}, and is derived from a data structure for point
+location in arrangements of hyperplanes using the bottom vertex decomposition.
+This algorithm can be cast as the construction of a linear decision tree in which
+the queries have non-constant size.
+
+\subsection{Our results}
+In Section~\ref{sec:query-complexity}, we show the existence of an $n$-linear
+decision tree of depth $\tilde{O}(n^3)$ for \(k\)-SUM using a careful
+implementation of Meiser's algorithm~\cite{M93}.
+Although the high-level algorithm itself is not new, we refine the
+implementation and analysis for the \(k\)-SUM problem.%
+\footnote{After submitting this manuscript, we learned from a personal communication
+with Herv\'e Fournier that a similar analysis for arbitrary hyperplanes appears in his PhD
+thesis~\cite{F01} (in French).}
+Meiser presented his algorithm as a general method of point location in $m$
+given $n$-dimensional hyperplanes that yielded a $\tilde{O}(n^4 \log
+m)$-depth algebraic computation tree; when viewing the \(k\)-SUM problem as a point
+location problem, $m$ is $O(n^k)$ and thus Meiser's algorithm can be viewed
+as giving a $\tilde{O}(n^4)$-depth algebraic computation tree.
+We show that while the
+original algorithm was cast as a nonuniform polynomial-time algorithm,
+it can be implemented in the linear decision tree model with an
+$\tilde{O}(n^3)$ upper bound.
+Moreover, this result implies the same improved upper bound on the depth of
+algebraic computation trees for the $k$-SUM problem,
+as shown in Appendix~\ref{app:act}.
+
+There are two subtleties to this result. The first is inherent to the chosen
+complexity model: even if the number of queries to the input is small (in
+particular, the degree of the polynomial complexity is invariant on $k$), the
+time required to \emph{determine which queries should be performed} may be
+arbitrary. In a na\"ive analysis, we show it can be trivially bounded by
+$\tilde{O}(n^{k+2})$. In Section~\ref{sec:time-complexity} we present an algorithm to
+choose
+which decisions to perform whereby the running time can be reduced to
+$\tilde{O}(n^{\frac{k}{2}+8})$. Hence, we obtain an
+$\tilde{O}(n^{\frac{k}{2}+8})$ time randomized algorithm in the RAM model
+expected to perform $\tilde{O}(n^3)$ linear queries on the input\footnote{%
+	Gr{\o}nlund and
+	Pettie~\cite{GP14} mention the algorithms of Meyer auf der Heyde~\cite{M84} and
+	Meiser~\cite{M93}, and state ``(\ldots) it was known that all \(k\)-LDT problems
+	can be solved by $n$-linear decision trees with depth $O(n^5\log
+	n)$~\cite{M93}, or with depth $O(n^4\log (nK))$ if the coefficients of the
+	linear function are integers with absolute value at most $K$~\cite{M84}.
+	Unfortunately these decision trees are not efficiently constructible. The
+	time required to determine \emph{which} comparisons to make is
+	exponential.'' We prove that the trees can have depth $\tilde{O}(n^3)$ and
+	that the whole algorithm can run in randomized polynomial-time.}.
+
+The second issue we address is that the linear queries in the above algorithm may
+have size $n$, that is, they may use all the components of the input.
+The lower bound of Erickson shows that if the queries are of minimal size, the number
+of queries cannot be a polynomial independent of $k$ such as what we obtain, so
+non-minimal query size is clearly essential to a drastic reduction in the number of queries needed.
+This gives rise to the natural question as to what is the relation between query size and number of queries.
+In particular, one natural question is whether queries of size less than $n$
+would still allow the problem to be solved using a number of queries that is a
+polynomial independent of $k$. We show that this is possible; in Section~\ref{sec:query-size},
+we introduce a range of
+algorithms exhibiting an explicit tradeoff between the number of queries and
+their size. Using a blocking scheme, we show that we can restrict to
+$o(n)$-linear decision trees. We also give a
+range of tradeoffs for $O(n^{1-\alpha})$-linear decision trees. Although the
+proposed algorithms still involve nonconstant-size queries, this is
+the first time such tradeoffs are explicitly tackled. Table~\ref{tab:results} summarizes our results.
+
+\begin{table}
+\centering
+\caption{Complexities of our new algorithms for the \(k\)-SUM problem. The query
+size is the maximum number of elements of the input that can be involved in a
+single linear query. The number of blocks is a parameter that allows us to
+change the query size (see Section~\ref{sec:query-size}).
+The origin of the constant in the exponent of the time complexity is due to
+Lemma~\ref{lem:bound}. We conjecture it can be reduced, though substantial
+changes in the analysis will likely be needed to do so.}
+\label{tab:results}
+\begin{tabular}{|c|c|c|c|c|}
+	\hline
+
+	& \# blocks & query size & \# queries & time \\
+	\hline
+	Theorem~\ref{thm:cube} &
+	$1$ &
+	$n$ &
+	$\tilde{O}(n^3)$ & $\tilde{O}(n^{\lceil\frac{k}{2}}+8\rceil)$
+	\\
+
+	\hline
+
+	Theorem~\ref{thm:query-size} &
+	$b$ &
+	$k\lceil\frac{n}{b}\rceil$ &
+	$\tilde{O}(b^{k-4}n^3)$ &
+	$\tilde{O}(b^{\lfloor\frac{k}{2}}-9\rfloor n^{\lceil\frac{k}{2}}+8\rceil)$
+	\\
+
+	\hline
+
+	Corollary~\ref{cor:logn} &
+	$b=\Theta(\polylog(n))$ &
+	$o(n)$ &
+	$\tilde{O}(n^3)$ &
+	$\tilde{O}(n^{\lceil\frac{k}{2}}+8\rceil)$
+	\\
+
+	\hline
+
+	Corollary~\ref{cor:ne} &
+	$b=\Theta(n^\alpha)$ &
+	$O(n^{1-\alpha})$ &
+	$\tilde{O}(n^{3+(k-4)\alpha})$ &
+	$\tilde{O}(n^{(1+\alpha)\frac{k}{2} +8.5})$
+	\\
+
+	\hline
+\end{tabular}
+\end{table}
+
 \chapter{The Geometric View}
 
 \chapter{Geometric Divide and Conquer}
