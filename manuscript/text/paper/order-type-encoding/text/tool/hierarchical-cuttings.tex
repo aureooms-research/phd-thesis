@@ -1,27 +1,8 @@
-\paragraph*{\iftitlecase%
-Hierarchical Cuttings\else%
-Hierarchical cuttings\fi}
-We encode the order type of an arrangement via
-hierarchical cuttings as defined in~\cite{C93}. A cutting in \(\mathbb{R}^d\)
-is a set of (possibly unbounded and/or non-full dimensional)
-bounded-complexity cells that together partition \(\mathbb{R}^{d}\).
-%
-For our purposes, a cell is of bounded complexity if its boundary is defined by
-a number of lines or pseudolines (and later, hyperplanes) of the arrangement
-that depends only on the dimension, and not on the size of the arrangement.
-%
-A \(\frac{1}{c}\)-cutting of a set of \(n\) hyperplanes is a cutting with the
-constraint that each of its cells is intersected by at most \(\frac{n}{c}\)
-hyperplanes. There exist various ways of constructing \(\frac{1}{c}\)-cuttings of
-size \(O(c^d)\).
-\ifeurocg\else%
-Those cuttings allow for efficient divide-and-conquer
-solutions to many geometric problems. The hierarchical cuttings of Chazelle
+The hierarchical cuttings of Chazelle
 have the additional property that they can be composed without multiplying the
 hidden constant factors in the big-O notation. In particular, they allow
 for \(O(n^d)\)-space \(O(\log n)\)-query \(d\)-dimensional point location data
 structures (for constant \(d\)).
-\fi%
 \ifjournal
   \begin{definition}[Hierarchical Cutting]
     Given \(n\) hyperplanes in \(\mathbb{R}^d\),

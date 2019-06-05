@@ -1,6 +1,6 @@
-\chapter{Better Nonuniform Algorithms}
+\section{Better Nonuniform Algorithms}
 
-\section{Query complexity}
+\subsection{Query complexity}
 \label{sec:query-complexity}
 
 In this section and the next, we prove the following first result.
@@ -12,7 +12,7 @@ exists an $\tilde{O}(n^{\ceil{\frac{k}{2}}+8})$ Las Vegas algorithm in
 the RAM model expected to perform $O(n^3\log^2 n)$ linear queries on the input.
 \end{theorem}
 
-\subsection{Algorithm outline}
+\subsubsection{Algorithm outline}
 For a fixed set of hyperplanes \(\Hy\) and given input vertex \(q\) in \(\R^n\),
 Meiser's algorithm allows us to determine the cell of the arrangement
 $\arrangement(\Hy)$ that contains $q$ in its interior (or that \emph{is} $q$ if
@@ -60,7 +60,7 @@ in \(\cell\) and containing \(q\) in its interior. This procedure corresponds to
 \emph{bottom vertex decomposition} (or \emph{triangulation}) of a hyperplane
 arrangement~\cite{GO04,Cla88}.
 
-\subsection{Finding a simplex}
+\subsubsection{Finding a simplex}
 
 In order to simplify the exposition of the algorithm, we assume, without
 loss of generality, that the input numbers $q_i$ all lie in the interval $[-1,1]$.
@@ -156,7 +156,7 @@ Illustration of a step of Algorithm~\ref{algo:simplex}.
 \end{center}
 \end{figure}
 
-\subsection{Assembling the pieces}
+\subsubsection{Assembling the pieces}
 
 Let us summarize the algorithm
 \begin{algorithm}\label{algo:meiser}
@@ -194,7 +194,7 @@ $\tilde{O}(n^2\card{\Hy}) = \tilde{O}(n^{k+2})$. The next section is devoted
 to improving this running time.
 
 
-\section{Time complexity}
+\subsection{Time complexity}
 \label{sec:time-complexity}
 
 Proving the second part of Theorem~\ref{thm:cube} involves efficient implementations of
@@ -396,7 +396,7 @@ while the number of queries is always bounded by $O(n^3\log^2 n)$.
 
 \end{proof}
 
-\section{Query size}
+\subsection{Query size}
 \label{sec:query-size}
 
 In this section, we consider a simple blocking scheme that allows us to explore
@@ -459,7 +459,7 @@ Hence for instance, we obtain
 $O(n^{\frac{3}{4}+\frac{\beta}{4}})$-linear decision trees of depth
 $\tilde{O}(n^{4-\beta})$ for the \dsum[8] problem.
 
-\section{Keeping queries linear in Algorithm~\ref*{algo:simplex}}
+\subsection{Keeping queries linear in Algorithm~\ref*{algo:simplex}}
 \label{app:keeplinear}
 In Algorithm~\ref{algo:simplex}, we want to ensure that the queries we make in step
 \step{2} are linear and that the queries we will make in the recursion step
@@ -558,7 +558,7 @@ Note that, without further analysis, the queries can become \(n\)-linear as
 soon as we enter the \(\frac{n}{k}^{\text{th}}\) recursive step.
 \end{proof}
 
-\section{Algebraic computation trees}
+\subsection{Algebraic computation trees}
 \label{app:act}
 
 We consider \emph{algebraic computation trees}, whose internal nodes
@@ -613,7 +613,7 @@ input. The complexity of Algorithm~\ref{algo:meiser} in this model is thus also 
 \log n \log \card{\Hy})\).
 \end{proof}
 
-\section{Uniform random sampling}
+\subsection{Uniform random sampling}
 \label{app:sampling}
 
 Theorem~\ref{thm:enet} requires us to pick a sample of the hyperplanes
@@ -707,7 +707,7 @@ $\alpha_i$.
 
 \end{proof}
 
-\section{Proof of Lemma~\ref*{lem:bound}}
+\subsection{Proof of Lemma~\ref*{lem:bound}}
 \label{app:bound}
 
 \begin{theorem}[Cramer's rule]\label{thm:cramer}
