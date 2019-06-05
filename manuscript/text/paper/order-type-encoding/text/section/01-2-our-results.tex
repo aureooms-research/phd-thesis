@@ -7,7 +7,7 @@ order types: we wish to design data structures using as few bits as possible
 that can be used to quickly answer orientation queries of a given abstract or
 realizable order type.
 \ifeurocg%
-\input{text/definition/encoding}
+\input{text/paper/order-type-encoding/text/definition/encoding}
 \fi%
 %
 \ifjournal%
@@ -24,14 +24,14 @@ encoding is a data structure that uses \( O(n^2) \) bits of space with queries
 taking \(O(\log n)\) time in the word-RAM model with word size \(w \geq \log
 n\).
 \ifeurocg%
-\input{text/theorem/abstract}
+\input{text/paper/order-type-encoding/text/theorem/abstract}
 \fi%
 %
 Our encoding is far from being space-optimal for realizable order types.
 We show that its construction can be easily tuned to only require \(O(n^2
 {(\log{\log{n}})}^2 / \log{n})\) bits in this case.
 \ifeurocg%
-\input{text/theorem/realizable}
+\input{text/paper/order-type-encoding/text/theorem/realizable}
 \fi%
 %
 \ifeurocg%
@@ -40,14 +40,14 @@ In Section~\ref{sec:query-time}, we \fi%
 further refine our encoding to
 reduce the query time to \(O(\log{n}/\log{\log{n}})\).
 \ifeurocg%
-\input{text/theorem/abstract-loglog}
-\input{text/theorem/realizable-loglog}
+\input{text/paper/order-type-encoding/text/theorem/abstract-loglog}
+\input{text/paper/order-type-encoding/text/theorem/realizable-loglog}
 \fi%
 %
 In the realizable case, we give quadratic upper bounds on the
 preprocessing time required to compute an encoding in the real-RAM model.
 \ifeurocg%
-\input{text/theorem/preprocessing-loglog}
+\input{text/paper/order-type-encoding/text/theorem/preprocessing-loglog}
 \fi%
 %
 \ifeurocg%
@@ -57,10 +57,10 @@ In \appref~\ref{sec:hyperplanes} we \fi\fi%
 generalize our encodings to chirotopes of
 point sets in higher dimension\ifsocg~\cite{CCILO18}\fi.
 \ifeurocg%
-\input{text/theorem/realizable-d}
+\input{text/paper/order-type-encoding/text/theorem/realizable-d}
 \fi%
 \ifeurocg%
-\input{text/theorem/preprocessing-d}
+\input{text/paper/order-type-encoding/text/theorem/preprocessing-d}
 \fi%
 
 \subsection*{\iftitlecase%
