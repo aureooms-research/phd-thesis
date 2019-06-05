@@ -1,0 +1,55 @@
+
+\paragraph*{\iftitlecase%
+Canonical Labelings\else%
+Canonical labelings\fi}
+%
+Given a point set, the composition of its order type \(\chi\) with a
+permutation \(\rho\) produces a new order type \(\chi' = \chi \circ \rho\).
+This composition corresponds to a relabeling of the point set.
+%
+Aloupis et al.~\cite{AILOW14} defined the canonical labeling \(\rho^*(\chi)\)
+of an order type \(\chi\) to be a permutation such that for all permutations
+\(\pi\) we have \(\rho^*(\chi \circ \pi) = \pi^{-1} \circ \rho^*(\chi)\).
+In other words, given two isomorphic order types \(\chi\) and \(\chi'\), we
+have \(\chi \circ \rho^*(\chi) = \chi' \circ \rho^*(\chi')\), and
+\({\rho^*(\chi')}^{-1} \circ \rho^*(\chi)\) is the isomorphism that sends
+\(\chi\) to \(\chi'\).%
+\footnote{Sometimes, two order types \(\chi\) and \(- \chi\) are also considered
+to be isomorphic. See~\cite{AILOW14} for more details.}
+They proved that the function \(\rho^*\) is
+computable in \(O(n^2)\) time.
+%
+This first tool is useful to identify isomorphic order types.
+
+They also showed that given any order type \(\chi\), a string \(E(\chi)\) of
+\(O(n^2)\) bits, called the representation of \(\chi\), can be computed in
+\(O(n^2)\) time, such that, if \(\chi\) and \(\chi'\) are two isomorphic order
+types, then \(E(\chi) = E(\chi')\).
+%
+This second tool is useful to quickly compare two order types (a naive solution
+would take \(\Theta(n^3)\) time by first computing a canonical labeling, and
+then comparing all triples).
+
+\begin{lemma}[Aloupis et al.~\cite{AILOW14}]\label{lem:canonical-labeling}
+  Given an order type presented as an oracle,
+  its canonical labeling of \(O(n \log n)\) bits
+  and
+  its canonical representation of \(O(n^2)\) bits
+  can be computed in \(O(n^2)\) time
+  in the word-RAM model.
+\end{lemma}
+
+Both tools generalize to chirotopes of point configurations in any dimension
+\(d\) and, more generally, to chirotopes of rank \(d+1\).
+
+\begin{lemma}[Aloupis et al.~\cite{AILOW14}]\label{lem:canonical-labeling-d}
+  For all \(d \geq 2\),
+  given a rank-(\(d+1\)) chirotope presented as an oracle,
+  its canonical labeling of \(O(n \log n)\) bits
+  and
+  its canonical representation of \(O(n^d)\) bits
+  can be computed in \(O(n^d)\) time
+  in the word-RAM model.
+\end{lemma}
+
+\aurelien{Define oracle?}

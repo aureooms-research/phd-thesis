@@ -1,0 +1,106 @@
+\paragraph*{\iftitlecase%
+Hierarchical Cuttings\else%
+Hierarchical cuttings\fi}
+We encode the order type of an arrangement via
+hierarchical cuttings as defined in~\cite{C93}. A cutting in \(\mathbb{R}^d\)
+is a set of (possibly unbounded and/or non-full dimensional)
+bounded-complexity cells that together partition \(\mathbb{R}^{d}\).
+%
+For our purposes, a cell is of bounded complexity if its boundary is defined by
+a number of lines or pseudolines (and later, hyperplanes) of the arrangement
+that depends only on the dimension, and not on the size of the arrangement.
+%
+A \(\frac{1}{c}\)-cutting of a set of \(n\) hyperplanes is a cutting with the
+constraint that each of its cells is intersected by at most \(\frac{n}{c}\)
+hyperplanes. There exist various ways of constructing \(\frac{1}{c}\)-cuttings of
+size \(O(c^d)\).
+\ifeurocg\else%
+Those cuttings allow for efficient divide-and-conquer
+solutions to many geometric problems. The hierarchical cuttings of Chazelle
+have the additional property that they can be composed without multiplying the
+hidden constant factors in the big-O notation. In particular, they allow
+for \(O(n^d)\)-space \(O(\log n)\)-query \(d\)-dimensional point location data
+structures (for constant \(d\)).
+\fi%
+\ifjournal
+  \begin{definition}[Hierarchical Cutting]
+    Given \(n\) hyperplanes in \(\mathbb{R}^d\),
+    a \(\ell\)-levels hierarchical cutting of parameter \(r > 1\)
+    for those hyperplanes
+    is a sequence of \(\ell\) levels labeled \(0,1, \ldots, \ell - 1\)
+    such that%
+    \footnote{In~\cite{C93}, Chazelle refers to this parameter as
+    \(r_0\) and uses \(r\) to mean \(r_0^\ell\). Here we drop the subscript for
+    ease of presentation.}
+    \begin{itemize}
+      \item Level \(i\) has \(O(r^{2i})\) cells,
+      \item Each of those cells is further partitioned into \(O(r^2)\)
+        subcells,
+      \item The collection of subcells is a \(\frac{1}{r^{i+1}}\)-cutting for
+        the set of hyperplanes,
+      \item The \(O(r^{2(i+1)})\) subcells of level \(i\) are the cells of level \(i+1\).
+    \end{itemize}
+  \end{definition}
+  \aurelien{Use constant \(c_k\) or \(c_d\) instead of Big-Oh?}
+  It is clear from reading through the various references that those
+  hierarchical cuttings can be constructed for arrangements of pseudolines with
+  the same properties:
+  In~\cite{C93},
+  Chazelle first proves a vertex-count estimation lemma
+  that only relies on incidence properties of line
+  arrangements~\cite[Lemma~2.1]{C93}. Then he summons a lemma from~\cite{Ma93}
+  that relies on the finite VC-dimension of the range space at
+  hand~\cite[Lemma 3.1]{C93}.
+  Here the ground set is the set of pseudolines and the ranges are the
+  subsets induced by intersections with pseudosegments.
+  The VC-dimension of this range space
+  is easily shown to be finite and is known to be at most
+  \(8\): every arrangement of \(9\) pseudolines contains a subset of
+  \(6\) pseudolines in hexagonal formation~\cite{HM94}, which cannot be
+  shattered.%
+  \footnote{This a quote from~\cite{BMP05}. We could not access
+  the original paper.}
+  %
+  \aurelien{The VC-dimension is not even needed. Only enumerating ranges is
+  necessary.}
+  Finally, he proves a lemma for the efficient construction of
+  sparse \(\varepsilon\)-nets whose correctness again only relies on incidence
+  properties of line arrangements~\cite[Lemma 3.2]{C93}.
+  Using those three lemmas together with bottom vertex triangulation he is
+  able to prove his main result:
+\else%
+In the plane, hierarchical cuttings can be
+constructed for arrangement of pseudolines with the same properties.
+\fi
+
+\ifjournal
+\begin{lemma}[{Chazelle~\cite[Theorem 3.3]{C93}}]\label{lem:hierarchical-cutting-d}
+  Given \(n\) hyperplanes in \(\mathbb{R}^d\), for any real parameter \(r >
+  1\), we can construct a \(\ell\)-levels hierarchical cutting of parameter
+  \(r\) for those hyperplanes in time \(O(nr^{\ell(d-1)})\).
+\end{lemma}
+
+For pseudoline arrangements, bottom vertex triangulation can be traded for
+vertical decomposition.
+\begin{lemma}\label{lem:hierarchical-cutting-2}
+  Given \(n\) pseudolines, for any real parameter \(r > 1\), we can construct
+  a \(\ell\)-levels hierarchical cutting of parameter
+  \(r\) for those pseudolines in time \(O(nr^\ell)\).
+\end{lemma}
+
+In particular, we will use those lemmas with
+\(\ell = \lceil \log_r \frac nt \rceil\),
+for some parameter \(t\),
+so that the last level of the hierarchy defines a \(\frac
+tn\)-cutting whose cells are each intersected by at most \(t\) pseudolines (or
+hyperplanes).
+
+Note that in~\cite{C93} the construction is described for constant
+parameter \(r\).
+This restriction on the parameter is easily lifted:
+We can construct a hierarchical
+cutting with superconstant parameter \(r\) by constructing a hierarchical
+cutting with some appropriate constant parameter \(r'\), and then skip levels that we do
+not need. This is used in Section~\ref{sec:query-time} to reduce the query time
+from \(O(\log n)\) to \(O(\frac{\log n}{\log \log n})\).
+\fi

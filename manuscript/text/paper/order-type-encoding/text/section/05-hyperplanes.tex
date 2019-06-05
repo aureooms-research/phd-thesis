@@ -1,0 +1,345 @@
+%\section{Higher-Dimensional Encodings}\label{sec:hyperplanes}
+\section{Encoding Chirotopes of Hyperplane Arrangements}\label{sec:hyperplanes}
+
+\aurelien{Can't we just have \(n^{d-2}\) times the \(2d\) encoding?}
+
+\aurelien{Can't seem to make induction work for orientation. Works on point location though.}
+
+We generalize our point configuration encoding to any dimension \(d\). The
+chirotope of a point set in \(\mathbb{R}^d\) consists of all orientations of
+simplices defined by \(d+1\) points of the set~\cite{RZ04}.
+The orientation of the simplex with \(d+1\) ordered vertices \(p_i\) with
+coordinates \((p_{i,1} , p_{i,2} , \ldots, p_{i,d} )\) is given by the sign of
+the determinant
+%
+\begin{displaymath}
+  \begin{vmatrix}
+    1 & p_{1,1} & p_{1,2} & \hdots & p_{1,d} \\
+    1 & p_{2,1} & p_{2,2} & \hdots & p_{2,d} \\
+    \vdots & \vdots & \vdots & \ddots & \vdots \\
+    1 & p_{d+1,1} & p_{d+1,2} & \hdots & p_{d+1,d}
+  \end{vmatrix}.
+\end{displaymath}
+
+We obtain the following generalized result:
+%
+\input{text/theorem/realizable-d}
+\input{text/theorem/preprocessing-d}
+
+\paragraph*{Idea}
+
+In the primal, the orientation of a simplex whose vertices are ordered can be
+interpreted as the location of its last vertex with respect to the (oriented)
+hyperplane spanned by its first \(d\) vertices. In the dual, this orientation
+corresponds to the location of the intersection of the first \(d\) dual
+hyperplanes with respect to the last (oriented) dual hyperplane.
+%
+\ifjournal%
+  In the primal, degenerate simplices have orientation \(0\). In the dual, this
+  corresponds to linearly dependent subsets of \(d+1\) hyperplanes.
+\fi%
+
+We gave an encoding for the two-dimensional case in Section~\ref{sec:lines-and-pseudolines}.
+With this encoding, a query is answered by traversing the levels of
+some hierarchical cutting, branching on the location of the intersection of two
+of the three query lines. We generalize this idea to \(d\) dimensions. Now the
+cell considered at the next level of the hierarchy depends on the location
+of the intersection of \(d\) of the \(d+1\) query hyperplanes.
+\ifjournal%
+  We will also have to take care of degenerate cases.
+\fi%
+
+\paragraph*{\iftitlecase%
+Intersection Location\else%
+Intersection location\fi}
+
+In Section~\ref{sec:lines-and-pseudolines}, we solved the following two-dimensional subproblem:
+
+\begin{problem}
+  Given a triangle and \(n\) lines in the plane, build a data structure that,
+  given two of those lines, allows to decide whether their intersection
+  lies in the interior of the triangle.
+\end{problem}
+
+In retrospective, we showed that there exists such a data structure using
+\(O(n \log n)\) bits that allows for queries in \(O(1)\) time. We generalize
+this result. Consider the following generalization of the problem in
+\(d\) dimensions:
+
+\begin{problem}
+  Given a convex body and \(n\) hyperplanes in \(\mathbb{R}^d\), build a data
+  structure that, given \(d\) of those hyperplanes, allows to decide whether their
+  intersection is a vertex that lies in the interior of the convex body.
+\end{problem}
+
+Of course this problem can be solved using \(O(n^d)\) space by explicitly
+storing the answers to all possible queries. If the input hyperplanes are
+given in an arbitrary order, this is best possible for
+\(d=1\). For \(d \geq 2\), we show how to reduce the space to \(O(n^{d-1} \log
+n)\) by recursing on the dimension, taking \(d = 2\) as the base case.
+\aurelien{Proof of a lower bound would be a nice addition.}
+
+We encode the function \(\mathcal{I}_{C, H}\)
+that maps a \(d\)-tuple of indices of input dual
+hyperplanes \(H_i\) to \(1\) if their intersection is a vertex that lies in the
+interior of a fixed convex body \(C\), and to \(0\) otherwise.
+%
+\begin{displaymath}
+  \mathcal{I}_{C,H} \colon\, {[n]}^d \to \{\, 0,1\,\} \colon\,
+  (i_1,i_2,\ldots,i_d) \mapsto
+  (H_{i_1} \cap H_{i_2} \cap \cdots \cap H_{i_d})
+  \in  C.
+\end{displaymath}
+%
+We call this function the \emph{intersection function} of \((C,H)\).
+%
+We prove the following:
+\input{text/theorem/intersection-d}
+
+\begin{proof}
+  Consider a convex body \(C\) and \(n\) hyperplanes \(H_i\).
+  At first, for simplicity, assume \(C\) is \(d\)-dimensional and
+  assume that any \(d\) hyperplanes \(H_{i_j}\) meet in a single point.
+  With those assumptions,
+  we want a data structure that can answer any query of the type
+  \begin{displaymath}
+    (H_{i_1} \cap H_{i_2} \cap H_{i_3} \cap H_{i_4} \cap \cdots \cap
+    H_{i_{d-1}} \cap H_{i_d})
+    \cap C
+    \neq \emptyset.
+  \end{displaymath}
+
+  Note that this is equivalent to deciding whether
+  \begin{displaymath}
+    (H_{i_1} \cap H_{i_2} \cap H_{i_3} \cap H_{i_4} \cap \cdots \cap H_{i_{d-1}})
+    \cap (H_{i_d} \cap C)
+    \neq \emptyset,
+  \end{displaymath}
+  where \(H_{i_d} \cap C\) is a convex body of dimension \(d-1\) (or empty), and the
+  number of hyperplanes we want to intersect it with is \(d-1\).
+
+  We unroll the recursion until the convex body is of dimension two (or empty),
+  and only two hyperplanes are left to intersect. We then notice that the decision we
+  are left with is equivalent to
+  \begin{displaymath}
+    (H_{i_1} \cap (H_{i_3} \cap H_{i_4} \cap \cdots \cap H_{i_d}))
+    \cap
+    (H_{i_2} \cap (H_{i_3} \cap H_{i_4} \cap \cdots \cap H_{i_d}))
+    \cap (C \cap (H_{i_3} \cap H_{i_4} \cap \cdots \cap H_{i_d}))
+    \neq \emptyset,
+  \end{displaymath}
+  which, if the three objects are non-empty, reads:
+  %
+  ``Given two lines and a convex body in some plane, do they intersect?''.
+  %
+  We can answer this query if we have the encoding for \(d = 2\) which is
+  obtained by replacing \emph{triangle} by \emph{convex body} in the
+  two-dimensional original problem. The total space taken is multiplied by
+  \(n\) for each time we unroll the recursion times the space taken in two
+  dimensions, which is proportional to \(n^{d-2} \cdot n \log{n} = O(n^{d-1} \log{n}) \).
+  Queries can then be answered in \(O(d)\) time.
+
+  Note that degenerate cases are likely to arise:
+  %
+  convex bodies that are empty because of nonintersecting hyperplanes, convex
+  bodies that are higher dimensional because of linearly dependent hyperplanes,
+  and convex bodies that are lower dimensional because \(C\) was not
+  full-dimensional to start with.
+  %
+  However, all those cases can be dealt with appropriately:
+  %
+  If the query suffix
+  \(H_{i_3} \cap H_{i_4} \cap \cdots \cap H_{i_d}\)
+  leads to an empty convex body
+  \(C \cap (H_{i_3} \cap H_{i_4} \cap \cdots \cap H_{i_d})\)
+  then the query point is not in the convex body and we encode
+  \(0\) for all the queries for \(C\) ending in this suffix.
+  This information can be encoded in a table of size \(O(n^{d-2})\).
+  %
+  If the query suffix
+  \(H_{i_3} \cap H_{i_4} \cap \cdots \cap H_{i_d}\)
+  leads to a convex body
+  \(C \cap (H_{i_3} \cap H_{i_4} \cap \cdots \cap H_{i_d})\)
+  of dimension \(\geq 3\) then the intersection of all objects
+  is not a \(0\)-flat and we encode a \(0\) to follow the definition
+  of \(\mathcal{I}_{C,H}\).
+  Again, this information can be encoded in a table of size \(O(n^{d-2})\).
+  %
+  If the query suffix
+  \(H_{i_3} \cap H_{i_4} \cap \cdots \cap H_{i_d}\)
+  leads to a convex body
+  \(C \cap (H_{i_3} \cap H_{i_4} \cap \cdots \cap H_{i_d})\)
+  of dimension zero, one, or two,
+  then we use the encoding of size \(O(n \log n)\) described in
+  Section~\ref{sec:lines-and-pseudolines} as a base case.
+\end{proof}
+
+%Note that there is a linear lower bound for encoding this subproblem in
+%dimension \(d=1\) and a \(\Omega(n \log n)\) lower bound for \(d=2\). We might be able
+%to strengthen the lower bound for higher dimensions.
+
+In the paragraphs that follow, we show how to plug this result in those of
+the previous sections to obtain analogous results for the \(d\)-dimensional
+version of the problem (Theorem~\ref{thm:realizable-d} and
+Theorem~\ref{thm:preprocessing-d}).
+
+\paragraph*{Encoding}
+We build a hierarchical cutting as in
+Section~\ref{sec:lines-and-pseudolines} (this time in dimension
+\(d\)).
+%
+Given \(n\) hyperplanes in \(\mathbb{R}^d\) and some fixed
+parameters \(r\) and \(\ell\), compute a \(\ell\)-levels hierarchical cutting
+of parameter \(r\) for those
+hyperplanes as in Lemma~\ref{lem:hierarchical-cutting-d}.
+This hierarchical cutting consists of \( \ell \) levels
+labeled \(0,1,\ldots,\ell-1\). Level \(i\) has \(O(r^{di})\)
+cells. Each of those cells is further partitioned into
+\(O(r^d)\) subcells. The \(O(r^{d(i+1)})\) subcells of level \(i\)
+are the cells of level \(i+1\). Each cell of level \(i\) is intersected by at
+most \(\frac{n}{r^i}\) hyperplanes, and hence each subcell is intersected by at
+most \(\frac{n}{r^{i+1}}\) hyperplanes.
+
+We compute and store a combinatorial representation of the hierarchical cutting
+as follows: For each level of the hierarchy, for each cell in that level, for
+each hyperplane intersecting that cell, for each subcell of that cell, we store
+two bits to indicate the location of the hyperplane with respect to that
+subcell\ifeurocg\else, that is, whether the hyperplane lies above
+(\texttt{00}), lies below (\texttt{01}), intersects the interior of that
+subcell (\texttt{10}), or contains the subcell (\texttt{11})\fi.
+%
+When a hyperplane \(H_{i}\) intersects the interior of a subcell \(\mathcal{C}'\),
+we also store the two \(O(\log \frac{n}{r^{i+1}})\)-bits two-dimensional
+intersections indices this hyperplane has in each of the
+\(O\left({\left(\frac{n}{r^{i+1}}\right)}^{d-2}\right)\)
+query suffixes \((H_{i_3} \cap H_{i_4} \cap \ldots \cap H_{i_d})\) with each of the
+\(H_{i_j}\) properly intersecting \(\mathcal{C}'\).
+
+This representation takes
+\(O\left(
+  \frac{n}{r^i}
+  +
+  {\left(\frac{n}{r^{i+1}}\right)}^{d-1} \log{\frac{n}{r^{i+1}}}
+\right)\)
+bits per subcell of level \(i\) by storing for each
+hyperplane its location and, when needed, the bits they hold in
+the encoding of the intersection function of the subcell.
+At the last level of the hierarchy, let \(t =
+\frac{n}{r^\ell}\) denote an upper bound on the number of hyperplanes
+intersecting each subcell. For each of those \(O(r^{d \ell}) =
+O(\frac{n^d}{t^d})\) subcells we store a pointer to a lookup table of size
+\(O(t^{d+1})\) that allows to answer the query of the orientation of any
+triple of hyperplanes intersecting that subcell.
+
+Using the Zone Theorem in higher dimensions (Theorem~\ref{thm:zone-theorem-d}),
+we can have all bits belonging to a single cell-hyperplane pair in a contiguous
+block of memory with the same space bound.
+
+\paragraph*{\iftitlecase%
+Space Complexity\else%
+Space complexity\fi}
+As before, for the space taken by the lookup tables, their
+associated pointers and canonical labelings at the leaves, and the parameters
+of the hierarchy \(n\), \(r\) and \(t\), the analysis is immediate. If not
+implicitly known, the dimension \(d\) can also trivially be added to the
+encoding.
+
+For the space taken by the hierarchy,
+we generalize Lemma~\ref{lem:space-2-hierarchy} of
+Section~\ref{sec:lines-and-pseudolines}. Let \(H_r^\ell(n,d) \in \mathbb{N}\) be the maximum
+amount of space (bits), over all arrangements of \(n\) hyperplanes in \(\mathbb{R}^d\),
+taken by the \(\ell \in \mathbb{N}\) levels of a hierarchy with parameter \(r \in
+(1,+\infty)\).
+%
+\begin{lemma}\label{lem:space-d-hierarchy}
+For \( r \geq 2 \) we have
+\begin{displaymath}
+H_r^\ell(n,d)
+=
+O\left(\frac{n^d}{t} \left(\log t + \frac{r}{t^{d-2}}\right)\right).
+\end{displaymath}
+\end{lemma}
+
+\begin{proof}
+By definition we have
+\begin{displaymath}
+H_r^\ell(n,d)
+= O \left(
+  \sum_{i=0}^{\ell-1} \left(
+	r^{di} \cdot r^d \cdot \left(
+	  \frac{n}{r^i} + {\left(\frac{n}{r^{i+1}}\right)}^{d-1} \cdot \log \frac{n}{r^{i+1}}
+    \right)
+  \right)
+\right).
+\end{displaymath}
+%
+Using \(t = \frac{n}{r^{\ell}}\), reversing the summation with
+\(i \leftarrow \ell - i - 1\), and grouping the terms, we have
+\begin{displaymath}
+H_r^\ell(n,d)
+=
+O \left(
+\frac{n^d}{t} \left(
+	\frac{r}{t^{d-2}}
+	\sum_{i=0}^{\ell-1} \frac{1}{{(r^{d-1})}^i}
+	+
+	\log t
+	\sum_{i=0}^{\ell-1} \frac{1}{r^i}
+	+
+	\log r
+	\sum_{i=0}^{\ell-1} \frac{i}{r^i}
+\right)
+\right).
+\end{displaymath}
+%
+Using the geometric inequalities
+(see the proof of Lemma~\ref{lem:space-2-hierarchy})
+the statement follows from \(r \geq 2\).
+%
+\end{proof}
+
+
+The final picture is almost the same as in Figure~\ref{fig:space-analysis}.
+%
+Summing all terms, we obtain
+%
+\begin{lemma}\label{lem:space-d-all}
+    The space taken by the encoding described in Section~\ref{sec:hyperplanes}
+    is proportional to
+    \begin{displaymath}
+      \underbrace{\log dntr}_{\text{Parameters}}
+      +
+      \underbrace{\frac{n^d}{t} \left( \log t + \frac{r}{t^{d-2}} \right)}_{\text{Traces}}
+      +
+      \underbrace{\frac{n^d}{t^d} ( \log \nu_d(t) + t \log t )}_{\text{Leaves}}
+      +
+      \underbrace{t^{d+1}\nu_d(t)}_{\text{Lookup Tables}},
+    \end{displaymath}
+    where \(\nu_d(t) = 2^{\Theta(d^2 t \log t)}\) denotes the number of
+    realizable rank-\((d+1)\) chirotopes of size \(t\).
+\end{lemma}
+
+We pick \(r\) constant and choose \(t = \delta \log n / \log \log n\) for small
+enough \(\delta\). The second term in Lemma~\ref{lem:space-d-all} dominates
+with \(n^d {(\log \log n)}^2 / \log n\). This proves the space constraint in
+Theorem~\ref{thm:realizable-d}.
+
+\paragraph*{\iftitlecase%
+Correctness and Query Complexity\else%
+Correctness and query complexity\fi}
+As before, a query is answered by traversing the hierarchy, which takes
+\(O(\log n)\) time. The query time can be further improved using the method from
+Section~\ref{sec:query-time} with \(r = \Theta(t^{d-2} \log t)\). This proves the
+query time constraint in Theorem~\ref{thm:realizable-d}.
+
+\paragraph*{\iftitlecase%
+Preprocessing Time\else%
+Preprocessing time\fi}
+We prove Theorem~\ref{thm:preprocessing-d}.
+\begin{proof}
+  The hierarchical cuttings can be computed in \(O(n{(r^\ell)}^{d-1})\) time.
+  The lookup table and leaf-table pointers can be computed in \(O(n^d)\) time
+  using the canonical labeling and representation for rank-\((d+1)\) chirotopes
+  given in~\cite{AILOW14}. The intersection oracle, the disambiguation table,
+  and the subcell mapper can be computed in \(o(n^{d})\) time.
+\end{proof}

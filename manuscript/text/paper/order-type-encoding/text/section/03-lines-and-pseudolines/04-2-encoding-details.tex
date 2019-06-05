@@ -1,0 +1,79 @@
+Storing the permutation at each subcell would suffice to answer all
+queries that do not reach the last level of the hierarchy. However,
+for those queries to be answered efficiently,
+we need to have access to all bits belonging to a given pseudoline
+without having to read the bits of the others.
+%
+One solution is to augment each subcell with a hash table that translates
+pseudoline indices of the parent cell into pseudoline indices of the subcell.
+%
+Another cleaner solution is to use the Zone Theorem
+(%
+\ifjournal%
+Theorem~\ref{thm:zone-theorem-2}%
+\else%
+\cite{BEPY90,CGL85,Go04}%
+\fi%
+): by constructing the hierarchical cutting
+via decompositions of subsets of the input pseudolines, we can bound
+the number of subcells of a given cell a given pseudoline intersects by
+\(O(r)\).%
+\footnote{A reason to prefer this solution is that it enables the query time
+reduction in the next section.}
+%
+Hence,
+the number of bits stored for a single intersecting cell-pseudoline
+pair at level \(i\) is bounded by
+\(|\textsc{Tr}_i| = O(r^2 + r \log{\frac{n}{r^{i+1}}})\).
+This bound allows us to store all bits belonging to a given cell-pseudoline pair
+\((\mathcal{C},p')\)
+in a contiguous block of memory, denoted by \(\textsc{Tr}(\mathcal{C},p')\),
+whose address in memory is easy to compute (as detailed later on).
+%
+The overall number of bits stored stays the same up to a constant factor.
+%
+We call
+\(\textsc{Tr}(\mathcal{C},p')\) the \emph{trace} of \(p'\) in \(\mathcal{C}\).
+Figure~\ref{fig:trace} depicts an example trace.
+%
+\begin{figure}
+  \centering{}
+  \includegraphics[scale=0.7]{figures/trace}
+  \caption{%
+	  A trace \(\textsc{Tr}(\mathcal{C}, p')\). The cell \(\mathcal{C}\) has
+	  eight subcells. Each subcell is intersected by at most four pseudolines.
+	  The pseudoline \(p'\) lies above two of them, lies below two of them,
+	  contains one of them, and intersects three of them at indices
+	  \((2,6)\), \((5,7)\), and \((0, 3)\).
+  }\label{fig:trace}
+\end{figure}
+%
+%Furthermore, the Zone Theorem implies that the number of cells of level \(i\)
+%intersected by a given pseudoline is bounded by \(O(r^i)\). Hence, we can
+%concatenate all traces of a given pseudoline and store them in a continuous
+%block of memory in a space-efficient way.
+%\aurelien{This would require to use another cell to subcell translation table
+%that would blow up the space or rely on other complicated tools}
+
+For queries that reach the last level of the hierarchy, storing an individual
+lookup table for each leaf would cost too much as soon as \(t = \omega(1)\).
+However, as long as \(t\) is small enough, each order type is shared by
+many leaves, and we can thus save space. Formally, let \(\nu(t)\) denote the
+number of order types of size \(t\), which is \(\nu(t) = 2^{\Theta(t^2)}\) for
+abstract order types~\cite{Fe96} and \(\nu(t) = 2^{\Theta(t \log{t})}\) for realizable
+order types~\cite{Al86,GP86}. At most \(\nu(t)\) distinct lookup tables are needed
+to answer
+the queries on the subcells of the last level of the hierarchy. Hence, the
+pointers have size \(|\textsc{Pointer}| = O(\log \nu(t))\) and the total space needed for the lookup
+tables is \(O(t^3 \nu(t))\). For each leaf, we store a canonical
+labeling of size \(|\textsc{Labeling}| = O(t \log t)\) on the pseudolines that intersect it,
+as in Lemma~\ref{lem:canonical-labeling}. We use
+that labeling to order the queries in the associated lookup table.%
+\ifjournal\footnote{%
+Note that the use of this canonical labeling is not necessary if
+\(t\) is constant, because then we can afford to use one lookup table per leaf.
+For superconstant \(t\), the canonical labeling is necessary to get
+the construction time down to \(O(n^2)\) as explained later.
+Space and query complexity are not affected by this design choice (other than
+constant factors).%
+}\fi

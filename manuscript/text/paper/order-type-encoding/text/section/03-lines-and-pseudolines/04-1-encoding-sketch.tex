@@ -1,0 +1,57 @@
+\paragraph*{Encoding}
+Given \(n\) pseudolines in the plane and some fixed
+parameters \(r\) and \(\ell\), compute a \(\ell\)-levels hierarchical cutting
+of parameter \(r\) for those
+pseudolines as in Lemma~\ref{lem:hierarchical-cutting-2}.
+This hierarchical cutting consists of \( \ell \) levels
+labeled \(0,1,\ldots,\ell-1\). Level \(i\) has \(O(r^{2i})\)
+cells. Each of those cells is further partitioned into
+\(O(r^2)\) subcells. The \(O(r^{2(i+1)})\) subcells of level \(i\)
+are the cells of level \(i+1\). Each cell of level \(i\) is intersected by at
+most \(\frac{n}{r^i}\) pseudolines, and hence each subcell is intersected by at
+most \(\frac{n}{r^{i+1}}\) pseudolines.
+
+We compute and store a combinatorial representation of the hierarchical cutting
+as follows: For each level of the hierarchy, for each cell in that level, for
+each pseudoline intersecting that cell, for each subcell of that cell, we store
+two bits to indicate the location of the pseudoline with respect to that
+subcell\ifeurocg\else, that is, whether the pseudoline lies above
+(\texttt{00}), lies below (\texttt{01}), intersects the interior of that
+subcell (\texttt{10}), or contains the subcell (\texttt{11})\fi.
+When a pseudoline intersects the interior of a 2-dimensional subcell, we also
+store the two indices of that pseudoline
+in the cyclic permutation of that subcell, beginning at an
+arbitrary location in, say, clockwise order.
+\ifeurocg%
+Location in a non-full-dimensional subcell can be encoded similarily.
+\else%
+If the intersected subcell is
+1-dimensional instead, we store the index of the pseudoline in the acyclic
+permutation of that subcell, beginning at an arbitrary endpoint.
+If two pseudolines intersect in the interior of a 1-dimensional subcell or on
+the boundary of a 2-dimensional subcell, they share the same index in the
+permutation of that subcell.
+\fi%
+
+\ifeurocg\else
+This representation takes \(O(\frac{n}{r^i} + \frac{n}{r^{i+1}}
+\log{\frac{n}{r^{i+1}}})\) bits per subcell of level \(i\) by storing for each
+pseudoline its location and, when needed, the permutation indices of its
+intersections with the subcell. At the last level of the hierarchy, let \(t =
+\frac{n}{r^\ell}\) denote an upper bound on the number of pseudolines
+intersecting each subcell. For each of those \(O(r^{2 \ell}) =
+O(\frac{n^2}{t^2})\) subcells we store a pointer to a lookup table of size
+\(O(t^3)\) that allows to answer the query of the orientation of any
+triple of pseudolines intersecting that subcell.
+\fi
+
+\ifeurocg
+The hierarchy is such that each subcell of the last level is intersected by no
+more than \(t = \frac{n}{r^\ell}\) pseudolines.
+For those subcells, we answer the queries by table lookup.
+The use of hierarchical cuttings essentially guarantees we get quadratic
+preprocessing time, quadratic space, and logarithmic query time in the abstract
+case. In the realizable case, we know there can only be \(2^{O(t \log t)}\)
+distinct lookup tables. Choosing the right superconstant \(t\) leads to
+subquadratic space in that case.
+\fi

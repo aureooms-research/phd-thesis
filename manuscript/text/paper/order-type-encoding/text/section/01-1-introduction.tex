@@ -1,0 +1,194 @@
+\section{Introduction}\label{sec:introduction}
+
+At SoCG'86, Chazelle asked~\cite{GP93}:
+\begin{quotation}
+``How many bits does it take to know an order type?''
+\end{quotation}
+
+This question is of importance in Computational Geometry for the following two
+reasons:
+%
+First, in many algorithms dealing with sets of points in the plane,
+the only relevant information carried by the input is the combinatorial
+configuration of the points given by the orientation of each triple of points in the
+set (clockwise, counterclockwise, or collinear)~\cite{Knu92,Ed12,Epp18}.
+%
+Second, computers as we know them can only handle numbers with
+finite description and we cannot assume that they can handle arbitrary
+real numbers without some sort of encoding. The study of \emph{robust}
+algorithms is focused on ensuring the correct solution of problems on finite
+precision machines. Chapter 41 of The Handbook of Discrete and Computational
+Geometry is dedicated to this issue~\cite{Ya04}.
+
+The (counterclockwise) orientation \(\nabla(p,q,r) \in \{\, -, 0, +\,\}\) of a triple of points
+\(p\), \(q\), and \(r\) with coordinates \((x_p, y_p)\), \((x_q, y_q)\), and
+\((x_r, y_r)\) is the sign of the determinant
+\begin{displaymath}
+    \begin{vmatrix}
+	1 & x_p & y_p \\
+	1 & x_q & y_q \\
+	1 & x_r & y_r
+    \end{vmatrix}.
+\end{displaymath}
+
+Given a set of \(n\) labeled points \(P = \{\, p_1, p_2, \ldots, p_n\,\}\), we
+define the \emph{order type} of \(P\) to be the function \(\chi \colon\,
+{[n]}^3 \to \{\, -, 0, +\,\} \colon\, (a,b,c) \mapsto \nabla(p_a, p_b, p_c)\)
+that maps each triple of point labels to the orientation of the corresponding
+points, up to isomorphism.
+%
+\ifeurocg\else%
+A great deal of the literature in computational geometry deals with this
+notion~\cite{%
+AAK02a,
+AAK02b,
+ACKLV16,
+AKPV14,
+AK01,
+AK05,
+AKMPW15,
+AMP13,
+Al86,
+AILOW14,
+BLSWZ93,
+BMS01,
+BRS92,
+Epp18,
+EHN99,
+Fe96,
+FV11,
+FL78,
+Go80,
+GP83,
+GP84,
+GP86,
+GP91,
+GP93,
+GPS89,
+HM94,
+HMMS11,
+Knu92,
+Le26,
+MMIB12,
+NV98,
+Ri89,
+RZ04,
+Ri56,
+St97%
+}.
+\fi%
+The order type of a point set has been further abstracted into combinatorial
+objects known as (rank-three) \emph{oriented matroids}~\cite{FL78}. The
+\emph{chirotope axioms} define consistent systems of signs of
+triples~\cite{BLSWZ93}.
+%
+From the topological representation theorem~\cite{BMS01}, all such
+\emph{abstract} order types correspond to pseudoline arrangements, while, from
+the standard projective duality, order types of point sets correspond to
+straight line arrangements. See Chapter 6 of The Handbook for more
+details~\cite{RZ04}.
+
+When the order type of a pseudoline arrangement can be realized by an
+arrangement of straight lines, we call the pseudoline arrangement
+\emph{stretchable}.
+%
+As an example of a nonstretchable arrangement, Levi gives Pappus's
+configuration where eight triples of concurrent straight lines force a ninth,
+whereas the ninth triple cannot be enforced by pseudolines~\cite{Le26} (see
+Figure~\ref{fig:pappus}).
+%
+Ringel shows how to convert the so-called ``non-Pappus'' arrangement of
+Figure~\ref{fig:pappus}~(b) to a simple arrangement while preserving
+nonstretchability~\cite{Ri56}.
+%
+All arrangements of eight or fewer pseudolines are stretchable~\cite{GP80}, and
+the only nonstretchable simple arrangement of nine pseudolines is the one given
+by Ringel~\cite{Ri89}.
+%
+More information on pseudoline arrangements is available in Chapter 5 of The
+Handbook~\cite{Go04}.
+
+\begin{figure}
+	\centering{}
+    \begin{subfigure}[t]{0.5\textwidth}
+		\centering{}
+		\includegraphics[scale=.\ifeurocg7\else9\fi]{figures/pappus-realizable}
+		\caption{Realizable order type.}
+    \end{subfigure}%
+    \begin{subfigure}[t]{0.5\textwidth}
+		\centering{}
+		\includegraphics[scale=.\ifeurocg7\else9\fi]{figures/pappus-abstract}
+		\caption{Abstract order type which is not realizable.}
+    \end{subfigure}
+	\caption{Pappus's configuration.}\label{fig:pappus}
+\end{figure}
+
+Figure~\ref{fig:pappus} shows that not all pseudoline arrangements are
+stretchable. Indeed, most are not: there are \(2^{\Theta(n^2)}\)
+abstract order types~\cite{Fe96} and only \(2^{\Theta(n \log n)}\) realizable
+order types~\cite{Al86,GP86}.
+%
+\ifeurocg\else%
+This discrepancy stems from the algebraic nature of realizable order types, as
+illustrated by the main tool used in the upper bound proofs (the
+Petrovski\u{\i}-Ole\u{\i}nik-Thom-Milnor Theorem~\cite{Mi64,Th65,BPR06}).
+\fi%
+%
+Therefore, information theory implies that \(\Theta(n^2)\) bits are necessary
+and sufficient for abstract order types whereas \(\Theta(n \log n)\) bits are
+necessary and sufficient for realizable order types.
+Optimal encodings matching those bounds can be produced
+by a simple enumeration algorithm.
+%
+However, it is unclear how the original information can be
+efficiently reconstructed from those encodings.
+%
+On the other hand, storing all \( \binom{n}{3} \) orientations in a lookup
+table to render this information accessible seems wasteful.
+
+Another obvious idea for storing the order type of a point set is to store
+the coordinates of the points, and answer orientation queries
+by computing the corresponding determinant. While this should work in many practical
+settings, it cannot work for all point sets. Perles's configuration shows that
+some configuration of points, containing collinear triples, forces at least one
+coordinate to be irrational~\cite{Gr05}\ifeurocg\else%
+(see Figure~\ref{fig:perles})\fi.
+%
+It is easy to see that
+order types of points in general position can always be represented by rational
+(or integer) coordinates.
+%
+However, it is well known that some configurations require doubly
+exponential coordinates, hence coordinates with exponential bitsizes if
+represented in the binary numeral system~\cite{GPS89}.
+
+\ifeurocg\else%
+\begin{figure}
+	\centering{}
+	\includegraphics[scale=.\ifeurocg7\else9\fi]{figures/perles}
+	\caption{Perles's configuration.}\label{fig:perles}
+\end{figure}
+\fi%
+
+Goodman and Pollack defined \(\lambda\)-matrices which can encode abstract order
+types using \( O(n^2 \log{n}) \) bits~\cite{GP83} and can be constructed in
+\(O(n^2)\) time~\cite{EOS86}. They asked if the space
+requirements could be moved closer to the information-theoretic lower bounds.
+Everett, Hurtado, and Noy complained that this encoding does not
+allow a fast decoding for individual triples~\cite{EHN99}.
+Knuth and Streinu independently gave new encodings of size \(O(n^2 \log n)\)
+that allow orientation queries in constant time~\cite{Knu92,St97}.\footnote{%
+We attract the attention of the reader on the fact that we express size in bits
+in this paper. Other papers,~\cite{EHN99} and~\cite{St97} in particular,
+express size in number of words, which is off by at least a logarithmic factor.}
+Felsner and Valtr showed how to encode abstract order types optimally in
+\(O(n^2)\) bits via the wiring diagram of their corresponding allowable
+sequence~\cite{Fe96, FV11} (as defined in~\cite{Go80}). Aloupis et al.\ gave
+an encoding of size \(O(n^2)\) that can be computed in \(O(n^2)\) time and that
+can be used to test for the isomorphism of two distinct point sets in the same
+amount of time~\cite{AILOW14}. However, it is not known how to decode the
+orientation of one triple from any of those optimal encodings in, say, sublinear time.
+Moreover, since the information-theoretic lower bound for realizable order
+types is only \(\Omega(n \log{n})\), we must ask if this space bound is
+approachable for those order types while keeping orientation queries reasonably
+efficient.

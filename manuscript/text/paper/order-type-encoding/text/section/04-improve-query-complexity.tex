@@ -1,0 +1,432 @@
+%\section{\iftitlecase%
+%Sublogarithmic Query Complexity\else%
+%Sublogarithmic query complexity\fi}\label{sec:query-time}
+\section{\iftitlecase%
+Pushing Query Time below Logarithmic\else%
+Pushing query time below logarithmic\fi}\label{sec:query-time}
+
+We further refine the encoding introduced in the previous section so as to
+reduce the query time by a \( \log\log n \) factor. We do so using
+specificities of the word-RAM model that allow us to preprocess computations
+on inputs of small but superconstant size.
+%
+This refinement is applicable to both abstract and realizable order types,
+and leads to an improvement of our main theorems for the two-dimensional case:
+%
+\input{text/theorem/abstract-loglog}
+\input{text/theorem/realizable-loglog}
+\input{text/theorem/preprocessing-loglog}
+
+\paragraph{Idea}
+
+A natural idea is to pick \(r\) to be small but superconstant to reduce the
+number of levels of the hierarchy and thus the query time. As already pointed
+out, this has the drawback of increasing the time complexity of the intersection
+location primitive from constant to \(\Theta(r^2)\).
+Since this primitive is used at each level of the hierarchy, the
+\(\Theta(\log r)\) factor saved by having less levels is lost.
+
+To get past this difficulty,
+the trick is to encode approximations of the traces
+\(\textsc{Tr}(\mathcal{C}, p')\) to still allow constant intersection location.
+We call those approximations \emph{signatures} and denote them by
+\(\textsc{Sig}(\mathcal{C}, p')\).
+%
+We define those signatures so that they approximately encode the cyclic
+permutation of the intersections around each subcell. By carefully choosing some
+parameters, we are able to fit two of those signatures in a single word of
+memory. We can then precompute the output to all
+possible inputs for the intersection location primitive and put them in a small
+table.
+
+Because of this size reduction, distinct pseudolines could
+be mapped to identical signatures.
+%
+Those ambiguous situations can be deterministically handled using
+an additional lookup table.
+%
+Because those situations rarely arise, this table also is small.
+
+Once we have located the intersection \(p_a' \cap p_b'\), we still need to deal
+with \(p_c'\). We change the layout of a trace to locate the subcell containing
+\(p_a' \cap p_b'\) with respect to \(p_c'\) in constant time.
+%
+In case \(p_c'\) properly intersects the subcell, we need to recurse on the
+subcell. To do that, we need to map the pseudoline indices \(a\), \(b\), and
+\(c\) to the indices those pseudolines have in that subcell. This is
+done with one indirection:
+%
+For each of the three pseudolines we
+identify the index of the subcell in the list of subcells intersected by that
+pseudoline.
+This is implemented as a rank operation on a list of \(O(r^2)\) bits.
+%
+Given that index, we can find the intersection indices of that pseudoline in
+the cyclic permutation of the subcell in constant time.
+
+In what follows, we describe five new structures:
+the signatures,
+the intersection oracle,
+the disambiguation table,
+the augmented traces,
+and the subcell mapper.
+%
+The first reduces the bitsize of the original traces so that the second can
+be implemented in constant time. The third handles bad cases that arise because
+of this size reduction. The fourth defines a new layout for the traces that
+includes the signature. The fifth allows to implement the parent-to-subcell
+pseudoline index mapping in constant time using this new layout.
+%
+\paragraph*{\iftitlecase%
+Signatures\else%
+Signatures\fi}
+Fix a small constant \(\alpha\) and define \(r = \Theta(\log^{\alpha} n)\).%
+\footnote{%
+  The exact bound for how small \(\alpha\)
+  must be depends on hidden constant factors in the Zone Theorem and in the definition
+  of the word size. In particular, we must have \(\alpha \leq \frac 12\) when
+  \(w = \Theta(\log n)\).%
+}
+%
+We encode a \(\ell\)-levels hierarchical cutting of parameter \(r\).
+%
+Note that we can construct a hierarchical cutting with
+superconstant \(r\) by constructing a hierarchical cutting with some
+appropriate constant parameter \(r'\), and then skip levels that we do not
+need.
+%
+As in Section~\ref{sec:lines-and-pseudolines}, we store a combinatorial representation of
+this hierarchical cutting. We make some tweaks to this representation.
+
+We augment the traces of Section~\ref{sec:lines-and-pseudolines} with a \emph{signature}.
+The trace \(\textsc{Tr}(\mathcal{C}, p')\) of a cell-pseudoline pair
+is composed of two parts:
+The incidence bits
+that tell us for each subcell of the cell whether the pseudoline lies above, lies below, intersects
+or contains it, and the cyclic permutation bits used to locate the intersection
+of two pseudolines inside the cell.
+The first part uses \(\Theta(r^2)\) bits.
+The second part uses \(\Theta(r \log{\frac{N}{r^{i+1}}})\) bits for a cell of
+level \(i\).
+
+To construct the signature \(\textsc{Sig}(\mathcal{C}, p')\),
+we keep the \(\Theta(r^2) = \Theta(\log^{2\alpha} n)\) incidence bits because
+they fit in sublogarithmic space for sufficiently small \(\alpha\).
+The second part would use superlogarithmic space if handled as before.
+We thus replace the \(\Theta(r \log{\frac{n}{r^{i+1}}})\) bits of the
+cyclic permutation by a well chosen approximation.
+
+Let \(\beta = 2^{\Theta(\log^{\alpha} n)}\) and denote by \(n_i = n/r^i\)
+an upper bound on the number of pseudolines intersecting a cell of level \(i\). For
+each subcell of level \(i\), partition its cyclic permutation into
+\(\beta_i \leq \min \{\, \beta , n_{i+1} \,\} \) blocks
+of at most \(\lceil n_{i+1} / \beta_i \rceil\) intersections.
+%
+For each pseudoline intersecting a cell we store the block indices that
+that pseudoline touches instead of storing the cyclic permutation indices.%
+\footnote{For \(\beta\) a power of two, this can be implemented by truncating
+the original cyclic permutation indices.}
+Hence, the second part
+of each signature only uses \(O(r \log \beta) = O(\log^{2\alpha})\) bits.
+
+\paragraph*{\iftitlecase%
+Intersection Oracle\else%
+Intersection oracle\fi}
+We construct a lookup table to compute in constant time,
+for any given cell of any given level, the subcell in which \(q_i \cap q_j\)
+lies.
+%Computing it via scanning with so many subcells to check would waste any
+%further savings.
+For that we need a general observation on the precomputation of functions on
+small universes.
+%
+\begin{observation}\label{obs:small-universe-functions}
+  In the word-RAM model with word size \(w \geq \log n\), for any word-to-word
+  function \(f:[2^w] \to [2^w]\), we can build a lookup table of total bitsize
+  \(2^g h\) for all \(2^g\) inputs \(x \in [2^g]\) of bitsize \(g \leq w\),
+  mapping to images \(y \in [2^h]\) of bitsize \(h \leq w\),
+  in time \(2^g T(g)\) where \(T(g)\) is the complexity of computing \(f(x)\), 
+  \(x \in [2^g]\). The image of bitsize \(h\) of any input of bitsize \(g\) can then be
+  retrieved in \(O(1)\) time by a single lookup (since inputs and outputs fit in
+  a single word). In particular, the preprocessing time \(2^g T(g)\) and the
+  space \(2^g h\) are sublinear as long as \(T(g)=g^{O(1)}\) and \(g + \log h
+  = o(\log n)\).
+\end{observation}
+%
+In other words, any polynomial time computable word-to-word function can be
+precomputed in sublinear time and space for all inputs and outputs of
+sublogarithmic size.
+%
+\aurelien{Maybe move to preliminaries?}
+
+Since each pseudoline signature fits in
+\(O(r^2 + r \log \beta) = O(\log^{2\alpha}{n})\)
+bits,
+and since the number of subcells of each cell is \(O(\log^{2\alpha}{n})\),
+we can choose an appropriate \(\alpha\) so as to satisfy the requirements given
+above:
+take \(\alpha < \frac 12\) so that two pseudoline signatures
+have a combined bitsize of \(g = o(\log n)\).
+The output size is the bitsize of a subcell identifier, which is \(h \leq 2
+\alpha \log \log n = o(\log n)\).
+%
+In some cases, the block indices stored in the signatures will not contain
+enough information to point to a unique output. In those cases we store a
+special value that indicates ambiguity of the input.
+
+We can thus precompute the function that sends two pseudoline
+signatures to either the subcell containing their intersection or to some
+special value in case of an ambiguous input. Since we compute the function for
+all members of its universe, we can implement the lookup table using
+direct addressing into an array.
+
+Note that the output of this oracle is the same no matter what level or cell we
+consider: for non-ambiguous inputs, all the information required to locate
+\(q_i \cap q_j\) is included in the input.
+We thus only need a single lookup table, and the space needed is proportional to
+\begin{displaymath}
+  2^g h
+  =
+  2^{\Theta(\log^{2\alpha} n)}.
+\end{displaymath}
+
+\paragraph*{Disambiguation}
+An input for the intersection oracle is ambiguous if and only if at least one
+boundary intersection of each input pseudoline appears in the same cyclic
+permutation block of the cell that contains their intersection.
+%
+Thus, ambiguous inputs rarely occur:
+%
+less than the number of blocks times the number of pairs of boundary
+intersections in a block,
+%
+that is, less than
+\(
+\beta \cdot {({n_{i+1}} / \beta)}^2
+=
+\frac{n^2}{r^{2(i+1)}} / \beta
+\)
+times per subcell of level \(i\) of the hierarchy.
+%
+When \(\beta \geq n_{i+1}\) all ambiguity is lifted so we can ignore
+those cases.
+
+The disambiguation table is a hash table storing the answer to all ambiguous
+inputs for all cells of each level \(i \in \{\, 0,1, \ldots, \ell -1\,\}\).
+%
+This table maps a triple of a cell
+\(\mathcal{C}_{0,j_1,j_2,\ldots,j_i}\),
+a pseudoline \(p_a'\),
+and a pseudoline \(p_b'\) to the index \( j_{i+1} \in \{\, 0,1, \ldots, O(r^2)\,\}\) of
+the subcell \(\mathcal{C}_{0,j_1,j_2,\ldots,j_i,j_{i+1}}\) containing the
+intersection \(p_a' \cap p_b'\).
+%
+Summing over all subcells of each level, we obtain that the
+number of entries in this table is bounded above by
+\begin{displaymath}
+  \sum_{i=0}^{\ell - 1}  r^{2i} \cdot r^2 \cdot \frac{n^2}{r^{2(i+1)}} / \beta
+  =
+  \frac{n^2 \ell}{2^{\Theta(\log^{\alpha} n)}}.
+\end{displaymath}
+%
+The number of bits of each entry is at most \(\ell \lceil \log cr^2 \rceil + 2 \log n =
+O(\log n)\) for the key and
+\(\lceil \log cr^2 \rceil\) for the value. Both get absorbed by the
+\(2^{-\Theta(\log^{\alpha} n)}\) factor in the number of entries, so we can
+keep the same expression for the number of bits used by the disambiguation table.
+
+Since the keys and values fit in a constant number of words,
+we can guarantee worst case constant query time using
+cuckoo~hashing~\cite{PR04} or
+perfect~hashing~\cite{FKS84}.
+%
+In both cases the construction of the table is randomized
+and takes expected linear time in the number of entries.
+Perfect hashing has the advantage that we can drop the entry keys since we
+only query this table for existing entries.
+Note that this is the only part of the construction that is randomized.
+
+\paragraph*{\iftitlecase%
+Augmented Traces\else%
+Augmented traces\fi}
+
+The augmented traces are simply the concatenation of the signature and the
+first intersection indices as depicted in Figure~\ref{fig:new-trace}.
+%
+\begin{figure}
+  \centering{}
+  \includegraphics[scale=0.7]{figures/new-trace}
+  \caption{%
+	  An augmented trace \(\textsc{Tr}'(\mathcal{C}, p')\)
+      for the same cell-pseudoline pair as in Figure~\ref{fig:trace}.
+  }\label{fig:new-trace}
+\end{figure}
+%
+This layout allows for constant time access to the signature.
+Given a subcell index we can test its incidence bits in constant time.
+Given an intersected subcell index we can access the first intersection index
+of the pseudoline in that subcell in constant time.
+
+As discussed earlier, the first part of the signature uses \(O(r^2)\) bits.
+We already noted that the second part of the signature
+uses \(O(r \log \beta) = O(\log^{2 \alpha} n)\) bits. However, a better bound
+to use for the analysis of the total space is
+\(O(r \log \beta_i) = O(r \log n_{i+1})\) bits, which is proportional to the
+number of bits needed for the first intersection indices.
+
+Summing over all pseudolines and all intersected cells of each level,
+the space used for the augmented traces is proportional to
+\begin{displaymath}
+n \sum_{i=0}^{\ell-1} r^i \cdot \left( r^2 + r \log n_{i+1} \right)
+=
+O\left(\frac{n^2}{t} (\log t + r)\right),
+%n \sum_{i=0}^{\ell-1} r^i \cdot \left( r^2 + r \log \beta \right)
+%=
+%n \cdot ( r + \log \beta ) \cdot \sum_{i=0}^{\ell - 1} r^{i+1}
+%=
+%O\left(\frac{n^2}{t} (r + \log \beta)\right)
+%=
+%O\left(\frac{n^2}{t} \log^{\alpha} n\right).
+\end{displaymath}
+%
+as in Lemma~\ref{lem:space-2-hierarchy}.
+Since \(r = \Theta(\log^{\alpha} n)\) the bound becomes
+\(O\left(\frac{n^2}{t} (\log t + \log^{\alpha} n)\right)\).
+
+
+\paragraph*{\iftitlecase%
+Subcell Mapper\else%
+Subcell mapper\fi}
+
+We need a way to map a subcell index \(0 \leq j_i \leq c_h r^2 - 1\) to the
+index \(0 \leq j_i' \leq c_z r - 1\) this subcell has in the list of subcells
+intersected by a given pseudoline. If we can achieve this in constant time,
+then we can also access the first intersection index this pseudoline has in
+this subcell.
+
+It is not hard to see that this operation boils down to computing
+\(\operatorname{rank}_{\texttt{10}}(j_i)\) where the data array is composed of
+the incidence bits of the given pseudoline. Hence this can be solved by adding
+an auxiliary rank-select data structure to each trace~\cite{RRS07,BH17}.
+Another solution is to reuse Observation~\ref{obs:small-universe-functions} to
+construct a lookup table for all \(2^{\Theta(r^2)}\) possible incidence
+vectors.
+%
+\aurelien{Maybe add rank-select data structure to preliminaries?}
+
+With the first solution, the space used by the traces stays the same up to a
+constant factor. With the second solution, the space used is dominated by the
+space taken by the intersection oracle. Hence, we do not bother including it in
+the space analysis.
+
+
+All that is left to do is to properly solve the subproblems spawned by the last
+level of the hierarchy. This is done exactly as in the previous section.
+%
+\paragraph*{\iftitlecase%
+Leaves of the Hierarchy\else%
+Leaves of the hierarchy\fi}
+%
+As before, we have \(O(\frac{n^2}{t^2})\) subproblems of size \(t\) to encode.
+We follow the solution previously described to obtain:
+\(O(\frac{n^2}{t^2})\) pointers of size \(\lceil \log{\nu(t)} \rceil\),
+\(O(\frac{n^2}{t^2})\) canonical labelings of size \(\Theta(t \log t)\),
+and \(\nu(t)\) lookup tables of size \(O(t^3)\).
+%
+This is sufficient to take care of each of those subproblems in constant time.
+The total space usage for those leaves is unchanged and stays proportional to
+\begin{displaymath}
+  \frac{n^2}{t^2} \cdot (t \log t + \log{\nu(t)}) + t^3 \nu(t).
+\end{displaymath}
+
+\paragraph*{\iftitlecase%
+Space Complexity\else%
+Space complexity\fi}
+Summing all terms together and adding the space taken by the
+parameters of the hierarchy \(n\), \(r\) and \(t\), we obtain:
+\begin{lemma}\label{lem:space-2-all-query}
+  The space taken by the encoding described in Section~\ref{sec:query-time} is
+  proportional to
+    \begin{displaymath}
+    \underbrace{\log ntr}_{\text{Parameters}}
+    +
+    \underbrace{\frac{n^2}{t} (\log t + \log^{\alpha} n)}_{\text{Traces}}
+    +
+    \underbrace{2^{\Theta(\log^{2\alpha} n)}}_{\text{Intersection Oracle}}
+    +
+    \underbrace{\frac{n^2 \ell}{2^{\Theta(\log^{\alpha} n)}}}_{\text{Disambiguation Table}}
+    +
+    \underbrace{\frac{n^2}{t^2} ( \log \nu(t) + t \log t) + t^3 \nu(t)}_{\text{Leaves}}.
+    \end{displaymath}
+\end{lemma}
+As before,
+we take \(t = \sqrt{\delta \log n}\) for abstract order types and \(t = \delta
+\log n / \log\log n\) for realizable ones.
+Taking \(\delta\) to be sufficiently small,
+the space taken by the leaves of the hierarchy is thus \(\Theta(n^2)\) for
+abstract order types and dominated by the term \(\frac{n^2}{t} \log t\)
+in the case of realizable order types.
+%
+Setting \(\alpha < \frac 12\)
+guarantees
+that the space taken by the intersection oracle is subpolynomial,
+and
+that the space taken by the traces is subquadratic.
+%
+The space taken by the
+disambiguation table is in \(O(\frac{n^2}{\log^c n})\) for all \(c\) and is
+thus dominated by the other terms.
+
+For abstract order types, all those terms are subquadratic, except for the
+pointers at the leaves. The total space
+usage for abstract order types is thus dominated by this term and
+is quadratic.
+%
+For realizable order types, the total space is dominated by the term
+\(\frac{n^2}{t} \log^{\alpha} n\).
+Indeed, we can take \(\alpha\) as small as desired
+to make the factor \(\log^{\alpha} n = O(\log^{\varepsilon} n)\).
+%
+This proves the space constraints in
+Theorems~\ref{thm:abstract-loglog}~and~\ref{thm:realizable-loglog}.
+%
+Unfortunately, the present solution incurs a nonabsorbable
+extra \(\log^{\varepsilon} n\) factor in the realizable case. Note that a
+\(\log{\log{\log{n}}}\) factor can be squeezed from the query time without
+increasing the space usage by choosing \(r = \Theta(\log \log n)\) instead.
+
+
+\paragraph*{\iftitlecase%
+Correctness and Query Complexity\else%
+Correctness and query complexity\fi}
+Given a query \(p_a', p_b', p_c'\) and a cell \(\mathcal{C}\),
+%at each level,
+the subcell \(\mathcal{C}'\) containing \(p_a' \cap p_b'\) is found in constant
+time via the
+intersection oracle and, if necessary, the disambiguation table.
+The location of that subcell with respect to \(p_c'\) can then be retrieved by
+a single lookup in the incidence bits of \(\textsc{Tr}'(\mathcal{C}, p_c')\).
+In case of recursion, we can compute the address of the traces
+\(\textsc{Tr}'(\mathcal{C}', p_a')\),
+\(\textsc{Tr}'(\mathcal{C}', p_b')\), and
+\(\textsc{Tr}'(\mathcal{C}', p_c')\) in constant time using the subcell mapper.
+The base case is handled in constant time as before: using the pointers,
+canonical labelings and order type lookup tables.
+
+We now have a shallower decision tree of depth
+\(\log_r{\frac{n}{t}} = O_\alpha(\frac{\log{n}}{\log{\log{n}}})\)
+and the work at each level takes constant time.
+This proves the query time constraints in
+Theorems~\ref{thm:abstract-loglog}~and~\ref{thm:realizable-loglog}.
+
+\paragraph*{\iftitlecase%
+Preprocessing Time\else%
+Preprocessing time\fi}
+We prove Theorem~\ref{thm:preprocessing-loglog}.
+\begin{proof}
+  As before, the hierarchical cutting and all traces \(\textsc{Tr}'(C, p')\)
+  can be computed in \(O(nr^\ell)\) time (with or without rank-select data
+  structures). The lookup tables and leaf-table pointers can be computed in
+  \(O(n^2)\) time. The intersection oracle, the disambiguation table, and the
+  optional subcell mapper can be computed in subquadratic time.
+\end{proof}

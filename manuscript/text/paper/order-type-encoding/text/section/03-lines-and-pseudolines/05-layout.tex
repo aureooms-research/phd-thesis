@@ -1,0 +1,177 @@
+\paragraph*{Layout}
+For completeness, we detail precisely how bits of the encoding are
+laid out in memory to allow an efficient decoding.
+%
+Indeed, the data structure we encode is a tree and many space-efficient layouts
+exists for those when their nodes each have the same size. Here however, node
+size shrinks as we go down the hierarchy.
+We spend a few paragraphs showing it
+is still possible to
+address all components in a
+time- and space-efficient way.
+%
+As this is fairly straightforward to adapt for the encodings in
+Section~\ref{sec:query-time} and Section~\ref{sec:hyperplanes},
+we do not give the details for those sections.
+%
+%Figure~\ref{fig:layout} gives a sketch of this layout.
+
+%Figure is OUTDATED
+%\ifeurocg\else%
+%\begin{figure}
+  %\centering{}
+  %\includegraphics[scale=.8]{figures/layout}
+  %\caption{Memory layout of the encoding.
+    %Here, \(\textsc{Tr}(a, C_{i,j}(a))\) is used as a shorthand
+    %for \(\textsc{Tr}(p_a', C_{i,j}(a))\) and \(-1\) is used as a shorthand
+    %for ``last index''. The symbols \(\pi_j\) and
+    %\(\textsc{Ptr}_j\) represent the canonical labeling and the pointer for leaf
+    %\(j\), respectively. The symbol \(\textsc{Table}_{\tau}\) represents the lookup
+    %table for order type \(\tau\).}\label{fig:layout}
+%\end{figure}
+%\fi
+
+The encoding is the concatenation of
+the parameters \(n\), \(r\), and \( t\),
+the cells of the hierarchy,
+and
+the lookup tables.
+%
+We order the cells of the hierarchy in a depth-first manner: a cell of level
+\(i\) is denoted by \(\mathcal{C}_{0, j_1, j_2, \ldots, j_i}\)
+with \(j_1, j_2, \ldots, j_i \in \{\, 0, 1, \ldots, O(r^2)\,\}\).
+The root cell is
+\(\mathcal{C}_0\) and the cell \(\mathcal{C}_{0, j_1, j_2, \ldots, j_i, j_{i+1}}\) is
+the (\(j_{i+1} + 1\))-th subcell of the cell
+\(\mathcal{C}_{0, j_1, j_2, \ldots, j_i}\).
+%
+Cells are then ordered lexicographically.
+%
+For each leaf cell we store its pointer and canonical labeling.
+%
+For each internal cell \(\mathcal{C}\) we store the traces
+\(\textsc{Tr}(\mathcal{C}, p')\) in a certain permutation of the pseudolines
+\(p'\).
+%
+To order the pseudolines, we use the first index of each pseudoline
+in the cyclic permutation of the cell (for the root cell \(\mathcal{C}_0\) this
+is the index given by the input permutation).
+%
+Note that those indices are between \(0\) and \(2 \lfloor \frac{N}{r^{i}}
+\rfloor - 1\) for a cell of level \(i\). We allocate twice the required space
+for traces and canonical labelings to avoid defining a mapping between the
+indices of a cell and the indices of each of its subcells.
+
+%To translate between cell's subcell indices and pseudoline's
+%\aurelien{We avoid doing that by enumerating first cell-wise, then
+%pseudoline-wise}
+
+For the root cell of the hierarchy
+\(\mathcal{C}_0\) representing the entire space and containing all the
+intersections of the arrangement, \(\textsc{Addr}(\mathcal{C}_0)\) is the
+first free address after the encoding of the parameters \(n\), \(r\), and \(t\).
+
+The address \(\textsc{Addr}(\mathcal{C}_{0,j_1,j_2, \ldots, j_{i-1}, 0})\)
+of the first subcell of the cell \(\mathcal{C}_{0,j_1,j_2, \ldots, j_{i-1}}\)
+is offset by twice the space taken by the traces for that cell
+%
+\begin{displaymath}
+  \textsc{Addr}(\mathcal{C}_{0,j_1,j_2, \ldots, j_{i-1}, 0})
+  =
+  \underbrace{\textsc{Addr}(\mathcal{C}_{0,j_1,j_2, \ldots, j_{i-1}})}_{\text{Address of the parent cell}}
+  +
+  \underbrace{2 \left\lfloor \frac{n}{r^{i-1}} \right\rfloor |\textsc{Tr}_{i-1}|}_{\text{Traces of the parent cell}}
+  .
+\end{displaymath}
+
+Let \(c\) be the constant hidden by the \(O(r^2)\) of the hierarchical cutting.
+%
+The space taken by a subtree rooted at a node of level \(i\) is bounded by
+\begin{displaymath}
+  | \textsc{Subtree}_i |
+  =
+  \underbrace{2 \left\lfloor \frac{n}{r^{i}} \right\rfloor |\textsc{Tr}_{i}|}_{\text{Traces at the root}}
+  +
+  \underbrace{2c \sum_{k=1}^{\ell-i-1} r^{2k} \left\lfloor \frac{n}{r^{i+k}}
+  \right\rfloor |\textsc{Tr}_{i+k}|}_{\text{Traces of the subtrees}}
+  +
+  \underbrace{c r^{2(\ell-i)} | \textsc{Pointer} |}_{\text{Pointers}}
+  +
+  \underbrace{2c r^{2(\ell-i)} | \textsc{Labeling} |}_{\text{Canonical labelings}}.
+\end{displaymath}
+
+The address of any other subcell
+\(\textsc{Addr}(\mathcal{C}_{0,j_1,j_2, \ldots, j_{i-1}, j_{i}})\)
+is offset by the space taken by the subtrees of its siblings \(0, 1, \ldots,
+j_{i} - 1\)
+%
+\begin{displaymath}
+  \textsc{Addr}(\mathcal{C}_{0,j_1,j_2, \ldots, j_{i-1}, j_{i}})
+  =
+  \underbrace{\textsc{Addr}(\mathcal{C}_{0,j_1,j_2, \ldots, j_{i-1}, 0})}_{\text{Address of the first sibling}}
+  +
+  \underbrace{j_{i} \cdot | \textsc{Subtree}_{i} |}_{\text{Left siblings subtrees}}
+  .
+\end{displaymath}
+
+The address of the trace \(\textsc{Tr}(\mathcal{C}, p_a')\),
+where
+\(0 \leq a \leq 2 \lfloor \frac{N}{r^{i}} \rfloor - 1\) is the first intersection
+index of \(p_a'\) in the cyclic permutation of the level-\(i\) cell
+\(\mathcal{C}\),
+is
+%
+\begin{displaymath}
+  \textsc{Addr}(\mathcal{C}, p_a')
+  =
+  \textsc{Addr}(\mathcal{C})
+  + a \cdot |\textsc{Tr}_{i}|.
+\end{displaymath}
+%
+Since we do not store any trace for the leaves,
+define \(| \textsc{Tr}_{\ell} | = 0\).
+The pointer and canonical labeling of the leaf
+\(\mathcal{C}_{0, j_1, j_2, \ldots, j_{\ell}}\)
+are concatenated at position
+\(\textsc{Addr}(\mathcal{C}_{0, j_1, j_2, \ldots, j_{\ell}})\)
+%
+and
+%
+the lookup tables are concatenated at position
+\(
+\textsc{Addr}(\mathcal{C}_{0})
++
+| \textsc{Subtree}_{0} |
+\).
+
+This layout makes traversing the hierarchy from root to leaf efficient:
+%
+The address of the root cell is discovered after parsing the parameters \(n\),
+\(r\), and \(t\).
+%
+The address of the first subcell of a parent cell is computed in constant time
+from the address of the parent cell.
+%
+The size of the hierarchy is computed in time proportional its height.
+%
+The size of a subtree of level \(i+1\) is derived in constant time from the
+size of a subtree of level \(i\).
+%
+The address of any subcell of level \(i\) is computed in constant time from its
+index, the address of the parent cell, and the size of a subtree of level
+\(i\).
+%
+The address of a trace is computed in constant time from the address of its
+cell and the index of its pseudoline.
+%
+The address of the pointer and canonical labeling of a leaf
+is the address of the corresponding cell.
+%
+The address of a lookup table is computed in constant time given the address of
+the root cell, the size of the hierarchy, the size of a lookup table, and the
+leaf pointer.
+
+During a traversal, pseudoline indices of the parent cell are mapped to
+indices in the subcell in constant time by using the first intersection index
+of each pseudoline in that subcell. A final index mapping happens when translating leaf indices
+to lookup table indices using the canonical labeling of the leaf.

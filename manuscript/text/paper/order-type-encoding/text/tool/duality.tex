@@ -1,0 +1,64 @@
+
+\paragraph*{\iftitlecase%
+Duality and Edge Cases\else%
+Duality and edge cases\fi}\label{prg:duality}
+
+Technically speaking, the encoding we describe for realizable chirotopes
+encodes the chirotope of a given arrangement of lines or hyperplanes.
+Moreover, for ease of presentation, we make the assumption that the vertices of
+this arrangement have finite coordinates. In the two-dimensional case, this
+is equivalent to having no two lines parallel. In these paragraphs, we give the
+details necessary to rigorously handle all realizable chirotopes, including
+degenerate ones. This is especially important in higher dimension, where the
+situation is a bit more complicated than in two dimensions.
+
+In two dimensions, we wish to encode order types of point configurations.
+Since our encoding construction algorithm works with an arrangement of lines as
+input, we need a mapping from those primal points to their dual lines. This
+mapping should preserve the order type of the point configuration, hence it
+needs to be orientation-preserving. One such orientation-preserving duality is
+the mapping \((a,b) \leftrightarrow y = ax - b\) (see Figure~\ref{fig:duality}).
+\aurelien{This is not orientation-preserving. It is orientation-reversing.
+Combinatorially equivalent.}
+
+\begin{figure}
+  \centering{}
+  \includegraphics[scale=1]{figures/duality}
+  \caption{Orientation preserving duality: ``\(p\) is above \(l\)'' if and only if
+  ``\(l'\) is above \(p'\)''.}\label{fig:duality}
+\end{figure}
+
+To avoid parallel lines in the dual, it suffices to avoid intersection points
+at infinity. In the primal, this translates to avoiding two points of the
+configuration defining a vertical line, that is, with the same \(x\) coordinate.
+This is easily done by performing a tiny rotation in the primal.
+This (proper) rotation does not change the order type of the point set.
+
+In higher dimension, the orientation-preserving point-line duality generalizes
+to the following orientation-preserving point-hyperplane duality: We map each
+point \((x_1, x_2, \ldots, x_d)\) to the hyperplane \(y_d = \sum_{i=1}^{d-1}
+x_i y_i - x_d \) and the hyperplane \(x_d = \sum_{i=1}^{d-1} y_i x_i - y_d \)
+to the point \(( y_1, y_2, \ldots, y_n)\).
+
+As before, we want hyperplanes to be non-parallel. In fact, we need an even
+stronger assumption: We want all linearly independent subsets of \(d\)
+hyperplanes to intersect in a point with finite coordinates.
+%
+Having no intersection points at infinity in the dual
+means having no \(d\) points spanning a hyperplane parallel to the
+\(x_d\) axis in the primal. This is easy to avoid by applying tiny rotations
+in the primal. Again, those (proper) rotations do not change the chirotope of the
+point set.
+
+In dimension three and higher, one would think degenerate arrangements lead to
+annoying nongeneral situations. However, those situations are easy to handle
+with our technique: Degenerate subsets of hyperplanes are linearly dependent.
+The determinant corresponding to a query asking about a
+degenerate \(d+1\) subset is therefore zero. Our technique will identify those
+degenerate queries and map them to the correct answer in a space-efficient way.
+
+\aurelien{Shouldn't we simply work with the orientation predicate to construct
+a nice realizing arrangement in \(O(n^d)\) time and be done with it?}
+
+\aurelien{Maybe add a remark that most of the examples we give ignore
+degenerate cases, even though our text does not.}

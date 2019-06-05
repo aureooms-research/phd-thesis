@@ -15,20 +15,55 @@ all: $(PAPERS)
 
 figures: $(FIGURES)
 
+figures/simplex.pdf: figures/simplex.ipe
+figures/simplex.pdf: view=1-1
+
+figures/partition.pdf: figures/figures-3pol.ipe
 figures/partition.pdf: view=1-1
+figures/intersected-cells.pdf: figures/figures-3pol.ipe
 figures/intersected-cells.pdf: view=1-2
+figures/ab-pairs.pdf: figures/figures-3pol.ipe
 figures/ab-pairs.pdf: view=1-3
+figures/zero-set.pdf: figures/figures-3pol.ipe
 figures/zero-set.pdf: view=2-1
+figures/decomposition.pdf: figures/figures-3pol.ipe
 figures/decomposition.pdf: view=2-2
+figures/recursion.pdf: figures/figures-3pol.ipe
 figures/recursion.pdf: view=2-3
+figures/cells.pdf: figures/figures-3pol.ipe
 figures/cells.pdf: view=2-4
+figures/deltab.pdf: figures/figures-3pol.ipe
 figures/deltab.pdf: view=3-1
 
-figures/%.pdf: figures/figures.ipe
-	ipetoipe -pdf -export -view $(view) $< $@
+figures/pappus.pdf: figures/figures-types.ipe
+figures/pappus.pdf: view=1-1
+figures/pappus-realizable.pdf: figures/figures-types.ipe
+figures/pappus-realizable.pdf: view=1-2
+figures/pappus-abstract.pdf: figures/figures-types.ipe
+figures/pappus-abstract.pdf: view=1-3
+figures/perles.pdf: figures/figures-types.ipe
+figures/perles.pdf: view=2-1
+figures/permutation-0.pdf: figures/figures-types.ipe
+figures/permutation-0.pdf: view=3-1
+figures/permutation-1.pdf: figures/figures-types.ipe
+figures/permutation-1.pdf: view=3-2
+figures/duality.pdf: figures/figures-types.ipe
+figures/duality.pdf: view=4-1
+figures/a-zone-in-the-plane.pdf: figures/figures-types.ipe
+figures/a-zone-in-the-plane.pdf: view=5-1
 
-figures/simplex.pdf: figures/simplex.ipe
-	ipetoipe -pdf -export -view 1-1 $< $@
+figures/space-analysis.pdf: figures/schematics.ipe
+figures/space-analysis.pdf: view=1-1
+figures/layout.pdf: figures/schematics.ipe
+figures/layout.pdf: view=2-1
+figures/trace.pdf: figures/schematics.ipe
+figures/trace.pdf: view=3-1
+figures/new-trace.pdf: figures/schematics.ipe
+figures/new-trace.pdf: view=4-1
+
+figures/%.pdf:
+	ipetoipe -pdf -export -view $(view) $^ $@
+
 
 %.pdf: $(BUILDDIR)/%/paper.pdf
 	cp $< $@

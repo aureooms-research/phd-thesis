@@ -1,0 +1,26 @@
+\paragraph*{\iftitlecase%
+Preprocessing Time\else%
+Preprocessing time\fi}
+For a set of \(n\) points in the plane, or an arrangement of \(n\) lines in the
+dual, we can construct the encoding of their order type in quadratic time in
+the real-RAM and constant-degree algebraic computation tree models. We prove
+Theorem~\ref{thm:preprocessing}. \aurelien{Should also work for pseudolines
+using the wire diagram as input.}
+\begin{proof}
+  Using Lemma~\ref{lem:hierarchical-cutting-2},
+  a hierarchical cutting can be computed in \(O(nr^\ell)\) time in the dual
+  plane. All traces \(\textsc{Tr}(\mathcal{C}, p')\) can be computed from the cutting
+  in the same time. The lookup tables and leaf-table pointers can be computed
+  in \(O(n^2 + t^3 \nu(t))\) time as follows: For each subcell \(\mathcal{C}\)
+  among the \(\frac{n^2}{t^2}\) subcells of the last level of the hierarchy,
+  compute a canonical labeling and representation of the lines intersecting
+  \(\mathcal{C}\) in \(O(t^2)\) time as in Lemma~\ref{lem:canonical-labeling}.
+  Insert the canonical representation in some trie in \(O(t^2)\)
+  time. If the canonical representation was not already in the trie, create a lookup
+  table with the answers to all \(O(t^3)\) queries on those lines and attach a
+  pointer to that table in the trie. This happens at most \(\nu(t)\) times.
+  In the encoding, store the canonical labeling and this new pointer or the
+  pointer that was already in the trie for the subcell \(\mathcal{C}\). All
+  parts of the encoding can be concatenated together in time proportional to
+  the size of the encoding.
+\end{proof}

@@ -1,0 +1,51 @@
+\ifeurocg\else
+To make our statements clear, we use the following definition:
+%
+\input{text/definition/encoding}
+%
+In this section, we use this definition with \(f\) being some order
+type,\footnote{%
+  Technically, we encode the orientation predicate of some realizing
+  arrangement of the order type and skip the isomorphism. If desired, a
+  canonical labeling of the arrangement can be produced in \(O(n^2)\) time for
+  abstract and realizable order types (see Lemma~\ref{lem:canonical-labeling}).
+}
+\(k=3\) and the codomain of \(f\) being \(\{\, -,0,+\,\}\). For the rest of the
+discussion, we assume the word-RAM model with word size \(w \geq \log n\) and
+the standard arithmetic and bitwise operators.
+%
+We prove our main theorems for the two-dimensional case:
+%
+\input{text/theorem/abstract}
+\input{text/theorem/realizable}
+\input{text/theorem/preprocessing}
+%
+For instance, Theorem~\ref{thm:realizable} implies that for any set of points
+\(\{\, p_1, p_2, \ldots, p_n\,\}\), there exists a string of \(O(n^2 {(\log
+\log n)}^2 / \log n)\) bits such that given this string and any triple of
+indices \((a,b,c) \in {[n]}^3\) we can compute the value of \(\chi(a,b,c) =
+\nabla(p_a, p_b, p_c)\) in \(O(\log n)\) time.
+\fi
+
+\ifeurocg
+We \else
+Throughout the rest of this paper, we \fi
+assume that we can access some arrangement of pairwise intersecting lines or
+pseudolines that realizes the order type we want to encode. We thus exclusively
+focus on the problem of encoding the order type of a given arrangement. This
+does not pose a threat against the existence of an encoding.
+\ifeurocg\else%
+However, we have to be more careful when we bound the preprocessing
+time required to compute such an encoding. This is why, in
+Theorem~\ref{thm:preprocessing}, we specify the model of computation and how
+the input is given.
+\fi%
+\ifeurocg%
+In this extended abstract, we sketch the general idea for a simple subquadratic
+encoding. For full details, proofs, and improvements, we refer to the arXiv
+version~\cite{CCILO18}.
+\fi%
+
+\ifjournal\else
+\input{text/tool/hierarchical-cuttings}
+\fi

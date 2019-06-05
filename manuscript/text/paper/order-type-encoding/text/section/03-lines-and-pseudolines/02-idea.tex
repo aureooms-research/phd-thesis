@@ -1,0 +1,12 @@
+\paragraph*{Idea} We want to preprocess \(n\) pseudolines \( \{\, p_1' ,
+p_2' , \ldots, p_n'\,\} \) in the plane so that, given three indices \(a\),
+\(b\), and \(c\), we can compute their orientation, that is, whether the
+intersection \(p_a' \cap p_b'\) lies above, below or on \(p_c'\). Our
+data structure builds on cuttings as follows: Given a cutting \(\Xi\) and the
+three indices, we can locate the intersection of \(p_a'\) and \(p_b'\)
+with respect to \(\Xi\). The location of this intersection is a cell of
+\(\Xi\). The next step is to decide whether \(p_c'\) lies above, lies below,
+contains or intersects that cell. In the first three cases, we are done.
+Otherwise, we can answer the query by recursing on the subset of pseudolines
+intersecting the cell containing the intersection. We build on hierarchical
+cuttings to control the size of each such subproblem.
