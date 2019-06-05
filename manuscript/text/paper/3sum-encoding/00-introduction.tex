@@ -1,1 +1,11 @@
 \chapter{Why not?}
+
+  We consider the following problem: given three sets of real numbers, output
+  a word-RAM data structure from which we can efficiently recover the sign of the sum of any triple of numbers,
+  one in each set.
+  This is similar to a previous work by some of
+  the authors to encode the order type of a finite set of points. While this previous
+  work showed that it was possible to achieve slightly subquadratic space and
+  logarithmic query time, we show here that for the simpler 3SUM problem, one
+  can achieve an encoding that takes \(\tilde{O}(N^{\frac 32})\) space for inputs sets
+  of size \(N\) and allows constant time queries in the word-RAM.
