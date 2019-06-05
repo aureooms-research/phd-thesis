@@ -13,12 +13,12 @@ the RAM model expected to perform $O(n^3\log^2 n)$ linear queries on the input.
 \end{theorem}
 
 \subsection{Algorithm outline}
-For a fixed set of hyperplanes \(\H\) and given input vertex \(q\) in \(\R^n\),
+For a fixed set of hyperplanes \(\Hy\) and given input vertex \(q\) in \(\R^n\),
 Meiser's algorithm allows us to determine the cell of the arrangement
-$\arrangement(\H)$ that contains $q$ in its interior (or that \emph{is} $q$ if
-$q$ is a $0$-cell of $\arrangement(\H)$), that is, the positions $\sigma(H,q) \in
-\signset$ of \(q\) with respect to all hyperplanes $H \in \H$. In the \(k\)-SUM
-problem, the set $\H$ is the set of $\Theta(n^k)$ hyperplanes with equations of the
+$\arrangement(\Hy)$ that contains $q$ in its interior (or that \emph{is} $q$ if
+$q$ is a $0$-cell of $\arrangement(\Hy)$), that is, the positions $\sigma(H,q) \in
+\signset$ of \(q\) with respect to all hyperplanes $H \in \Hy$. In the \(k\)-SUM
+problem, the set $\Hy$ is the set of $\Theta(n^k)$ hyperplanes with equations of the
 form $x_{i_1} + x_{i_2} + \cdots + x_{i_k} = 0$. 
 These equations can be modified accordingly for \(k\)-LDT.
 
@@ -28,19 +28,19 @@ Meiser used an older result due to Haussler and Welzl~\cite{H87} and got an
 extra $\log n$ factor in the size of the $\varepsilon$-net. We thank Hervé
 Fournier for pointing this out.}, it is possible to
 construct an \enet{} \(\NH\) for the range space
-defined by hyperplanes and simplices using a random uniform sampling on \(\H\).
+defined by hyperplanes and simplices using a random uniform sampling on \(\Hy\).
 \begin{theorem}\label{thm:enet}
 	For all real numbers $\varepsilon > 0, c \ge 1$,
 	if we choose at least \(c n^2 \log n \varepsilon^{-1} \log
-	\varepsilon^{-1} \) hyperplanes of \(\H\) uniformly at
+	\varepsilon^{-1} \) hyperplanes of \(\Hy\) uniformly at
 random and denote this selection \(\net\) then for
-any simplex intersected by more than \(\varepsilon \card{\H}\) hyperplanes of
-\(\H\), with probability $1 - 2^{-\Omega(c)}$, at least one of the intersecting hyperplanes
+any simplex intersected by more than \(\varepsilon \card{\Hy}\) hyperplanes of
+\(\Hy\), with probability $1 - 2^{-\Omega(c)}$, at least one of the intersecting hyperplanes
 is contained in \(\net\).
 \end{theorem}
 The contrapositive states that if no hyperplane in \(\net\) intersects
 a given simplex, then with high probability the number of hyperplanes of
-\(\H\) intersecting the simplex is at most \(\varepsilon \card{\H}\).
+\(\Hy\) intersecting the simplex is at most \(\varepsilon \card{\Hy}\).
 
 We can use this to design a prune and search algorithm as follows:
 (1) construct an \enet{} \(\net\),
@@ -48,13 +48,13 @@ We can use this to design a prune and search algorithm as follows:
 point $q$ in its interior,
 (3) construct a simplex \(\simplex\) inscribed in \(\cell\) and containing
 \(q\) in its interior,
-(4) recurse on the hyperplanes of \(\H\) intersecting the interior of
+(4) recurse on the hyperplanes of \(\Hy\) intersecting the interior of
 \(\simplex\).
 
 Proceeding this way with a constant $\varepsilon$ guarantees that at most a
 constant fraction \(\varepsilon\) of the hyperplanes remains after the pruning step,
 and thus the cumulative number of queries made to determine the enclosing cell at
-each step is $O(n^2 \log n \log \card{\H})$ when done in a brute-force way.
+each step is $O(n^2 \log n \log \card{\Hy})$ when done in a brute-force way.
 However, we still need to explain how to find a simplex \(\simplex\) inscribed
 in \(\cell\) and containing \(q\) in its interior. This procedure corresponds to the well-known
 \emph{bottom vertex decomposition} (or \emph{triangulation}) of a hyperplane
@@ -161,36 +161,36 @@ Illustration of a step of Algorithm~\ref{algo:simplex}.
 Let us summarize the algorithm
 \begin{algorithm}\label{algo:meiser}
 \item[input] \(q \in {[-1,1]}^n\)
-\item[1.] Pick \(O(n^2 \log n)\) hyperplanes of $\H$ at random and locate $q$
+\item[1.] Pick \(O(n^2 \log n)\) hyperplanes of $\Hy$ at random and locate $q$
 in this arrangement. Call $\cell$ the cell containing $q$.
 \item[2.] Construct the simplex \(\simplex\) containing \(q\) and inscribed in
 \(\cell\), using Algorithm~\ref{algo:simplex}.
-\item[3.] For every hyperplane of $\H$ containing $\simplex$, output a solution.
-\item[4.] Recurse on hyperplanes of $\H$ intersecting the interior of $\simplex$.
+\item[3.] For every hyperplane of $\Hy$ containing $\simplex$, output a solution.
+\item[4.] Recurse on hyperplanes of $\Hy$ intersecting the interior of $\simplex$.
 \end{algorithm}
 
 The query complexity of step \step{1} is $O(n^2 \log n)$, and that of step
 \step{2} is $O(n^3 \log n)$. Steps \step{3} and \step{4} do not involve any
-query at all. The recursion depth is $O(\log \card{\H})$, with $|\H|=O(n^k)$,
+query at all. The recursion depth is $O(\log \card{\Hy})$, with $|\Hy|=O(n^k)$,
 hence the total query complexity of this algorithm is $O(n^3 \log^2 n)$. This
 proves the first part of Theorem~\ref{thm:cube}.\\
 
 We can also consider the overall complexity of the algorithm in the RAM model,
 that is, taking into account the steps that do not require any query, but for
-which we still have to process the set $\H$. Note that the complexity
+which we still have to process the set $\Hy$. Note that the complexity
 bottleneck of the algorithm are steps \step{3}-\step{4}, where we need to prune
 the list of hyperplanes according to their relative positions with respect to
 $\simplex$. For this purpose, we simply maintain explicitly the list of all
 hyperplanes, starting with the initial set corresponding to all $k$-tuples.
 Then the pruning step can be performed by looking at the position of each
-vertex of $\simplex$ relative to each hyperplane of $\H$.
+vertex of $\simplex$ relative to each hyperplane of $\Hy$.
 Because in our case hyperplanes have only $k$ nonzero coefficients, this uses a
 number of integer arithmetic operations on $\tilde{O}(n)$ bits integers that is
 proportional to the number of vertices times the number of hyperplanes.
 (For the justification of the bound on the number of bits needed to represent
 vertices of the arrangement see Appendix~\ref{app:bound}.)
 Since we recurse on a fraction of the set, the overall complexity is
-$\tilde{O}(n^2\card{\H}) = \tilde{O}(n^{k+2})$. The next section is devoted
+$\tilde{O}(n^2\card{\Hy}) = \tilde{O}(n^{k+2})$. The next section is devoted
 to improving this running time.
 
 
@@ -214,7 +214,7 @@ problem.
 	$$
 \end{problem}
 
-In other words, we wish to list all hyperplanes of $\H$
+In other words, we wish to list all hyperplanes of $\Hy$
 intersecting the open line segment $\nu_1\nu_2$.
 We give an efficient output-sensitive algorithm for this problem.
 
@@ -278,7 +278,7 @@ We give an efficient output-sensitive algorithm for this problem.
 
 Now observe that a hyperplane intersects the interior of a simplex if and only
 if it intersects the interior of one of its edges. Hence given a simplex
-$\simplex$ we can find all hyperplanes of $\H$ intersecting its interior by
+$\simplex$ we can find all hyperplanes of $\Hy$ intersecting its interior by
 running the above algorithm ${n\choose 2}$ times, once for each pair of
 vertices $(\nu_1,\nu_2)$ of $\simplex$, and take the union of the solutions.
 The overall running time for this implementation will therefore be
@@ -342,7 +342,7 @@ of Theorem~\ref{thm:cube}.
 The main idea consists of modifying the first iteration of Algorithm~\ref{algo:meiser}, by
 letting $\varepsilon = \Theta(n^{-\frac{k}{2}})$.
 Hence we pick a random subset $\net$ of
-$O(n^{k/2 + 2} \log n)$ hyperplanes in $\H$ and use this as an \enet.
+$O(n^{k/2 + 2} \log n)$ hyperplanes in $\Hy$ and use this as an \enet.
 This can be done efficiently, as shown in~Appendix~\ref{app:sampling}.
 
 Next, we need to locate the input $q$ in the arrangement induced by
@@ -354,13 +354,13 @@ O(n|\net|) = \tilde{O}(n^{k/2 + 4}),
 $$
 and the number of queries is $O(n^3\log^2 n)$.
 
-Then, in order to prune the hyperplanes in $\H$, we have to
+Then, in order to prune the hyperplanes in $\Hy$, we have to
 compute a simplex $\simplex$ that does not intersect any hyperplane of
 $\net$. For this, we observe that the above call to Algorithm~\ref{algo:meiser}
 involves computing a sequence of simplices for the successive pruning
 steps. We save the description of those simplices. Recall that there are
 $O(\log n)$ of them, all of them contain the input $q$ and have vertices
-coinciding with vertices of the original arrangement $\arrangement(\H)$. In
+coinciding with vertices of the original arrangement $\arrangement(\Hy)$. In
 order to compute a simplex $\simplex$ avoiding all hyperplanes of
 $\net$, we can simply apply Algorithm~\ref{algo:simplex} on the set of
 hyperplanes bounding the intersection of these simplices. The running time
@@ -368,7 +368,7 @@ and number of queries for this step are bounded respectively by
 $n^{O(1)}$ and $O(n^2\log n)$.
 
 Note that the vertices of $\simplex$ are not vertices
-of $\arrangement(\H)$ anymore. However, their coordinates lie in a finite set
+of $\arrangement(\Hy)$ anymore. However, their coordinates lie in a finite set
 (see~Appendix~\ref{app:bound})
 \begin{lemma}\label{lem:bound}
 Vertices of $\simplex$ have rational coordinates whose fraction representations
@@ -376,12 +376,12 @@ have their numerators and denominators absolute values bounded above by
 $C^{4n^5} n^{2n^5+n^3+\frac n2}$, where $C$ is a constant.
 \end{lemma}
 
-We now are in position to perform the pruning of the hyperplanes in $\H$ with
+We now are in position to perform the pruning of the hyperplanes in $\Hy$ with
 respect to $\simplex$. The number of remaining hyperplanes after the pruning is
 at most $\varepsilon n^k = O(n^{k/2})$. Hence from Corollary~\ref{cor:double}, the
 pruning can be performed in time proportional to $\tilde{O}(n^{\ceil{k/2} + 7})$.
 
-Similarly, we can detect any hyperplane of $\H$ containing $\simplex$ using the
+Similarly, we can detect any hyperplane of $\Hy$ containing $\simplex$ using the
 result of Lemma~\ref{lem:multiple} in time $\tilde{O}(n^{\lceil k/2\rceil +
 8})$. Note that those last two steps do not require any query.
 
@@ -610,7 +610,7 @@ number of arithmetic operations and branching operations, step \step{2}
 has complexity \(O(n\card{\net})\).
 Finally, steps \step{3} and \step{4} are free since they do not involve the
 input. The complexity of Algorithm~\ref{algo:meiser} in this model is thus also \(O(n^3
-\log n \log \card{\H})\).
+\log n \log \card{\Hy})\).
 \end{proof}
 
 \section{Uniform random sampling}

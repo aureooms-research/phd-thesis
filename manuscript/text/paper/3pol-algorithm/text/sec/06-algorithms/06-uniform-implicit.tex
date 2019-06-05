@@ -1,0 +1,323 @@
+\section{Uniform algorithm for 3POL}%
+%\subsection{Uniform algorithm for 3POL}
+\label{sec:algo:implicit:uniform}
+%\improve{Section 3.6 could benefit of some more structure.}
+%\improve{This section needs more details.}
+
+In this section, we combine the uniform algorithm for explicit 3POL given in
+\S\ref{sec:algo:explicit:uniform} with the nonuniform algorithm for
+3POL given in \S\ref{sec:algo:implicit:nonuniform} to obtain a uniform
+subquadratic algorithm for 3POL\@.
+We prove the following
+\begin{theorem}\label{thm:implicit:uniform}
+	3POL can be solved in
+	$O(n^2 {(\log \log n)}^{3/2} / {(\log n)}^{1/2})$ time.
+\end{theorem}
+
+\paragraph{Idea}
+In the uniform algorithm for explicit 3POL of
+\S\ref{sec:algo:explicit:uniform}, we partition the set $A \times B$
+into very small sets $A_i \times B_j$, sort the sets $f(A_i \times B_j)$ using
+the dominance reporting algorithm of \S\ref{sec:algo:dominance} then
+binary search on those sorted sets in order to find a matching $c$.
+%
+Here we devise a similar scheme with the only difference that the sets to sort
+are the unions of the real roots of the univariate polynomials
+$F(a,b,z)\in\mathbb{R}[z]$ over all $(a,b) \in A_i \times B_j$.
+%
+The main difficulty resides in implementing the
+equivalent of the certificates of \S\ref{sec:algo:explicit:uniform} to reuse
+the dominance reporting algorithm of \S\ref{sec:algo:dominance}. We show how to
+implement those certificates using the $\gamma_{b,b'}$ and $\delta_b$ curves
+defined in \S\ref{sec:algo:implicit:nonuniform}.
+
+\paragraph{$A \times B$ partition}
+We use the same partitioning scheme as all previous
+algorithms, hence Lemma~\ref{lem:intersections-implicit} and
+Lemma~\ref{lem:preprocessing-implicit} hold. We apply the same certificate verification
+scheme as in \S\ref{sec:algo:explicit:uniform}, hence, the dominance
+reporting algorithm of \S\ref{sec:algo:dominance} and the analysis
+in \S\ref{sec:algo:explicit:uniform} still apply.
+
+\paragraph{Preprocessing}
+The preprocessing algorithm is essentially the same as
+Algorithm~\ref{algo:sfaixbj-uniform} with more complex certificates. We explain how to
+construct those new certificates. The first part of the explanation consists in
+generalizing the definition of a certificate. The rest of the
+explanation focuses on the implementation of the verification of those
+certificates via Polynomial Dominance Reporting.
+
+\paragraph{The certificates}
+For a fixed pair $(a,b)$, $F(a,b,z) \in \reals[z]$ is a polynomial in $z$ of
+degree at most $\deg(F)$. Hence, $F(a,b,z)$ has at most $\deg(F)$ real roots.
+For each cell $A_i^* \times B_j^*$, let
+\begin{displaymath}
+	A_i\times B_j=\{\,
+		(a_{i,1},b_{j,1}),
+		(a_{i,1},b_{j,2}),
+		\ldots,
+		(a_{i,2},b_{j,1}),
+		(a_{i,2},b_{j,2}),
+		\ldots,
+		(a_{i,g},b_{j,g})
+	\,\}.
+\end{displaymath}
+Let $\rho
+\colon {[g]}^2 \to \{\,0,1,\ldots,\deg(F)\,\}$ be a function that maps a pair $(k,l)$ to the
+number of real roots of $F(a_{i,k},b_{j,l},z)$. Let $\Sigma_\rho = \sum_{(i,j)
+\in {[g]}^2} \rho(i,j) \le \deg(F) g^2$.
+Given a function $\rho$, let
+$\pi\colon\,[\Sigma_\rho]\to {[g]}^2 \times
+\{\,0,1,\ldots,\deg(F)\,\}$ be a permutation of the union of the real roots of all
+$g^2$ polynomials
+\begin{displaymath}
+F(a_{i,1},b_{j,1},z),
+F(a_{i,1},b_{j,2},z),
+\ldots,
+F(a_{i,2},b_{j,1},z),
+%F(a_{i,2},b_{j,2},z),
+\ldots,
+F(a_{i,g},b_{j,g},z),
+\end{displaymath}
+where the number of real roots of each polynomial is
+prescribed by $\rho$.
+Decompose $\pi = (\pi_r,\pi_c,\pi_s)$ into
+row,
+column and real root number functions $\pi_r,\pi_c\colon\,[\Sigma_\rho]\to[g]$,
+and $\pi_s\colon\,[\Sigma_\rho]\to\{\,0,1,\ldots,\deg(F)\,\}$.
+Let $\diamond(a,b,s)$ denote the $s$th real root of $F(a,b,z)$.
+To fix the permutation of the union of the real roots of all
+$g^2$ polynomials, we define the following
+interleaving certificate with $\Sigma_\rho - 1$ inequalities, for each possible
+function $\rho$ and permutation $\pi$
+\begin{displaymath}
+	\Phi_{\rho,\pi} =
+	\diamond(a_{i,\pi_r(1)},b_{j,\pi_c(1)},\pi_s(1))
+	\le
+	%\diamond(a_{i,\pi_r(2)},b_{j,\pi_c(2)},\pi_s(2))
+	%\le
+	\cdots
+	\le
+	\diamond(a_{i,\pi_r(\Sigma_\rho)},b_{j,\pi_c(\Sigma_\rho)},\pi_s(\Sigma_\rho)).
+\end{displaymath}
+To fix the number of real roots each of the $g^2$ polynomials can have, we
+define the following cardinality certificate for each function $\rho$
+\begin{displaymath}
+	\Psi_{\rho} =
+	\bigwedge_{(k,l)\in{[g]}^2}\,\,
+	F(a_{i,k},b_{j,l},z)\,\,\text{has $\rho(k,l)$ real roots}.
+\end{displaymath}
+For each possible function $\rho$ and permutation $\pi$ we define the
+certificate $\Upsilon_{\rho,\pi} = \Psi_\rho \land \Phi_{\rho,\pi}$ that
+fixes both the number of real roots each polynomial has and the permutation of
+those real roots.
+The total number of certificates $\Upsilon_{\rho,\pi}$ is
+$\sum_{\rho\colon {[g]}^2 \to \{\,0,1,\ldots,\deg(F)\,\}} {\Sigma_\rho!}$
+which is of the order of ${(g^2)}^{O(g^2)}$.
+
+Finally, we need to handle the edge cases where a polynomial $F(a,b,z)$ is the
+zero polynomial. In that case, $F(a,b,z)$ cancels for all $z \in
+\mathbb{R}$. Hence, all planar curves $F(x,y,c)=0$ go through $(a,b)$ and we
+can immediately accept the 3POL instance. To capture
+those edge cases, we will check the following certificate before running the main
+algorithm
+\begin{displaymath}
+	\aleph = \bigvee_{(k,l)\in{{[g]}^2}} F(a_{i,k},b_{j,l},z)\,\,\text{is the zero polynomial}.
+\end{displaymath}
+
+We can check if $\aleph$ holds for any cell $A_i \times B_j$ in $O(n \log n)$ time.
+For each $b \in B$ binary search for a $a \in A$ that lies on a vertical line
+component of $\delta_b$.
+
+If this certificate is verified we accept and halt. Otherwise we can safely run
+the main algorithm.
+
+\paragraph{$A \times A$ $(b,b')$-partitions}
+For each $B_j$ and for each $(b,b') \in B_j^2$ compute a partition of the
+$A \times A$ grid according to the $(b,b')$-cells defined by $\Gamma_{b,b'}$
+--- see \S\ref{sec:algo:implicit:nonuniform}. For each $(b,b')$-cell of
+that partition, pick a sample point $(a,a')$, compute the interleaving
+$\mathcal{I}((F(a,b,z),F(a',b',z)))$. Store that information for future lookup.
+All this takes $O(ng)$ time.
+
+\paragraph{PDR instance for $\Psi_\rho$}
+For a fixed pair $(a,b)$, suppose $F(a,b,z)$ has $r$ real roots. Then $a$ must
+lie in one of the open intervals or be one of the breaking points defined by
+the VTP, SIP and DL of $\delta_b$ that fixes the number of real roots of
+$F(a,b,z)$ to $r$.
+Hence $\Psi_\rho$ can be rewritten as follows
+\begin{displaymath}
+	\Psi_{\rho} =
+	\bigwedge_{(k,l)\in{[g]}^2}\,\,
+	\left(\bigvee_{[u,v]\in \mathcal{I}_{\rho(k,l)}} u < a_{i,k} < v\right)
+	\bigvee
+	\left(\bigvee_{w\in \mathcal{B}_{\rho(k,l)}} a_{i,k} = w\right)
+\end{displaymath}
+where $\mathcal{I}_{\rho(k,l)}$ denotes the set of intervals fixing the number
+of real roots of $F(a_{i,k},b_{j,l},z)$ to $\rho(k,l)$, and
+$\mathcal{B}_{\rho(k,l)}$ denotes the set of breaking points fixing the number
+of real roots of $F(a_{i,k},b_{j,l},z)$ to $\rho(k,l)$.
+
+The PDR algorithm can only check conjunctions of polynomial inequalities.
+However, we can transform $\Psi_{\rho}$ into disjunctive normal form~(DNF) by
+splitting the certificate into distinct branches, each consisting of a
+conjunction of polynomial inequalities.
+Since the number of intervals and breaking points
+considered above is constant for each pair $(k,l)$, the number of branches to
+test is $2^{O(g^2)}$.
+
+For each $A_i$ we have thus a single vector of reals
+\begin{displaymath}
+	p_i = (
+		a_{i,1} , a_{i,1},
+		a_{i,2}, a_{i,2},
+		\ldots,
+		a_{i,g} , a_{i,g}
+	),
+\end{displaymath}
+and for each $B_j$ we have $2^{O(g^2)}$ vectors of linear inequalities
+\begin{displaymath}
+	q_j = (
+		x \bowtie_{u_{1,1}} u_{1,1}, x \bowtie_{v_{1,1}} v_{1,1},
+		x \bowtie_{u_{1,2}} u_{1,2}, x \bowtie_{v_{1,2}} v_{1,2},
+		\ldots,
+		x \bowtie_{u_{g,g}} u_{g,g}, x \bowtie_{v_{g,g}} v_{g,g},
+	),
+\end{displaymath}
+where each $(\bowtie_{u_{k,l}}, u_{k,l}, \bowtie_{v_{k,l}}, v_{k,l})$ is an element of
+\begin{displaymath}
+	\{\, ( > , u , < , v ) \st (u,v) \in \mathcal{I}_{\rho(k,l)}\,\}
+	\cup
+	\{\, ( = , w , = , w ) \st w \in \mathcal{B}_{\rho(k,l)}\,\}.
+\end{displaymath}
+
+For a fixed function $\rho$,
+the sets of vectors $p_i$ and $q_j$ is a valid PDR instance
+of size $N = (n/g) \cdot 2^{O(g)} = n2^{O(g)}$ and with parameter $k = 2g^2$
+that will
+output all cells $A^*_i \times B^*_j$ such that $F(a_{i,k},b_{j,l},z) \in
+\mathbb{R}[z]$ has exactly $\rho(k,l)$ real roots for all $(a_{i,k},a_{j,l}) \in A_i
+\times B_j$.
+
+\paragraph{PDR instance for $\Phi_{\rho,\pi}$}
+
+For fixed pairs $(a,b)$ and $(a',b')$, suppose the $s$-th real root of
+$F(a,b,z)$ is smaller or equal to the $q$-th real root of $F(a,b,z)$. Then,
+$(a,a')$ must lie in a $(b,b')$-cell that orders the $s$-th root of $F(x,b,z)$
+before the $q$-th root of $F(y,b',z)$ for all points $(x,y)$ in that cell.
+
+Hence $\Phi_{\rho,\pi}$ can be rewritten as follows
+\begin{displaymath}
+	\Phi_{\rho,\pi} =
+	\bigwedge_{t\in[\Sigma_\rho-1]}\,\,
+	\bigvee_{C \in \mathcal{C}_{\rho,\pi,t}}
+	( a_{i,\pi_r(t)}, a_{i,\pi_r(t+1)} ) \in C
+\end{displaymath}
+where $\mathcal{C}_{\rho,\pi,t}$ denotes the set of $(b,b')$-cells
+fixing to $\rho(\pi_r(t),\pi_c(t))$ the number of real roots of
+$F(a_{i,\pi_r(t)},b_{j,\pi_c(t)},z)$,
+fixing to $\rho(\pi_r(t+1), \pi_c(t+1))$
+the number of real roots of $F(a_{i,\pi_r(t+1)},b_{j,\pi_c(t+1)},z)$,
+and ordering the $\pi_s(t)$-th root of $F(a_{i,\pi_r(t)},b_{j,\pi_c(t)},z)$
+before the $\pi_s(t+1)$-th root of $F(a_{i,\pi_r(t+1)},b_{j,\pi_c(t+1)},z)$.
+
+The PDR algorithm can only check conjunctions of polynomial inequalities.
+However, we can transform $\Phi_{\rho,\pi}$ in DNF as we did for $\Psi_{\rho}$.
+Again the number of cells considered above is constant for each $t$, the
+description of each cell is constant, hence, the number of branches to test is
+$2^{O(g^2)}$.
+
+For each $A_i$ we have thus a single vector of $2$-dimensional points
+\begin{displaymath}
+	p_i = (
+		\underbrace{%
+			\ldots,
+			(a_{i,\pi_r(1)},a_{i,\pi_r(2)}),
+			%(a_{i,\pi_r(1)},a_{i,\pi_r(2)}),
+			\ldots%,
+			%(a_{i,\pi_r(1)},a_{i,\pi_r(2)})
+		}_{\omega},
+		%\underbrace{
+			%(a_{i,\pi_r(2)},a_{i,\pi_r(3)}),
+			%(a_{i,\pi_r(2)},a_{i,\pi_r(3)}),
+			%\ldots,
+			%(a_{i,\pi_r(2)},a_{i,\pi_r(3)})
+		%}_{\omega},
+		\ldots,
+		\underbrace{%
+			\ldots,
+			(a_{i,\pi_r(\Sigma_\rho-1)},a_{i,\pi_r(\Sigma_\rho)}),
+			%(a_{i,\pi_r(\Sigma_\rho-1)},a_{i,\pi_r(\Sigma_\rho)}),
+			\ldots%,
+			%(a_{i,\pi_r(\Sigma_\rho-1)},a_{i,\pi_r(\Sigma_\rho)})
+		}_{\omega}
+	),
+\end{displaymath}
+where $\omega$ is the size of the largest description of a $(b,b')$-cell $C$,
+and for each $B_j$ we have $2^{O(g^2)}$ vectors of polynomial inequalities,
+\begin{displaymath}
+	q_j = (
+		\underbrace{%
+		\ldots,
+		h_{1,\vartheta}(x,y) \bowtie_{1,\vartheta} 0,
+		\ldots%
+	}_{\vartheta \in [\omega]}
+		,\ldots,
+		%h_{1,\omega}(x,y) \bowtie_{1,\omega} 0,
+		%h_{2,1}(x,y) \bowtie_{2,1} 0,
+		%\ldots,
+		%h_{2,\omega}(x,y) \bowtie_{2,\omega} 0,
+		%\ldots,
+		%h_{\Sigma_\rho-1,1}(x,y) \bowtie_{\Sigma_\rho-1,1} 0,
+		\underbrace{%
+		\ldots,
+		h_{\Sigma_\rho-1,\vartheta}(x,y) \bowtie_{\Sigma_\rho-1,\vartheta} 0
+		\ldots%
+	}_{\vartheta \in [\omega]}
+	),
+\end{displaymath}
+where each $(\ldots, h_{t,\vartheta}(x,y) \bowtie_{t,\vartheta} 0, \ldots)$
+is an element of
+$\{\, \text{desc}(C) \st C \in \mathcal{C}_{\rho,\pi,t}\,\}$,
+where $\text{desc}(C)$ is the description of the cell $C$ given as a
+certificate of belonging to $C$ in the form of a Tarski sentence.
+The description of each $(b,b')$-cell is padded with
+its last component so that it has length $\omega$.
+
+For a fixed function $\rho$,
+for a fixed function $\pi$,
+the sets of vectors $p_i$ and $q_j$ is a valid PDR instance
+of size $N = n 2^{O(g)}$ and with parameter $k = \Theta(g^2)$
+that will
+output all cells $A^*_i \times B^*_j$ such that
+the number of real roots of $F(a_{i,\pi_r(t)},b_{j,\pi_c(t)},z)$
+is $\rho(\pi_r(t),\pi_c(t))$,
+the number of real roots of $F(a_{i,\pi_r(t+1)},b_{j,\pi_c(t+1)},z)$
+is \\ $\rho(\pi_r(t+1),\pi_c(t+1))$,
+and the $\pi_s(t)$-th root of $F(a_{i,\pi_r(t)},b_{j,\pi_c(t)},z)$
+comes before the $\pi_s(t+1)$-th root of
+$F(a_{i,\pi_r(t+1)},b_{j,\pi_c(t+1)},z)$,
+for all $t \in [\Sigma_\rho-1]$.
+
+\paragraph{PDR instance for $\Upsilon_{\rho,\pi}$}
+
+We can combine the certificates given above for $\Psi_\rho$ and
+$\Phi_{\rho,\pi}$ to obtain the ones for $\Upsilon_{\rho,\pi}$: concatenate the
+$p_i$ and $q_j$ together (add a dummy $y$ variable for the $p_i$ and $q_j$ of
+$\Psi_\rho$).
+%
+For a fixed function $\rho$,
+for a fixed function $\pi$,
+the sets of vectors $p_i$ and $q_j$ is a valid PDR instance
+of size $N = n 2^{O(g)}$ and with parameter $k = \Theta(g^2)$
+that will
+output all cells $A^*_i \times B^*_j$ such that
+$F(a_{i,k},b_{j,l},z) \in
+\mathbb{R}[z]$ has exactly $\rho(k,l)$ real roots for all $(a_{i,k},a_{j,l}) \in A_i
+\times B_j$,
+and the $\pi_s(t)$-th root of $F(a_{i,\pi_r(t)},b_{j,\pi_c(t)},z)$
+comes before the $\pi_s(t+1)$-th root of $F(a_{i,\pi_r(t+1)},b_{j,\pi_c(t+1)},z)$
+for all $t \in [\Sigma_\rho-1]$.
+%
+The rest of the analysis in \S\ref{sec:algo:explicit:uniform} applies.
+This proves Theorem~\ref{thm:implicit:uniform}.

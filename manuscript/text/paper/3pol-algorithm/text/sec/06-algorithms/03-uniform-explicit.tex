@@ -1,0 +1,191 @@
+\section{Uniform algorithm for explicit 3POL}%
+\label{sec:algo:explicit:uniform}
+
+We now build on the first algorithm and prove the following:
+\begin{theorem}\label{thm:explicit:uniform}
+	Explicit 3POL can be solved in
+	$O(n^2 {(\log \log n)}^{3/2} / {(\log n)}^{1/2})$ time.
+\end{theorem}
+We generalize again Gr\o nlund and Pettie~\cite{GP14}. The
+algorithm we present is derived from the first subquadratic algorithm in their
+paper.
+
+\paragraph{Idea}
+We want the implementation of step~\textbf{2} in Algorithm~\ref{algo:ne} to be
+uniform, because then, the whole algorithm is.
+We use the same partitioning scheme as before except we choose $g$ to be much
+smaller.
+This allows to
+store all permutations on $g^2$ items in a lookup table, where
+$g$ is chosen small enough to make the size of the lookup table $\Theta(n^\varepsilon)$.
+The preprocessing part of the previous algorithm is replaced by $ g^2! $ calls to
+an algorithm that determines for which cells a given permutation gives the
+correct sorted
+order. This preprocessing step stores a constant-size%
+\footnote{In the real-RAM and word-RAM models.}
+pointer from each cell to
+the corresponding permutation in the lookup table.
+Search can now be done efficiently: when searching a value $c$ in $f(A_i
+\times B_j)$, retrieve the corresponding permutation on $g^2$ items from the
+lookup table,
+then perform binary search on the sorted order defined by that permutation.
+The sketch of the algorithm is exactly Algorithm~\ref{algo:ne}. The only
+differences with respect to \S\ref{sec:algo:explicit:nonuniform} are the choice
+of $g$ and the implementation of step~\textbf{2}.
+
+\paragraph{$A \times B$ grid partitioning}
+We use the same partitioning scheme as before, hence
+Lemma~\ref{lem:intersections} and Lemma~\ref{lem:preprocessing} hold.
+We just need to find a replacement for Lemma~\ref{lem:batch}.
+%to identify the
+%cells that correspond to a specific sorted order.
+
+\paragraph{Preprocessing}
+For their simple subquadratic 3SUM algorithm, Gr\o nlund and Pettie~\cite{GP14}
+explain that for a permutation to give the correct sorted order for a cell, that
+permutation defines a \emph{certificate} --- a set of inequalities --- that
+the cell must verify. They cleverly note --- using Fredman's Trick~\cite{F76}
+as in Chan~\cite{Cha08} and Bremner et al.~\cite{BCDEHILPT14}
+--- that the verification of a single certificate by all cells amounts to
+solving a red/blue point dominance reporting problem.
+We generalize their method.
+For each permutation $\pi\colon\,[g^2]\to{[g]}^2$, where $\pi =
+(\pi_r,\pi_c)$ is decomposed into row and column functions
+$\pi_r,\pi_c\colon\,[g^2]\to[g]$, we enumerate all cells $A_i^* \times B_j^*$
+%,with
+%\begin{displaymath}
+%A_i\times B_j=\{\,
+    %(a_{i,1},b_{j,1}),
+    %(a_{i,1},b_{j,2}),
+    %\ldots,
+    %(a_{i,2},b_{j,1}),
+    %(a_{i,2},b_{j,2}),
+    %\ldots,
+    %(a_{i,g},b_{j,g-1}),
+    %(a_{i,g},b_{j,g})
+%\,\},
+%\end{displaymath}
+for which the following \emph{certificate} holds:
+\begin{displaymath}
+	f\Big(a_{i,\pi_r(1)},b_{j,\pi_c(1)}\Big)
+	\le
+	f\Big(a_{i,\pi_r(2)},b_{j,\pi_c(2)}\Big)
+	\le
+	\cdots
+	\le
+	f\Big(a_{i,\pi_r(g^2)},b_{j,\pi_c(g^2)}\Big).
+\end{displaymath}
+
+\paragraph{Remark}
+Since some entries may be equal, to make sure each cell corresponds to exactly
+one certificate, we replace $\le$ symbols by choices of $g^2-1$ symbols in
+$\{\,=,<\,\}$. Each permutation $\pi$ gets a certificate for each of
+those choices.
+This adds a $2^{g^2-1}$ factor to the number of certificates
+to test, which will eventually be negligible.
+Note that some of those $2^{g^2-1}$ certificates are equivalent. We
+need to skip some of them, as otherwise we might output some cells more than
+once, and then there will be no guarantee with respect to the output size. For
+example, the certificate $f(a_{i,9},b_{j,5}) = f(a_{i,6},b_{j,7}) < \cdots <
+f(a_{i,4},b_{j,4})$ is equivalent to the certificate $f(a_{i,6},b_{j,7}) =
+f(a_{i,9},b_{j,5}) < \cdots < f(a_{i,4},b_{j,4})$. Among equivalent
+certificates, we only consider the certificate whose permutation $\pi$ precedes
+the others lexicographically. In the previous example,
+$((6,7),(9,5),\ldots,(4,4)) \prec ((9,5),(6,7),\ldots,(4,4))$ hence we would
+only process the second certificate. For the sake of simplicity,
+we will write inequality when we mean either strict inequality or equation, and
+``$\le$'' when we mean either ``$<$'' or ``$=$''.
+
+\paragraph{Fredman's Trick}
+This is where Fredman's Trick comes into play.
+By Lemma~\ref{lem:fredman}, each inequality
+$f(a_{i,\pi_r(t)},b_{j,\pi_c(t)}) \le f(a_{i,\pi_r(t+1)},b_{j,\pi_c(t+1)})$
+of a certificate can be checked
+by computing the relative position of $(a_{i,\pi_r(t)},a_{i,\pi_r(t+1)})$ with
+respect to $\gamma_{b_{j,\pi_c(t)},b_{j,\pi_c(t+1)}}$.
+For a given certificate, for each $A_i$ and each $B_j$, define
+%
+\begin{align*}
+p_i &= \mleft(
+    \Big(a_{i,\pi_r(1)},a_{i,\pi_r(2)}\Big),
+    %\Big(a_{i,\pi_r(2)},a_{i,\pi_r(3)}\Big),
+    \ldots,
+    \Big(a_{i,\pi_r(g^2-1)},a_{i,\pi_r(g^2)}\Big)
+\mright),\\
+q_j &= \mleft(
+    f\Big(x,b_{j,\pi_c(1)}\Big) \le f\Big(y,b_{j,\pi_c(2)}\Big),
+    %f(x,b_{j,\pi_c(2)}) \le f(y,b_{j,\pi_c(3)}),
+    \ldots,
+    f\Big(x,b_{j,\pi_c(g^2-1)}\Big) \le f\Big(y,b_{j,\pi_c(g^2)}\Big)
+\mright).
+\end{align*}
+%
+A certificate is verified by a cell $A_i \times B_j$ if and only if, for all
+$t \in [g^2-1]$, the point $p_{i,t}$ verifies the inequality $q_{j,t}$.
+Enumerating all cells $A_i\times B_j$ for which the
+certificate holds therefore amounts to solving the following problem:
+%
+\begin{problem}[Polynomial Dominance Reporting (PDR)]
+Given $N$ $k$-tuples $p_i$ of points in $\mathbb{R}^2$ and $N$ $k$-tuples $q_j$
+of bivariate polynomial inequalities of degree at most $\Delta$,
+output all pairs $(p_i,q_j)$ where, for all $t \in [k]$,
+the point $p_{i,t}$ verifies the inequality $q_{j,t}$.
+\end{problem}
+%
+In the next section, we explain how to solve PDR efficiently
+and prove the following:
+\begin{lemma}\label{lem:dominance}
+    We can output
+    all $\ell$ such pairs in time
+    $2^{O(k)} N^{2-\frac{4}{\Delta^2+3\Delta+2}+\varepsilon} + O(\ell)$.
+\end{lemma}
+
+We can now give a uniform implementation of step~\textbf{2} in
+Algorithm~\ref{algo:ne}:
+\begin{algorithm}[Sorting the $f(A_i \times B_j)$ with a uniform algorithm]\label{algo:sfaixbj-uniform}
+\item[input] $A = \{\,a_1<a_2<\cdots<a_n\,\},B = \{\,b_1<b_2<\cdots<b_n\,\}
+    \subset \mathbb{R}$
+\item[output] The sets $f(A_i \times B_j)$, sorted.
+\item[2.1.] Initialize a table that will contain all $ g^2! $ permutations on $g^2$ elements.
+\item[2.2.] For each permutation $\pi\colon\,[g^2]\to{[g]}^2$,
+\item[2.2.1.] Append permutation $\pi$ to the table,
+\item[2.2.2.] For each choice of $g^2-1$ symbols in $\{\,=,<\,\}$,
+\item[2.2.2.1.] If there is any ``$=$'' symbol that corresponds to a
+    lexicographically decreasing
+    pair of tuples of indices in $\pi$, skip this choice of symbols.
+\item[2.2.2.2.] Solve the PDR instance associated
+    with $A,B,\pi$ and the choice of symbols.
+%\footnote{See Algorithm~\ref{algo:pdr} for the implementation.}
+\item[2.2.2.3.] For each output pair $(i,j)$, store a pointer
+    to the last entry in the table.
+    %from $A_i^* \times B_j^*$ to the last entry in the lookup table.
+\end{algorithm}
+
+
+\paragraph{Analysis} Plugging in $k=g^2-1$, $N=\frac ng$, iterating over all
+permutations ($\sum_{\pi} \ell = {(n/g)}^2$), and adding the binary search step we
+get that
+%, in the real-RAM model,
+explicit 3POL can be solved in time
+\begin{displaymath}
+    (g^2!)2^{g^2}2^{O(g^2)}
+    {(n/g)}^{2-\frac{4}{{\deg(f)}^2+3\deg(f)+2}+\varepsilon} + O({(n/g)}^2) +
+    O(n^2 \log g / g).
+\end{displaymath}
+The first two terms correspond to the complexity of step~\textbf{2} in
+Algorithm~\ref{algo:ne}, and the last term corresponds to the complexity of
+step~\textbf{3} in Algorithm~\ref{algo:ne}.
+To get subquadratic time we can set
+$g = c_{\deg(f)}\sqrt{\log n/\log \log n}$,
+because then
+for some appropriate choice of the constant factor $c_{\deg(f)}$,
+$(g^2)!2^{g^2}2^{O(g^2)} = n^{\delta}$ where $\delta<
+4/({\deg(f)}^2+3\deg(f)+2) - \varepsilon$, making the first term negligible.
+The complexity of the algorithm is dominated by $O(n^2 \log g / g) = O(n^2
+{(\log \log n)}^{3/2} / {(\log n)}^{1/2} )$.
+This proves Theorem~\ref{thm:explicit:uniform}.
+
+%\remark{}
+%It is plausible that using the more sophisticated machinery of Gr\o nlund and
+%Pettie~\cite{GP14}, Freund~\cite{F15}, and Gold and Sharir~\cite{GS15} it would
+%be possible to decrease the complexity to $O(n^2/\log n)$.

@@ -1,0 +1,341 @@
+\section{Nonuniform algorithm for explicit 3POL}%
+\label{sec:algo:explicit:nonuniform}
+
+We begin with the description of a nonuniform algorithm for explicit 3POL which
+we use later as a basis for other algorithms. We prove the following:
+\begin{theorem}\label{thm:explicit:act}
+	There is a bounded-degree ADT of depth
+	$O(n^{12/7+\varepsilon})$
+	for explicit 3POL\@.
+\end{theorem}
+
+\paragraph{Idea}
+We partition the sets $A$ and $B$ into small groups of consecutive
+elements. That way, we can divide the $A\times B$ grid into cells with the
+guarantee that each curve $c = f(x,y)$ intersects a small number
+of those cells. For each such curve and each cell it intersects, we
+search $c$ among the values $f(a,b)$ for all $(a,b)$ in a given intersected
+cell. We generalize Fredman's trick~\cite{F76} --- and how it is used in Gr\o
+nlund and Pettie's paper~\cite{GP14} --- to quickly obtain a sorted order on
+those values, which provides us a logarithmic search time for each cell.
+Below is a sketch of the algorithm.
+\begin{algorithm}[Nonuniform algorithm for explicit 3POL]\label{algo:ne}
+\item[input] $A = \{\,a_1 < \cdots < a_n\,\},B = \{\,b_1<\cdots<b_n\,\},
+    C = \{\,c_1<\cdots<c_n\,\}
+    \subset \mathbb{R}$.
+\item[output] \emph{accept} if $\exists\, (a,b,c) \in A \times B \times C$ such that $c
+    = f(a,b)$, \emph{reject} otherwise.%
+    \footnote{Note that it is easy to modify the algorithm to count or report the
+    solutions. In the latter case, the algorithm becomes output sensitive.}
+\item[1.] Partition the intervals $[a_1,a_n]$ and $[b_1,b_n]$ into blocks
+    $A_i^*$ and $B_j^*$ such that $A_i = A \cap A_i^*$ and $B_j = B
+    \cap B_j^*$ have size $g$.
+\item[2.] Sort the sets $f(A_i \times B_j) = \{\, f(a,b) \st (a,b) \in A_i
+    \times B_j\,\}$ for all $A_i,B_j$. This is the only step that
+    is nonuniform.
+\item[3.] For each $c \in C$,
+\item[3.1.] For each cell $A_i^* \times B_j^*$ intersected by the curve
+$c=f(x,y)$,
+\item[3.1.1.] Binary search for $c$ in the sorted set $f(A_i \times B_j)$.
+If $c$ is found, \emph{accept} and halt.
+\item[4.] \emph{reject} and halt.
+\end{algorithm}
+%
+Like in Gr\o nlund and Pettie's $\tilde{O}(n^{3/2})$ decision tree for
+3SUM~\cite{GP14}, the key is to give an efficient implementation
+of step~\textbf{2}.
+
+\paragraph{$A \times B$ grid partitioning}
+Let $A = \{\,a_1<a_2<\cdots<a_n\,\}$ and $B = \{\,b_1<b_2<\cdots<b_n\,\}$.
+For some positive integer $g$ to be determined later, partition the interval
+\([a_1,a_n]\) into \(n/g\)
+blocks $A_1^*,A_2^*,\ldots,A_{n/g}^*$ such that each block
+contains \(g\) numbers in \(A\). Do the same for the interval
+\([b_1,b_n]\) with the numbers in \(B\) and name the blocks of this
+partition $B_1^*,B_2^*,\ldots,B_{n/g}^*$.
+For the sake of simplicity, and without loss of generality, we assume
+here that $g$ divides $n$.  We continue to make this assumption in the
+following sections.
+To each of the \({ ( n/g ) }^2\) pairs of blocks $A_i^*$ and $B_j^*$
+corresponds a cell $A_i^* \times B_j^*$.
+By definition, each cell contains $g^2$ pairs in \(A \times
+B\).
+For the sake of notation,
+we define
+$A_i = A \cap A_i^* = \{\,a_{i,1} < a_{i,2} < \cdots < a_{i,g}\,\}$
+and
+$B_j = B \cap B_j^* = \{\,b_{j,1} < b_{j,2} < \cdots < b_{j,g}\,\}$.
+Figure~\ref{fig:partition} depicts this construction.
+
+\begin{figure*}
+\centering
+    \includegraphics{figures/partition}
+    \caption{The partitioning of \(A \times B\). There are \( n/g \) columns \( A_i^*
+    \), \( n/g \) rows \( B_j^* \), and \( {(n/g)}^2 \) cells \( A_i^* \times
+    B_j^* \). There are \( n^2 \) points in \( A \times B \).
+    Each column contains the \( ng \) points in \( A_i \times B \), each row contains
+    the \( ng \) points in \( A \times B_j \), and each cell contains the \(
+    g^{2} \) points in \( A_i \times B_j \).}%
+    \label{fig:partition}
+\end{figure*}
+\begin{figure*}
+\centering
+    \includegraphics{figures/intersected-cells}
+    \caption{An $xy$-monotone arc of the two-dimensional polynomial curve of
+    equation $c=f(x,y)$. This arc intersects a staircase of at most $2
+    \frac ng - 1$ cells in the grid. When $f$ has constant degree, the defined
+    curve can be partitioned into $O(1)$ such arcs.}%
+    \label{fig:intersected-cells}
+\end{figure*}
+%\caption{Properties of the $A\times B$ grid.}\label{fig:axb}
+
+The following two lemmas result from this construction:
+\begin{lemma}\label{lem:intersections}
+    For a fixed value \(c \in C\), the curve $c=f(x,y)$ intersects $O(\frac ng)$
+    cells. Moreover, those cells can be found in $O(\frac ng)$ time.
+\end{lemma}
+\begin{proof}
+    Since $f$ has constant degree, the curve $c=f(x,y)$ can be partitioned into
+    a constant number of $xy$-monotone arcs. Split the curve into
+    $x$-monotone pieces, then each $x$-monotone piece into $y$-monotone arcs.
+    The endpoints of the $xy$-monotone arcs are the intersections of
+    $f(x,y)=c$ with its derivatives $f'_x(x,y)=0$ and $f'_y(x,y)=0$. By
+    B\'ezout's theorem, there are $O({\deg(f)}^2)$ such intersections and so
+    $O({\deg(f)}^2)$ $xy$-monotone arcs. Figure~\ref{fig:intersected-cells} shows
+    that each such arc intersects $O(\frac ng)$ cells since the
+    cells intersected by a $xy$-monotone arc form a staircase in the
+    grid.
+    This proves the first part of the lemma.
+
+    To prove the second part, notice that for each connected component of
+    $c=f(x,y)$ intersecting at least one cell of the grid either: (1) it
+    intersects a boundary cell of the grid, or (2) it is a (singular) point or
+    contains vertical and horizontal tangency points.%
+    \footnote{Note that vertical and horizontal lines fall in both categories.}
+    The cells intersected by
+    $c=f(x,y)$ are computed by exploring the grid from $O(\frac ng)$ starting cells.
+    Start with an empty set. Find and add all boundary cells containing a point of the
+    curve. Finding those cells is achieved by solving
+    the Tarski sentence
+    $\exists x \exists y (
+    c=f(x,y)
+    \land
+    x \in A_i^*
+    \land
+    y \in B_j^*
+    )$,
+    for each cell $A_i^* \times B_j^*$ on the boundary.
+    This takes $O(\frac ng)$ time.
+    Find and add the cells containing singular points and tangency points of
+    $c=f(x,y)$. Finding those cells is achieved by first finding
+    the constant number of vertical and horizontal slabs $A_i^* \times
+    \mathbb{R}$ and $\mathbb{R} \times B_j^*$ containing such points:
+    \begin{align*}
+        \exists x \exists y (
+	c=f(x,y)
+	\land
+	( f'_x(x,y)=0 \lor f'_y(x,y)=0 )
+	\land
+	x \in A_i^*), \\
+        \exists x \exists y (
+	c=f(x,y)
+	\land
+	( f'_x(x,y)=0 \lor f'_y(x,y)=0 )
+	\land
+	y \in B_j^*).
+    \end{align*}
+    This takes $O(\frac ng)$ time.
+    Then for each pair of vertical and horizontal slab containing such a point,
+    check that the cell at the intersection of the slabs also contains such a
+    point:
+    \begin{displaymath}
+        \exists x \exists y (
+	c=f(x,y)
+	\land
+	( f'_x(x,y)=0 \lor f'_y(x,y)=0 )
+	\land
+	x \in A_i^*
+	\land
+	y \in B_j^*
+	).
+    \end{displaymath}
+    This takes $O(1)$ time.
+%
+Note that we can always assume the constant-degree polynomials we manipulate
+are square-free, as making them square-free is trivial~\cite{Y76}: since
+$\mathbb{R}[x]$ and $\mathbb{R}[y]$ are unique factorization domains, let $Q =
+P/\text{gcd}(P,P'_x;x)$ and $\text{sf}(P) = Q/\text{gcd}(P,P'_y;y)$, where
+$\text{gcd}(P,Q;z)$ is the greatest common divisor of $P$ and $Q$ when viewed
+as polynomials in $R[z]$ where $R$ is a unique factorization domain and
+$\text{sf}(P)$
+is the square-free part of $P$.
+%
+    The set now contains, for each component of each
+    type, at least one cell intersected by it. Initialize a list with the
+    elements of the set. While the list is not empty, remove any cell from the
+    list, add each of the eight neighbouring cells to the set and the list,
+    if it contains a point of $c=f(x,y)$ --- this can be checked with the same
+    sentences as in the boundary case --- and if
+    it is not already in the set. This costs $O(1)$ per cell intersected.
+    The set now contains all cells of the grid intersected by $c=f(x,y)$.
+\end{proof}
+
+\begin{lemma}\label{lem:preprocessing}
+    If the sets $A,B,C$ can be preprocessed in $S_g(n)$ time so that,
+    for any given cell $A_i^* \times B_j^*$ and any given $c \in C$, testing whether
+    $c \in f(A_i \times B_j) = \{\,f(a,b)\st (a,b) \in A_i \times B_j\,\}$ can be done in
+    $O(\log g)$ time, then, explicit 3POL can be solved in
+    $S_g(n)+O(\frac{n^2}{g}\log g)$ time.
+\end{lemma}
+\begin{proof}
+    %The total time needed is
+    We need $S_g(n)$ preprocessing time plus the time required
+    to search each of the $n$ numbers $c \in C$ in each of the $O(\frac ng)$
+    cells intersected by $c=f(x,y)$. Each search costs $O(\log g)$ time.
+    We can compute the cells intersected by $c=f(x,y)$ in $O(\frac ng)$ time
+    by Lemma~\ref{lem:intersections}.
+\end{proof}
+\paragraph{Remark} We do not give a $S_g(n)$-time real-RAM
+algorithm for preprocessing the input, but only a $S_g(n)$-depth bounded-degree
+ADT\@. In fact, this preprocessing step is the only
+nonuniform part of Algorithm~\ref{algo:ne}. A real-RAM implementation of this
+step is given in
+\S\ref{sec:algo:explicit:uniform}.
+
+\begin{figure*}
+\centering
+\includegraphics{figures/ab-pairs}
+\caption{For each cell, we sort the points it contains with comparisons.
+The points \((a,b)\) and \((a',b')\) are compared using the comparison
+\( f(a,b) \le f(a',b') \).}%
+\label{fig:ab-pairs}
+\end{figure*}
+\begin{figure*}
+\centering
+\includegraphics{figures/zero-set}
+\caption{%
+The disk is the semi-algebraic set \( \{\, (x,y) \st f(x,b) \le f(y,b')\,\} \).
+Here $(a,a')$ lies outside this semi-algebraic set which implies that $f(a,b) >
+f(a',b')$.}%
+\label{fig:zero-set}
+\end{figure*}
+%\caption{Generalization of Fredman's trick (Lemma~\ref{lem:fredman}).}\label{fig:trick}
+\paragraph{Preprocessing} All that is left to prove is that $S_g(n)$ is
+subquadratic for some choice of $g$. To achieve this we sort the points
+inside each cell using Fredman's trick~\cite{F76}. Gr\o nlund and
+Pettie~\cite{GP14} use this trick to sort the sets
+$A_i + B_j = \{\,a + b \st (a,b) \in A_i \times B_j \,\}$
+with few comparisons: sort the set
+$D = (\cup_i [A_i - A_i]) \cup (\cup_j [B_j - B_j])$,
+where
+$A_i - A_i = \{\,a - a' \st (a,a')\in A_i \times A_i \,\}$
+and
+$B_j - B_j = \{\,b - b' \st (b,b')\in B_j \times B_j \,\}$,
+using $O(n\log n + |D|)$ comparisons, then testing whether
+$a + b \le a' + b'$
+can be done using the free (already computed) comparison
+$a - a' \le b' - b$.
+We use a generalization of this trick to sort the sets $f(A_i\times B_j)$.
+For each $B_j$, for each pair \((b,b') \in B_j \times B_j\),
+define the curve
+%\begin{displaymath}
+$
+	\gamma_{b,b'} = \{\,(x,y) \st f(x,b) = f(y,b')\,\}.
+$
+%\end{displaymath}
+Define the sets
+$\gamma^0_{b,b'} = \gamma_{b,b'}$,
+$\gamma^-_{b,b'} = \{\,(x,y) \st f(x,b) < f(y,b')\,\}$, and
+$\gamma^+_{b,b'} = \{\,(x,y) \st f(x,b) > f(y,b')\,\}$.
+%
+The following lemma --- illustrated by
+Figures~\ref{fig:ab-pairs}~and~\ref{fig:zero-set} --- follows by definition:
+\begin{lemma}\label{lem:fredman}
+Given a cell $A_i^* \times B_j^*$ and two pairs \((a,b), (a',b') \in A_i \times B_j\),
+deciding whether \(f(a,b) < f(a',b')\) (respectively
+$f(a,b) = f(a',b')$
+and
+$f(a,b) > f(a',b')$)
+amounts to deciding whether the point
+$(a,a')$ is contained in \(\gamma^-_{b,b'}\) (respectively
+\(\gamma^0_{b,b'}\) and
+\(\gamma^+_{b,b'}\)).
+\end{lemma}
+
+There are $N \coloneqq \frac ng \cdot g^2 = ng$ pairs $(a,a') \in \cup_i [A_i \times
+A_i]$ and there are $N$ pairs $(b,b') \in \cup_j [B_j \times B_j]$.  Sorting
+the $f(A_i\times B_j)$ for all $(A_i, B_j)$ amounts to solving the
+following problem:
+\begin{problem}[Polynomial Batch Range Searching]
+    Given $N$ points and $N$ polynomial curves in $\mathbb{R}^2$, locate
+    each point with respect to each curve.
+\end{problem}
+
+We can now refine the description of step~\textbf{2} in Algorithm~\ref{algo:ne}
+\begin{algorithm}[Sorting the $f(A_i \times B_j)$ with a nonuniform algorithm]\label{algo:sfaixbj}
+\item[input] $A = \{\,a_1<a_2<\cdots<a_n\,\},B = \{\,b_1<b_2<\cdots<b_n\,\}
+    \subset \mathbb{R}$
+\item[output] The sets $f(A_i \times B_j)$, sorted.
+\item[2.1.] Locate each point $(a,a') \in \cup_i [A_i \times A_i]$ w.r.t.\
+    each $\gamma_{b,b'}, (b,b') \in \cup_j [B_j \times B_j]$.
+%\footnote{See Algorithm~\ref{algo:pbrs} for the implementation.}
+\item[2.2.] Sort the sets $f(A_i \times B_j)$ using the
+    information retrieved in step \textbf{2.1}.
+\end{algorithm}
+Note that this algorithm is nonuniform: step~\textbf{2.2} costs at least
+quadratic time in the real-RAM model, however, this step does not need to
+query the input at all, as all the information needed to sort is retrieved during
+step~\textbf{2.1}.
+%Indeed,
+Step~\textbf{2.2} incurs no cost in
+our nonuniform model.
+%the bounded-degree ADT model.
+
+To implement step~\textbf{2.1}, we use a modified\footnote{The original
+algorithm relies on hierarchical cuttings which cannot be
+implemented in the bounded-degree ADT model.}
+version of the $N^{\frac{4}{3}} 2^{O(\log^* N)}$ algorithm of
+Matou\v{s}ek~\cite{Ma93} for Hopcroft's problem.
+%\begin{problem}[Hopcroft's problem]
+	%Given a set of $n$ points and $m$ lines in $\mathbb{R}^2$,
+	%does any point lie on any line?
+%\end{problem}
+%There are combinatorial upper bounds~\cite{ST83} on the number of point-line
+%incidences an instance can have and there are algorithmic lower
+%bounds~\cite{E96} essentially matching the complexity of Matou\v{s}ek's algorithm.
+%
+%\paragraph{Szemeredi-Trotter theorem}
+%Szemeredi~and~Trotter~\cite{ST83} give an upper bound on the number of
+%incidences between points and lines in $\mathbb{R}^2$.
+%\begin{theorem}[Szemeredi and Trotter~\cite{ST83}]
+	%The number of incidences between $n$ points and $m$ lines in the plane, is
+	%$O(m^{2/3}n^{2/3}+n+m)$.
+%\end{theorem}
+%
+%\begin{problem}[Hopcroft's problem 2]
+	%Given a set of $n$ points and $m$ hyperplanes in $\mathbb{R}^d$,
+	%is any point contained in any hyperplane?
+%\end{problem}
+%
+%Combinatorial upper bounds~\cite{AA92,CEGSW90}.
+%Algorithmic lower bounds~\cite{BK03}.
+%
+%We explain this algorithm in the next section and prove the following upper
+%bound:
+%We explain this algorithm
+In the next section, we prove the following upper bound:
+\begin{lemma}\label{lem:batch}
+Polynomial Batch Range Searching can be solved in
+$O(N^{\frac{4}{3}+\varepsilon})$ time in the real-RAM model when the input
+curves are the $\gamma_{b,b'}$.
+\end{lemma}
+
+%Note that we do not get the nicer $2^{O(\log^*N)}$ factor because of the
+%limitations of the tools we use.
+
+\paragraph{Analysis}
+Combining Lemma~\ref{lem:preprocessing} and Lemma~\ref{lem:batch} yields a $O(
+{(ng)}^{4/3+\varepsilon} + n^2 \log g / g)$-depth bounded-degree ADT for
+explicit 3POL\@. By optimizing over $g$, we get $g = \Theta(n^{2/7-\varepsilon})$, and
+the previous expression simplifies to $O(n^{12/7+\varepsilon})$, proving
+Theorem~\ref{thm:explicit:act}.

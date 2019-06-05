@@ -1,0 +1,319 @@
+%\subsection{Nonuniform algorithm for 3POL}
+\section{Nonuniform algorithm for 3POL}%
+\label{sec:algo:implicit:nonuniform}
+
+In this section, we extend the nonuniform algorithm given for explicit 3POL in
+\S\ref{sec:algo:explicit:nonuniform} to work for the more general 3POL
+problem. We prove the following:
+\begin{theorem}\label{thm:implicit:3POL}
+    There is a bounded-degree ADT  of depth
+    $O(n^{12/7+\varepsilon})$ for 3POL\@.
+\end{theorem}
+
+\paragraph{Idea}
+The idea is the same as for explicit 3POL\@. Partition the plane
+into $A^*_i \times B^*_j$ cells.
+Note that for a fixed $c \in C$, the curve $F(x,y,c)$ intersects $O(\frac ng)$
+cells $A^*_i \times B^*_j$. The algorithm is the following: (1) for each cell
+$A^*_i \times B^*_j$, sort the real roots of the $F(a,b,z)
+\in \mathbb{R}[z]$ taking the union over all $(a,b) \in A_i \times B_j$,
+(2) for each $c \in C$,
+for each cell $A^*_i \times B^*_j$ intersected by $F(x,y,c)$, binary search on
+the sorted order computed in step (1) to find $c$. Step (2) costs $O(n^2
+\log g / g)$. It only remains to implement step (1) efficiently.
+
+\paragraph{$A \times B$ partition}
+We use the same partitioning scheme as before. Hence, counterparts of
+Lemma~\ref{lem:intersections}
+and
+Lemma~\ref{lem:preprocessing}
+hold
+\begin{lemma}\label{lem:intersections-implicit}
+    For a fixed \(c \in C\), the curve $F(x,y,c)=0$ intersects $O(\frac ng)$ cells.
+    Moreover, those cells can be computed in $O(\frac ng)$ time.
+\end{lemma}
+\begin{lemma}\label{lem:preprocessing-implicit}
+    If the sets $A,B,C$ can be preprocessed in $S_g(n)$ time so that,
+    for any given cell $A^*_i \times B^*_j$ and any given $c \in C$, testing whether
+    $c \in \{\, z \colon\, \exists(a,b) \in A_i \times B_j~\text{such that}~F(a,b,z) = 0\,\}$
+    %$F(a,b,c)=0$ for some $(a,b) \in A_i \times B_j$
+    can be done in
+    $O(\log g)$ time, then, 3POL can be solved in
+    $S_g(n)+O(\frac{n^2}{g}\log g)$ time.
+\end{lemma}
+
+\paragraph{Interleavings}
+Let $\mathcal{P} = (P_1,P_2,\ldots,P_m)$ be a tuple of $m$ univariate nonzero
+polynomials.
+Let $\{\,p_{i,1} < \cdots < p_{i,\Delta_i}\,\}$
+be the set of real roots of $P_i$ (\emph{without} multiplicities).
+Let $I = ((i_1,j_1),\ldots,(i_{\Delta},j_\Delta))$
+be a tuple of pairs of positive integers.
+%
+We say that $\mathcal{P}$ realizes $I$ if and only if
+$I$ is a permutation of
+$\{\,(i,j) \st i \in [m], j \in [\Delta_i]\,\}$, and
+for all $t \in [\Delta-1]$, $p_{i_t,j_t} \le p_{i_{t+1},j_{t+1}}$.
+When used in this context, we call $I$ an \emph{interleaving}.
+%
+Note that (1) the first condition implies $\Delta=\sum_{i=1}^{m}\Delta_i$,
+(2) a tuple of polynomials realizes at least one interleaving,
+(3) a tuple of polynomials realizes more than one interleaving if some of the
+polynomials have common real roots.
+%
+We denote by $\mathcal{I}(\mathcal{P})$ the set of interleavings realized by
+$\mathcal{P}$.
+
+
+\paragraph{$A \times A$ $(b,b')$-partitions}
+For a fixed pair $(b,b') \in B\times B$, we partition $\mathbb{R}^2$ into
+$(b,b')$-cells that encode equivalence classes. Each cell $\mathcal{C}$ is
+mapped to a unique interleaving $I$, and if we take any two points $(a_1,a_1')$
+and $(a_2,a_2')$ inside $\mathcal{C}$,
+\(I\) is realized by
+both $(F(a_1,b,z),F(a_1',b',z))$ and
+$(F(a_2,b,z),F(a_2',b',z))$.
+%
+It is possible that a degenerate case arises where we cannot associate an
+interleaving to \(\mathcal{C}\) because one of the polynomials is the zero
+polynomial. We can easily tackle these degeneracies,
+because, if any point \((a,a')\) is contained in such a cell,
+we can immediately answer the instance with the affirmative.
+%
+Identifying the interleaving associated with each cell of each
+$(b,b')$-partition, then locating each $(a,a')$ inside each $(b,b')$-partition
+provides the answers to all questions of the form ``Is the $k$th real root of
+$F(a,b,z)$ greater than the $\ell$th real root of $F(a',b',z)$?'', for some $(a,b),
+(a',b')\in A_i\times B_j$. Those answers are all we need to binary
+search for $c$ in the union of the real roots of the $F(a,b,z) \in
+\mathbb{R}[z]$ in time $O(\log g)$. Note again that in the nonuniform setting,
+we do not sort the roots explicitly, but we must be able to recover the order
+from the previous computation steps.
+
+\paragraph{$\gamma_{b,b'}$ and $\delta_{b}$ curves}
+We consider the set of interleavings $\mathcal{I}$ that $(F(x,b,z),F(y,b',z))$
+realizes, where $z$ is a variable, and $x$ and $y$ are parameters.
+We identify four types of event that can happen when the parameters $x$ and $y$
+vary continuously (ignoring zero polynomials):
+(1) a real root of \(P_i\) and a real root of \(P_j\) that were previously
+distinct become equal, for some \(P_i\) and \(P_j\) in \(\mathcal{P}\),
+(2) a real root of \(P_i\) and a real root of \(P_j\) that were previously
+equal become distinct, for some \(P_i\) and \(P_j\) in \(\mathcal{P}\),
+(3) a real root appears in one of the polynomials,
+and (4) a real root disappears in one of the polynomials.
+Note that many of those events can happen concurrently.
+By definition of an interleaving, those events are the only ones that can cause
+$\mathcal{I}$ to change.
+
+To handle events of the types (1) and (2), we redefine the curves
+$\gamma_{b,b'}$ from \S\ref{sec:algo:explicit:nonuniform}:
+\begin{displaymath}
+	\gamma_{b,b'} = \{\, (x,y) \st \exists z\ \text{such that}\
+	F(x,b,z)=F(y,b',z)=0 \,\},
+\end{displaymath}
+that is, $(a,a') \in \gamma_{b,b'}$ if and only if $F(a,b,z)$ and $F(a',b',z)$
+have at least one common root.%
+\footnote{Note that Raz, Sharir, and de Zeeuw~\cite{RSZ15} use the same points
+and curves.}
+Note that this curve is defined
+by the equation
+$\res(F(x,b,z),F(y,b,z);z) = 0$,
+that is, the set of pairs $(x,y)$ for which the resultant (in $z$) of
+$F(x,b,z)$ and $F(y,b,z)$ vanishes. This resultant is a polynomial in
+$\mathbb{R}[x,y]$ of degree $O(\deg(F)^2)$ and can be computed in constant time~\cite{CLO07}.
+The following lemma follows by continuity of the manipulated curve:
+\begin{lemma}\label{lem:cont}
+    Let $(a_1,a'_1)$ and $(a_2,a'_2)$ be two points in the plane such
+    that there does not exist an interleaving that both
+    $(F(a_1,b,z),F(a'_1,b',z))$ and
+    $(F(a_2,b,z),F(a'_2,b',z))$ realize. Moreover, suppose that those two
+    points belong to a connected region in the plane such that for any point
+    $(a,a')$ in that region, the number of real roots of $F(a,b,z)$ and
+    $F(a',b',z)$ is fixed (and finite).
+    Then the interior of any continuous path from $(a_1,a'_1)$ to $(a_2,a'_2)$ lying in this
+    connected region must intersect $\gamma_{b,b'}$.
+\end{lemma}
+\begin{proof}
+    Let $I_1$ be an interleaving realized by
+    $(F(a_1,b,z),F(a'_1,b',z))$ and let $I_2$ be an interleaving realized
+    by $(F(a_2,b,z),F(a'_2,b',z))$.
+    Because the number of real roots of the polynomials $F(x,b,z)$ and
+    $F(y,b',z)$ is fixed for any point $(x,y)$ lying in the connected region,
+    $I_1$ and $I_2$ differ by a nonzero number of swaps.
+    Moreover, by contradiction,
+    there is a swap that is common to every choice of $I_1$
+    and $I_2$.
+    Since there is a common swap,
+    for some $i,j \in [\deg(F)]$ and without loss of generality,
+    the $i$th root of
+    $F(a_1,b,z)$ is smaller than the $j$th root of $F(a'_1,b',z)$ whereas the
+    $i$th root of $F(a_2,b,z)$ is larger than the $j$th root of
+    $F(a'_2,b',z)$. By continuity, on any continuous path from
+    $(a_1,a'_1)$ and $(a_2,a'_2)$ there is a point $(a,a')$ such that the
+    $i$th root of $F(a,b,z)$ is equal to the $j$th root of $F(a',b',z)$.
+    This point cannot be an endpoint of the path, hence,
+    the interior of the path intersects $\gamma_{b,b'}$.
+\end{proof}
+The contrapositive states that, if there exists a continuous path from
+$(a_1,a'_1)$ to $(a_2,a'_2)$ whose interior does not intersect the curve
+$\gamma_{b,b'}$, then there exists an interleaving realized by both
+$(F(a_1,b,z),F(a'_1,b',z))$ and $(F(a_2,b,z),F(a'_2,b',z))$.
+
+To handle events of the types (3) and (4), we define the curve
+\begin{displaymath}
+	\delta_b = \{\,(x,z) \st F(x,b,z) = 0\,\},
+\end{displaymath}
+which lies in the $xz$-plane.
+\begin{lemma}
+    We can partition the $x$ axis of the $xz$-plane into a constant number of
+    intervals so that for each interval the number of real roots of
+    $F(a,b,z)$ is fixed for all $a$ in this interval.
+\end{lemma}
+\begin{proof}
+    We partition the $xz$-plane into a constant number of vertical
+    slabs and lines.
+    %
+    The $x$ coordinates of vertical tangency points and
+    singular points of $\delta_b$ are the values $a$ for which
+    a real root of $F(a,b,z)=0$ appears or disappears.
+    %
+    The number of singular and vertical tangency points of $\delta_b$ is quadratic in $\deg(F)$.
+    %The number of vertical tangency points of $\delta_b$ is quadratic in $\deg(F)$.
+    %The number of singular points of $\delta_b$ is at most ${\deg(F)}^2$.
+    %
+    For each of those points, draw a vertical line that contains the point.
+    Those vertical lines partition the $xz$-plane into slabs and lines.
+    %
+    The number of
+    vertical lines we draw is constant because the degree of $F$ is
+    constant.
+    %
+    Figure~\ref{fig:deltab} depicts this drawing.
+    %
+    The projection of the vertical lines on the $x$ axis produce the desired
+    partition (with roughly half of the intervals being singletons).
+    %
+    Let us name those lines $\delta_b$-lines for further reference.
+\end{proof}
+We can do a symmetric construction for $F(y,b',z)$ in the $zy$-plane and
+get horizontal $\delta_{b'}$-lines.
+\begin{lemma}
+    We can partition the $y$ axis of the $zy$-plane into a constant number of
+    intervals so that for each interval the number of real roots of
+    $F(a',b',z)$ is fixed for all $a'$ in this interval.
+\end{lemma}
+
+\begin{figure*}
+\centering
+\includegraphics[trim={-0.11in 0 -0.11in 0},clip]{figures/deltab}
+\caption{The vertical tangency points (VTP), self-intersection points
+(SIP) and degenerate lines (DL) of $\delta_b$ partition the $A$
+axis into intervals. For all $x$ of the same interval, the
+polynomial $F(x,b,z) \in \mathbb{R}[z]$ has a fixed number of real
+roots.}\label{fig:deltab}
+\end{figure*}
+
+\begin{figure*}
+\centering
+\includegraphics{figures/cells}
+\caption{Cells obtained after partitioning the plane using
+the curve $\gamma_{b,b'}$ and the
+$\delta_b$ and $\delta_{b'}$-lines. The five darkened regions highlight examples of
+$(b,b')$-cells.}\label{fig:cells}
+\end{figure*}
+
+%\caption{Constructions using the $\gamma_{b,b'}$ and $\delta_b$ curves.}\label{fig:delta}
+
+\paragraph{Cells of the $(b,b')$-partition}
+For a given $(b,b') \in B^2$, let $\Gamma_{b,b'}$ be the set containing
+the curve $\gamma_{b,b'}$, the vertical
+$\delta_b$-lines and the horizontal $\delta_{b'}$-lines.
+The arrangement $\mathcal{A}(\Gamma_{b,b'})$ of those
+constant-degree polynomial curves partitions $\mathbb{R}^2$ into a
+constant-size set $\mathcal{C}(\Gamma_{b,b'})$ of \emph{$(b,b')$-cells}.
+Let $P = \cup_{\gamma \in \Gamma_{b,b'}} \gamma$ and
+$\mathcal{C} = \emptyset$. Add all
+vertices of $\mathcal{A}(\Gamma_{b,b'})$ to
+$\mathcal{C}$. Add each connected component of $P \setminus \mathcal{C}$ to
+$\mathcal{C}$. Add each connected component of $\mathbb{R}^2 \setminus P$ to
+$\mathcal{C}$. Finally $\mathcal{C}(\Gamma_{b,b'}) = \mathcal{C}$.
+Those cells
+can be connected regions,
+pieces of the curve $\gamma_{b,b'}$, pieces of the $\delta_b$- and
+$\delta_{b'}$-lines (vertical and horizontal line segments), and
+intersections and self-intersection of those curves (vertices).
+This partitioning scheme is depicted in figure~\ref{fig:cells}.
+%
+By construction, all $(b,b')$-cells have the following \emph{invariant property}
+\begin{definition}
+    A $(b,b')$-cell has the invariant property if, for all points $(a,a')$ in
+    that cell, (1) the number of real roots of $F(a,b,z)$ is fixed, (2)
+    the number of real roots of $F(a',b',z)$ is fixed,
+    and (3) either, at least one of \(F(a,b,z)\) or \(F(a',b',z)\) is the zero
+    polynomial, or the sorted order of the real roots of $F(a,b,z)$ and
+    $F(a',b',z)$ is fixed, that is,
+    $\mathcal{I}((F(a,b,z),F(a',b',z)))$ is fixed.
+\end{definition}
+\begin{lemma}
+    All $(b,b')$-cells have the invariant property.
+\end{lemma}
+\begin{proof}
+    First, (1) and (2) hold for all \((b,b')\)-cells because of the partition
+    induced by the \(\delta_{b}\)-lines and the \(\delta_{b'}\)-lines.
+%
+    Second, (3) holds for all \((b,b')\)-cells that are not contained in
+    \(\gamma_{b,b'}\) since (1) and (2) hold for those cells and because of the
+    partition induced by \(\gamma_{b,b'}\) (see Lemma~\ref{lem:cont}).
+%
+    Third, (3) holds for all $(b,b')$-cells that are both contained in
+    \(\gamma_{b,b'}\) and some \(\delta_b\)- or \(\delta_{b'}\)-line because
+    one of the associated polynomials must be the zero polynomial.
+
+    Finally, if a $(b,b')$-cell is contained in $\gamma_{b,b'}$ but not
+    in any of the \(\delta_{b}\)- or \(\delta_{b'}\)-lines, we make a
+    simple observation. This cell has two distinct neighbouring connected
+    regions lying on each of its sides. We just showed that those two
+    neighbouring cells have the invariant property. The union of this piece of
+    $\gamma_{b,b'}$ with its two neighbouring cells is a connected region as in
+    Lemma~\ref{lem:cont}. Hence, the ordering of any two real roots cannot swap
+    along the piece of $\gamma_{b,b'}$, as this would otherwise
+    contradict Lemma~\ref{lem:cont}. Hence, (3) holds for those pieces of
+    $\gamma_{b,b'}$.
+\end{proof}
+This lemma implies that, provided we compute in which $(b,b')$-cells each
+$(a,a')$ point lies, we only need to probe a single point per $(b,b')$-cell
+to reveal the sorted permutation associated with each cell
+of the $A \times B$ partition.
+
+
+\paragraph{Preprocessing}
+Locate all points $(a,a') \in A_i \times A_i$ for all $A_i$ with respect to all
+$\gamma_{b,b'}$ curves, all vertical lines derived from $\delta_b$ and all
+horizontal lines derived from $\delta_{b'}$ for all $(b,b') \in B_j \times B_j$
+for all $B_j$.
+%
+As in \S\ref{sec:algo:explicit:nonuniform},
+this can be done in a single batch using the algorithm described in
+\S\ref{sec:algo:point-curves-location},
+and the following generalization of Lemma~\ref{lem:dual}:
+\begin{lemma}\label{lem:dual:implicit}
+Define
+\begin{align*}
+    \hat{\gamma}_{a,a'} &= \{\, (x,y) \st \res(F(a,x,z),F(a',y,z);z) = 0 \,\},\\
+    \hat{\delta}_{a}\text{-lines} &= \{\, (x,y) \st \res(F(a,x,z),F'_x(a,x,z);z) = 0 \,\},\\
+    \hat{\delta}_{a'}\text{-lines} &= \{\, (x,y) \st \res(F(a',y,z),F'_y(a',y,z);z) = 0 \,\},\\
+    \hat{\Gamma}_{a,a'} &= \hat{\gamma}_{a,a'} \,\,\cup\,\, \hat{\delta}_a\text{-lines} \,\,\cup\,\, \hat{\delta}_{a'}\text{-lines}.
+\end{align*}
+Locating $(a,a')$ with respect to $\Gamma_{b,b'}$ amounts to
+locating $(b,b')$ with respect to $\hat{\Gamma}_{a,a'}$.
+\end{lemma}
+This gives us the information needed for the binary search in step (2).
+
+
+\paragraph{Analysis}
+The analysis mirrors the explicit case (described immediately after
+Lemma~\ref{lem:batch}). Combining Lemma~\ref{lem:preprocessing-implicit} and
+Lemma~\ref{lem:batch} yields a $O( {(ng)}^{4/3+\varepsilon} + n^2 \log g /
+g)$-depth bounded-degree ADT for 3POL\@. By optimizing over $g$, we get $g =
+\Theta(n^{2/7-\varepsilon})$, and the previous expression simplifies to
+$O(n^{12/7+\varepsilon})$, proving Theorem~\ref{thm:implicit:3POL}.

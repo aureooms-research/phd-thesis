@@ -1,0 +1,39 @@
+\section{Combinatorics Results on 3POL and GPT}
+In a series of results spanning fifteen years,
+Elekes and Rónyai~\cite{ER00},
+Elekes and Szabó~\cite{ES12},
+Raz, Sharir and Solymosi~\cite{RSS14}, and
+Raz, Sharir and de Zeeuw~\cite{RSZ15}
+give upper bounds on the number of degenerate triples for the 3POL problem.
+The last and strongest result is the following:
+\begin{theorem}[Raz, Sharir and de Zeeuw~\cite{RSZ15}]
+	Let $A$, $B$, $C$ be $n$-sets of real numbers and $F \in \mathbb{R}[x,y,z]$
+	be a polynomial of constant degree, then
+	\begin{displaymath}
+		%| \{\, (a,b,c) \in ( A \times B \times C ) \st F(a,b,c) = 0 \,\} | = O(n^{11/6}),
+		| Z(F) \cap ( A \times B \times C ) | = O(n^{11/6}),
+	\end{displaymath}
+	unless $F$ has some group related form.\footnote{Because our results do not
+	depend on the meaning of \emph{group related form}, we do not bother
+	defining it here. We refer the reader to Raz, Sharir and de Zeeuw~\cite{RSZ15}
+	for the exact definition.}
+\end{theorem}
+
+Raz, Sharir and de Zeeuw~\cite{RSZ15} also look at the number of degenerate
+triples for the General Position Testing problem when the input is restricted
+to points lying on a constant number of constant-degree algebraic curves.
+\begin{theorem}[Raz, Sharir and de Zeeuw~\cite{RSZ15}]\label{thm:rsz15:col}
+Let $C_1, C_2, C_3$ be three (not necessarily distinct) irreducible algebraic curves
+of degree at most $d$ in $\mathbb{C}^2$, and let $S_1 \subset C_1, S_2 \subset C_2, S_3
+\subset C_3$ be finite subsets. Then the
+number of proper collinear triples in $S_1 \times S_2 \times S_3$ is
+\begin{displaymath}
+	O_d( |S_1|^{1/2} |S_2|^{2/3} |S_3|^{2/3} + |S_1|^{1/2} (|S_1|^{1/2} + |S_2| +
+|S_3| ) ),
+\end{displaymath}
+unless $C_1 \cup C_2 \cup C_3$ is a line or a cubic curve.
+\end{theorem}
+
+Nassajian Mojarrad, Pham, Valculescu and de Zeeuw~\cite{MPVd16} and
+Raz, Sharir and de Zeeuw~\cite{RSZ16} proved bounds for versions of the
+problem where $F$ is a $4$-variate polynomial.

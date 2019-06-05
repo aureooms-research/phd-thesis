@@ -15,7 +15,14 @@ all: $(PAPERS)
 
 figures: $(FIGURES)
 
-#figures/myfigure.pdf: view=<page>-<view>
+figures/partition.pdf: view=1-1
+figures/intersected-cells.pdf: view=1-2
+figures/ab-pairs.pdf: view=1-3
+figures/zero-set.pdf: view=2-1
+figures/decomposition.pdf: view=2-2
+figures/recursion.pdf: view=2-3
+figures/cells.pdf: view=2-4
+figures/deltab.pdf: view=3-1
 
 figures/%.pdf: figures/figures.ipe
 	ipetoipe -pdf -export -view $(view) $< $@

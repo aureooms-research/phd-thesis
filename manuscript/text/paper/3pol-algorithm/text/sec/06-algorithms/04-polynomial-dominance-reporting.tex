@@ -1,0 +1,355 @@
+\section{Polynomial Dominance Reporting}%
+\label{sec:algo:dominance}
+
+%\improve{On the analysis of PDR in Section 3.4: we
+%base our analysis on that of Chan in [11]. During his talk at SoCG, he
+%mentioned some improvement on this kind of analysis, stemming from recent
+%papers.
+%I think I remember some of the improvements consisted of going from $n^{2-1/d}$
+%to $n^{2-1/log d}$ or something similar. So my question is: would it matter if we
+%could improve on the fraction following the '2-' in the exponent of the first
+%term (Corollary 1, page 11)? I do not think so. Maybe it is worth mentioning.}
+
+In this section, we combine a standard dominance reporting
+algorithm~\cite{PS85} with Matou\v{s}ek's algorithm~\cite{Ma93} to prove
+Lemma~\ref{lem:dominance}.
+For a pair of blue and red points in $\mathbb{R}^k$, we say that the blue point
+\emph{dominates} the red point if for all indices $i\in[k]$ the $i$th
+coordinate of the blue point is greater or equal to the $i$th coordinate of the
+red point.
+The standard algorithm in~\cite{PS85} solves the following problem:
+\begin{problem}
+	Given $N$ blue
+	%points
+	and $M$ red points in $\mathbb{R}^k$, report all
+	bichromatic dominating pairs.
+\end{problem}
+Our problem is significantly more complicated and general. Instead of blue points we
+have blue $k$-tuples $p_i$ of $2$-dimensional points, instead of red points we have
+red $k$-tuples $q_j$ of bivariate polynomial inequalities, and we want to report
+all bichromatic pairs $(p_i,q_j)$ such that, for all $t \in [k]$,
+the point $p_{i,t}$ verifies the inequality $q_{j,t}$.
+The standard algorithm essentially works by a combination of divide and conquer
+and prune and search, using a one-dimensional cutting (median selection) to
+split a problem into subproblems. We generalize the standard algorithm by using
+higher dimensional cuttings, in a way similar to Matou\v{s}ek's
+algorithm~\cite{Ma93}. For the analysis, we generalize Chan's analysis
+of the standard algorithm when $k$ is not constant~\cite{Cha08}.
+
+\begin{proof}[Proof of Lemma~\ref{lem:dominance}]
+We use the Veronese embedding~\cite{Har77,Har13}.
+Since the polynomials have constant degree, we can trade polynomial
+inequalities for linear inequalities by lifting to a space of
+higher --- but constant --- dimension. The degree of each polynomial is at most
+$\Delta$. There are exactly $d = \binom{\Delta+2}{2} - 1$ different bivariate
+monomials of degree at most $\Delta$.%
+\footnote{Not including the independent monomial, namely, $1$.}
+To each monomial we associate a variable
+in $\mathbb{R}^d$. By this association, points in the plane are mapped to
+points in $\mathbb{R}^d$ and bivariate polynomial inequalities are mapped to
+$d$-variate linear inequalities.
+
+By abuse of notation, let $p_i$ denote the tuple $p_i$ where each
+$2$-dimensional point has been replaced by its $d$-dimensional counterpart, and
+let $q_i$ denote the tuple $q_i$ where each bivariate polynomial inequality
+has been replaced by its $d$-variate linear counterpart.
+We have $N$ $k$-tuples $p_i$ and $M$ $k$-tuples $q_j$.
+%
+The algorithm checks each of the $k$ components of the tuples in turn and
+can be described recursively as follows for some positive integer $r > 1$:
+\begin{algorithm}[Polynomial Dominance Reporting]\label{algo:pdr}
+\item[input] $N$ $k$-tuples $p_i$ of $d$-dimensional points, $M$ $k$-tuples
+	$q_j$ of $d$-variate linear inequalities.
+\item[output] All $(p_i,q_j)$ pairs such that, for all $t \in [k]$, the point
+	$p_{i,t}$ verifies the inequality $q_{j,t}$.
+\item[1.] If $k=0$, then output all pairs $(p_i,q_j)$ and halt.
+\item[2.] If $N < r^d$ or $M < r$, solve the problem by brute force
+	in $O((N+M) k)$ time.
+\item[3.]
+We now only consider the $k$th component of each input $k$-tuple and call these
+\emph{active} components.
+%
+To each active $d$-variate linear inequality corresponds a defining
+hyperplane in $\mathbb{R}^d$.
+Construct, as in~\cite{Ma93}, a hierarchical cutting of $\mathbb{R}^d$ using $O(r^d)$
+simplicial cells such that each simplicial cell
+is intersected by at most $\frac{M}{r}$ of the defining hyperplanes.
+This construction also gives us for each simplicial cell of the cutting the list
+of defining hyperplanes intersecting it.
+This takes $O(Mr^{d-1})$ time.
+%
+Locate each active point inside the hierarchical cutting in time $O(N \log r)$.
+Let $S$ be a simplicial cell of the hierarchical cutting.
+Denote by $\Pi_S$ the set of active points in $S$. Partition each $\Pi_S$ into
+$\left\lceil \frac{\lvert \Pi_S \rvert}{N r^{-2}} \right\rceil$ disjoint subsets
+of size at most $\frac{N}{r^d}$.
+%
+For each simplicial cell, find the active inequalities whose corresponding
+geometric object (hyperplane, closed or open half-space) contains the cell.
+This takes $O(Mr^d)$ time.
+%
+The whole step takes $O(N\log r+Mr^d)$ time.
+\item[4.] For each of the $O(r^d)$ simplicial cells, recurse on the at most
+	$\frac{N}{r^d}$ $k$-tuples $p_i$ whose active point is inside the
+	simplicial cell and the at most $\frac{M}{r}$ $k$-tuples $q_j$ whose active
+	inequality's defining hyperplane intersects the simplicial cell.
+\item[5.] For each of the $O(r^d)$ simplicial cells, recurse on the at most
+	$\frac{N}{r^d}$ ($k-1$)-prefixes of $k$-tuples $p_i$ whose active point is
+	inside the simplicial cell and the ($k-1$)-prefixes of $k$-tuples $q_j$
+	whose active inequality's corresponding geometric object contains the simplicial cell.
+\end{algorithm}
+
+\paragraph{Correctness}
+In each recursive call, either $k$ is decremented or $M$ and $N$ are divided by
+some constant strictly greater than one, hence, one of the conditions in steps \textbf{1} and \textbf{2} is
+met in each of the paths of the recursion tree and the algorithm always terminates.
+Step \textbf{5} is correct because it only recurses on $(p_i,q_j)$ pairs whose
+suffix pairs are dominating.
+The base case in step \textbf{1} is correct because the only way for a pair
+$(p_i,q_j)$ to reach this point is to have had all $k$ components checked in
+step \textbf{5}.
+The base case in step \textbf{2} is correct by definition.
+Each dominating pair is output exactly once because the recursive calls of
+step \textbf{4} and \textbf{5} partition the set of pairs $(p_i,q_j)$ that can
+still claim to be candidate dominating pairs.
+
+\paragraph{Analysis} For $k,N,M\ge0$, the total complexity $T_k(N,M)$ of
+computing the inclusions for the first $k$ components, excluding the output
+cost (steps~\textbf{1}~and~\textbf{2}), is bounded, in general, by
+\begin{displaymath}
+	T_k(N,M)
+	\le
+	\underbrace{O(r^d)\,T_{k-1}(N,M)}_{\text{Step}~\textbf{5}}
+	+
+	\underbrace{O(r^d)\,T_k\mleft(\frac{N}{r^d},\frac{M}{r}\mright)}_{\text{Step}~\textbf{4}}
+	+
+	\underbrace{O(N+M)}_{\text{Step}~\textbf{3}},
+\end{displaymath}
+and, in particular, by
+\(T_k(N,M) = 0\) when \(k=0\),
+\(T_k(N,M) = O(Nk)\) when \(M < r\), and
+\(T_k(N,M) = O(Mk)\) when \(N < r^d\).
+
+By point-hyperplane duality, $T_k(N,M) = T_k(M,N)$, hence, we can execute
+step \textbf{4} on dual linear inequalities and dual points to balance the
+recurrence. For some constant $c_1 \ge 1$,
+%to be determined later:
+\begin{displaymath}
+	T_k(N,M)
+	\le
+	c_1 r^{2d} \,T_{k-1}(N,M)
+	+
+	c_1 r^{2d} \,T_k\mleft(\frac{N}{r^{d+1}},\frac{M}{r^{d+1}}\mright)
+	+
+	c_1 (N+M).
+\end{displaymath}
+For simplicity, we ignore some problem-size
+reductions occuring in this balancing step.
+
+Let $T_k(N) = T_k(N,N)$ denote the complexity of solving the problem when
+$M=N$, excluding the output cost. Hence, we have
+\begin{displaymath}
+	T_k(N)
+	\le
+	c_1 r^{2d} \,T_{k-1}(N)
+	+
+	c_1 r^{2d} \,T_k\mleft(\frac{N}{r^{d+1}}\mright)
+	+
+	c_1 N \addtocounter{equation}{1}\tag{\theequation} \label{eq:tkn},
+\end{displaymath}
+and, in particular,
+\(T_k(N) = 0\) when \(k=0\),
+and
+\(T_k(N) = O(k)\) when \(N < r^{d+1}\).
+
+To get rid of the parameter $k$ and progress into the analysis of the
+recurrence, Chan makes an ingenious change of variable~\cite{Cha08}.
+With hindsight,
+choose $b = r^{d+1}$ and let
+\begin{equation}\label{eq:tn'}
+	T(N') = \max\,
+	\mleft\{\,
+		T_k(N) \colon\, k \geq 0,\,\,\,\, N \geq 1,~\text{\,and\,}~b^k N\le N'
+	\,\mright\}.
+\end{equation}
+For the rest of the discussion, we shorten the notation to
+\begin{displaymath}
+	T(N') = \max_{b^k N\le N'} T_k(N).
+\end{displaymath}
+
+By combining~(\ref{eq:tkn})~and~(\ref{eq:tn'}) we obtain
+\begin{displaymath}
+	T(N')
+	=
+	\max_{b^k N\le N'} T_k(N)
+	\le
+	\max_{b^k N\le N'} \mleft[
+	c_1r^{2d} \,T_{k-1}\mleft(N\mright)
+	+ c_1r^{2d} \,T_k\mleft(\frac{N}{r^{d+1}}\mright)
+	+ c_1 N\mright].
+\end{displaymath}
+The maximum of a sum is always bounded by the sum of the maxima of its terms,
+hence,
+\begin{displaymath}
+	T(N')
+	\le
+	\max_{b^k N\le N'} \mleft[ c_1 r^{2d} \,T_{k-1} \mleft(N\mright)\mright]
+	+
+	\max_{b^k N\le N'} \mleft[ c_1 r^{2d} \,T_k \mleft(\frac{N}{r^{d+1}}\mright)\mright]
+	+
+	\max_{b^k N\le N'} \mleft[ c_1 N \mright].
+\end{displaymath}
+Looking at each term separately, by definition of $T(N')$, we have
+\begin{align*}
+\max_{b^k N\le N'} T_{k-1}(N)
+&=
+\max_{b^{k-1} N\le \frac{N'}{b}} T_{k-1}(N)
+=
+T\mleft(\frac{N'}{b}\mright)
+=
+T\mleft(\frac{N'}{r^{d+1}}\mright),\\
+%
+\max_{b^k N\le N'}  T_{k}\mleft(\frac{N}{r^{d+1}}\mright)
+&=
+\max_{b^k \frac{N}{r^{d+1}} \le \frac{N'}{r^{d + 1}}} T_{k}\mleft(\frac{N}{r^{d+1}} \mright)
+=
+T\mleft(\frac{N'}{r^{d+1}}\mright),\\
+%
+\max_{b^k N\le N'} N
+&=
+\max_{N\le \frac{N'}{b^k}} N
+=
+\frac{N'}{b^k} \le N',
+\end{align*}
+which, when combined with the previous inequality, produce the following recurrence
+\begin{displaymath}
+	T(N') \le 2 c_1 r^{2d} \,T\mleft(\frac{N'}{r^{d+1}}\mright) + c_1 N'.
+\end{displaymath}
+
+\paragraph{Powers of $r^{d+1}$}
+We claim that if $N'$ is a power of $r^{d+1}$, then $T(N') \le c_2[{N'}^\alpha - N']$
+for some constants $\alpha > 1$ and $c_2 \ge 1$. We prove by
+induction that this (educated) guess is indeed correct.
+For $N' = 1$, we have
+\begin{align*}
+	T(1)
+	=
+	\max_{b^{k}N \le 1} T_{k} (N)
+	=
+	T_0(1)
+	=
+	0
+	\le
+	c_2[1^{\alpha} - 1].
+\end{align*}
+For $N' \ge r^{d+1}$ a power of $r^{d+1}$,
+and assuming the claim holds for all smaller powers:
+\begin{align*}
+	T(N')
+	&\le
+	2 c_1r^{2d}c_2\mleft[{\mleft(\frac{N'}{r^{d+1}}\mright)}^\alpha
+	-\frac{N'}{r^{d+1}}\mright]
+	+
+	c_1 N'\\
+	&\le c_2 {N'}^\alpha
+	\mleft[\frac{2c_1r^{2d}}{{(r^{d+1})}^\alpha}\mright]
+	- c_2 N' \mleft[2c_1r^{d-1} -
+	\frac{c_1}{c_2}\mright].
+\end{align*}
+We want
+\begin{equation*}
+\frac{c_1r^{2d}}{{(r^{d+1})}^\alpha} \le \frac 12
+\qquad
+\text{and}
+\qquad
+2c_1r^{d-1} - \frac{c_1}{c_2} \ge 1.
+\end{equation*}
+For the first inequality, we can set the left hand side to be equal to
+$c_1 r^{-\varepsilon'} = \frac{1}{2}$
+with some small $\varepsilon' = \frac{1 + \log c_1}{\log r}$.
+%
+Hence,
+$2d - \alpha(d+1) = -\varepsilon'$, and for $\varepsilon = \frac
+{\varepsilon'} {d+1}$, we get $\alpha = \frac{2d}{d+1} + \varepsilon$.
+%
+The second inequality is equivalent to
+$2r^{d-1} \ge \frac{1}{c_1} + \frac{1}{c_2}$,
+which always holds since
+$r > 1, d \ge 1, c_1 \ge 1, c_2 \ge 1$.
+
+We now have
+\begin{displaymath}
+	T(N') = O\mleft({N'}^{\frac{2d}{d+1}+\varepsilon}\mright),
+\end{displaymath}
+where
+$\varepsilon = \frac{1+\log c_1}{(d+1)\log r}$
+can be chosen arbitrarily small by picking
+$r = {(2c_1)}^{1/\varepsilon (d+1)}$
+arbitrarily large.
+
+\paragraph{Remark}
+The choice $b=r^{d+1}$ gives a simpler analysis. Although giving more
+freedom to the value of $b$ --- as in Chan's paper --- yields a slightly better
+relation between $\varepsilon$ and $r$, namely
+$r>c_1^{1/\varepsilon (d+1)}$, it does not get rid of the dependency
+of $\varepsilon$ in $r$, unless $c_1=1$.
+
+\paragraph{General case}
+When $N' \ge 2$ is not a power of $r^{d+1}$, we use the fact that
+$T(N') \le T(N'+1)$ by definition,
+\begin{align*}
+	T(N')
+	&=
+	T\mleft({(r^{d+1})}^{\log_{r^{d+1}} N'}\mright)
+	\\
+	&\le
+	T\mleft({(r^{d+1})}^{\lfloor\log_{r^{d+1}} N'\rfloor + 1}\mright)
+	\\
+	&=
+	O\mleft({(r^{d+1})}^{(\lfloor\log_{r^{d+1}} N'\rfloor + 1
+	)(\frac{2d}{d+1}+\varepsilon)}\mright)
+	\\
+	&=
+	O\mleft({(r^{d+1})}^{\frac{2d}{d+1}+\varepsilon}
+	{{(r^{d+1})}^{\lfloor\log_{r^{d+1}} N'\rfloor}}^{\frac{2d}{d+1}+\varepsilon}\mright)
+	\\
+	&=
+	O\mleft({{(r^{d+1})}^{\lfloor\log_{r^{d+1}}
+	N'\rfloor}}^{\frac{2d}{d+1}+\varepsilon}\mright)
+	\\
+	&=
+	O\mleft({{(r^{d+1})}^{\log_{r^{d+1}}
+	N'}}^{\frac{2d}{d+1}+\varepsilon}\mright)
+	\\
+	&=
+	O\mleft({N'}^{\frac{2d}{d+1}+\varepsilon}\mright).
+\end{align*}
+\paragraph{Finally} We can now bound $T_k(N)$ using the upper bound for
+$T(N')$,
+\begin{displaymath}
+	T_{k}(N)
+	\le
+	\max_{b^{k_i} N_i \le b^{k} N} T_{k_i}(N_i)
+	=
+	T(b^{k} N)
+	=
+	O\mleft({(b^{k} N)}^{\frac{2d}{d+1}+\varepsilon}\mright)
+	=
+	2^{O(k)}{N}^{\frac{2d}{d+1}+\varepsilon}.
+\end{displaymath}
+Hence,
+$T_k(N) = 2^{O(k)}N^{\frac{2d}{d+1}+\varepsilon_r}$,
+and since $d=\binom{\Delta+2}{2}-1$, we have
+\begin{displaymath}
+	T_k(N) = 2^{O(k)}N^{2-\frac{4}{{\Delta}^2+3\Delta+2}+\varepsilon_r}.
+\end{displaymath}
+To that complexity we add a constant time unit for each output
+pair in steps \textbf{1} and \textbf{2}.
+\end{proof}
+
+%\remark{} Note that, in our case, one could use the
+%$\gamma_{b,b'}$-$\hat{\gamma}_{a,a'}$ duality together with vertical
+%decomposition (as in \S\ref{sec:algo:point-curves-location}) and get
+%away with a complexity of $2^{O(k)}N^{\frac 43+\varepsilon}$. However, using
+%the Veronese embedding and point-hyperplane duality is more general, as the
+%algorithm can be applied to any input polynomial inequalities.

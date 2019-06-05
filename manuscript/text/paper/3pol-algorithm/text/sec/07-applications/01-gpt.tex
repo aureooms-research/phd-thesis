@@ -1,0 +1,123 @@
+\subsection{General position testing for points on curves}
+
+%Raz, Sharir and de Zeeuw~\cite{RSZ15} give three corollaries to
+%Theorem~\ref{thm:rsz15:col}.
+%\begin{corollary}[Raz, Sharir and de Zeeuw~\cite{RSZ15}]
+	%Any $n$ points on an irreducible algebraic curve of degree $d$ in
+	%$\mathbb{C}^2$ determine
+	%$\tilde{O_d}(n^{\frac{11}{6}})$ proper collinear triples, unless the curve is a line or a cubic.
+%\end{corollary}
+%\begin{corollary}[Raz, Sharir and de Zeeuw~\cite{RSZ15}]
+	%Any $n$ points on an algebraic curve of degree $d$ in $\mathbb{C}^2$ determine
+	%$\tilde{O_d}(n^{\frac{11}{6}})$
+	%proper collinear quadruples, unless the curve contains a line.
+%\end{corollary}
+%\begin{corollary}[Raz, Sharir and de Zeeuw~\cite{RSZ15}]
+	%Any $n$ points on an irreducible algebraic curve of degree $d$ in
+	%$\mathbb{C}^2$ determine
+	%$\Omega(n^{\frac 43})$ distinct directions, unless the curve is a conic.
+%\end{corollary}
+
+The following is a corollary of Theorem~\ref{thm:rsz15:col} in Raz, Sharir and de Zeeuw~\cite{RSZ15}
+\begin{corollary}[Raz, Sharir and de Zeeuw~\cite{RSZ15}]
+	Any $n$ points on an irreducible algebraic curve of degree $d$ in
+	$\mathbb{C}^2$ determine
+	$\tilde{O}_d(n^{\frac{11}{6}})$ proper collinear triples, unless the curve is a line or a cubic.
+\end{corollary}
+
+An interesting application of our results is the existence of subquadratic
+nonuniform and uniform algorithms for the computational version of
+this corollary.
+%their first corollary.
+\begin{problem}[GPT on curves]
+	Let $C_1, C_2, C_3$ be three (not necessarily distinct) parameterized
+	constant-degree polynomial curves in $\mathbb{R}^2$, so that each
+	$C_i$ can be written $(g_i(t),h_i(t))$ for some polynomials of
+	constant degree $g_i,h_i$.
+	Given three $n$-sets $S_1 \subset C_1, S_2 \subset C_2, S_3
+	\subset C_3$, decide whether there exist any collinear
+	triple of points in $S_1 \times S_2 \times S_3$.
+\end{problem}
+\begin{theorem}\label{thm:gpt-to-3pol}
+	 GPT on curves reduces linearily to 3POL\@.
+\end{theorem}
+\begin{proof}
+For each set $S_i$, construct the set $T_i = \{\,t
+\colon\, p \in S_i, p = (g_{i}(t),h_{i}(t))\,\}$.
+Testing whether there exists a collinear triple
+%$((g_1(t_1),h_1(t_1)),(g_2(t_2),h_2(t_2)),(g_3(t_3),h_3(t_3))) \in
+in $
+S_1 \times S_2 \times S_3$ amounts to testing whether any determinant
+\begin{displaymath}
+\begin{vmatrix}
+g_1(t_1)&h_1(t_1)&1\\
+g_2(t_2)&h_2(t_2)&1\\
+g_3(t_3)&h_3(t_3)&1
+\end{vmatrix}
+\end{displaymath}
+equals zero.
+This determinant is a trivariate constant-degree polynomial in
+$\mathbb{R}[t_1,t_2,t_3]$.
+Solving the original problem amounts thus to deciding whether this polynomial
+cancels for any triple $(t_1,t_2,t_3) \in T_1 \times T_2 \times T_3$.
+\end{proof}
+
+Note that a similar polynomial predicate exists for testing collinearity in
+higher dimension.
+\begin{lemma}
+Let $p = (p_1,p_2,\ldots,p_d)$, $q = (q_1,q_2,\ldots,q_d)$,
+and $r=(r_1,r_2,\ldots,r_d)$ be three points in $\mathbb{R}^d$, then $p$, $q$, and
+$r$ are collinear if and only if
+\begin{displaymath}
+{\left[\sum_{i=1}^{d}(p_i-r_i)(q_i-p_i)\right]}^2 -
+\left[\sum_{i=1}^{d}{(p_i-r_i)}^2\right]\left[\sum_{i=1}^{d}{(q_i-p_i)}^2\right] =
+0.
+\end{displaymath}
+\end{lemma}
+\begin{proof}
+Let $a = (p_1,p_2,\ldots,p_d)$, $b = (q_1,q_2,\ldots,q_d)$, and
+$c=(r_1,r_2,\ldots,r_d)$ be three points in $\mathbb{R}^d$. The points $p$, $q$,
+and $r$ are collinear if and only if $r = p + \lambda (q-p)$ for some unique
+$\lambda \in \mathbb{R}$, that is
+\begin{align*}
+	&&(p-r) + \lambda (q-p) = 0,\\
+	\Rightarrow&& \forall i \in [d] \colon\, (p_i-r_i) + \lambda (q_i-p_i) = 0,\\
+	\Rightarrow&& \sum_{i=1}^{d}{\left[(p_i-r_i) + \lambda (q_i-p_i)\right]}^2
+	= 0,\\
+	\Rightarrow&& \sum_{i=1}^{d}\left[{(q_i-p_i)}^2 \lambda^2 + 2(p_i-r_i)(q_i-p_i) \lambda +
+		{(p_i-r_i)}^2\right] = 0,\\
+	\Rightarrow&& \underbrace{\left[\sum_{i=1}^{d}{(q_i-p_i)}^2\right]}_{A} \lambda^2 +
+		\underbrace{\left[2\sum_{i=1}^{d}(p_i-r_i)(q_i-p_i)\right]}_{B} \lambda +
+		\underbrace{\left[\sum_{i=1}^{d}{(p_i-r_i)}^2\right]}_{C} = 0,\\
+	\Rightarrow&& \lambda = \frac{-B \pm \sqrt{B^2-4AC}}{2A}.
+\end{align*}
+
+For $\lambda$ to exist and be unique $B^2-4AC$ must be zero.
+Hence, $p$, $q$, and $r$ are collinear if and only if
+\begin{displaymath}
+	{\left[2\sum_{i=1}^{d}(p_i-r_i)(q_i-p_i)\right]}^2
+	- 4 \left[\sum_{i=1}^{d}{(p_i-r_i)}^2\right]\left[\sum_{i=1}^{d}{(q_i-p_i)}^2\right]
+	= 0.
+\end{displaymath}
+\end{proof}
+
+Moreover, the improvement that we obtain in the time complexity of 3POL
+can be exploited to boost the number of curves we pick the points from.
+\begin{theorem}
+	Let $C_1,C_2,\ldots,C_k$ be $k=o\mleft({(\log n)}^\frac{1}{6}/{(\log \log
+	n)}^\frac{1}{2}\mright)$
+	(not necessarily distinct)
+	constant-degree polynomial curves in $\mathbb{R}^d$.
+	Given $k$ $n$-sets $S_{i_j} \subset C_{i_j}$,
+	deciding whether there exists any collinear
+	triple of points in any triple of sets $S_{i_1} \times S_{i_2} \times
+	S_{i_3}$ can be solved in subquadratic time.
+\end{theorem}
+\begin{proof}
+	Solve a 3POL instance for each choice of $S_{i_1} \times S_{i_2} \times
+	S_{i_3}$. Since there are
+	$o\mleft({(\log n)}^\frac{1}{2}/{(\log \log n)}^\frac{3}{2}\mright)$
+	such choices, the theorem follows.
+\end{proof}
+%\remark{Compare that to the clusterability results of~\cite{CL15}.}
+

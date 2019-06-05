@@ -1,0 +1,176 @@
+%\subsection{Polynomial Batch Range Searching}
+\section{Polynomial Batch Range Searching}%
+\label{sec:algo:point-curves-location}
+
+In this section we present a uniform algorithm that computes the relative
+position of \(M\) points with respect to \(N\) $\gamma_{b,b'}$ curves. We call
+such a problem an \((M,N)\)-problem. When \(M=N\) the complexity of the
+algorithm is \(O(N^{4/3+\varepsilon})\).
+The algorithm gives the output in ``concise form'':
+it outputs a set of $(\Pi_\alpha, \Gamma_\beta, \sigma)$ triples where
+$\Pi_\alpha$ is a subset of input points, $\Gamma_\beta$ is a subset of input curves, and $\sigma \in
+\{\,-,0,+\,\}$ indicates the relative position of all points in $\Pi_\alpha$ with
+respect to all curves in $\Gamma_\beta$.
+Note that if one is only interested in incident point-curve pairs, the
+algorithm can explicitly report all of them in
+$O(N^{4/3+\varepsilon})$ time, because there are at most $O(N^{4/3})$
+such pairs and because they can easily be filtered from the output.
+
+\paragraph{Tools} The proof of Lemma~\ref{lem:batch} involves stantard
+computational geometry tools: vertical decomposition of an
+arrangement of polynomial curves (see Figure~\ref{fig:vd}),
+$\varepsilon$-nets, cuttings and derandomization.
+For the construction of the vertical
+decomposition of an arrangment of polynomial curves, we refer the reader to
+Pach and Sharir~\cite{Alcala}, Chazelle et al.~\cite{CEGS91}, and Edelsbrunner
+et al.~\cite{EGPPSS92}. For cuttings, $\varepsilon$-nets and derandomization, we
+refer the reader to Matou\v{s}ek~\cite{M95,M96}, Chazelle and
+Matou\v{s}ek~\cite{CM96} and Brönnimann et al.~\cite{BCM99}.
+\begin{figure*}
+    \centering
+    \includegraphics{figures/decomposition}
+    \caption{Some curves in $\mathbb{R}^2$.}
+    \label{fig:some-curves-in-R2}
+\end{figure*}
+\begin{figure*}
+    \centering
+    \includegraphics{figures/recursion}
+    \caption{Vertical decomposition of the curves in Figure~\ref{fig:some-curves-in-R2}.}%
+    \label{fig:vd}
+\end{figure*}
+
+\begin{proof}[Proof of Lemma~\ref{lem:batch}]
+Fix some constant $r \geq 2$.
+If $M < r^2$ or $N < r$, solve by brute-force in $O(M+N)$ time. Otherwise,
+consider the range space defined by $\gamma_{b,b'}$ curves and $y$-axis aligned
+trapezoidal patches whose top and bottom sides are pieces of $\gamma_{b,b'}$
+curves. This range space has constant VC-dimension.
+Compute an $\frac 1r$-net of size $O(r \log r)$ for the input curves with respect to
+this range space. Compute the vertical decomposition \(\Xi\) of the arrangement
+of this $\frac 1r$-net. This decomposition is a $\frac 1r$-cutting: it partitions
+$\mathbb{R}^2$ into $O(r^2 \log^2 r)$ cells of constant complexity each of
+which intersects at most \(\frac{N}{r}\) input curves.
+Note that some of those cells are degenerate trapezoidal
+patches. The decomposition contains vertices, line segments, and curve
+segments as cells, each of which could contain input points and be intersected
+or contained by an input curve.
+Denote by \(\Pi_C\) the set of points contained in the cell \(C \in \Xi\).
+Partition each \(\Pi_C\) into \(\left\lceil \frac{\lvert \Pi_C \rvert}{M
+r^{-2}} \right\rceil\) disjoint subsets of size at most \(\frac{M}{r^2}\). All
+of this can be done in \(O(M+N)\) time.
+The last step consists of solving \(O(r^2 \log^2 r)\)
+\((\frac{M}{r^2},\frac{N}{r})\)-problems, that is, solving the problem
+recursively for the points and curves intersecting each cell.
+Each recursive call is done by swapping the roles of the points and curves
+using a form of duality to be described below.
+%\improve{Stefan: Why is a randomized algorithm sufficient? To show the
+%existence of a (deterministic) computation tree?}
+%\improve{Stefan: No, that is not enough!~\cite{MP15} uses this canonical
+%decomposition to apply [de Berg \& Shwarzkopf'95] to show the existence of cuttings.}
+The whole algorithm can be formally described as follows,
+\begin{algorithm}[Polynomial Batch Range Searching]\label{algo:pbrs}
+\item[input] A set $\Pi$ of $M$ points $(a,a')$, A set $\Gamma$ of $N$ curves $\gamma_{b,b'}$.
+\item[output] A set of triples $(\Pi_\alpha,\Gamma_\beta,\sigma)$ covering $\Pi \times \Gamma$
+    such that, for any triple\\
+    $(\Pi_\alpha,\Gamma_\beta,\sigma)$,
+    for all points $(a,a')$ in $\Pi_\alpha$ and all curves $\gamma$ in
+    $\Gamma_\beta$,
+    $(a,a') \in \gamma^\sigma$.
+\item[0.] If $M < r^2$ or $N < r$, solve the problem by brute force in $O(M+N)$ time.
+\item[1.] Compute an $\frac 1r$-net of size $O(r \log r)$ for the input curves.
+\item[2.] Compute the vertical decomposition \(\Xi\) of the arrangement of this
+    $\frac 1r$-net.
+\item[3.] Denote by \(\Pi_C\) the set of points contained in the cell \(C \in \Xi\).
+    Partition each \(\Pi_C\) into \(\left\lceil \frac{\lvert \Pi_C \rvert}{M
+    r^{-2}} \right\rceil\) disjoint subsets
+    $\Pi_{C,i}$ of size at most \(\frac{M}{r^2}\).
+\item[4.] For each cell $C$ of the vertical decomposition,
+\item[4.1.] For each subset $\Pi_{C,i}$ of points contained in that cell,
+\item[4.1.1.] Solve an $(\frac{N}{r},\frac{M}{r^2})$-problem on the curves
+    intersecting that cell and the points in $\Pi_{C,i}$, swapping the roles of
+    lines and curves via duality.
+\item[4.2.] For each curve $\gamma$ not intersecting $C$,
+\item[4.2.1.] Compute the location $\sigma_{C,\gamma}$ of any point in $C$ with
+    respect to $\gamma$.
+\item[4.3.] Output $(\{\,\gamma \st \sigma_{C,\gamma} = -\,\},\Pi_C, -)$.
+\item[4.4.] Output $(\{\,\gamma \st \sigma_{C,\gamma} = +\,\},\Pi_C, +)$.
+\item[4.5.] Output $(\{\,\gamma \st \sigma_{C,\gamma} = 0\,\},\Pi_C, 0)$.
+\end{algorithm}
+
+\paragraph{Correctness} We want to locate each point with respect to each
+curve. When considering a curve-cell pair, there are two cases: either the
+curve intersects the cell, or it does not. For the first case we locate
+each point in the cell with respect to the curve in one of the recursive steps.
+For the second case, the relative position of all points in the cell with
+respect to the curve is the same, it suffices thus to locate one of those points
+with respect to the curve to get the location of all the points in
+$O(1)$ time.
+Each recursive call divides $M$ and
+$N$ by some constant strictly greater than one, hence, the base case is reached
+in each of the paths of the recursion tree and the algorithm always terminates.
+
+\paragraph{Analysis} For $c_1$ some constant and bounding $c_1 r^{2} \log^2 r$
+above by $c_2 r^{2+\varepsilon}$ for some large enough constant $c_2$, the
+complexity $T(M,N)$ of an $(M,N)$-problem is thus
+\begin{align*}
+    T(M,N) &\le c_2 r^{2+\varepsilon}\,T\mleft(\frac{M}{r^{2}},\frac{N}{r}\mright) + O(M+N).
+\end{align*}
+The complexity $T(N,M)$ of a \((N,M)\)-problem is the same as the
+complexity $T(M,N)$ of an \((M,N)\)-problem by the following point-curve
+duality result whose proof is straightforward
+\begin{lemma}\label{lem:dual}
+Define
+\begin{displaymath}
+    \hat{\gamma}_{a,a'} = \{\, (x,y) \st f(a,x)=f(a',y)\,\},
+\end{displaymath}
+then, locating $(a,a')$ with respect to $\gamma_{b,b'}$ amounts to
+locating $(b,b')$ with respect to $\hat{\gamma}_{a,a'}$.
+\end{lemma}
+
+By doing alternately one step in the primal with the points $(a,a')$ and the
+curves $\gamma_{b,b'}$, then a second step with the dual points $(b,b')$ and the
+dual curves $\hat{\gamma}_{a,a'}$, we get the following recurrence
+\begin{align*}
+    T(M,N) &\le c_2^2 r^{4+\varepsilon}\,T\mleft(\frac{M}{r^{3}},\frac{N}{r^{3}}\mright) +
+	c_2 r^{2+\varepsilon}\,O\mleft(\frac{M}{r^2} + \frac{N}{r}\mright) +
+	O(M+N)\\
+	&\le c_2^2 r^{4+\varepsilon}\,T\mleft(\frac{M}{r^{3}},\frac{N}{r^{3}}\mright) +
+	O(M+N)
+\end{align*}
+Hence, for some large enough constant $c_3$,
+\begin{align*}
+T(N,N) = T(N) &\le c_3 r^{4+\varepsilon}\,T\mleft(\frac{N}{r^{3}}\mright) + O(N)\\
+	      &\le O\mleft(N^{\log_{r^{3}} (c_3  r^{4+\varepsilon})}\mright)\\
+	&\le O(N^{\frac 43 + \varepsilon}).
+\end{align*}
+\end{proof}
+
+
+%\remark{
+	%Here we should (maybe?) cite the recent work of Agarwal, Matou\v{s}ek and
+	%Sharir~\cite{AMS13} who show that there exists efficient data structures to
+	%solve our problem for arbitrary $d$. However, their solution would need
+	%some tweaks to be:
+	%(1) as efficient as ours
+	%(2) really working
+
+	%Explanation of point (1): their data structure uses linear space. There
+	%exist data structures with space-time tradeoff for the point-hyperplane
+	%range searching problem that run in time $O(m + \frac{n^2}{m^{\frac 1d}} +
+	%\cdots)$, where $m$ is the space used. If you do not care about space and
+	%want to optimize time then you get a $O(n^{\frac{2d}{d+1}})$-time
+	%algorithm.
+	%Back in October, Stefan suggested that by using some old tricks of
+	%Matou\v{s}ek we might be able to get the space-time tradeoff for this
+	%data-structure.
+
+	%Explanation of point (2): their data structure requires a nondegeneracy
+	%assumption to work (i.e. no too many points lying on any surface of some
+	%bounded degree). If you want to drop this assumption then you get a
+	%\emph{boundary-fuzzy} data-structure: it might behave incorrectly for point
+	%that are exactly on the surfaces.
+	%They see this feature as a minor bug since they consider queries of the
+	%type ``How many points are in this cell of the arrangment of surfaces?''.
+	%However, in our case, the fact that a point is exactly on a surface instead
+	%of $\varepsilon$ away is actually the only thing that matters.
+%}

@@ -1,0 +1,37 @@
+\section{Abstract}
+
+The 3SUM problem asks if an input $n$-set of real numbers contains a
+triple whose sum is zero.
+%
+We qualify such a triple as \emph{degenerate} because the probability of
+finding one in a random input is zero.
+%
+We consider the 3POL problem, an algebraic generalization of 3SUM where we
+replace the sum function by a constant-degree polynomial in three variables.
+%
+The motivations are threefold.
+%
+Raz, Sharir, and de Zeeuw gave an $O(n^{11/6})$ upper bound on the number of
+degenerate triples for the 3POL problem. We give algorithms for the
+corresponding problem of counting them.
+%
+Gr\o nlund and Pettie designed subquadratic algorithms for 3SUM\@. We
+prove that 3POL admits bounded-degree algebraic decision trees of depth
+$O(n^{12/7+\varepsilon})$, and we prove that 3POL can be solved in $O(n^2
+{(\log \log n)}^{3/2} / {(\log n)}^{1/2})$ time in the real-RAM model,
+generalizing their results.
+%
+Finally, we shed light on the General
+Position Testing~(GPT) problem: ``Given $n$ points in the plane, do three of
+them lie on a line?'', a key problem in computational geometry: we show how to
+solve GPT in subquadratic time when the input points lie on a small number of
+constant-degree polynomial curves. Many other geometric degeneracy testing
+problems reduce to 3POL\@.
+%
+%This constitutes the first step towards closing the major open question of
+%whether GPT can be solved in subquadratic time.
+
+%\keywords{3SUM \and subquadratic algorithms \and general position testing \and
+%range searching \and dominance reporting \and algebraic geometry \and
+%degeneracy testing}
+%\subclass{68P10 \and 68Q25 \and 68R05 \and 68W40}

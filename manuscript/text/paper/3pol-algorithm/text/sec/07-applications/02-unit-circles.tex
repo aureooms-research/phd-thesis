@@ -1,0 +1,123 @@
+\subsection{Incidences on unit circles}
+
+Raz, Sharir and Solymosi~\cite{RSS15} mention the following problem as a
+special case of the framework they introduce.
+Let $p_1,p_2,p_3$ be three distinct points in the plane, and, for $i=1,2,3$,
+let $\mathcal{C}_i$ be a family of $n$ unit circles (a circle of radius $1$)
+that pass through $p_i$.  Their goal is to obtain an upper bound on the number
+of \emph{triple points}, which are points that are incident to a circle of each
+family.
+%
+They prove:
+\begin{theorem}
+	Let $p_1,p_2,p_3$ be three distinct points in the plane, and, for $i=1,2,3$,
+	let $\mathcal{C}_i$ be a family of $n$ unit circles that pass through $p_i$.
+	Then the number of points incident to a circle of each family is $O(n^{11/6})$.
+\end{theorem}
+
+They observe that the following dual formulation is equivalent to their
+original problem:
+\begin{theorem}
+	Let $C_1,C_2,C_3$ be three unit circles in $\mathbb{R}^2$, and, for each
+	$i=1,2,3$, let $S_i$ be a set of $n$ points lying on $C_i$. Then the number of
+	unit circles, spanned by triples of points in $S_1 \times S_2 \times S_3$, is
+	$O(n^{11/6})$.
+\end{theorem}
+
+Our new algorithms indeed allow us to solve the decision version of their
+problems in subquadratic time.
+\begin{problem}[Unit Circles Spanned by Points on Three Unit Circles (UCSPTUC)]
+	Let $C_1,C_2,C_3$ be three unit circles in $\mathbb{R}^2$ with centers
+	$c_1,c_2,c_3$, and, for each $i=1,2,3$, let $S_i =
+	\{\,(x_{i,1},y_{i,1}),(x_{i,2},y_{i,2}),\ldots,(x_{i,n},y_{i,n})\,\}$ be a
+	set of $n$ points lying on $C_i$. Decide whether any triple of points
+	$(p_1,p_2,p_3) \in S_1 \times S_2 \times S_3$ spans a unit circle.
+\end{problem}
+
+\begin{theorem}
+	UCSPTUC can be solved in
+	$O(n^2 {(\log \log n)}^\frac{3}{2} / {(\log n)}^\frac{1}{2})$ time.
+\end{theorem}
+
+\begin{proof}
+	Without loss of generality, assume all input points lie on the right
+	$y$-monotone arc of their respective circle. All other seven cases can be
+	handled similarly. We can also assume that no input point is the top or
+	bottom vertex of its circle, rotating the plane if necessary.
+
+	Given three points $p_1$, $p_2$, and $p_3$, let
+	\begin{displaymath}
+		x=\lVert p_1 - p_2 \rVert,\,\,
+		X=x^2,\,\,
+		y=\lVert p_1 - p_3 \rVert,\,\,
+		Y=y^2,\,\,
+		z=\lVert p_2 - p_3 \rVert,\,\,
+		Z=z^2.
+	\end{displaymath}
+	Testing if the three points $p_1$, $p_2$, and $p_3$ span a unit circle
+	amounts to testing whether
+	\begin{displaymath}
+		X^2 + Y^2 + Z^2 - 2XY - 2XZ - 2YZ + XYZ = 0.
+	\end{displaymath}
+
+	The fact that the input points lie on the right $y$-monotone arc of unit
+	circles of centers $c_1,c_2,c_3$ allows us to get down to a single variable
+	per point. Let $c_i = (c_i^x,c_i^y)$ and
+	$t_{i,j} = \sqrt{\frac{1 - x_{i,j} + c_i^x}{1 + x_{i,j} - c_i^x}}$. Then
+	the \(j\)th input point of the \(i\)th circle can be expressed as
+	\begin{displaymath}
+		p_{i,j} = (x_{i,j},y_{i,j}) = c_i + \left(\frac{1-t_{i,j}^2}{1+t_{i,j}^2},\frac{2
+		t_{i,j}}{1+t_{i,j}^2}\right).
+	\end{displaymath}
+
+	Combining those two observations with some algebraic manipulations, one can
+	show that there exists some trivariate polynomial $F$ of degree at most
+	$24$ that cancels on $t_1,t_2,t_3$ when the points $c_1
+	+\left(\frac{1-t_1^2}{1+t_1^2},\frac{2t_1}{1+t_1^2}\right)$, $c_2
+	+\left(\frac{1-t_2^2}{1+t_2^2},\frac{2t_2}{1+t_2^2}\right)$, and $c_3
+	+\left(\frac{1-t_3^2}{1+t_3^2},\frac{2t_3}{1+t_3^2}\right)$ span a unit
+	circle.
+
+	Hence, the sets
+	$\{\,t_{1,1},t_{1,2},\ldots,t_{1,n}\,\}$,
+	$\{\,t_{2,1},t_{2,2},\ldots,t_{2,n}\,\}$, and
+	$\{\,t_{3,1},t_{3,2},\ldots,t_{3,n}\,\}$
+	together with $F$ give an instance of 3POL we can solve in subquadratic
+	time with our new algorithms.
+
+	Unfortunately, the computation $\sqrt{\cdot}$ is not allowed in our model, and
+	so, we cannot compute $t_{i,j}$.
+	However, we can generalize the 3POL problem to make it fit:
+	\begin{problem}[Modified 3POL]
+		Let $F \in \mathbb{R}[x,y,z]$ be a trivariate polynomial of constant degree,
+		given three sets $A$, $B$, and $C$, each containing $n$ real numbers, decide
+		whether there exist $a \in A$, $b \in B$, and $c \in C$ such that
+		\begin{displaymath}
+			\exists t_1,t_2,t_3
+			(t_1^2 = a \land
+			t_2^2 = b \land
+			t_3^2 = c \land
+			F(t_1,t_2,t_3) = 0).
+		\end{displaymath}
+	\end{problem}
+
+	The sets (all computable in our models)
+	$\{\,t_{1,1}^2,t_{1,2}^2,\ldots,t_{1,n}^2\,\}$,
+	$\{\,t_{2,1}^2,t_{2,2}^2,\ldots,t_{2,n}^2\,\}$, and
+	$\{\,t_{3,1}^2,t_{3,2}^2,\ldots,t_{3,n}^2\,\}$
+	together with $F$ give an instance of this modified version of 3POL\@.
+
+	We can tweak our algorithms so that they work for this new version of
+	3POL\@. We prefix each decision we make on the first-order theory of the reals
+	with an existential quantifier and a condition of the type $t_i^2=x$, with
+	$x$ the square of $t_i$, when we reference $t_i$ in the formula we test.
+%
+	This new algorithm answers positively if and only if the original problem
+	contains a triple of points spanning a unit circle.
+
+	In general, any constant-degree polynomial curve can be decomposed in
+	a constant number of pieces as above. Each point on this curve can be given a
+	parameterization that might involve roots of its coordinates. Those can be
+	taken care of by appropriately augmenting the Tarski sentences in our
+	algorithm with equations that encode those roots for free.
+\end{proof}

@@ -1,0 +1,104 @@
+\section{Epsilon nets, VC-dimension, Vertical Decompositions}
+\label{app:vc-dimension}
+
+\begin{definition}[Espilon net]
+	Let \(X\) be a set, let \(\mu\) be a probability measure on \(X\), let
+	\(\mathcal{F}\) be a system of \(\mu\)-measurable subsets of \(X\), and let
+	\(\varepsilon \in [0,1]\) be a real number. A subset \(N\subseteq X\) is
+	called an \(\varepsilon\)-net for \((X,\mathcal{F})\) with respect to
+	\(\mu\) if \(N \cap S \neq \emptyset\) for all \(S \in \mathcal{F}\) with
+	\(\mu(S) \ge \varepsilon\).
+\end{definition}
+
+\begin{definition}[Trace of \(\mathcal{F}\) on \(Y\)]
+	Let \(\mathcal{F}\) be a set system on \(X\) and let \(Y \subseteq X\). We define the
+	restriction of \(\mathcal{F}\) on \(Y\) (also called the \emph{trace} of
+	\(\mathcal{F}\) on
+	\(Y\)) as
+	\begin{displaymath}
+		\mathcal{F}|_Y = \{S \cap Y \st S \in \mathcal{F}\}.
+	\end{displaymath}
+\end{definition}
+
+\begin{definition}[VC-dimension]
+	Let \(\mathcal{F}\) be a set system on a set \(X\). Let us say that a subset \(A
+	\subseteq X\) is shttered by \(\mathcal{F}\) if each of the subsets of \(A\) can
+	be obtained as the intersection of some \(S \in \mathcal{F}\) with \(A\), i.e.,
+	if \(\mathcal{F}|_A = 2^{A}\). We define the VC-dimension of
+					\(\mathcal{F}\), denoted
+		by \(dim(F)\), as the supremum of the sizes of all finite shattered
+		subsets of \(X\). If arbitrarily large subsets can be shattered, the
+		VC-dimension is \(\infty\).
+\end{definition}
+
+\begin{theorem}[Epsilon net theorem]
+	If \(X\) is a set with a probability measure \(\mu\), \(\mathcal{F}\) is a system of
+	\(\mu\)-measurable subsets of \(X\) with \(dim(\mathcal{F}) \le d\), \(d\ge 2\), and
+	\(r \ge 2\) is a parameter, then there exists a \(\frac{1}{r}\)-net for
+	\((X,\mathcal{F})\) with respect to \(\mu\) of size at most \(Cdr\ln r\), where \(C\)
+	is an absolute constant.
+\end{theorem}
+
+\begin{definition}[Shatter function]
+	We define the shatter function of a set system \(\mathcal{F}\) by
+	\begin{displaymath}
+		\pi_\mathcal{F}(m) = \max_{Y\subseteq X, \lvert Y \rvert = m} \lvert \mathcal{F}|_Y
+		\rvert.
+	\end{displaymath}
+\end{definition}
+
+\begin{lemma}[Shatter function lemma]
+	For any set system \(\mathcal{F}\) of VC-dimension at most \(d\), we have
+		\(\pi_\mathcal{F}(m)
+		\le \Phi_d(m)\) for all \(m\), where \(\Phi_d(m) = \binom{m}{0} +
+		\binom{m}{1} + \cdots + \binom{m}{d}\).
+\end{lemma}
+
+\begin{proposition}
+	Let \(\mathbb{R}[x_1,x_2,\ldots,x_d]_{\le D}\) denote the set of all real
+	polynomials in \(d\) variables of degree at most \(D\), and let
+	\begin{displaymath}
+		\mathcal{P}_{d,D} = \{\{x\in \mathbb{R}^d \st p(x) \ge 0\}\st p \in
+		\mathbb{R}[x_1,x-2,\ldots,x_d]_{\le D}\}.
+	\end{displaymath}
+	Then \(dim(\mathcal{P}_{d,D}) \le \binom{d+D}{d}\).
+\end{proposition}
+
+\begin{proposition}
+	Let \(F(X_1,X_2,\ldots,X_k)\) be a fixed set-theoretic expression (using
+	the operations of union, intersection, and difference) with variables
+	\(X_1,X_2,\ldots,X_k\) standing for sets.
+	Let \(\mathcal{S}\) be a set system on a ground set \(X\) with
+	\(dim(\mathcal{S}) = d <
+	\infty\). Let
+	\begin{displaymath}
+		\mathcal{T} = \{F(S_1,S_2,\ldots,S_k) \st S_1,S_2,\ldots,S_k \in
+		\mathcal{S}\}.
+	\end{displaymath}
+	Then \(dim(\mathcal{T}) = O(kd\ln k)\).
+\end{proposition}
+
+PROOFREAD THIS
+\begin{lemma}
+\label{lem:vcdim}
+The set system defined by curves and patches has bounded VC-dimension.
+\end{lemma}
+For a proof see Theorem 3 in \cite{MP15}
+
+\begin{lemma}
+Let $F \in \mathbb{R}[x,y,z]$ be a polynomial of constant degree.
+For \(b\) fixed, the number of values of $a$
+for which \(F(a,b,z)=0\) has two  or more equal roots is constant.
+\end{lemma}
+\begin{proof}
+For fixed \(b\), \(F(a,b,z)\) is a polynomial in two variables. For the $a$ value,
+\(F(a,b,z)\) has two or more equal roots if and only if \(F(a,b,z)\) and
+\(F_z(a,b,z)\)
+(the derivative with respect to \(z\)) has a common root (in \(z\)). This implies
+that their \emph{resultant} with respect to \(z\) vanishes at \(a\), i.e., if
+\(\res(F(a,b,z),F_z(a,b,z);z)=0\) (at $a$).
+
+When $b$ is fixed, this resultant \(\res(F(a,b,z), F_z(a,b,z);z)\) is a polynomial
+in $a$ of constant degree (because \(F\) has constant degree) and the conclusion is
+that the number of \(a\)'s such that this vanishes is constant.
+\end{proof}

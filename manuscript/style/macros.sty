@@ -24,6 +24,7 @@ skip=6pt,list=false,hypcap=false
 \usepackage{mathtools} % \DeclarePairedDelimiter
 \usepackage{mleftright} % \mleft \mright
 \usepackage{xfrac} % \sfrac
+\usepackage{csquotes} % \displayquote
 
 \newtheorem{theorem}{Theorem}[chapter] % \begin{Theorem}
 \newtheorem{lemma}[theorem]{Lemma} % \begin{Lemma}
@@ -31,6 +32,10 @@ skip=6pt,list=false,hypcap=false
 \newtheorem{definition}[theorem]{Definition} % \begin{Definition}
 \newtheorem{observation}[theorem]{Observation} % \begin{Observation}
 \newtheorem{problem}[theorem]{Problem} % \begin{Problem}
+\newtheorem{conjecture}[theorem]{Conjecture} % \begin{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition} % \begin{Proposition}
+
+\newcommand{\remark}[1]{\paragraph{Remark} #1}
 
 \ifcomments
   \usepackage{color}
@@ -70,7 +75,7 @@ skip=6pt,list=false,hypcap=false
 \def\B{\set{B}}
 \def\C{\set{C}}
 \newcommand\D{\set{D}}
-\def\S{\set{S}}
+\newcommand\Si{\set{S}}
 \newcommand\I{\set{I}}
 \newcommand\E{\set{E}}
 \newcommand\Z{\set{Z}}
@@ -83,7 +88,7 @@ skip=6pt,list=false,hypcap=false
 \newcommand\Y{Y}
 
 \newcommand\arrangement{\mathcal{A}}
-\renewcommand{\H}{\set{H}}
+\newcommand{\Hy}{\set{H}}
 \newcommand\Him{H_i^{-}}
 \newcommand\Hiz{H_i^{0}}
 \newcommand\Hip{H_i^{+}}
@@ -113,6 +118,7 @@ skip=6pt,list=false,hypcap=false
 \newcommand\kLDT{\mbox{\(k\)-{LDT}}}
 
 \newcommand{\sut}{\colon\,}
+\newcommand{\st}{\sut}
 \newcommand{\step}[1]{\textbf{#1}}
 
 % ALGORITHMS
@@ -141,3 +147,14 @@ skip=6pt,list=false,hypcap=false
 {\end{steps}%
 %\vspace{.5\baselineskip\@plus.2\baselineskip\@minus.2\baselineskip}% Space below
 }
+
+%%% 3pol
+\DeclareMathOperator{\res}{res}
+\newcommand\reals{\mathbb{R}}
+
+% symbols
+\newcommand\FOTR{$\forall\exists\mathbb{R}$}
+\newcommand\ETR{$\exists\mathbb{R}$}
+
+% accents
+\usepackage{combelow}%mihai
