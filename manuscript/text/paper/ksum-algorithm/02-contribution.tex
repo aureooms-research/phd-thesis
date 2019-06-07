@@ -4,13 +4,7 @@
 \label{sec:query-complexity}
 
 In this section and the next, we prove the following first result.
-\begin{theorem}
-\label{thm:cube}
-There exist linear decision trees of depth at most \(O(n^3\log^2 n)\) solving
-the \(k\)-SUM and the \(k\)-LDT problems. Furthermore, for the two problems there
-exists an $\tilde{O}(n^{\ceil{\frac{k}{2}}+8})$ Las Vegas algorithm in
-the RAM model expected to perform $O(n^3\log^2 n)$ linear queries on the input.
-\end{theorem}
+\input{text/theorem/ksum-algorithm/decision-tree}
 
 \subsubsection{Algorithm outline}
 For a fixed set of hyperplanes \(\Hy\) and given input vertex \(q\) in \(\R^n\),
@@ -29,15 +23,7 @@ extra $\log n$ factor in the size of the $\varepsilon$-net. We thank Hervé
 Fournier for pointing this out.}, it is possible to
 construct an \enet{} \(\NH\) for the range space
 defined by hyperplanes and simplices using a random uniform sampling on \(\Hy\).
-\begin{theorem}\label{thm:enet}
-	For all real numbers $\varepsilon > 0, c \ge 1$,
-	if we choose at least \(c n^2 \log n \varepsilon^{-1} \log
-	\varepsilon^{-1} \) hyperplanes of \(\Hy\) uniformly at
-random and denote this selection \(\net\) then for
-any simplex intersected by more than \(\varepsilon \card{\Hy}\) hyperplanes of
-\(\Hy\), with probability $1 - 2^{-\Omega(c)}$, at least one of the intersecting hyperplanes
-is contained in \(\net\).
-\end{theorem}
+\input{text/theorem/epsilon-net-simplex}
 The contrapositive states that if no hyperplane in \(\net\) intersects
 a given simplex, then with high probability the number of hyperplanes of
 \(\Hy\) intersecting the simplex is at most \(\varepsilon \card{\Hy}\).
@@ -422,14 +408,7 @@ the indices $i_j$ need not be distinct). Hence each such instance has size at mo
 \end{proof}
 
 Combining Lemma~\ref{lem:block} and Theorem~\ref{thm:cube} directly yields the following.
-\begin{theorem}\label{thm:query-size}
-For any integer $b>0$, there exists a $k\lceil \frac{n}{b}\rceil$-linear
-decision tree of depth \(\tilde{O}(b^{k-4} n^3)\) solving the \(k\)-SUM
-problem.
-Moreover, this decision tree can be implemented as an
-$\tilde{O}(b^{\floor{\frac{k}{2}}-9}n^{\ceil{\frac{k}{2}}+8})$
-Las Vegas algorithm.
-\end{theorem}
+\input{text/theorem/ksum-algorithm/query-size}
 
 The following two corollaries are obtained by taking
 $b=\Theta(\polylog(n))$, and $b=\Theta(n^{\alpha})$, respectively
@@ -710,15 +689,7 @@ $\alpha_i$.
 \subsection{Proof of Lemma~\ref*{lem:bound}}
 \label{app:bound}
 
-\begin{theorem}[Cramer's rule]\label{thm:cramer}
-	If a system of $n$ linear equations for $n$ unknowns, represented in matrix
-	multiplication form $Ax=b$,
-	has a unique solution $x=(x_1,x_2,\ldots,x_n)^T$ then, for all $i \in [n]$,
-	$$
-		x_i = \frac{\det(A_i)}{\det(A)}
-	$$
-	where $A_i$ is $A$ with the $i$th column replaced by the column vector $b$.
-\end{theorem}
+\input{text/theorem/cramer}
 
 \begin{lemma}[Meyer auf der Heide\cite{M84}]\label{lem:detZ}
 	The absolute value of the determinant of an $n\times n$ matrix $M =

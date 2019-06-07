@@ -35,18 +35,18 @@ Linear Decision Trees.
 \subsection{Counting Cells}
 
 \subsection{Zone Theorem}
-\input{text/paper/order-type-encoding/text/tool/zone-theorem}
+\input{text/tool/zone-theorem}
 
 \subsection{Point Location}
 
 \section{Point Configurations}
 
 \subsection{Wire Diagrams, \(\lambda\)-matrices, Stars, and Canonical Labelings}
-\input{text/paper/order-type-encoding/text/tool/canonical-labelings}
+\input{text/tool/canonical-labelings}
 
 \section{Duality}
 
-\input{text/paper/order-type-encoding/text/tool/duality}
+\input{text/tool/duality}
 
 \section{A Geometric View of Algebraic Decision Problems}
 
@@ -91,7 +91,7 @@ solutions to many geometric problems.
 
 \subsection{Hierarchical Cuttings}
 
-\input{text/paper/order-type-encoding/text/tool/hierarchical-cuttings}
+\input{text/tool/hierarchical-cuttings}
 
 
 \section{Existential Theory of the Reals}
@@ -220,6 +220,35 @@ decision tree simulating such a tree would only be blown up by a constant factor
 
 \section{SUBSET-SUM}
 
+\section{Hopcroft's Problem}
+
+\begin{problem}[Hopcroft's problem]
+	Given a set of $n$ points and $m$ lines in $\mathbb{R}^2$,
+	does any point lie on any line?
+\end{problem}
+There are combinatorial upper bounds~\cite{ST83} on the number of point-line
+incidences an instance can have and there are algorithmic lower
+bounds~\cite{E96} essentially matching the complexity of Matou\v{s}ek's algorithm.
+
+\paragraph{Szemeredi-Trotter theorem}
+Szemeredi~and~Trotter~\cite{ST83} give an upper bound on the number of
+incidences between points and lines in $\mathbb{R}^2$.
+\input{text/theorem/szemeredi-trotter}
+
+\begin{problem}[Hopcroft's problem (any dimension)]
+	Given a set of $n$ points and $m$ hyperplanes in $\mathbb{R}^d$,
+	is any point contained in any hyperplane?
+\end{problem}
+
+Combinatorial upper bounds~\cite{AA92,CEGSW90}.
+Algorithmic lower bounds~\cite{BK03}.
+
+\section{Dominance Reporting}
+
 \section{General Position Testing}
 
 \section{Point Location}
+
+\section{3POL}
+
+\section{Polynomial Dominance Reporting}
