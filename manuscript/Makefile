@@ -1,7 +1,7 @@
-.PHONY: all figures clean
+.PHONY: all figures clean nuke
 .SECONDARY:
 
-PAPERS := dev.pdf
+VERSIONS := dev.pdf
 
 LTX := pdflatex -interaction=nonstopmode -halt-on-error
 
@@ -11,7 +11,7 @@ BUILDDIR := _build
 
 FIGURES := $(shell sed -E -e 's/:.*$$//' Makefile | grep -E '^figures/[a-z0-9-]*\.pdf$$')
 
-all: $(PAPERS)
+all: $(VERSIONS)
 
 figures: $(FIGURES)
 
@@ -94,5 +94,7 @@ $(BUILDDIR)/%/paper.pdf: $(BUILDDIR)/%/paper.tex
 
 clean:
 	rm -rf $(BUILDDIR)
-	rm -f $(PAPERS) $(PAPERS:.pdf=.zip)
+	rm -f $(VERSIONS) $(VERSIONS:.pdf=.zip)
+
+nuke: clean
 	rm -f $(FIGURES)
