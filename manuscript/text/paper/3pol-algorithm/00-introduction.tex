@@ -1,1 +1,45 @@
 \section{The Case of 3SUM}
+
+The 3SUM problem is defined as follows: given $n$ distinct real numbers, decide
+whether any three of them sum to zero.
+%
+A popular conjecture is that no $O(n^{2-\delta})$-time algorithm for 3SUM
+exists, for any $\delta > 0$. This conjecture has been used to show conditional
+lower bounds for problems in P, notably in computational geometry with problems
+such as
+GeomBase, general position~\cite{GO95}
+and
+Polygonal Containment~\cite{BH01},
+and more recently for string problems such as
+Local Alignment~\cite{AVW14}
+and
+Jumbled Indexing~\cite{ACLL14},
+as well as
+dynamic versions of graph problems~\cite{P10,AV14},
+triangle enumeration and Set Disjointness~\cite{KPP16}.
+%
+For this reason, 3SUM is considered one of the key subjects of an
+emerging theory of complexity-within-P, along with other problems such as
+all-pairs shortest paths,
+orthogonal vectors,
+boolean matrix multiplication,
+and conjectures such as
+the Strong Exponential Time Hypothesis~\cite{AVY15,HKNS15,CGIMPS16}.
+
+Because fixing two of the numbers $a$ and $b$ in a triple only allows for one
+solution to the equation $a + b + x = 0$, an instance of 3SUM has at most
+$n^2$ degenerate triples. An instance giving a matching lower bound is for
+example the set $\{\,\frac{1-n}{2},\ldots,\frac{n-1}{2}\,\}$ (for odd $n$)
+with $\frac{3}{4} n^2 + \frac 14$ degenerate triples.
+%
+One might be tempted to think that the number of ``solutions'' to the problem
+would lower bound the complexity of algorithms for the decision version of the
+problem, as it is the case for this problem, and other problems, in restricted
+models of computation~\cite{E96,E99}.
+%
+%This is a common misconception.
+This intuition is incorrect.
+%
+Indeed, Gr\o nlund and Pettie~\cite{GP14} proved that there exist
+$\tilde{O}(n^{3/2})$-depth linear decision trees and $o(n^2)$-time real-RAM
+algorithms for 3SUM\@.
