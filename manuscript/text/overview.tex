@@ -1,26 +1,149 @@
-\chapter{A Detailed Overview}
+\chapter{A Brief Overview}
 
-Here list contributions and briefly sketch how it combines with earlier and
-later results.
+We begin this thesis with an overview of the studied topic.
+%
+This thesis presents the contributions from four papers.
+The papers bear the following titles:
+%
+\begin{enumerate}
+	\item ``\emph{Solving \(k\)-SUM Using Few Linear Queries}''~\cite{CIO16}
+	\item ``\emph{Subquadratic Algorithms for Algebraic 3SUM}''~\cite{BCILOS19}
+	\item ``\emph{Subquadratic Encodings for Point Configurations}''~\cite{CCILO19}
+	\item ``\emph{Encoding 3SUM}''~\cite{CCILMO19}
+\end{enumerate}
+%
+We explain the context in which those papers were written and expose
+the contributions contained in each of them.
 
-Should be a mix of papers abstracts and FRIA reports.
+\paragraph{Degeneracy Testing Problems}
+%
+In this thesis,
+we study \emph{Degeneracy Testing Problems}:
+an instance of size \(n\) of such a problem is a single point in
+high-dimensional euclidean space \(q \in \mathbb{R}^{O(n)}\). Such an instance
+is called \emph{general} if and only if it passes a series of algebraic tests
+(usually \(n^{O(1)}\) of them). If it fails one of the tests, it is
+called \emph{degenerate}.
+%
+Our goal is to determine how fast an instance can be classified as general or
+degenerate.
+
+The terminology is justified because most instances
+are general: the set of degenerate instances is a zero-measure subset of the
+input space. It also makes sense to visualize the input space as the euclidean
+space: the intersection of the algebraic tests becomes a partition of
+the input space into semialgebraic sets. Solving the problem therefore amounts
+to locate the query point \(q\) in this partition of space. Our goal
+is thus to determine how fast this query point can be located.
+
+Degeneracy testing problems are easy decision problems because there are only
+a finite number of candidate tests to try. The ones we study can all be solved
+by brute-force in polynomial time because the number of tests is polynomial.
+We show how this naive approach can be clearly subsumed by divide and conquer
+techniques exploiting the geometry of the setting.
+
+\paragraph{General Position Testing}
+Let us illustrate by giving a first example of a degeneracy testing problem. We
+begin with a definition:
+
+\begin{definition}
+A set of \(n\) points in \(\mathbb{R}^d\)
+is in general position if and only if every (\(d+1\))-subset spans the entire
+space. A point set that is not in general position is called \emph{degenerate}.
+\end{definition}
+
+The General Position Testing problem (GPT) asks to decide if a given set of
+\(n\) point is in general position. We can solve this problem by brute-force in
+\(O(n^{d+1})\) time.
+We can do it an order of magnitude faster
+by constructing the dual arrangement of hyperplanes in
+\(O(n^d)\) time.
+Improving on this slightly better solution appears to be non-trivial: there
+exists a class of algorithms that cannot do better even though they
+exploit one of the core structures of the problem, the chirotope axioms.
+On the other hand, information theory only gives a decision tree
+lower bound of \(\Omega(d^2 n \log n)\).
+A popular conjecture is that no \(o(n^d)\) time real-RAM
+algorithm exists for this problem.
+
+\paragraph{Nonuniform Algorithms}
+Another model of computation in which no \(o(n^d)\) time algorithm for GPT
+is known is the algebraic computation tree model. In this model,
+an algorithm is a tree whose internal nodes are either arithmetic operations or
+tests on real variables and whose leaves are the result of the computation.
+
+This model is
+more generous than the real-RAM model in the sense that all computations that
+can be carried out by only knowing the input size incur no cost.
+%
+Because a computation tree has a fixed size, we need a different tree for each
+input size.
+%
+We say that this model is \emph{nonuniform} because it allows to have a
+distinct algorithm for each input size.
+
+This thesis will consider both uniform algorithms in the real-RAM and word-RAM
+models of computation and nonuniform algorithms in the algebraic computation
+tree, algebraic decision tree, and linear decision tree models of computation.
+For a given task, the complexity of the nonuniform algorithm will be less than
+the complexity of the uniform algorithm. While a nonuniform algorithm is rarely
+practical, designing those will at least be making progress on the question of
+whether a sensible computation tree lower bound can be derived.
+
+\paragraph{3SUM}
+The 3SUM problem also falls in the category of degeneracy testing problems.
+This problem asks to decide whether a given set of \(n\) numbers contains a triple
+whose sum is zero. We can solve this problem by brute-force in \(O(n^3)\) time,
+and in \(O(n^2)\) time with a slightly more clever algorithm.
+
+However toyish 3SUM may look like, it is considered one of several key problems
+in P: many geometric problems reduce from it in subquadratic time. Hence, a
+conjectured quadratic lower bound on 3SUM implies a conditional lower bound on
+all those more practical problems.
+
+Like for GPT, there exist lower bounds for 3SUM in restricted models of
+computation: 3SUM cannot be decided in \(o(n^2)\) time if the only way we
+inspect the input is by testing for the sign of weighted sums of three
+input numbers.
+
+Even before this lower bound was known, it was conjectured that a quadratic lower
+bound would hold in other models of computation like the real-RAM model.
+
+A first stab at the conjecture was made when it was proven that for integer
+input numbers, it was possible to beat the conjectured lower bound by a few
+logarithmic factors. However, it remained open whether such improvements were
+possible for real inputs.
+
+Eventually, in a breakthrough paper, Gr\o nlund and Pettie gave a subquadratic
+uniform algorithm that shaves a root of a logarithmic factor from quadratic
+time.
+To this day, it is still conjectured that, for all \(\delta > 0\), 3SUM
+requires \(\Omega(n^{2 - \delta})\) time to solve in the real-RAM model.
+
+\paragraph{\(k\)-SUM}
+
+Start with GP14
+
+In the same paper, they give a \(\tilde{O}(n^{1.5})\) nonuniform
+algorithm.
+
+Explain \(k\)-SUM
+
+Explain first contribution.
+
+ES16
+
+KLM17
+
+\paragraph{Sorting}
+<++>
+Go all the way back to Sorting
+
+\paragraph{Generalizations}
+Other generalizations: Hopcroft, Dominance Reporting
+
+\paragraph{Encodings}
+<++>
+Go back to ACT and explain encodings.
 
 
-\section{Decision trees for \(k\)-SUM}
-
-\input{text/paper/ksum-algorithm/_overview}
-
-
-\section{Subquadratic Algorithms for Algebraic 3SUM}
-
-\input{text/paper/3pol-algorithm/_overview}
-
-
-\section{Subquadratic Encodings for Point Configurations}
-
-\input{text/paper/order-type-encoding/_overview}
-
-
-\section{Encoding 3SUM}
-
-\input{text/paper/3sum-encoding/_overview}

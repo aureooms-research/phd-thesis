@@ -1,0 +1,82 @@
+Given three sets of \(N\) real numbers
+\(A = \{\, a_1 < a_2 < \cdots < a_N\,\} \),
+\(B = \{\, b_1 < b_2 < \cdots < b_N\,\} \),
+and \(C = \{\, c_1 < c_2 < \cdots < c_N\,\}\),
+we wish to build a discrete data structure (using bits, words, and pointers) such that,
+given any triple \((i,j,k) \in {[N]}^3\) it is possible to compute the sign of
+\(a_i + b_j + c_k\) by only inspecting the data structure (we cannot consult
+\(A\), \(B\), or \(C\)).
+We refer to the map $\chi : {[N]}^3\to \{-,0,+\}, (i,j,k)\mapsto\mathrm{sgn}
+(a_i+b_i+c_k)$ as the {\em 3SUM-type} of the instance $\langle A,B,C \rangle$.
+Obviously, one can simply construct a lookup table of size \(O(N^3)\), such
+that triple queries can be answered in \(O(1)\) time. We aim at improving on
+this trivial solution.
+
+In the 3SUM problem, we are given an array of numbers as input and are asked
+whether any three of them sum to 0. In the mid-nineties, this problem was
+identified as a bottleneck of many
+important problems in geometry, such as detection of affine degeneracies or
+motion planning~\cite{GO95}. Since then, it has become a central problem in
+fine-grained complexity theory~\cite{PW10}. It has long been conjectured to
+require $\Omega (N^2)$ time. In 2014, it was shown to be solvable in $o(N^2)$
+time, but no algorithm with running time $O(N^{2-\delta})$ with constant
+$\delta>0$ is known~\cite{GP18}.
+
+Lower bounds exist in restricted models of computation. Most notably,
+$\Omega(N^2)$ 3-linear queries are needed to solve 3SUM~\cite{Er99},
+and nontrivial lower bounds have also been proven for slightly more powerful linear
+decision trees~\cite{AC05}. However, in a recent breakthrough contribution, Kane, Lovett,
+and Moran showed that 3SUM could be solved using $O(N\log^2 N)$
+6-linear queries~\cite{KLM18}, hence within a $O(\log N)$ factor of the
+information-theoretic lower bound.
+
+Linear decision trees are examples of {\em nonuniform algorithms}, in which we
+are allowed to have different algorithms for different input sizes.
+Algebraic decision trees generalize linear decision trees
+by allowing decision based on the sign of constant-degree polynomials at each
+node~\cite{SY82}.
+
+Any decision tree identifying the 3SUM-type of a 3SUM instance yields a concise
+encoding of this 3SUM-type:
+just write down the outcome of the successive tests. Knowing the decision tree
+by convention, this sequence of bits is
+sufficient to recover the sign of any triple.
+
+The question we consider here is how to make such a representation efficient,
+in the sense that not only does it use merely a few bits, but the answer to any
+triple query can be recovered efficiently. Understanding the interplay between
+nonuniform algorithms and such data structures hopefully sheds light on the
+intrinsic structure of the problem.
+
+\paragraph{Contribution}
+
+As there are only $O(N^3)$ queries, a table
+of size $(\log_2 3) N^3 + O(1)$ bits suffices to give constant query time
+\cite{DPT10}. This can be improved to $O(N^2\log N)$ bits of space by
+storing for each pair $(i,j)$ the values
+\(k_<(i,j) = \max \{ 0\}\cup \{k \colon\, a_i + b_j + c_k < 0\}\) and
+\(k_>(i,j) = \min \{ N+1\}\cup \{k \colon\, a_i + b_j + c_k > 0\}\).
+For a query \((i,j,k)\), we compare \(k\) against the values \(k_<(i,j)\) and \(k_>(i,j)\)
+to recover \(\chi(i,j,k)\) in \(O(1)\) time. All \(k_<(i,j)\) and \(k_>(i,j)\)
+can be computed in \(O(N^2)\) time via the classic quadratic time algorithm for
+3SUM.
+%: if \(k \leq k_<(i,j)\), then \(\chi(i,j,k)=-1\), if \( k_<(i,j)< k < k_>(i,j)\),
+%then \(\chi(i,j,k)=0\), and if \( k_>(i,j)\leq k\), then \(\chi(i,j,k)=+1\).
+%The representation takes \( O(N^2 \log N \) bits, and each query can be answered by comparing
+%pairs of indices, which takes \(O(1)\) time.
+
+One seemingly simple representation is to store the numbers in $A$, $B$ and
+$C$; however these are reals and thus we need to make them representable using
+a finite number of bits.
+In Section~\ref{s:numbers} we show that a minimal integer representation of a
+3SUM instance may require $\Theta(N)$ bits per value, which would give
+rise to a $O(N)$ query time and $O(N^2)$ space, which is far from
+impressive.
+In \cite{CCILO18} the problem of given a set of $N$ lines, to create an
+encoding of them so that the orientation of any triple (the \emph{order type})
+can be determined was studied; our problem is a special case of this where the
+lines only have three slopes.
+Can we do better for the case of 3SUM? We answer this in the affirmative.
+In Section~\ref{s:space} we show how to use an optimal $O(N \log N)$ bits of
+space with a polynomial query time. Finally, in section~\ref{s:sscqt} we show
+how to use $\tilde{O}(N^{1.5})$ space to achieve $O(1)$-time queries.
