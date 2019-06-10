@@ -1,16 +1,23 @@
-\chapter{A Brief Overview}
+\chapter{Mise-en-bouche}
 
-We begin this thesis with an overview of the studied topic.
-%
-This thesis presents the contributions from four papers.
-The papers bear the following titles:
+This thesis is a compilation of the contributions from four papers:
 %
 \begin{enumerate}
-	\item ``\emph{Solving \(k\)-SUM Using Few Linear Queries}''~\cite{CIO16}
-	\item ``\emph{Subquadratic Algorithms for Algebraic 3SUM}''~\cite{BCILOS19}
-	\item ``\emph{Subquadratic Encodings for Point Configurations}''~\cite{CCILO19}
-	\item ``\emph{Encoding 3SUM}''~\cite{CCILMO19}
+	\item[A] ``\emph{Solving \(k\)-SUM Using Few Linear Queries}''~\cite{CIO16}
+	\item[B] ``\emph{Subquadratic Algorithms for Algebraic 3SUM}''~\cite{BCILOS19}
+	\item[C] ``\emph{Subquadratic Encodings for Point Configurations}''~\cite{CCILO19}
+	\item[D] ``\emph{Encoding 3SUM}''~\cite{CCILMO19}
 \end{enumerate}
+%
+Paper A was presented at CG:YRF 16 and ESA 16.
+%
+Paper B was presented at EuroCG 17 and SoCG 17. It is published in DCG.
+%
+Paper C was presented at FWCG 17, EuroCG 18, and SoCG 18. It will appear in JoCG.
+%
+Paper D was presented at EuroCG 19.
+
+We begin this thesis with an overview of the studied topic.
 %
 We explain the context in which those papers were written and expose
 the contributions contained in each of them.
@@ -33,16 +40,16 @@ are general: the set of degenerate instances is a zero-measure subset of the
 input space. It also makes sense to visualize the input space as the euclidean
 space: the intersection of the algebraic tests becomes a partition of
 the input space into semialgebraic sets. Solving the problem therefore amounts
-to locate the query point \(q\) in this partition of space. Our goal
-is thus to determine how fast this query point can be located.
+to locate the input point \(q\) in this partition of space. Our goal
+is thus to determine how fast this input point can be located.
 
 Degeneracy testing problems are easy decision problems because there are only
 a finite number of candidate tests to try. The ones we study can all be solved
 by brute-force in polynomial time because the number of tests is polynomial.
-We show how this naive approach can be clearly subsumed by divide and conquer
-techniques exploiting the geometry of the setting.
+We show how, in some cases, this naive approach can be clearly subsumed by
+divide and conquer techniques exploiting the geometry of the setting.
 
-\paragraph{General Position Testing}
+\paragraph{GPT}
 Let us illustrate by giving a first example of a degeneracy testing problem. We
 begin with a definition:
 
@@ -70,7 +77,7 @@ algorithm exists for this problem.
 Another model of computation in which no \(o(n^d)\) time algorithm for GPT
 is known is the algebraic computation tree model. In this model,
 an algorithm is a tree whose internal nodes are either arithmetic operations or
-tests on real variables and whose leaves are the result of the computation.
+sign tests on real variables and whose leaves are the result of the computation.
 
 This model is
 more generous than the real-RAM model in the sense that all computations that
@@ -82,12 +89,12 @@ input size.
 We say that this model is \emph{nonuniform} because it allows to have a
 distinct algorithm for each input size.
 
-This thesis will consider both uniform algorithms in the real-RAM and word-RAM
+This thesis considers both uniform algorithms in the real-RAM and word-RAM
 models of computation and nonuniform algorithms in the algebraic computation
 tree, algebraic decision tree, and linear decision tree models of computation.
-For a given task, the complexity of the nonuniform algorithm will be less than
+For a given task, the complexity of the nonuniform algorithm is less than
 the complexity of the uniform algorithm. While a nonuniform algorithm is rarely
-practical, designing those will at least be making progress on the question of
+practical, designing those at least means making progress on the question of
 whether a sensible computation tree lower bound can be derived.
 
 \paragraph{3SUM}
@@ -110,7 +117,7 @@ Even before this lower bound was known, it was conjectured that a quadratic lowe
 bound would hold in other models of computation like the real-RAM model.
 
 A first stab at the conjecture was made when it was proven that for integer
-input numbers, it was possible to beat the conjectured lower bound by a few
+input numbers, it is possible to beat the conjectured lower bound by a few
 logarithmic factors. However, it remained open whether such improvements were
 possible for real inputs.
 
@@ -122,28 +129,135 @@ requires \(\Omega(n^{2 - \delta})\) time to solve in the real-RAM model.
 
 \paragraph{\(k\)-SUM}
 
-Start with GP14
+The paper of Gr\o nlund and Pettie also discusses the following generalization of
+the 3SUM problem: ``For a fixed \(k\), given a set of \(n\) real numbers,
+decide whether there exists a \(k\)-subset whose elements sum to zero.''
+This problem is called the \(k\)-SUM problem.
 
-In the same paper, they give a \(\tilde{O}(n^{1.5})\) nonuniform
-algorithm.
+Obviously, the 3SUM problem is the \(k\)-SUM problem where \(k=3\).
+Moreover, there is a simple reduction from \(k\)-SUM to 2SUM when \(k\) is even
+and to 3SUM when \(k\) is odd. Those reductions yield a real-RAM algorithm that
+runs in \(O(n^{\lceil \frac{k}{2} \rceil})\) time, that is,
+\(O(n^{\frac{k+1}{2}})\) when \(k\) is odd.
 
-Explain \(k\)-SUM
+In their paper, in addition to the slightly subquadratic uniform algorithm for
+3SUM, Gr\o nlund and Pettie give a strongly subquadratic nonuniform
+algorithm for 3SUM. The algorithms runs in time \(\tilde{O}(n^{1.5})\), and,
+because of the aforementioned reduction, immediately yields an improved
+\(\tilde{O}(n^{\frac{k}{2}})\) nonuniform time complexity for \(k\)-SUM when
+\(k\) is odd.
 
-Explain first contribution.
+As for uniform time complexity we do not know whether this nonuniform
+improvement can be transferred to the real-RAM model: we do not know of any
+real-RAM \(o(n^{\frac{k+1}{2}})\) time algorithm for \(k\)-SUM when
+\(k\) is odd.
 
-ES16
+The \(k\)-SUM problem reduces to the following point location problem: ``Given
+a input point \(q \in \mathbb{R}^n\), locate \(q\) in the arrangement of
+\(n \choose k\) hyperplanes of equation \(x_{i_1} + x_{i_2} + \cdots +
+x_{i_k} = 0\).'' Applying the best nonuniform algorithms for point location in
+arrangements of hyperplanes by Meyer auf der Heide~\cite{M84} and
+Meiser~\cite{M93} yields linear decision trees of depth \(n^{O(1)}\), where the
+constant of proportionality in the big-oh does not depend on \(k\).
 
-KLM17
+\paragraph{Our contribution on \(k\)-SUM}
+
+Our first contribution is a finer analysis of Meiser's algorithm that shows
+that the depth of the decision tree is actually \(O(n^3 \log^2 n)\). On top of
+that, we show how to implement a variant of this decision tree in the real-RAM
+model so that its uniform running time is \(n^{\frac{k}{2} + O(1)}\) while
+keeping the nonuniform running time unchanged. Note that a naive implementation
+of Meiser's algorithm has a uniform running time of \(n^{k + O(1)}\).
+
+The approach taken by Meiser's algorithm follows the prune and search method:
+Take a sample of the hyperplanes for which we do not yet know the relative
+location of the input point. Locate the input point with respect to this sample
+by brute-force. This amounts to identifying the cell of the sample's arrangement
+which contains the input point. Refine the location of the input point in the
+sample by partitioning the containing cell into low complexity subcells. Whenever
+this low complexity subcell is located completely on one side of an hyperplane,
+the input point is located on the same side, and so we can discard this
+hyperplane without a single query to the input point. Since some hyperplanes
+may intersect the low complexity subcell, rince and repeat.
+
+The location refinement is necessary because this is the only way we can
+guarantee a bound on the number of hyperplanes we have to recurse on.
+Using the theory of \(\varepsilon\)-nets, we can show that, for a sample of
+reasonable size, any simplex that is not intersected by a sample hyperplane
+is not intersected by more than a constant fraction of the set of
+hyperplanes from which the sample is drawn (with high probability). We
+define the refined subcell of the algorithm presented above to be the simplex
+of the bottom-vertex triangulation of the sample's arrangement that contains
+the input point.
+
+\paragraph{Follow-up on \(k\)-SUM}
+Since the publication of paper A, two important new developments have surfaced.
+
+Ezra and Sharir~\cite{ES17} show how trading simplices of the bottom-vertex
+triangulation for prisms of the vertical decomposition in Meiser's algorithm
+yields a shallower decision tree of depth \(O(n^2 \log n)\). Essentially, the
+improvement lies in the fact that, for vertical decomposition, the sample size
+can be taken to be an order of magnitude smaller.
+
+%All nonuniform algorithm for \(k\)-SUM we have mentioned query the input with
+%\(s\)-linear queries: a \(s\)-linear query asks for the sign of weighted sums of
+%\(s\) input numbers. A decision tree that queries the input exclusively with
+%\(s\)-linear queries is called a \(s\)-linear decision tree.
+
+%The nonuniform algorithm of Gr\o nlund and Pettie for
+%\(k\)-SUM with \(k\) odd uses many more queries than the methods of Meyer auf der
+%Heide and Meiser. However, its merit lies in that it only asks very simple
+%questions about the input: this algorithm probes the input
+%with (\(2k-2\))-linear queries while the others use \(n\)-linear queries.
+
+In a breakthrough paper, Kane, Lovett, and Moran~\cite{KLM18}, give a
+\(O(n \log^2 n)\) nonuniform linear decision tree for \(k\)-SUM, almost
+matching the \(\Omega(n \log n)\) lower bound.
+
+%\paragraph{SUBSET-SUM}
+%Note that the unparameterized version of \(k\)-SUM is the SUBSET-SUM problem,
+%which is NP-complete... Discuss nonuniform polytime algo.
 
 \paragraph{Sorting}
-<++>
-Go all the way back to Sorting
+The archetypal computation tree problem is the Sorting problem.
+It is one of the oldest and most practical data management problems.
+%
+Usually presented, sorting is about permutations in \emph{arrays}, but we do
+not like that. We use a different abstraction:
+%
+\input{text/definition/sorting}
+
+In other words, we see the sorting problem as an information retrieval problem:
+how many comparisons do we need to make in order to \emph{know} the answer to
+all comparisons.
+
+The sorting problem also has its decision problem variant: Element Uniqueness.
+%
+\input{text/definition/element-uniqueness}
+
+It is easy to see that Element Uniqueness is equivalent to the 2SUM problem,
+and that Sorting amounts to locating the point \(q\) in the arrangement of
+hyperplanes of equations \(x_i - x_j = 0\).
+
+Among all the problems this thesis touches, those two are the best understood.
+We know \(\Omega(n \log n)\) lower bounds in many nonuniform models of
+computation and we also know a long list of simple real-RAM algorithms for
+those problems whose running times match those lower bounds. For all that
+matters here, the Sorting problem is solved.
+
+Since Element Uniqueness is equivalent to 2SUM, and since all known algorithms
+for 3SUM or the more general \(k\)-SUM also solve their ``sorting'' version, we
+see why the better understanding of \(k\)-SUM is the natural next move.
 
 \paragraph{Generalizations}
-Other generalizations: Hopcroft, Dominance Reporting
+Sorting can be generalized in other directions.
+Other generalizations of sorting : Hopcroft, Dominance Reporting, Sorting \(X+Y\).
+
+\paragraph{Intermediate Problems}
 
 \paragraph{Encodings}
-<++>
 Go back to ACT and explain encodings.
 
+\paragraph{Wrapping it up}
 
+Finish with a figure of which problems reduce to what.
