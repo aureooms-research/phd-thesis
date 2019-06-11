@@ -8,7 +8,9 @@
 %\def\appref{Appendix}
 \def\appref{Section}
 
-\usepackage{hyperref} % for hyperlinks
+\usepackage[x11names]{xcolor}
+\xdefinecolor{linkblue}{RGB}{20,65,109}
+\usepackage[colorlinks,linkcolor=linkblue,cite color=linkblue,pagebackref=true]{hyperref} % for hyperlinks
 \usepackage{graphicx} % \includegraphics
 \usepackage[margin=5pt,
 font+=small,labelformat=parens,labelsep=space,
