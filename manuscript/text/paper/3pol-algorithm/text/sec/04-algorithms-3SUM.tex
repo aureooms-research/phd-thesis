@@ -12,14 +12,14 @@ they revealed a connection between seemingly unrelated geometric
 problems by showing that each of them is at least as hard as 3SUM.
 
 A quadratic lower bound for solving 3SUM holds in a restricted model of
-computation: the $3$-linear decision tree model. Erickson~\cite{E99}
+computation: the $3$-linear decision tree model. Erickson~\cite{Er99}
 and Ailon and Chazelle~\cite{AC05} showed
 that, in this model, where one is only allowed to test the sign of a linear
 expression of up to three input numbers, no matter which decision tree you
 use, there always exists an instance for which a quadratic number of
 critical tuples must be tested.
 %\improve{Noam asks if there is some lower bound analog for 3POL.}
-\input{text/theorem/E99}
+\input{text/theorem/Er99}
 
 While no evidence suggested that this lower bound could be extended to other
 models of computation, it was eventually conjectured that 3SUM requires
@@ -33,7 +33,7 @@ word RAM, external memory, and cache-oblivious models of computation. Their idea
 is to exploit the parallelism of the models, using linear and
 universal hashing.
 
-Gr\o nlund~and~Pettie~\cite{GP14}, using a trick due to Fredman~\cite{F76},
+Gr\o nlund~and~Pettie~\cite{GP14}, using a trick due to Fredman~\cite{Fr76},
 showed that there exist subquadratic decision trees for 3SUM when the queries
 are allowed to be $4$-linear.
 \input{text/theorem/GP14}
@@ -42,10 +42,10 @@ subquadratic real-RAM algorithms for 3SUM, refuting the conjecture.
 Similarly to the subquadratic $4$-linear decision trees, these new results
 use the power of $4$-linear queries.
 %
-These algorithms were later improved by Freund~\cite{F15} and
+These algorithms were later improved by Freund~\cite{Fr15} and
 Gold~and~Sharir~\cite{GS15}.
 The currently best published bound for real-RAM 3SUM is
-\input{text/theorem/F15+GS15}
+\input{text/theorem/Fr15+GS15}
 Since then, the conjecture was eventually updated. This new conjecture is
 considered an essential part of the theory of complexity-within-P.
 \input{text/theorem/3sum-conjecture}
