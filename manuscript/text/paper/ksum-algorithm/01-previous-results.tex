@@ -69,9 +69,9 @@ The current conjecture is that no $O(n^{2-\delta})$-time algorithm exists for 3S
 It has been known for long that \(k\)-SUM is $W[1]$-hard. Recently, it was shown
 to be $W[1]$-complete by Abboud et al.~\cite{ALW14}.
 
-In Erickson~\cite{Er99}, it is shown that we cannot solve 3SUM in
+In Erickson~\cite{Er99a}, it is shown that we cannot solve 3SUM in
 subquadratic time in the \(3\)-linear decision tree model:
-\begin{theorem}[Erickson~\cite{Er99}]
+\begin{theorem}[Erickson~\cite{Er99a}]
 The optimal depth of a \(k\)-linear decision tree that solves
 the \(k\)-LDT problem is $\Theta(n^{\lceil\frac{k}{2}}\rceil)$.
 \end{theorem}
@@ -79,15 +79,15 @@ The proof uses an adversary argument which can be explained geometrically. As
 we already observed, we can solve \(k\)-LDT problems by modeling them as point
 location problems in an arrangement of hyperplanes. Solving one such problem
 amounts to determining which cell of the arrangement contains the input point.
-The adversary argument of Erickson~\cite{Er99} is that there exists a cell having
+The adversary argument of Erickson~\cite{Er99a} is that there exists a cell having
 $\Omega(n^{\lceil\frac{k}{2}}\rceil)$ boundary facets and in this model point
 location in such a cell requires testing each facet.
 
 Ailon and Chazelle~\cite{AC05} study \(s\)-linear decision trees to solve the \(k\)-SUM problem when
 \(s > k\). In particular, they give an additional proof for the
-$\Omega(n^{\ceil{\frac{k}{2}}})$ lower bound of Erickson~\cite{Er99} and
+$\Omega(n^{\ceil{\frac{k}{2}}})$ lower bound of Erickson~\cite{Er99a} and
 generalize the lower bound for the \(s\)-linear decision tree model when \(s >
-k\). Note that the exact lower bound given by Erickson~\cite{Er99} for \(s = k\) is
+k\). Note that the exact lower bound given by Erickson~\cite{Er99a} for \(s = k\) is
 $\Omega({(nk^{-k})}^{\ceil{\frac{k}{2}}})$ while the one given by
 Ailon and Chazelle~\cite{AC05} is $\Omega({(nk^{-3})}^{\ceil{\frac{k}{2}}})$. Their result
 improves therefore the lower bound for \(s = k\) when \(k\) is large.
