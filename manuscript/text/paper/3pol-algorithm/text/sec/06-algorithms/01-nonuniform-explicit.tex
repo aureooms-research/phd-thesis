@@ -16,7 +16,7 @@ guarantee that each curve $c = f(x,y)$ intersects a small number
 of those cells. For each such curve and each cell it intersects, we
 search $c$ among the values $f(a,b)$ for all $(a,b)$ in a given intersected
 cell. We generalize Fredman's trick~\cite{Fr76} --- and how it is used in Gr\o
-nlund and Pettie's paper~\cite{GP14} --- to quickly obtain a sorted order on
+nlund and Pettie's paper~\cite{GP18} --- to quickly obtain a sorted order on
 those values, which provides us a logarithmic search time for each cell.
 Below is a sketch of the algorithm.
 \begin{algorithm}[Nonuniform algorithm for explicit 3POL]\label{algo:ne}
@@ -42,7 +42,7 @@ If $c$ is found, \emph{accept} and halt.
 \end{algorithm}
 %
 Like in Gr\o nlund and Pettie's $\tilde{O}(n^{3/2})$ decision tree for
-3SUM~\cite{GP14}, the key is to give an efficient implementation
+3SUM~\cite{GP18}, the key is to give an efficient implementation
 of step~\textbf{2}.
 
 \paragraph{$A \times B$ grid partitioning}
@@ -223,7 +223,7 @@ f(a',b')$.}%
 \paragraph{Preprocessing} All that is left to prove is that $S_g(n)$ is
 subquadratic for some choice of $g$. To achieve this we sort the points
 inside each cell using Fredman's trick~\cite{Fr76}. Gr\o nlund and
-Pettie~\cite{GP14} use this trick to sort the sets
+Pettie~\cite{GP18} use this trick to sort the sets
 $A_i + B_j = \{\,a + b \st (a,b) \in A_i \times B_j \,\}$
 with few comparisons: sort the set
 $D = (\cup_i [A_i - A_i]) \cup (\cup_j [B_j - B_j])$,
