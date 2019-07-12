@@ -1,9 +1,10 @@
 \chapter{Mise-en-bouche}
 
-TODO avoid all definitions.
-TODO roadmap link to later chapters.
+\todo{Avoid all definitions.}
 
-TODO explain cutting tools and how they allow for fast algorithm
+\todo{Roadmap link to later chapters.}
+
+\todo{Explain cutting tools and how they allow for fast algorithm.}
 
 This thesis is a compilation of the contributions from four papers:
 %
@@ -43,7 +44,7 @@ degenerate.
 The terminology is justified because most instances
 are general: the set of degenerate instances is a zero-measure subset of the
 input space. It also makes sense to visualize the input space as the euclidean
-space: the intersection of the algebraic tests becomes a partition of
+space: the algebraic tests naturally induce a partition of
 the input space into semialgebraic sets. Solving the problem therefore amounts
 to locate the input point \(q\) in this partition of space. Our goal
 is thus to determine how fast this input point can be located.
@@ -74,7 +75,7 @@ Improving on this slightly better solution appears to be non-trivial: there
 exists a class of algorithms that cannot do better even though they
 exploit one of the core structures of the problem, the chirotope axioms.
 On the other hand, information theory only gives a decision tree
-lower bound of \(\Omega(d^2 n \log n)\).
+lower bound of \(\Omega(n \log n)\).
 A popular conjecture is that no \(o(n^d)\) time real-RAM
 algorithm exists for this problem.
 
@@ -82,7 +83,7 @@ algorithm exists for this problem.
 Another model of computation in which no \(o(n^d)\) time algorithm for GPT
 is known is the algebraic computation tree model. In this model,
 an algorithm is a tree whose internal nodes are either arithmetic operations or
-sign tests on real variables and whose leaves are the result of the computation.
+sign tests on real variables, and whose leaves are the result of the computation.
 
 This model is
 more generous than the real-RAM model in the sense that all computations that
@@ -91,7 +92,8 @@ can be carried out by only knowing the input size incur no cost.
 Because a computation tree has a fixed size, we need a different tree for each
 input size.
 %
-We say that this model is \emph{nonuniform} because it allows to have a
+Therefore,
+we say that this model is \emph{nonuniform} since it allows to have a
 distinct algorithm for each input size.
 
 This thesis considers both uniform algorithms in the real-RAM and word-RAM
@@ -131,6 +133,8 @@ Eventually, in a breakthrough paper, Gr\o nlund and Pettie gave a subquadratic
 uniform algorithm that shaves a root of a logarithmic factor from quadratic
 time~\cite{GP18}.
 %
+Since then more roots of logarithmic factors have been shaved~\cite{Fr15,GS15}.
+%
 To this day, it is still conjectured that, for all \(\delta > 0\), 3SUM
 requires \(\Omega(n^{2 - \delta})\) time to solve in the real-RAM model.
 
@@ -143,9 +147,9 @@ This problem is called the \(k\)-SUM problem.
 
 Obviously, the 3SUM problem is the \(k\)-SUM problem where \(k=3\).
 Moreover, there is a simple reduction from \(k\)-SUM to 2SUM when \(k\) is even
-and to 3SUM when \(k\) is odd. Those reductions yield a real-RAM algorithm that
-runs in \(O(n^{\lceil \frac{k}{2} \rceil})\) time, that is,
-\(O(n^{\frac{k+1}{2}})\) when \(k\) is odd.
+and to 3SUM when \(k\) is odd. Those reductions yield a
+\(O(n^{\frac{k}{2}} \log n)\) time real-RAM algorithm for \(k\) even and a
+\(O(n^{\frac{k+1}{2}})\) time real-RAM algorithm for \(k\) odd.
 
 In their paper, in addition to the slightly subquadratic uniform algorithm for
 3SUM, Gr\o nlund and Pettie give a strongly subquadratic nonuniform
@@ -164,17 +168,20 @@ a input point \(q \in \mathbb{R}^n\), locate \(q\) in the arrangement of
 \(n \choose k\) hyperplanes of equation \(x_{i_1} + x_{i_2} + \cdots +
 x_{i_k} = 0\).'' Applying the best nonuniform algorithms for point location in
 arrangements of hyperplanes by Meyer auf der Heide~\cite{M84} and
-Meiser~\cite{M93} yields linear decision trees of depth \(n^{O(1)}\), where the
-constant of proportionality in the big-oh does not depend on \(k\).
+Meiser~\cite{M93} yields linear decision trees of depth \(n^{O(1)}\) for
+\(k\)-SUM, where the constant of proportionality in the big-oh does not depend
+on \(k\).
 
 \paragraph{Our contribution on \(k\)-SUM}
 
-Our first contribution is a finer analysis of Meiser's algorithm that shows
-that the depth of the decision tree is actually \(O(n^3 \log^2 n)\). On top of
-that, we show how to implement a variant of this decision tree in the real-RAM
-model so that its uniform running time is \(n^{\frac{k}{2} + O(1)}\) while
-keeping the nonuniform running time unchanged. Note that a naive implementation
-of Meiser's algorithm has a uniform running time of \(n^{k + O(1)}\).
+Our first contribution with paper A is a finer analysis of Meiser's algorithm
+that shows that the depth of his decision tree when applied to \(k\)-SUM is
+actually \(O(n^3 \log^2 n)\).  On top of that, we show how to implement a
+variant of this decision tree in the real-RAM model so that its uniform running
+time is \(n^{\frac{k}{2} + O(1)}\) while keeping the nonuniform running time
+unchanged. Note that a naive implementation of Meiser's algorithm has a uniform
+running time of \(n^{k + O(1)}\). Those contributions are described in detail
+in Chapter~\ref{chapter:ksum-algorithm}.
 
 The approach taken by Meiser's algorithm follows the prune and search method:
 Take a sample of the hyperplanes for which we do not yet know the relative
@@ -248,19 +255,20 @@ compare their ranks in this permutation.
 The usual way of defining the sorting problem restricts the data structure that
 should be used to encode the \(n \choose 2\) comparisons.
 The way we model the sorting problem lifts this restriction because it does not
-ask to structure this information in an efficient way.
+ask to structure this information in an nice way.
 
 The sorting problem also has its decision problem variant: Element Uniqueness.
 %
 \input{text/definition/element-uniqueness}
 
+\todo{Find out how to order this paragraph.}
+
 It is easy to see that Element Uniqueness reduces both to and from the 2SUM
 problem in linear time, and that Sorting amounts to locating the point \(q\) in
 the arrangement of hyperplanes of equations \(x_i - x_j = 0\).
 %
-Because of that, we see Sorting and Element Uniqueness as problem at the root
-of a tree of problems.
-We see how Sorting and Element Uniqueness are 
+\todo{Explain why Sorting and EU are the same.}
+%
 Since Element Uniqueness is equivalent to 2SUM, and since all known algorithms
 for 3SUM or the more general \(k\)-SUM also solve their ``sorting'' version, we
 see why the better understanding of \(k\)-SUM is the natural next move.
@@ -270,16 +278,19 @@ We know \(\Omega(n \log n)\) lower bounds in many nonuniform models of
 computation and we also know a long list of simple real-RAM algorithms for
 those problems whose running times match those lower bounds. For all that
 matters here, Sorting is solved.
+%
+Because of that, we see Sorting and Element Uniqueness as problems at the
+source of a zoo of problems.
 
 
 \paragraph{Generalizations}
 Sorting can be generalized in other directions.
 Other generalizations of sorting : Hopcroft, Dominance Reporting, Sorting \(X+Y\).
 
-\paragraph{Intermediate Problems}
+\paragraph{Intermediate Problems} Explain 3POL and cite paper B.
 
 \paragraph{Encodings}
-Go back to ACT and explain encodings.
+Go back to ACT and explain encodings. Explain papers C and D.
 
 \paragraph{Wrapping it up}
 

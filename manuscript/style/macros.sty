@@ -43,8 +43,10 @@ skip=6pt,list=false,hypcap=false
 \ifcomments
   \usepackage{color}
   \newcommand\aurelien[1]{\textcolor{red}{\emph{``#1'' Aurélien.}}}
+  \newcommand\todo[1]{\textcolor{blue}{\textbf{TODO}: \emph{#1}}}
 \else
   \newcommand\aurelien[1]{}
+  \newcommand\todo[1]{}
 \fi
 
 \setcounter{chapter}{-1} % Start chapters at 0
