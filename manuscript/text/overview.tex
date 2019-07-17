@@ -204,33 +204,6 @@ define the refined subcell of the algorithm presented above to be the simplex
 of the bottom-vertex triangulation of the sample's arrangement that contains
 the input point.
 
-\paragraph{Follow-up on \(k\)-SUM}
-Since the publication of paper A, two important new developments have surfaced.
-
-Ezra and Sharir~\cite{ES17} show how trading simplices of the bottom-vertex
-triangulation for prisms of the vertical decomposition in Meiser's algorithm
-yields a shallower decision tree of depth \(O(n^2 \log n)\). Essentially, the
-improvement lies in the fact that, for vertical decomposition, the sample size
-can be taken to be an order of magnitude smaller.
-
-%All nonuniform algorithm for \(k\)-SUM we have mentioned query the input with
-%\(s\)-linear queries: a \(s\)-linear query asks for the sign of weighted sums of
-%\(s\) input numbers. A decision tree that queries the input exclusively with
-%\(s\)-linear queries is called a \(s\)-linear decision tree.
-
-%The nonuniform algorithm of Gr\o nlund and Pettie for
-%\(k\)-SUM with \(k\) odd uses many more queries than the methods of Meyer auf der
-%Heide and Meiser. However, its merit lies in that it only asks very simple
-%questions about the input: this algorithm probes the input
-%with (\(2k-2\))-linear queries while the others use \(n\)-linear queries.
-
-In a breakthrough paper, Kane, Lovett, and Moran~\cite{KLM18}, give a
-\(O(n \log^2 n)\) nonuniform linear decision tree for \(k\)-SUM, almost
-matching the \(\Omega(n \log n)\) lower bound.
-
-%\paragraph{SUBSET-SUM}
-%Note that the unparameterized version of \(k\)-SUM is the SUBSET-SUM problem,
-%which is NP-complete... Discuss nonuniform polytime algo.
 
 \paragraph{Sorting}
 Before continuing, let us go back to the origins of those different problems.
@@ -292,19 +265,83 @@ are the best understood. We know \(\Omega(n \log n)\) lower bounds in many
 nonuniform models of computation and we also know a long list of simple
 real-RAM algorithms for those problems whose running times match those lower
 bounds. For all that matters here, those problems are solved.
-%
-Because of that, we put Sorting and Element Uniqueness as problems at the
-origin of a zoo of problems.
 
-\paragraph{Generalizations}
-Sorting can be generalized in other directions.
-Other generalizations of sorting : Hopcroft, Dominance Reporting, Sorting \(X+Y\).
 
-\paragraph{Intermediate Problems} Explain 3POL and cite paper B.
+\paragraph{A Zoo of Generalizations}
+Obviously, the \(k\)-SUM problem is not the only possible way to generalize
+Sorting.
+
+Hopcroft's problem asks whether given \(n\) points and \(n\) hyperplanes in
+\(\mathbb{R}^d\), one of the points lies on one of the hyperplanes. When
+\(d=1\), this problem is Element Uniqueness. Finding the location of each point
+with respect to each hyperplane generalizes Sorting.
+
+The dominance reporting problem asks, given \(n\) points in \(\mathbb{R}^d\),
+to report all pairs of points such that the first dominates the other in all
+dimensions. Once again, for \(d=1\), this problem is Sorting because it asks
+for the answer to all comparisons of the type \(p_i \leq q_i\).
+
+Sorting \(X+Y\) is also a canonical problem in \(P\): given two sets
+\(X\) and \( Y \) of \( n \) numbers each, sort the set \( \{\, x + y \colon\,
+x \in X, y \in Y\,\} \). Sorting \(X+Y\) reduces linearly to the sorting
+version of 4SUM because it asks for the sign of all comparisons of the type
+\(x+y \leq x'+y'\).
+
+We already saw that GPT and Sorting belong to the same family of
+high-dimensional point location problems. There is a good reason for that: when
+\(d=1\), GPT is Element Uniqueness. In one-dimensional space, GPT
+asks whether any two points are the same. Picturing this space as
+the (horizontal) real line, we see that the ``sorting version'' of GPT asks to
+compute for each pair of points which one is on the ``left'' of the other which
+simply amounts to Sorting the one-dimensional input points.
+
+%\paragraph{SUBSET-SUM}
+%Note that the unparameterized version of \(k\)-SUM is the SUBSET-SUM problem,
+%which is NP-complete... Discuss nonuniform polytime algo.
+
+%Because of that, we put Sorting and Element Uniqueness as problems at the
+%origin of a zoo of problems.
+
+\paragraph{Intermediate Problems}
+A perspicacious reader may have frowned at the previous paragraphs wondering
+whether any of this classification was any good. Sure, many problems involve
+sorting, and therefore, according to this dubious definition, are
+``generalizations'' of it.
+
+However, the author begs to differ.
+
+Explain 2D-2SUM, 2D-3POL, 2D-2POL, 3POL and cite paper B.
+
+Turns out 2D-3POL generalizes GPT, 2D-2POL is a subroutine of our 3POL
+algorithm.
 
 \paragraph{Encodings}
 Go back to ACT and explain encodings. Explain papers C and D.
 
 \paragraph{Wrapping it up}
+
+Since the publication of paper A, two important new developments have surfaced.
+
+Ezra and Sharir~\cite{ES17} show how trading simplices of the bottom-vertex
+triangulation for prisms of the vertical decomposition in Meiser's algorithm
+yields a shallower decision tree of depth \(O(n^2 \log n)\). Essentially, the
+improvement lies in the fact that, for vertical decomposition, the sample size
+can be taken to be an order of magnitude smaller.
+
+%All nonuniform algorithm for \(k\)-SUM we have mentioned query the input with
+%\(s\)-linear queries: a \(s\)-linear query asks for the sign of weighted sums of
+%\(s\) input numbers. A decision tree that queries the input exclusively with
+%\(s\)-linear queries is called a \(s\)-linear decision tree.
+
+%The nonuniform algorithm of Gr\o nlund and Pettie for
+%\(k\)-SUM with \(k\) odd uses many more queries than the methods of Meyer auf der
+%Heide and Meiser. However, its merit lies in that it only asks very simple
+%questions about the input: this algorithm probes the input
+%with (\(2k-2\))-linear queries while the others use \(n\)-linear queries.
+
+In a breakthrough paper, Kane, Lovett, and Moran~\cite{KLM18}, give a
+\(O(n \log^2 n)\) nonuniform linear decision tree for \(k\)-SUM, almost
+matching the \(\Omega(n \log n)\) lower bound.
+
 
 Finish with a figure of which problems reduce to what.
