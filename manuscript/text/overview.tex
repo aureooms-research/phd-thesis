@@ -233,6 +233,9 @@ matching the \(\Omega(n \log n)\) lower bound.
 %which is NP-complete... Discuss nonuniform polytime algo.
 
 \paragraph{Sorting}
+Before continuing, let us go back to the origins of those different problems.
+The link between them will be made even clearer.
+
 Sorting is one of the oldest and most relevant data management problems.
 It is the archetypal computation tree problem.
 %
@@ -261,28 +264,37 @@ The sorting problem also has its decision problem variant: Element Uniqueness.
 %
 \input{text/definition/element-uniqueness}
 
-\todo{Find out how to order this paragraph.}
-
-It is easy to see that Element Uniqueness reduces both to and from the 2SUM
-problem in linear time, and that Sorting amounts to locating the point \(q\) in
-the arrangement of hyperplanes of equations \(x_i - x_j = 0\).
+It is easy to see
+that Sorting amounts to locating the point \(q\) in
+the arrangement of hyperplanes of equations \(x_i - x_j = 0\)%
+, and
+that Element Uniqueness reduces both to and from the 2SUM
+problem in linear time%
+.
 %
-\todo{Explain why Sorting and EU are the same. Explain what happens when one
-restricts to linear queries.}
+Actually, under reasonable assumptions on the computation model, sorting and
+element uniqueness are the same problems: if all questions we ask about the
+input are linear in the input numbers, then proving that the input
+does not contain any duplicate entries requires to sort the input.
 %
-Since Element Uniqueness is equivalent to 2SUM, and since all known algorithms
-for 3SUM or the more general \(k\)-SUM also solve their ``sorting'' version, we
-see why the better understanding of \(k\)-SUM is the natural next move.
-
-Among all the problems this thesis touches, those two are the best understood.
-We know \(\Omega(n \log n)\) lower bounds in many nonuniform models of
-computation and we also know a long list of simple real-RAM algorithms for
-those problems whose running times match those lower bounds. For all that
-matters here, Sorting is solved.
+The same statement carries over to the \(k\)-SUM with respect to its ``sorting
+version'': computing the sign of all \(n \choose k\) sums of \(k\) input
+numbers.
 %
-Because of that, we see Sorting and Element Uniqueness as problems at the
-source of a zoo of problems.
+Therefore, in those models of computation, the sorting problem is equivalent to
+2SUM.
+%
+Because of this relationship between Sorting and the \(k\)-SUM problem,
+we see why the better understanding of \(k\)-SUM is a natural next move.
 
+Among all the problems this thesis touches, Sorting and Element Uniqueness
+are the best understood. We know \(\Omega(n \log n)\) lower bounds in many
+nonuniform models of computation and we also know a long list of simple
+real-RAM algorithms for those problems whose running times match those lower
+bounds. For all that matters here, those problems are solved.
+%
+Because of that, we put Sorting and Element Uniqueness as problems at the
+origin of a zoo of problems.
 
 \paragraph{Generalizations}
 Sorting can be generalized in other directions.
