@@ -273,7 +273,8 @@ Sorting.
 
 Hopcroft's problem asks whether given \(n\) points and \(n\) hyperplanes in
 \(\mathbb{R}^d\), one of the points lies on one of the hyperplanes. When
-\(d=1\), this problem is Element Uniqueness. Finding the location of each point
+\(d=1\), this problem is Element Uniqueness. Finding the location (``above /
+below'') of each point
 with respect to each hyperplane generalizes Sorting.
 
 The dominance reporting problem asks, given \(n\) points in \(\mathbb{R}^d\),
@@ -304,16 +305,74 @@ simply amounts to Sorting the one-dimensional input points.
 
 \paragraph{Intermediate Problems}
 A perspicacious reader may have frowned at the previous paragraphs wondering
-whether any of this classification was any good. Sure, many problems involve
-sorting, and therefore, according to this dubious definition, are
-``generalizations'' of it.
+whether this embryo of classification brings more insight than confusion.
+``Sure!'', one may say, ``Many problems involve sorting, and therefore,
+according to this dubious definition, are generalizations of it.''
 
 However, the author begs to differ.
 
-Explain 2D-2SUM, 2D-3POL, 2D-2POL, 3POL and cite paper B.
+As a first example, take one of the best known algorithms for 3SUM. This
+algorithm reduces an instance of 3SUM to a sorting phase and a searching
+phase~\cite{GP18}. The sorting phase consists in answering all questions of the type
+\( x_i + x_{i'} \le x_j + x_{j'} \) with some restriction on the indices.
+Well, it
+turns out that this phase is exactly an instance of
+the sorting version of the 2SUM problem where the input numbers are the
+differences \(x_i - x_j\).\footnote{This observation generalizes to the \(k\)-SUM
+problem: any \(k\)-SUM instance can be reduced to a larger (\(k-1\))-SUM instance
+followed by a searching phase.} Moreover, to make the uniform algorithm
+practical, they implement the resolution of the 2SUM instance via dominance
+reporting.
+Note that this sorting problem is similar to the Sorting \(X+Y\) problem where
+the answers to most questions are not cared for.
 
-Turns out 2D-3POL generalizes GPT, 2D-2POL is a subroutine of our 3POL
-algorithm.
+As a second example, we have the GPT problem. For this problem, the fact that
+the one-dimensional version is Sorting does not seem to give any insight on how
+to apprehend the more general problem, even in two dimensions. In order to make
+some progress in that direction, we need to capture more precisely to which
+family of problems GPT belongs. For that, we look at the algebra behind the
+problem.
+
+GPT asks whether for any choice of \(n \choose d+1\) input points \(p_i\) with
+coordinates \((p_{i,1} , p_{i,2} , \ldots, p_{i,d} )\),
+the determinant
+%
+\begin{displaymath}
+  \begin{vmatrix}
+    1 & p_{1,1} & p_{1,2} & \hdots & p_{1,d} \\
+    1 & p_{2,1} & p_{2,2} & \hdots & p_{2,d} \\
+    \vdots & \vdots & \vdots & \ddots & \vdots \\
+    1 & p_{d+1,1} & p_{d+1,2} & \hdots & p_{d+1,d}
+  \end{vmatrix}
+\end{displaymath}
+is zero. This determinant is a degree-\(d\) (\(d^2 + d\))-variate polynomial.
+In particular, when \(d=2\), the determinant is a degree-\(2\) \(6\)-variate
+polynomial. The GPT testing problem then amounts to testing whether the
+coordinates of any combination of the input points yields a root of that
+polynomial. We therefore consider the more general \(d\)-dimensional-\(k\)-POL
+(\(d\)D-\(k\)-POL) problem:
+%
+Given a \(dk\)-variate constant degree polynomial \(F\) and a set \(S\) of \(n\) points
+in \(\mathbb{R}^d\), decide whether \(F(S^k)\) contains any zeroes.
+%
+For instance, 2D-3POL generalizes GPT with \(d=2\) where the constant degree
+polynomial is the \(3 \times 3\) determinant mentioned above. Moreover, 1D-3POL
+generalizes 3SUM where the polynomial is simply the sum function. Equally
+interesting is the fact that 2D-2POL generalizes Hopcroft's problem with
+\(d=2\) where the polynomial is the dot product.
+
+In paper B, we generalize Gr\o nlund and Pettie's approach to solve 1D-3POL (or
+more simply, 3POL) in subquadratic time. Our approach is essentially the same
+in that it reduces 3POL to a sorting phase and a searching phase, the sorting
+phase being an instance of 2D-2POL.\footnote{Note that according to the implied
+definition, \(d\)D-\(k\)-SUM is equivalent to \(k\)-SUM. Therefore, the 2SUM
+instance in the sorting phase of their 3SUM algorithm is an instance of 2D-2SUM
+in disguise.} Again, the implementation of the uniform algorithm solves this
+instance of 2D-2POL using dominance reporting (a generalization of it).
+
+This result illustrates why a better understanding of the landscape of problems
+surrounding GPT helps to identify intermediate problems whose resolution marks
+progress towards the question of whether GPT admits subquadratic algorithms.
 
 \paragraph{Encodings}
 Go back to ACT and explain encodings. Explain papers C and D.
