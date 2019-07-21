@@ -1,10 +1,10 @@
 \chapter{Mise-en-bouche}
 
-\todo{Avoid all definitions.}
+\todo{Avoid definitions at all cost.}
+
+\todo{Highlight contributions.}
 
 \todo{Roadmap link to later chapters.}
-
-\todo{Explain cutting tools and how they allow for fast algorithm.}
 
 This thesis is a compilation of the contributions from four papers:
 %
@@ -373,19 +373,93 @@ instance of 2D-2POL using dominance reporting (a generalization of it).
 This result illustrates why a better understanding of the landscape of problems
 surrounding GPT helps to identify intermediate problems whose resolution marks
 progress towards the question of whether GPT admits subquadratic algorithms.
+\todo{Figure~\ref{XXX} depicts this landscape.}
 
 \paragraph{Encodings}
-Go back to ACT and explain encodings. Explain papers C and D.
+Naive algorithms for Element Uniqueness, 3SUM, and \(k\)-SUM would search
+all possible combinations of \(2\), \(3\), or \(k\) input numbers for a match
+and reach horrible running times: respectively \(O(n^2)\), \(O(n^3)\), and \(O(n^k)\).
+
+The way better uniform algorithms for those problems work
+is by a combination of sorting and searching. The sorting part
+constructs a data structure and the searching part uses this data structure to
+answer the question at hand. The achieved running time is a balance between the
+cost of sorting and the cost of searching. This results in better
+running times than the naive ``search only'' solutions.
+
+For instance, an efficient algorithm for the
+Element Uniqueness problem would first sort the input, then scan it for
+duplicates among adjacent numbers in this sorted order. The data structure that
+is constructed is the permutation we talked about earlier. This structure
+achieves a good compressing ratio by encoding the answer to all \(O(n^2)\)
+pairwise comparisons of two input numbers in \(O(n \log n)\) bits.
+
+For this reason Element Uniqueness is comparatively simpler than the 3SUM and
+\(k\)-SUM problems.
+For a nonuniform algorithm, constructing this structure is sufficient to solve
+the problem: Once the construction is over, we can discard the input because
+all the information we need is encoded in the data structure. Since the nonuniform
+models of computation we consider do not care about computations not involving
+the input, the searching part does not cost anything.
+
+The case of 3SUM and \(k\)-SUM is more complex: The sorting phase only encodes
+a fraction of all possible queries. This leaves a significant amount of work
+for the searching phase. Therefore, both the sorting phase and the searching
+phase contribute to the nonuniform cost of those algorithms.
+
+The case of GPT is also interesting. The naive algorithm queries
+\(O(n^{d+1})\) input tuples while the better algorithm constructs the dual
+arrangement in \(O(n^d)\) time.
+As in the case of Element Uniqueness,
+this dual arrangement is the data structure that encodes the answer to all
+\(O(n^{d+1})\) queries while achieving a significant space gain.
+
+While the goal sought in the design of algorithms is to find the best possible
+balance between those sorting and searching phases, a different question becomes
+evident: ``What is the most resource efficient data structure encoding all the
+combinatorial information carried by the input?''. For this question, resource
+efficiency can be measured in three ways: space requirements, construction
+time, and query time. If one only cares about space, a trivial answer
+points its head out: if there are only \(X\) combinatorial types then each type
+can be encoded with \(\lceil \log X \rceil\) bits. However, this solution is
+unlikely to yield good construction time or good query time.
+
+In the case of Element Uniqueness, this question has been answered long ago.
+Sorting the input in \(O(n \log n)\) time will construct a permutation using
+\(O(n \log n)\) bits that can be queried for any pairwise comparison in
+\(O(1)\) time. However, the question is still widely open for
+3SUM, \(k\)-SUM, and GPT.
+
+In paper C we design the first subquadratic space data structure for encoding
+the combinatorial type of a two-dimensional GPT instance. This data structure
+can be constructed in quadratic time and queries are answered in sublogarithmic
+time. Those results can be adapted to work for higher-dimensional GPT to yield
+sub-\(O(n^d)\) space data structures with good construction and query times.
+
+Since 3SUM reduces to GPT, the results of paper C can be applied to encode the
+combinatorial type of 3SUM instances. However, since 3SUM is much better
+understood than GPT we should aim for better encodings. This is exactly what we
+do in paper D. By filling the gaps in the partial data structure
+used in Gr\o nlund and Pettie's algorithm~\cite{GP18}, we design an encoding
+that uses \(O(n^{3/2} \log n)\) bits, can be constructed in \(O(n^2)\) time and
+answers queries in constant time.
+
+\todo{Conclude with remark on encodings derived from decision trees.}
+
+\paragraph{The secret ingredient}
+\todo{Explain cutting tools and how they allow for fast algorithm.}
+
 
 \paragraph{Wrapping it up}
 
-Since the publication of paper A, two important new developments have surfaced.
+Since publication of those papers, a few developments have surfaced.
 
 Ezra and Sharir~\cite{ES17} show how trading simplices of the bottom-vertex
 triangulation for prisms of the vertical decomposition in Meiser's algorithm
 yields a shallower decision tree of depth \(O(n^2 \log n)\). Essentially, the
-improvement lies in the fact that, for vertical decomposition, the sample size
-can be taken to be an order of magnitude smaller.
+improvement over our result in paper A lies in the fact that,
+for vertical decomposition, the sample size can be taken to be an order of
+magnitude smaller.
 
 %All nonuniform algorithm for \(k\)-SUM we have mentioned query the input with
 %\(s\)-linear queries: a \(s\)-linear query asks for the sign of weighted sums of
@@ -400,7 +474,11 @@ can be taken to be an order of magnitude smaller.
 
 In a breakthrough paper, Kane, Lovett, and Moran~\cite{KLM18}, give a
 \(O(n \log^2 n)\) nonuniform linear decision tree for \(k\)-SUM, almost
-matching the \(\Omega(n \log n)\) lower bound.
+matching the \(\Omega(n \log n)\) lower bound. This improves both on paper A
+and Ezra and Sharir~\cite{ES17}.
 
-
-Finish with a figure of which problems reduce to what.
+In~\cite{Ch18}, Chan shaves more logarithmic factors from the time complexity
+of uniform algorithms for 3SUM and 3POL. While we focused on applications that solve
+3SUM-hard geometric problems with one-dimensional input in paper B, he shows how
+the ideas that work for 3POL also work for some 3SUM-hard geometric problems
+with two-dimensional data.
