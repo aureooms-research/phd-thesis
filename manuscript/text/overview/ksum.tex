@@ -1,0 +1,31 @@
+The paper of Gr\o nlund and Pettie also discusses the following generalization of
+the 3SUM problem: ``For a fixed \(k\), given a set of \(n\) real numbers,
+decide whether there exists a \(k\)-subset whose elements sum to zero.''
+This problem is called the \(k\)-SUM problem.
+
+Obviously, the 3SUM problem is the \(k\)-SUM problem where \(k=3\).
+Moreover, there is a simple reduction from \(k\)-SUM to 2SUM when \(k\) is even
+and to 3SUM when \(k\) is odd. Those reductions yield a
+\(O(n^{\frac{k}{2}} \log n)\) time real-RAM algorithm for \(k\) even and a
+\(O(n^{\frac{k+1}{2}})\) time real-RAM algorithm for \(k\) odd.
+
+In their paper, in addition to the slightly subquadratic uniform algorithm for
+3SUM, Gr\o nlund and Pettie give a strongly subquadratic nonuniform
+algorithm for 3SUM. The algorithms runs in time \(\tilde{O}(n^{1.5})\), and,
+because of the aforementioned reduction, immediately yields an improved
+\(\tilde{O}(n^{\frac{k}{2}})\) nonuniform time complexity for \(k\)-SUM when
+\(k\) is odd.
+
+As for uniform time complexity we do not know whether this nonuniform
+improvement can be transferred to the real-RAM model: we do not know of any
+real-RAM \(o(n^{\frac{k+1}{2}})\) time algorithm for \(k\)-SUM when
+\(k\) is odd.
+
+The \(k\)-SUM problem reduces to the following point location problem: ``Given
+a input point \(q \in \mathbb{R}^n\), locate \(q\) in the arrangement of
+\(n \choose k\) hyperplanes of equation \(x_{i_1} + x_{i_2} + \cdots +
+x_{i_k} = 0\).'' Applying the best nonuniform algorithms for point location in
+arrangements of hyperplanes by Meyer auf der Heide~\cite{M84} and
+Meiser~\cite{M93} yields linear decision trees of depth \(n^{O(1)}\) for
+\(k\)-SUM, where the constant of proportionality in the big-oh does not depend
+on \(k\).

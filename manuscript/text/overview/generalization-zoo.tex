@@ -1,0 +1,27 @@
+Obviously, the \(k\)-SUM problem is not the only possible way to generalize
+Sorting.
+
+Hopcroft's problem asks whether given \(n\) points and \(n\) hyperplanes in
+\(\mathbb{R}^d\), one of the points lies on one of the hyperplanes. When
+\(d=1\), this problem is Element Uniqueness. Finding the location (``above /
+below'') of each point
+with respect to each hyperplane generalizes Sorting.
+
+The dominance reporting problem asks, given \(n\) points in \(\mathbb{R}^d\),
+to report all pairs of points such that the first dominates the other in all
+dimensions. Once again, for \(d=1\), this problem is Sorting because it asks
+for the answer to all comparisons of the type \(p_i \leq q_i\).
+
+Sorting \(X+Y\) is also a canonical problem in \(P\): given two sets
+\(X\) and \( Y \) of \( n \) numbers each, sort the set \( \{\, x + y \colon\,
+x \in X, y \in Y\,\} \). Sorting \(X+Y\) reduces linearly to the sorting
+version of 4SUM because it asks for the sign of all comparisons of the type
+\(x+y \leq x'+y'\).
+
+We already saw that GPT and Sorting belong to the same family of
+high-dimensional point location problems. There is a good reason for that: when
+\(d=1\), GPT is Element Uniqueness. In one-dimensional space, GPT
+asks whether any two points are the same. Picturing this space as
+the (horizontal) real line, we see that the ``sorting version'' of GPT asks to
+compute for each pair of points which one is on the ``left'' of the other which
+simply amounts to Sorting the one-dimensional input points.

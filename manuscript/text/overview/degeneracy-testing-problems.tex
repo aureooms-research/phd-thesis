@@ -1,0 +1,24 @@
+In this thesis,
+we study \emph{Degeneracy Testing Problems}:
+an instance of size \(n\) of such a problem is a single point in
+high-dimensional euclidean space \(q \in \mathbb{R}^{O(n)}\). Such an instance
+is called \emph{general} if and only if it passes a series of algebraic tests
+(usually \(n^{O(1)}\) of them). If it fails one of the tests, it is
+called \emph{degenerate}.
+%
+Our goal is to determine how fast an instance can be classified as general or
+degenerate.
+
+The terminology is justified because most instances
+are general: the set of degenerate instances is a zero-measure subset of the
+input space. It also makes sense to visualize the input space as the euclidean
+space: the algebraic tests naturally induce a partition of
+the input space into semialgebraic sets. Solving the problem therefore amounts
+to locate the input point \(q\) in this partition of space. Our goal
+is thus to determine how fast this input point can be located.
+
+Degeneracy testing problems are easy decision problems because there are only
+a finite number of candidate tests to try. The ones we study can all be solved
+by brute-force in polynomial time because the number of tests is polynomial.
+We show how, in some cases, this naive approach is definitely subsumed by
+divide and conquer techniques exploiting the geometry of the setting.

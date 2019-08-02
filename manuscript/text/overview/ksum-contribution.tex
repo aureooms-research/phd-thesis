@@ -1,0 +1,29 @@
+Our first contribution with paper A is a finer analysis of Meiser's algorithm
+that shows that the depth of his decision tree when applied to \(k\)-SUM is
+actually \(O(n^3 \log^2 n)\).  On top of that, we show how to implement a
+variant of this decision tree in the real-RAM model so that its uniform running
+time is \(n^{\frac{k}{2} + O(1)}\) while keeping the nonuniform running time
+unchanged. Note that a naive implementation of Meiser's algorithm has a uniform
+running time of \(n^{k + O(1)}\). Those contributions are described in detail
+in Chapter~\ref{chapter:ksum-algorithm}.
+
+The approach taken by Meiser's algorithm follows the prune and search method:
+Take a sample of the hyperplanes for which we do not yet know the relative
+location of the input point. Locate the input point with respect to this sample
+by brute-force. This amounts to identifying the cell of the sample's arrangement
+which contains the input point. Refine the location of the input point in the
+sample by partitioning the containing cell into low complexity subcells. Whenever
+this low complexity subcell is located completely on one side of an hyperplane,
+the input point is located on the same side, and so we can discard this
+hyperplane without a single query to the input point. Since some hyperplanes
+may intersect the low complexity subcell, rince and repeat.
+
+The location refinement is necessary because this is the only way we can
+guarantee a bound on the number of hyperplanes we have to recurse on.
+Using the theory of \(\varepsilon\)-nets, we can show that, for a sample of
+reasonable size, any simplex that is not intersected by a sample hyperplane
+is not intersected by more than a constant fraction of the set of
+hyperplanes from which the sample is drawn (with high probability). We
+define the refined subcell of the algorithm presented above to be the simplex
+of the bottom-vertex triangulation of the sample's arrangement that contains
+the input point.

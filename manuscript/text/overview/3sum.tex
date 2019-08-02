@@ -1,0 +1,32 @@
+The 3SUM problem also falls in the category of degeneracy testing problems.
+This problem asks to decide whether a given set of \(n\) numbers contains a triple
+whose sum is zero. We can solve this problem by brute-force in \(O(n^3)\) time,
+and in \(O(n^2)\) time with a slightly more clever algorithm.
+
+However toyish 3SUM may look like, it is considered one of several key problems
+in P: many geometric problems reduce from it in subquadratic time. Hence, a
+conjectured quadratic lower bound on 3SUM implies a conditional lower bound on
+all those more practical problems.
+
+Like for GPT, there exist lower bounds for 3SUM in restricted models of
+computation: 3SUM cannot be decided in \(o(n^2)\) time if the only way we
+inspect the input is by testing for the sign of weighted sums of three
+input numbers.
+
+Even before this lower bound was known, it was conjectured that a quadratic lower
+bound would hold in other models of computation like the real-RAM model.
+
+A first stab at the conjecture was made when it was proven that for integer
+input numbers, it is possible to beat the conjectured lower bound by a few
+logarithmic factors~\cite{BDP08}.
+However, it remained open whether such improvements were
+possible for real inputs.
+
+Eventually, in a breakthrough paper, Gr\o nlund and Pettie gave a subquadratic
+uniform algorithm that shaves a root of a logarithmic factor from quadratic
+time~\cite{GP18}.
+%
+Since then more roots of logarithmic factors have been shaved~\cite{Fr15,GS15}.
+%
+To this day, it is still conjectured that, for all \(\delta > 0\), 3SUM
+requires \(\Omega(n^{2 - \delta})\) time to solve in the real-RAM model.

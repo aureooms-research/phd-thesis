@@ -1,0 +1,26 @@
+Another model of computation in which no \(o(n^d)\) time algorithm for GPT
+is known is the algebraic computation tree model. In this model,
+an algorithm is a rooted tree whose internal nodes are either arithmetic operations or
+sign tests on real variables, and whose leaves are the result of the computation.
+%Arithmetic operation nodes have one children and sign test nodes have two.
+%An execution of such an algorithm corresponds to a root-to-leaf path in the
+%corresponding tree.
+
+This model is
+more generous than the real-RAM model in the sense that all computations that
+can be carried out by only knowing the input size incur no cost.
+%
+Because a computation tree has a fixed size, we need a different tree for each
+input size.
+%
+Therefore,
+we say that this model is \emph{nonuniform} since it allows to have a
+distinct algorithm for each input size.
+
+This thesis considers both uniform algorithms in the real-RAM and word-RAM
+models of computation and nonuniform algorithms in the algebraic computation
+tree, algebraic decision tree, and linear decision tree models of computation.
+For a given task, the complexity of the nonuniform algorithm is less than
+the complexity of the uniform algorithm. While a nonuniform algorithm is rarely
+practical, designing those at least means making progress on the question of
+whether a sensible computation tree lower bound can be derived.
