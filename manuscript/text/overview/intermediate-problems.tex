@@ -54,17 +54,3 @@ polynomial is the \(3 \times 3\) determinant mentioned above. Moreover, 1D-3POL
 generalizes 3SUM where the polynomial is simply the sum function. Equally
 interesting is the fact that 2D-2POL generalizes Hopcroft's problem with
 \(d=2\) where the polynomial is the dot product.
-
-In paper B, we generalize Gr\o nlund and Pettie's approach to solve 1D-3POL (or
-more simply, 3POL) in subquadratic time. Our approach is essentially the same
-in that it reduces 3POL to a sorting phase and a searching phase, the sorting
-phase being an instance of 2D-2POL.\footnote{Note that according to the implied
-definition, \(d\)D-\(k\)-SUM is equivalent to \(k\)-SUM. Therefore, the 2SUM
-instance in the sorting phase of their 3SUM algorithm is an instance of 2D-2SUM
-in disguise.} Again, the implementation of the uniform algorithm solves this
-instance of 2D-2POL using dominance reporting (a generalization of it).
-
-This result illustrates why a better understanding of the landscape of problems
-surrounding GPT helps to identify intermediate problems whose resolution marks
-progress towards the question of whether GPT admits subquadratic algorithms.
-\todo{Figure~\ref{XXX} depicts this landscape.}

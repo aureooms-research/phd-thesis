@@ -1,0 +1,15 @@
+In paper C we design the first subquadratic space data structure for encoding
+the combinatorial type of a two-dimensional GPT instance. This data structure
+can be constructed in quadratic time and queries are answered in sublogarithmic
+time. Those results can be adapted to work for higher-dimensional GPT to yield
+sub-\(O(n^d)\) space data structures with good construction and query times.
+
+Since 3SUM reduces to GPT, the results of paper C can be applied to encode the
+combinatorial type of 3SUM instances. However, since 3SUM is much better
+understood than GPT we should aim for better encodings. This is exactly what we
+do in paper D. By filling the gaps in the partial data structure
+used in Gr\o nlund and Pettie's algorithm~\cite{GP18}, we design an encoding
+that uses \(O(n^{3/2} \log n)\) bits, can be constructed in \(O(n^2)\) time and
+answers queries in constant time.
+
+\todo{Conclude with remark on encodings derived from decision trees.}

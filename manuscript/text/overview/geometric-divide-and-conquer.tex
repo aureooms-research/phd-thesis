@@ -1,1 +1,29 @@
 \todo{Explain cutting tools and how they allow for fast algorithm.}
+
+What makes the success of our methods are geometric divide-and-conquer
+tools: \(\varepsilon\)-nets and cuttings.
+
+To illustrate, we make the parallel between those tools and
+a very simple divide-and-conquer sorting algorithm: quicksort.
+
+Remember that the sorting problem consists in uncovering the answer to the
+\(n \choose 2\) pairwise comparisons of input numbers.
+The quicksort algorithm progresses as follows: it picks one element of the
+list, the pivot \(x_p\), and compares all the others to it. Let us say the algorithm is
+lucky, and at least \(\Omega(n)\) of the remaining input numbers are
+smaller than
+\(x_p\)
+and at least \(\Omega(n)\) of the remaining input numbers are larger than
+\(x_p\). Then, by transitivity, we know the answer to at least
+\(\Omega(n^2)\) comparisons
+even though we only explicitly asked for \(O(n)\) of them. It is easy to repeat
+this process by noticing that those \(\Omega(n^2)\) answers can be efficiently encoded by
+constructing two lists, one with the numbers smaller than \(x_p\) and one with
+the larger ones. Then the comparisons that are still unanswered are exactly the
+ones between two elements from the same list. Hence, we can solve the problem
+recursively by sorting the two lists individually.
+Too see that this takes only \(O(\log n)\) steps
+
+\todo{Random pivot vs e-net}
+
+\todo{Deterministic pivot vs cuttings. Also mention mergesort.}
