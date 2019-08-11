@@ -1,0 +1,56 @@
+\subsection{Query size}
+\label{sec:query-size}
+
+In this section, we consider a simple blocking scheme that allows us to explore
+a tradeoff between the number of queries and the size of the queries.
+
+\begin{lemma}
+\label{lem:block}
+For any integer $b>0$, an instance of the \(k\)-SUM problem on $n>b$ numbers can be split into
+$O(b^{k-1})$ instances on at most $k\lceil \frac{n}{b}\rceil$ numbers, so that every $k$-tuple
+forming a solution is found in exactly one of the subproblems.
+The transformation can be carried out in time $O(n\log n + b^{k-1})$.
+\end{lemma}
+\begin{proof}
+Given an instance on $n$ numbers, we can sort them in time $O(n\log n)$, then partition
+the sorted sequence into \(b\) consecutive blocks \(B_1, B_2,\ldots ,B_b\) of equal size.
+This partition can be associated with a partition of the real line
+into $b$ intervals, say $I_1, I_2,\ldots ,I_b$. Now consider the partition of $\R^k$
+into grid cells defined by the $k$th power of the partition $I_1, I_2,\ldots ,I_b$. The
+hyperplane of equation $x_1 + x_2 +\cdots +x_k = 0$ hits $O(b^{k-1})$ such grid cells.
+Each grid cell $I_{i_1}\times I_{i_2}\times \cdots \times I_{i_k}$ corresponds to a
+\(k\)-SUM problem on the numbers in the set $B_{i_1}\cup B_{i_2}\cup \ldots \cup B_{i_k}$ (note that
+the indices $i_j$ need not be distinct). Hence each such instance has size at most $k\lceil \frac{n}{b}\rceil$.
+\end{proof}
+
+Combining Lemma~\ref{lem:block} and Theorem~\ref{thm:cube} directly yields the following.
+\input{text/theorem/ksum-algorithm/query-size}
+
+The following two corollaries are obtained by taking
+$b=\Theta(\polylog(n))$, and $b=\Theta(n^{\alpha})$, respectively
+\begin{corollary}\label{cor:logn}
+There exists an $o(n)$-linear decision tree of
+depth $\tilde{O}(n^3)$ solving the \(k\)-SUM problem.
+Moreover, this decision tree can be implemented as an
+$\tilde{O}(n^{\ceil{\frac{k}{2}}+8})$ Las Vegas algorithm.
+\end{corollary}
+\begin{corollary}\label{cor:ne}
+For any $\alpha$ such that $0<\alpha<1$,
+there exists an $O(n^{1-\alpha})$-linear decision tree of
+depth $\tilde{O} (n^{3+(k-4)\alpha})$ solving the \(k\)-SUM problem.
+Moreover, this decision tree can be implemented as an
+$\tilde{O}(n^{(1+\alpha)\frac{k}{2} + 8.5})$
+Las Vegas algorithm.
+\end{corollary}
+
+Note that the latter query complexity improves on $\tilde{O}(n^{\frac{k}{2}})$
+whenever \(\alpha < \frac{k-6}{2k-8}\) and $k\ge 7$.
+By choosing $\alpha=\frac{k-6}{2k-8}-\frac{\beta}{k-4}$
+we obtain $O(n^{1-\frac{k-6}{2k-8}+\frac{\beta}{k-4}})$-linear decision trees
+of depth
+$\tilde{O}(n^{\frac k2 - \beta})$
+for any $k \ge 7$.
+Hence for instance, we obtain
+$O(n^{\frac{3}{4}+\frac{\beta}{4}})$-linear decision trees of depth
+$\tilde{O}(n^{4-\beta})$ for the \dsum[8] problem.
+

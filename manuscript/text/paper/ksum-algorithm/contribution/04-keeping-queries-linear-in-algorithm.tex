@@ -1,0 +1,99 @@
+\subsection{Keeping queries linear in Algorithm~\ref*{algo:simplex}}
+\label{app:keeplinear}
+In Algorithm~\ref{algo:simplex}, we want to ensure that the queries we make in step
+\step{2} are linear and that the queries we will make in the recursion step
+remain linear too.
+\begin{lemma}
+	Algorithm~\ref{algo:simplex} can be implemented so that it uses $O(n\card{I})$ linear queries.
+\end{lemma}%
+\begin{proof}
+Let us first analyze what the queries of step \step{2} look like. In addition
+to the input point \(q\) we are given a vertex \(\nu\) and we want to find the
+projection \(q'\) of \(q\) in direction \(\vec{\nu q}\) on the hyperplanes of
+\(\I_{\theta}\). Let the equation of \(H_{i}\) be \(\Pi_{i}(x) =
+c_{i} + d_{i}
+\cdot x = 0\) where \(c_{i}\) is a scalar and \(d_{i}\) is a
+vector.
+The projection of \(q\) along \(\vec{\nu q}\) on a hyperplane \(H_i\) can thus
+be written\footnote{Note that we project from \(\nu\) instead of \(q\). We are
+allowed to do this since \(\nu + \lambda_{i} \vec{\nu q} = q + (\lambda_i - 1)
+\vec{\nu q}\) and there is no hyperplane
+separating \(q\) from \(\nu\).}
+\(\rho(q,\nu,H_i) = \nu + \lambda_{i} \vec{\nu q}\) such that \(\Pi_{i}(\nu +
+		\lambda_{i} \vec{\nu q}) = c_{i} + d_{i} \cdot \nu +
+		\lambda_{i} d_{i} \cdot
+\vec{\nu q} = 0\). Computing the closest hyperplane amounts to finding
+\(\lambda_{\theta} = \min_{\lambda_i > 0} \lambda_i\). Since \(\lambda_i = -
+\frac{c_i + d_i \cdot \nu}{d_i \cdot \vec{\nu q}}\) we can test whether
+\(\lambda_i > 0\)
+using the linear query\footnote{Note that if $c_i + d_i \cdot \nu = 0$ then
+$\lambda_i=0$, we can check this beforehand for free.}
+\(-\frac{d_i \cdot \vec{\nu q}}{c_i + d_i
+\cdot \nu} \ask{>} 0\). Moreover, if \(\lambda_i > 0\) and \(\lambda_j > 0\)
+we can test whether $\lambda_i < \lambda_j$ using the linear query \(
+\frac{d_i \cdot \vec{\nu q}}{c_i + d_i \cdot \nu}
+\ask{<}
+\frac{d_j \cdot \vec{\nu q}}{c_j + d_j \cdot \nu}\).
+Step \step{2} can thus be achieved using \(O(1)\) \((2k)\)-linear queries per
+hyperplane of \(\net\).
+
+In step \step{4}, the
+recursive step is carried out on \(q' = \nu + \lambda_{\theta} \vec{\nu q} = \nu -
+\frac{c_{\theta} + d_{\theta} \cdot \nu}{d_{\theta} \cdot \vec{\nu q}}
+\vec{\nu q}\) hence comparing \(\lambda'_i\) to \(0\) amounts to performing the
+query \(-\frac{d_i \cdot \vec{\nu q}'}{c_i + d_i \cdot \nu'}
+\ask{>} 0\), which is not linear in \(q\). The same goes for comparing
+\(\lambda'_i\) to \(\lambda'_j\) with the query
+\(\frac{d_i \cdot \vec{\nu q}'}{c_i + d_i \cdot \nu'}
+\ask{<}
+\frac{d_j \cdot \vec{\nu q}'}{c_j + d_j \cdot \nu'}\).
+
+However, we can multiply both sides of the inequality test by \(d_\theta
+\vec{\nu q}\) to keep the queries linear as shown below. We must be careful to
+take into account the sign of the expression \(d_\theta \vec{\nu q}\), this
+costs us one additional linear query.
+
+This trick can be used at each step of the recursion. Let \(q^{(0)} = q\),
+then we have
+$$
+	q^{(s+1)} = \nu^{(s)} - \frac{c_{\theta_{s}} + d_{\theta_{s}} \cdot
+	\nu^{(s)}}{d_{\theta_{s}} \cdot \vec{\nu q}^{(s)}}\vec{\nu q}^{(s)}
+$$
+and \( (d_{\theta_{s}}\cdot \vec{\nu q}^{(s)}) q^{(s+1)}\) yields a vector
+whose components are linear in \(q^{(s)}\).
+Hence,
+\( (\prod_{k=0}^{s} d_{\theta_{k}} \cdot \vec{\nu q}^{(k)})
+ q^{(s+1)}\) yields a vector
+whose components are linear in \(q\),
+and for all pairs of vectors \(d_i\) and \(\nu^{(s+1)}\)
+we have that \( (\prod_{k=0}^{s} d_{\theta_{k}} \cdot \vec{\nu q}^{(k)}) (d_i
+\cdot \vec{\nu q}^{(s+1)})\) is linear in \(q\).
+
+Hence at the $s$th recursive step of the algorithm, we will perform
+at most \(\card{\net}\) linear queries of the type
+$$
+	-\left(\prod_{k=0}^{s-1} d_{\theta_{k}} \cdot \vec{\nu q}^{(k)}\right)
+\frac{d_i \cdot \vec{\nu q}^{(s)}}{c_i + d_i \cdot
+	\nu^{(s)}} \ask{>} 0
+$$
+\(\card{\net} - 1\) linear queries of the type
+$$
+	\left(\prod_{k=0}^{s-1} d_{\theta_{k}} \cdot \vec{\nu q}^{(k)}\right)
+	\frac{d_i \cdot \vec{\nu q}^{(s)}}{c_i + d_i \cdot \nu^{(s)}}
+\ask{<}
+\left(\prod_{k=0}^{s-1} d_{\theta_{k}} \cdot \vec{\nu q}^{(k)}\right)
+\frac{d_j \cdot \vec{\nu q}^{(s)}}{c_j + d_j \cdot \nu^{(s)}}
+$$
+and a single linear query of the type
+$$
+	d_{\theta_{s-1}} \cdot \vec{\nu q}^{(s-1)} \ask{<} 0.
+$$
+
+In order to detect all hyperplanes \(H_i\) such that \(\lambda_i =
+\lambda_\theta\) we can afford to compute the query $f(q) > g(q)$ for all query
+$f(q) < g(q)$ that we issue, and vice versa.
+
+Note that, without further analysis, the queries can become \(n\)-linear as
+soon as we enter the \(\frac{n}{k}^{\text{th}}\) recursive step.
+\end{proof}
+

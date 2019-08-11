@@ -1,0 +1,61 @@
+\chapter{\(k\)-SUM}
+
+The \(k\)-SUM problem is a straightforward generalization of the 3SUM problem:
+given a list of \(n\) real numbers, decide whether \(k\) of them sum to zero.
+
+\input{text/definition/ksum}
+
+We consider the \(k\)-SUM problem for \(k=O(1)\).
+For fixed \(k\), the \(k\)-SUM problem can be solved in polynomial time
+\(O(n^k)\) by testing all possible candidate solutions.
+The interesting question is whether it is possible to improve on
+this brute-force solution.
+
+The \(k\)-SUM problem is a fixed-parameter version of the subset-sum problem, a
+standard \textit{NP}-complete problem. The \(k\)-SUM problem, and in particular
+the special case of 3SUM, has proved to be a cornerstone of the fine-grained
+complexity program aiming at the construction of a complexity theory for
+problems in $P$. In particular, there are deep connections between the
+complexity of \(k\)-SUM, the Strong Exponential Time
+Hypothesis~\cite{PW10,CGIMPS15}, and the complexity of many other major
+problems in
+$P$~\cite{GO95,BH99,MO01,P10,ACLL14,AVW14,GP18,KPP14,ALW14,AWY15,CL15}.
+It has been known for long that \(k\)-SUM is $W[1]$-hard. Recently, it was shown
+to be $W[1]$-complete by Abboud et al.~\cite{ALW14}.
+
+%In what follows, we use the notation \([n] = \{\,1,2,\ldots ,n\,\}\).
+The problem amounts to deciding in $n$-dimensional space, for each hyperplane
+\(H\) of equation \(x_{i_1} + x_{i_2} + \cdots +x_{i_k} = 0\), whether \(q\)
+lies on, above, or below \(H\). Hence this indeed amounts to locating the point
+$q$ in the arrangement formed by those hyperplanes. We emphasize that the set
+of hyperplanes depends only on $k$ and $n$ and not on the actual input vector
+$q$.
+
+Linear degeneracy testing (\(k\)-LDT) is a generalization of \(k\)-SUM where we
+have arbitrary rational coefficients\footnote{The usual definition of \(k\)-LDT
+allows arbitrary \emph{real} coefficients. However, the algorithm we provide
+for Lemma~\ref{lem:multiple} needs the vertices of the arrangement of
+hyperplanes to have rational coordinates.}
+and an independent term in the equations
+of the hyperplanes.
+\begin{problem}[\(k\)-LDT]
+ Given an input vectors \(q\in\mathbb{R}^n\) and
+ $\alpha \in \mathbb{Q}^n$ and constant $c \in \mathbb{Q}$
+ decide whether there exists a
+ $k$-tuple \((i_1, i_2,\ldots ,i_k) \in {[n]}^k\) such that
+ \(c + \sum_{j=1}^k \alpha_j q_{i_j} = 0\).
+ \end{problem}
+Our algorithms apply to this more general problem with only minor changes.
+
+The \emph{\(s\)-linear decision tree model} is a standard model of computation
+in which several lower bounds for \(k\)-SUM\ have been proven. In the decision tree
+model, one may ask well-defined questions to an oracle that are answered
+``yes'' or ``no.'' For $s$-linear decision trees, a well-defined question consists
+of testing the sign of a linear function on at most \(s\) numbers \(q_{i_1},\ldots,q_{i_s}\) of the
+input \(q_1,\ldots,q_n\) and can be written as
+$$
+	c + \alpha_1 q_{i_1} + \cdots + \alpha_s q_{i_s} \ask{\le} 0
+$$
+Each question is defined to cost a single unit. All other operations can be
+carried out for free but may not examine the input vector $q$. We refer to
+$n$-linear decision trees simply as linear decision trees.

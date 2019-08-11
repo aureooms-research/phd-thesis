@@ -1,0 +1,202 @@
+\subsection{Time complexity}
+\label{sec:time-complexity}
+
+Proving the second part of Theorem~\ref{thm:cube} involves efficient implementations of
+the two most time-consuming steps of Algorithm~\ref{algo:meiser}.
+In order to efficiently implement the pruning
+step, we define an intermediate problem, that we call the \emph{double $k$-SUM}
+problem.
+\begin{problem}[double $k$-SUM]
+	Given two vectors $\nu_1, \nu_2 \in {[-1,1]}^n$, where the coordinates of
+	$\nu_i$ can be written down as fractions whose numerator and denominator
+	lie in the interval $[-M,M]$, enumerate all
+	$i\in {[n]}^k$ such that
+	$$
+	\left(\sum_{j=1}^{k} \nu_{1,i_j}\right)
+	\left(\sum_{j=1}^{k} \nu_{2,i_j}\right)
+	< 0.
+	$$
+\end{problem}
+
+In other words, we wish to list all hyperplanes of $\Hy$
+intersecting the open line segment $\nu_1\nu_2$.
+We give an efficient output-sensitive algorithm for this problem.
+
+\begin{lemma}\label{lem:double}
+	The double $k$-SUM problem can be solved in time $O(n^{\lceil \frac{k}{2}
+	\rceil} \log n \log M + Z)$, where $Z$ is the size of the solution.
+\end{lemma}
+\begin{proof}
+	If $k$ is even, we consider all possible $\frac{k}{2}$-tuples of numbers in
+	$\nu_1$ and $\nu_2$ and sort their sums in increasing order. This takes time
+	$O(n^{\frac{k}{2}} \log n)$ and yields two permutations $\pi_1$ and $\pi_2$
+	of $[n^\frac{k}{2}]$.
+	If $k$ is odd, then we sort both the $\lceil\frac{k}{2}\rceil$-tuples and
+	the $\lfloor\frac{k}{2}\rfloor$-tuples. For simplicity, we will only
+	consider the even case in what follows. The odd case carries through.
+
+	We let $N = n^\frac{k}{2}$. For $i \in [N]$ and $m \in \{1,2\}$, let
+	$\Sigma_{m,i}$ be the sum of the $\frac{k}{2}$ components of the $i$th
+	$\frac{k}{2}$-tuple in $\nu_m$, in the order prescribed by $\pi_m$.
+
+	We now consider the two $N \times N$ matrices $M_1$ and $M_2$ giving all
+	possible sums of two $\frac{k}{2}$-tuples, for both $\nu_1$ with the ordering
+	$\pi_1$ and $\nu_2$ with the ordering $\pi_2$.
+
+	We first solve the $k$-SUM problem on $\nu_1$, by finding the sign of all
+	pairs $\Sigma_{1,i} + \Sigma_{1,j}$, $i, j \in [N]$. This can be done in
+	time $O(N)$ by parsing the matrix $M_1$, just as in the standard \(k\)-SUM algorithm.
+        We do the same with $M_2$.
+
+	The set of all indices $i, j \in [N]$ such that $\Sigma_{1,i} +
+	\Sigma_{1,j}$ is positive forms a staircase in $M_1$. We sweep $M_1$ column
+	by column in order of increasing $j \in [N]$, in such a way that the number
+	of indices $i$ such that $\Sigma_{1,i} + \Sigma_{1,j} > 0$ is growing.
+	For each new such value $i$ that is encountered during the sweep, we insert
+	the corresponding $i' = \pi_2(\pi_1^{-1}(i))$ in a balanced binary search
+	tree.
+
+	After each sweep step in $M_1$ --- that is, after incrementing $j$ and
+	adding the set of new indices $i'$ in the tree --- we search the tree to
+	identify all the indices $i'$ such that $\Sigma_{2,i'} + \Sigma_{2,j'} <
+	0$, where $j' = \pi_2(\pi_1^{-1}(j))$. Since those indices form an interval
+	in the ordering $\pi_2$ when restricted to the indices in the tree, we can
+	search for the largest $i_0'$ such that $\Sigma_{2,i_0'} < -\Sigma_{2,j'}$
+	and retain all indices $i' \le i_0'$ that are in the tree. If we denote by
+	$z$ the number of such indices, this can be done in $O(\log N + z) = O(\log
+	n + z)$ time. Now all the pairs $i', j'$ found in this way are such that
+	$\Sigma_{1,i} + \Sigma_{1,j}$ is positive and $\Sigma_{2,i'} +
+	\Sigma_{2,j'}$ is negative, hence we can output the corresponding
+	$k$-tuples. To get all the pairs $i', j'$ such that
+	$\Sigma_{1,i} + \Sigma_{1,j}$ is negative and $\Sigma_{2,i'} +
+	\Sigma_{2,j'}$ positive, we repeat the sweeping algorithm after swapping the
+	roles of $\nu_1$ and $\nu_2$.
+
+	Every matching $k$-tuple is output exactly once, and every
+	$\frac{k}{2}$-tuple is inserted at most once in the binary search tree.
+	Hence the algorithm runs in the claimed time.
+
+	Note that we only manipulate rational numbers that are the sum of at most
+	$k$ rational numbers of size $O(\log M)$.
+\end{proof}
+
+Now observe that a hyperplane intersects the interior of a simplex if and only
+if it intersects the interior of one of its edges. Hence given a simplex
+$\simplex$ we can find all hyperplanes of $\Hy$ intersecting its interior by
+running the above algorithm ${n\choose 2}$ times, once for each pair of
+vertices $(\nu_1,\nu_2)$ of $\simplex$, and take the union of the solutions.
+The overall running time for this implementation will therefore be
+$\tilde{O}(n^2 (n^{\lceil \frac k2 \rceil} \log M + Z))$, where $Z$ is at most the
+number of intersecting hyperplanes and $M$ is to be determined later.
+This provides an implementation of the pruning step in Meiser's algorithm, that
+is, step~\step{4} of Algorithm~\ref{algo:meiser}.
+
+\begin{corollary}\label{cor:double}
+	Given a simplex $\simplex$, we can compute all $k$-SUM hyperplanes
+	intersecting its interior in $\tilde{O}(n^2 (n^{\lceil \frac k2 \rceil}
+	\log M + Z))$ time, where $\log M$ is proportional to the number of bits
+	necessary to represent $\simplex$.
+\end{corollary}
+
+In order to detect solutions in step~\step{3} of Algorithm~\ref{algo:meiser}, we also
+need to be able to quickly solve the following problem.
+\begin{problem}[multiple $k$-SUM]
+	Given $d$ points $\nu_1,\nu_2,\ldots,\nu_d \in \R^n$, where the coordinates of
+	$\nu_i$ can be written down as fractions whose numerator and denominator
+	lie in the interval $[-M,M]$,
+	decide whether there exists a hyperplane with equation of the form $x_{i_1}
+	+ x_{i_2} + \cdots + x_{i_k} = 0$ containing all of them.
+\end{problem}
+
+Here the standard $k$-SUM algorithm can be applied, taking advantage of
+the fact that the coordinates lie in a small discrete set.
+\begin{lemma}\label{lem:ksum}
+	$k$-SUM on $n$ integers $\in [-V,V]$ can be solved in time
+	$\tilde{O}(n^{\ckt}\log V)$.
+\end{lemma}
+
+\begin{lemma}\label{lem:multiple}
+	Multiple $k$-SUM can be solved in time $\tilde{O}(dn^{\ckt+2}\log M)$.
+\end{lemma}
+\begin{proof}
+	Let $\mu_{i,j}$ and $\delta_{i,j}$ be the numerator and denominator of
+	$\nu_{i,j}$ when written as an irreducible fraction. We define
+	$$
+		\zeta_{i,j} = \nu_{i,j}\prod_{\mathclap{(i,j) \in [d]\times[n]}} \delta_{i,j} =
+		\frac{\mu_{i,j}\displaystyle\prod_{\mathclap{(i',j') \in [d]\times[n]}} \delta_{i',j'}}{\delta_{i,j}}.
+	$$
+	By definition $\zeta_{i,j}$ is an integer and its absolute value is bounded
+	by $U = M^{n^2}$, that is, it can be
+	represented using $O(n^2 \log M)$ bits. Moreover, if one of the hyperplanes
+	contains the point $(\zeta_{i,1},\zeta_{i,2},\ldots,\zeta_{i,n})$, then it
+	contains $\nu_i$. Construct $n$ integers of $O(dn^2 \log M)$ bits that can
+	be written $\zeta_{1,j}+U,\zeta_{2,j}+U,\ldots,\zeta_{d,j}+U$ in base
+	$2Uk+1$. The answer to our decision problem is ``yes'' if and only if there
+	exists $k$ of those numbers whose sum is $kU,kU,\ldots,kU$. We simply
+	subtract the number $U,U,\ldots,U$ to all $n$
+	input numbers to obtain a standard $k$-SUM instance on $n$ integers of
+	$O(dn^2 \log M)$ bits.
+\end{proof}
+
+We now have efficient implementations of steps \step{3} and \step{4}
+of Algorithm~\ref{algo:meiser} and can proceed to the proof of the second part
+of Theorem~\ref{thm:cube}.
+
+\begin{proof}
+The main idea consists of modifying the first iteration of Algorithm~\ref{algo:meiser}, by
+letting $\varepsilon = \Theta(n^{-\frac{k}{2}})$.
+Hence we pick a random subset $\net$ of
+$O(n^{k/2 + 2} \log n)$ hyperplanes in $\Hy$ and use this as an \enet.
+This can be done efficiently, as shown in~Appendix~\ref{app:sampling}.
+
+Next, we need to locate the input $q$ in the arrangement induced by
+$\net$. This can be done by running Algorithm~\ref{algo:meiser} on the set
+$\net$. From the previous considerations on Algorithm~\ref{algo:meiser}, the
+running time of this step is
+$$
+O(n|\net|) = \tilde{O}(n^{k/2 + 4}),
+$$
+and the number of queries is $O(n^3\log^2 n)$.
+
+Then, in order to prune the hyperplanes in $\Hy$, we have to
+compute a simplex $\simplex$ that does not intersect any hyperplane of
+$\net$. For this, we observe that the above call to Algorithm~\ref{algo:meiser}
+involves computing a sequence of simplices for the successive pruning
+steps. We save the description of those simplices. Recall that there are
+$O(\log n)$ of them, all of them contain the input $q$ and have vertices
+coinciding with vertices of the original arrangement $\arrangement(\Hy)$. In
+order to compute a simplex $\simplex$ avoiding all hyperplanes of
+$\net$, we can simply apply Algorithm~\ref{algo:simplex} on the set of
+hyperplanes bounding the intersection of these simplices. The running time
+and number of queries for this step are bounded respectively by
+$n^{O(1)}$ and $O(n^2\log n)$.
+
+Note that the vertices of $\simplex$ are not vertices
+of $\arrangement(\Hy)$ anymore. However, their coordinates lie in a finite set
+(see~Appendix~\ref{app:bound})
+\begin{lemma}\label{lem:bound}
+Vertices of $\simplex$ have rational coordinates whose fraction representations
+have their numerators and denominators absolute values bounded above by
+$C^{4n^5} n^{2n^5+n^3+\frac n2}$, where $C$ is a constant.
+\end{lemma}
+
+We now are in position to perform the pruning of the hyperplanes in $\Hy$ with
+respect to $\simplex$. The number of remaining hyperplanes after the pruning is
+at most $\varepsilon n^k = O(n^{k/2})$. Hence from Corollary~\ref{cor:double}, the
+pruning can be performed in time proportional to $\tilde{O}(n^{\ceil{k/2} + 7})$.
+
+Similarly, we can detect any hyperplane of $\Hy$ containing $\simplex$ using the
+result of Lemma~\ref{lem:multiple} in time $\tilde{O}(n^{\lceil k/2\rceil +
+8})$. Note that those last two steps do not require any query.
+
+Finally, it remains to detect any solution that may lie in the remaining
+set of hyperplanes of size $O(n^{k/2})$. We can again fall back
+on Algorithm~\ref{algo:meiser}, restricted to those hyperplanes. The running
+time is $\tilde{O}(n^{k/2 + 2})$, and the number of queries is still
+$O(n^3 \log^2 n)$.
+
+Overall, the maximum running time of a step is $\tilde{O}(n^{\ceil{\frac{k}{2}} + 8})$,
+while the number of queries is always bounded by $O(n^3\log^2 n)$.
+
+\end{proof}
+

@@ -1,0 +1,95 @@
+
+\subsection{Uniform random sampling}
+\label{app:sampling}
+
+Theorem~\ref{thm:enet} requires us to pick a sample of the hyperplanes
+uniformly at random. Actually the theorem is a little stronger; we can draw
+each element of $\net$ uniformly at random, only keeping distinct elements.
+This is not too difficult to achieve for $k$-LDT when the $\alpha_i,i\in[k]$
+are all distinct: to pick a hyperplane of the form $\alpha_0 + \alpha_1 x_{i_1}
++ \alpha_2 x_{i_2} + \cdots + \alpha_k x_{i_k} = 0$ uniformly at random, we can
+draw each $i_j\in[n]$ independently and there are $n^k$ possible outcomes.
+However, in the case of $k$-SUM, we only have $\binom{n}{k}$ distinct
+hyperplanes. A simple dynamic programming approach solves the problem for
+\(k\)-SUM. For \(k\)-LDT we can use the same approach, once for each class of equal
+$\alpha_i$.
+
+\begin{lemma}
+	Given $n\in\N$ and $(\alpha_0,\alpha_1,\ldots,\alpha_k) \in \R^{k+1}$,
+	$m$ independent uniform random draws of
+	hyperplanes in $\R^n$ with equations of the form
+	$\alpha_0 + \alpha_1 x_{i_1} + \alpha_2 x_{i_2} + \cdots + \alpha_k x_{i_k} = 0$
+	can be computed in time $O(mk^2 \log n)$
+	and preprocessing time $O(k^2 n)$.
+\end{lemma}
+\begin{proof}
+	We want to pick
+	an assignment
+	$a=\enum{(\alpha_1,x_{i_1}),(\alpha_2,x_{i_2}),\ldots,(\alpha_k,x_{i_k})}$
+	uniformly at random. Note that all $x_i$ are distinct while the $\alpha_j$
+	can be equal.
+
+	Without loss of generality, suppose $\alpha_1 \le \alpha_2 \le \cdots \le
+	\alpha_k$. There is a bijection between assignments and lexicographically
+	sorted $k$-tuples
+	$((\alpha_1,x_{i_1}),(\alpha_2,x_{i_2}),\ldots,(\alpha_k,x_{i_k}))$.
+
+	Observe that $x_{i_j}$ can be drawn independently of $x_{i_{j'}}$ whenever
+	$\alpha_j \neq \alpha_{j'}$. Hence, it suffices to generate a lexicographically sorted
+	$\card{\chi}$-tuple of $x_i$ for each class $\chi$ of equal $\alpha_i$.
+
+	Let $\omega(m,l)$ denote the number of lexicographically sorted $l$-tuples,
+	where each element comes from a set of $m$ distinct $x_i$.
+	We have
+	$$
+		\omega(m,l) = \begin{cases}
+			1 & \text{if}\ l = 0\\
+			\sum_{i=1}^{m}\omega(i,l-1) & \text{otherwise.}
+		\end{cases}
+	$$
+
+	To pick such a tuple $(x_{i_1},x_{i_2},\ldots,x_{i_l})$ uniformly at random
+	we choose $x_{i_l} = x_o$ with probability
+	$$
+		P(x_{i_l} = x_o) = \begin{cases}
+			0 & \text{if}\ o > m\\
+			\frac{\omega(o,l-1)}{\omega(m,l)} & \text{otherwise}
+		\end{cases}
+	$$
+	that we append to a prefix $(l-1)$-tuple (apply the procedure recursively),
+	whose elements come from a set of $o$ symbols. If $l=0$ we just
+	return the empty tuple.
+
+	Obviously, the probability for a given $l$-tuple to be picked is equal to
+	$\frac{1}{\omega(m,l)}$.
+
+	Let $X$ denote the partiton of the $\alpha_i$ into equivalence classes,
+	then the number of
+	assignments is equal to $\prod_{\chi \in X}\omega(n,\card{\chi})$.
+	(Note that for $k$-SUM this is simply $\omega(n,k)$ since there is only a
+	single class of equivalence.)
+	For each equivalence class $\chi$ we draw independently a lexicographically
+	sorted $\card{\chi}$-tuple on $n$ symbols using the procedure
+	above. This yields a given assignment with probability
+	$\frac{1}{\prod_{\chi \in X}\omega(n,\card{\chi})}$.
+	Hence, this corresponds to a uniform random draw over the assignments.
+
+	It is a well known fact that $\omega(n,k)=\binom{n+k-1}{k-1}$, hence each
+	number we manipulate fits in $O(k \log n)$ bits, that is, $O(k)$ words.
+	Moreover $\omega(n,k) = \omega(n-1,k) + \omega(n-1,k-1)$ so each
+	$\omega(m,l)$ can be computed using a single addition on numbers of $O(k)$
+	words.
+
+	For given $n$ and $k$, there are at most $nk$ values $\omega(m,l)$ to
+	compute, and for a given $k$-LDT instance, it must be computed only once.
+	One way to perform the random draws is to compute the cumulative
+	distribution functions of the discrete distributions defined above, then to
+	draw $x_{i_l}$, we use binary search to find a generated random integer of
+	$O(k)$ words in the cumulative distribution function. Computing the
+	values $\omega(m,l)$ and all cumulative distributions functions can be done
+	as a preprocessing step in $O(k^2 n)$ time. Assuming the generation
+	of a random sequence of words takes linear time, performing a random draw
+	takes time $O(k^2 \log n)$.
+
+\end{proof}
+

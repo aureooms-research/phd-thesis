@@ -1,0 +1,56 @@
+
+\subsection{Algebraic computation trees}
+\label{app:act}
+
+We consider \emph{algebraic computation trees}, whose internal nodes
+are labeled with arithmetic (\(r \gets o_1 \op o_2, \op \in
+\{\,+,-,\times,\div\,\}\)) and branching (\(z : 0\)) operations. We say that an
+algebraic computation tree $T$ \emph{realizes} an algorithm $A$ if the paths
+from the root to the leaves of $T$ correspond to the execution paths of \(A\)
+on all possible inputs \(q \in \mathbb{R}^n\), where \(n\) is fixed. A leaf is
+labeled with the output of the corresponding execution path of \(A\). Such a
+tree is \emph{well-defined} if any internal node labeled \(r \gets o_1 \op
+o_2\) has outdegree \(1\) and is such that either \(o_k = q_i\) for some \(i\)
+or there exists an ancestor \(o_k \gets x \op y\) of this node, and any
+internal node labeled \(z : 0\) has outdegree \(3\) and is such that either \(z
+= q_i\) for some \(i\) or there exists an ancestor \(z \gets x \op y\) of this
+node. In the algebraic computation tree model, we define the complexity
+\(f(n)\) of an algorithm $A$ to be the minimum depth of a well-defined
+computation tree that realizes $A$ for inputs of size $n$.
+
+In the algebraic computation tree model, we only count the operations that
+involve the input, that is, members of the input or results of previous
+operations involving the input. The following theorem follows immediately from
+the analysis of the linearity of queries
+\begin{theorem}\label{thm:act}
+	The algebraic computation tree complexity of \(k\)-LDT is
+	\(\tilde{O}(n^3)\).
+\end{theorem}
+
+\begin{proof}
+We go through each step of Algorithm~\ref{algo:meiser}.
+Indeed, each \(k\)-linear query of step \step{1} can be implemented as
+\(O(k)\) arithmetic operations, so step \step{1} has complexity
+\(O(\card{\net})\).
+The construction of the simplex in step \step{2} must be handled carefully.
+What we need to show is that each \(n\)-linear query we use can be implemented
+using $O(k)$ arithmetic operations. It is not difficult to see from the
+expressions given in~Appendix~\ref{app:keeplinear} that a constant number of arithmetic
+operations and dot products suffice to
+compute the queries. A dot product in this case involves a constant number
+of arithmetic operations because the \(d_i\) are such that they each have
+exactly \(k\) non-zero components. The only expression that involves a
+non-constant number of operations is the product \(\prod_{k=0}^{s}
+d_{\theta_{k}} \cdot \vec{\nu q}^{(k)}\), but this is equivalent to
+\((\prod_{k=0}^{s-1}
+	d_{\theta_{k}} \cdot \vec{\nu q}^{(k)})(d_{\theta_{s}} \cdot
+	\vec{\nu q}^{(s)})\)
+where the first factor has already been computed during a previous step and
+the second factor is of constant complexity. Since each query costs a constant
+number of arithmetic operations and branching operations, step \step{2}
+has complexity \(O(n\card{\net})\).
+Finally, steps \step{3} and \step{4} are free since they do not involve the
+input. The complexity of Algorithm~\ref{algo:meiser} in this model is thus also \(O(n^3
+\log n \log \card{\Hy})\).
+\end{proof}
+

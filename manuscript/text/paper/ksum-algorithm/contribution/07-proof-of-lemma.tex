@@ -1,0 +1,58 @@
+\subsection{Proof of Lemma~\ref*{lem:bound}}
+\label{app:bound}
+
+\input{text/theorem/cramer}
+
+\begin{lemma}[Meyer auf der Heide\cite{M84}]\label{lem:detZ}
+	The absolute value of the determinant of an $n\times n$ matrix $M =
+	M_{i=1\ldots n,j=1\ldots n}$ with integer entries is an integer that is at
+	most $C^n n^{\frac n2}$, where $C$ is the maximum absolute value in $M$.
+\end{lemma}
+\begin{proof}
+	The determinant of $M$ must be an integer
+	and is the volume of the
+	hyperparalleliped spanned by the row vectors of $M$, hence
+	$$
+	|\det(M)| \le \prod_{i=1}^n \sqrt{\sum_{j=1}^{n} M_{i,j}^2} \le {(\sqrt{n C^2})}^{n} \le C^n n^\frac n2.
+	$$
+\end{proof}
+
+\begin{lemma}\label{lem:detQ}
+	The determinant of an $n\times n$ matrix $M = M_{i=1\ldots n,j=1\ldots n}$ with
+	rational entries can be represented as a fraction whose numerators and
+	denominators absolute values are bounded above by
+	${(ND^{n-1})}^n n^{\frac n2}$ and $D^{n^2}$
+	respectively, where $N$ and $D$
+	are respectively the maximum absolute value of a numerator and a
+	denominator in $M$.
+\end{lemma}
+\begin{proof}
+	Le $\delta_{i,j}$ denote the denominator of $M_{i,j}$.
+	Multiply each row $M_i$ of $M$ by $\prod_j \delta_{i,j}$.
+	Apply Lemma~\ref{lem:detZ}.
+\end{proof}
+
+We can now proceed to the proof of Lemma~\ref{lem:bound}.
+\begin{proof}
+	Coefficients of the hyperplanes of the arrangement are constant rational
+	numbers, those can be changed to constant integers (because each
+	hyperplane has at most $k$ nonzero coefficients). Let $C$ denote the
+	maximum absolute value of those coefficients.
+
+	Because of Theorem~\ref{thm:cramer} and Lemma~\ref{lem:detZ}, vertices of
+	the arrangement have rational coordinates whose numerators and
+	denominators absolute values are bounded above by $C^n n^{\frac n2}$.
+
+	Given simplices whose vertices are vertices of the arrangement, hyperplanes
+	that define the faces of those simplices have rational coefficients whose
+	numerators and denominators absolute values are bounded above by $C^{2n^3}
+	n^{n^3+\frac n2}$ by Theorem~\ref{thm:cramer} and Lemma~\ref{lem:detQ}.
+	(Note that some simplices might be not fully dimensional, but we can handle
+	those by adding vertices with coordinates that are not much larger than
+	that of already existing vertices).
+
+	By applying Theorem~\ref{thm:cramer} and Lemma~\ref{lem:detQ} again, we
+	obtain that vertices of the arrangement of those new hyperplanes (and thus
+	vertices of $\simplex$) have rational coefficients whose numerators and
+	denominators absolute values are bounded above by $C^{4n^5} n^{2n^5+n^3+\frac n2}$.
+\end{proof}
