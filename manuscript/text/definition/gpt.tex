@@ -1,0 +1,17 @@
+\begin{problem}[GPT]
+	Given \(n\) points \((x_1,y_1), (x_2,y_2), \ldots, (x_n,y_n) \in \mathbb{R}^2\), decide
+	whether there exist \(i < j < k \in [n]\) such that
+	\begin{displaymath}
+		\det
+		\left(
+		\begin{matrix}
+		1 & x_i & y_i \\
+		1 & x_j & y_j \\
+		1 & x_k & y_k
+		\end{matrix}
+		\right)
+		=
+		(x_i - x_j)(y_j - y_k) - (y_i - y_j)(x_j - x_k)
+		= 0.
+	\end{displaymath}
+\end{problem}
