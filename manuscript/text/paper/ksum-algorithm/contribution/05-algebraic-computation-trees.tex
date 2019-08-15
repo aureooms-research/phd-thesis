@@ -2,25 +2,7 @@
 \subsection{Algebraic computation trees}
 \label{app:act}
 
-We consider \emph{algebraic computation trees}, whose internal nodes
-are labeled with arithmetic (\(r \gets o_1 \op o_2, \op \in
-\{\,+,-,\times,\div\,\}\)) and branching (\(z : 0\)) operations. We say that an
-algebraic computation tree $T$ \emph{realizes} an algorithm $A$ if the paths
-from the root to the leaves of $T$ correspond to the execution paths of \(A\)
-on all possible inputs \(q \in \mathbb{R}^n\), where \(n\) is fixed. A leaf is
-labeled with the output of the corresponding execution path of \(A\). Such a
-tree is \emph{well-defined} if any internal node labeled \(r \gets o_1 \op
-o_2\) has outdegree \(1\) and is such that either \(o_k = q_i\) for some \(i\)
-or there exists an ancestor \(o_k \gets x \op y\) of this node, and any
-internal node labeled \(z : 0\) has outdegree \(3\) and is such that either \(z
-= q_i\) for some \(i\) or there exists an ancestor \(z \gets x \op y\) of this
-node. In the algebraic computation tree model, we define the complexity
-\(f(n)\) of an algorithm $A$ to be the minimum depth of a well-defined
-computation tree that realizes $A$ for inputs of size $n$.
-
-In the algebraic computation tree model, we only count the operations that
-involve the input, that is, members of the input or results of previous
-operations involving the input. The following theorem follows immediately from
+The following theorem follows immediately from
 the analysis of the linearity of queries
 \begin{theorem}\label{thm:act}
 	The algebraic computation tree complexity of \(k\)-LDT is

@@ -1,0 +1,52 @@
+\chapter{Algorithms}
+
+In general, when we think of algorithms 
+
+
+
+To make clear what will be considered an algorithm in this thesis, we explain
+the different computation model that will be
+
+\section{RAM Alorithms}
+
+Real-RAM vs Word-RAM
+
+\section{Nonuniform Algorithms}
+
+%\improve{In general, I think there can hardly be too many warnings and remarks on the
+%notion of nonuniformity. I expect reviewers to ask questions on, and
+%misunderstand, everything nonuniform. Maybe it would be worth having an whole
+%paragraph on this in the introduction, pointing to where nonuniformity is
+%exploited.}
+
+
+Allow a different algorithm for each input size.
+Compare to circuits: time to construct circuit does not count.
+
+\paragraph{Computation Trees and Decision Trees}
+We consider \emph{algebraic computation trees}, whose internal nodes
+are labeled with arithmetic (\(r \gets o_1 \op o_2, \op \in
+\{\,+,-,\times,\div\,\}\)) and branching (\(z : 0\)) operations. We say that an
+algebraic computation tree $T$ \emph{realizes} an algorithm $A$ if the paths
+from the root to the leaves of $T$ correspond to the execution paths of \(A\)
+on all possible inputs \(q \in \mathbb{R}^n\), where \(n\) is fixed. A leaf is
+labeled with the output of the corresponding execution path of \(A\). Such a
+tree is \emph{well-defined} if any internal node labeled \(r \gets o_1 \op
+o_2\) has outdegree \(1\) and is such that either \(o_k = q_i\) for some \(i\)
+or there exists an ancestor \(o_k \gets x \op y\) of this node, and any
+internal node labeled \(z : 0\) has outdegree \(3\) and is such that either \(z
+= q_i\) for some \(i\) or there exists an ancestor \(z \gets x \op y\) of this
+node. In the algebraic computation tree model, we define the complexity
+\(f(n)\) of an algorithm $A$ to be the minimum depth of a well-defined
+computation tree that realizes $A$ for inputs of size $n$.
+
+In the algebraic computation tree model, we only count the operations that
+involve the input, that is, members of the input or results of previous
+operations involving the input.
+
+Algebraic Computation Trees,
+Decision Trees,
+Algebraic Decision Trees,
+Linear Decision Trees.
+
+

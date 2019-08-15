@@ -1,0 +1,99 @@
+\chapter{Geometry}
+
+We mainly consider the Euclidean plane \(\mathbb{R}^2\) and its
+\(d\)-dimensional analog \(\mathbb{R}^d\).
+
+\section{Arrangements of Hyperplanes}
+
+An \emph{hyperplane} in \(\mathbb{R}^d\) is the set of points \(q \in \mathbb{R}^d\)
+satisfying some linear equation of the form \(\sum_{i=1}^{d} p_i q_i = 0\) for
+some tuple of coefficients \(p \in \mathbb{R}^d\). An \emph{affine} hyperplane has an
+additional independent term \(p_0\) to get the equation \(\sum_{i=1}^{d}
+p_i q_i = p_0\). In general we will drop the adjective ``affine'' and talk about
+hyperplanes without specifying whether \(p_0 = 0\).
+
+In the the plane an hyperplane is a line. In \(\mathbb{R}^3\), an hyperplane is
+a plane. On the real line, an hyperplane is a point.
+
+An hyperplane \(H\) partitions the space \(\mathbb{R}^d\) into two halfspaces,
+often denoted by \(H^-\) and \(H^+\).
+Naturally, \(H^-\) is defined to be the set of points such that
+\(\sum_{i=1}^{d} p_i q_i \leq p_0 \) and \(H^+\) is defined to be the set of
+points such that \(\sum_{i=1}^{d} p_i q_i \geq p_0 \). When we want to be more
+precise as to whether the inequality is strict we can write \(H^{<0}\),
+\(H^{\leq 0}\), \(H^{>0}\), or \(H^{\geq 0}\).
+We also define \(H^0\) and \(H^{=0}\) as synonyms of \(H\).
+
+A set of hyperplanes \(\mathcal{H} = \{\, H_1, H_2, \ldots, H_m\,\}\)
+partitions \(\mathbb{R}^d\) into cells.
+%
+This partition is denoted by \(\mathcal{A}(\mathcal{H})\) and is called the
+\emph{arrangement} of \(\mathcal{H}\).
+%
+Each sign vector \(\sigma \in \{\,
+-,0,+\,\}\) corresponds to a (potentially empty) cell of this arrangement
+defined as the set of points \(q\) such that \(q \in H_i^{\sigma_i}\) for all
+\(H_i \in \mathcal{H}\).
+
+\subsection{Counting Cells}
+It is interesting to understand the behavior of such arrangement.
+We want to bound the number of nonempty cells an arrangement can have.
+
+\subsection{Pseudolines}
+\dots
+
+Pseudolines are generalized into pseudohyperplanes. We do not discuss this
+generalization in this thesis.
+
+\subsection{Zone Theorem}
+\input{text/tool/zone-theorem}
+
+\subsection{Point Location}
+Describe the point location problem.
+\input{text/definition/point-location}
+
+\section{Point Configurations}
+
+\subsection{Wire Diagrams, \(\lambda\)-matrices, Stars, and Canonical Labelings}
+\input{text/tool/wire-diagrams}
+\input{text/tool/lambda-matrices}
+\input{text/tool/stars}
+\input{text/tool/canonical-labelings}
+
+\section{Duality}
+\input{text/tool/duality}
+
+\section{A Geometric View of Algebraic Decision Problems}
+
+Explain how any decision about polynomial predicates applied to tuples of input
+real numbers is a geometry problem. Define point location.
+
+Point location: finding the prism of the VD that contains the input point is
+sufficient to answer all queries. Such a prism is defined by a linear number of
+supporting queries.
+
+
+\section{Cell Partitioning}
+
+\subsection{Bottom Vertex Triangulation}
+\input{text/tool/bottom-vertex-triangulation}
+
+\subsection{Vertical Decomposition}
+\input{text/tool/vertical-decomposition}
+
+
+\section{Divide and Conquer}
+
+This generalizes the idea of divide-and-conquer in sorting.
+
+\subsection{\(\varepsilon\)-nets}
+\input{text/tool/epsilon-nets}
+
+\subsection{Cuttings}
+\input{text/tool/cuttings}
+
+\subsection{Hierarchical Cuttings}
+\input{text/tool/hierarchical-cuttings}
+
+\section{Existential Theory of the Reals}
+\input{text/tool/existential-theory-of-the-reals}
