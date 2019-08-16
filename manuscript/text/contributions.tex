@@ -1,44 +1,4 @@
-\section{Efficient Application of Meiser's Algorithm to \(k\)-SUM}
-
-\section{Generalization of Gr\o nlund and Pettie's Results}
-
-We study two different generalizations of 3SUM\@. In the first generalization,
-which we call the 3POL problem, we replace the sum function by a trivariate
-polynomial of constant degree:
-\begin{problem}[3POL]
-Let $F \in \mathbb{R}[x,y,z]$ be a trivariate polynomial of constant degree,
-given three sets $A$, $B$, and $C$, each containing $n$ real numbers, decide
-whether there exist $a \in A$, $b \in B$, and $c \in C$ such that
-$F(a,b,c)=0$.
-\end{problem}
-The second generalization is a special case of the 3POL problem where we
-restrict the trivariate polynomial $F$ to have the form $F(a,b,c) = f(a,b) -
-c$. We call it the explicit 3POL problem because the dependency on the third
-variable is explicitly given:
-\begin{problem}[explicit 3POL]
-Let $f \in \mathbb{R}[x,y]$ be a bivariate polynomial of constant degree,
-given three sets $A$, $B$, and $C$, each containing $n$ real numbers, decide
-whether there exist $a \in A$, $b \in B$, and $c \in C$ such that $c=f(a,b)$.
-\end{problem}
-We will first design algorithms for this easier problem. The techniques used can
-then be adapted to work for the more general 3POL problem. We design both
-uniform and nonuniform algorithms.
-%
-In \S\ref{sec:algo:explicit:nonuniform},
-we give a $O(n^{12/7+\varepsilon})$-depth bounded-degree
-algebraic decision tree for explicit 3POL, and in
-\S\ref{sec:algo:explicit:uniform}, we adapt this decision tree
-to run in $O(n^2 {(\log \log n)}^{3/2} / {(\log n)}^{1/2})$-time
-in the real-RAM model.
-%
-In \S\ref{sec:algo:implicit:nonuniform}, we generalize the decision tree from
-\S\ref{sec:algo:explicit:nonuniform} to work for 3POL with the same depth, up
-to constant factors.
-%
-Finally, in \S\ref{sec:algo:implicit:uniform}, we give a real-RAM
-implementation of this second decision tree to solve 3POL as fast as
-explicit 3POL, up to constant factors.
-
-\section{Subquadratic Encodings for GPT}
-
-\section{Strongly Subquadratic Encodings for 3SUM}
+\input{text/contribution/ksum-algorithm}
+\input{text/contribution/3pol-algorithm}
+\input{text/contribution/order-type-encoding}
+\input{text/contribution/3sum-encoding}

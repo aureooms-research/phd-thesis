@@ -1,15 +1,79 @@
-\section{Even Better Nonuniform Algorithms}
+\section{Better Nonuniform Algorithms}
+
+Meiser's algorithm solves a broader class of problems than the \(k\)-SUM
+problems. In its general formulation, this algorithm solves
+the point location problem (Problem~\ref{problem:point-location-hyperplane}):
+to locate an input point in a fixed arrangement of $m$ hyperplanes in $R^d$.
+
+Our analysis of Meiser's algorithm yields a nonuniform upper bound of \(O(d^3 \log
+d \log m)\) for this problem. However, this is far from optimal.
+The information theoretic lower bound obtained through
+Buck's theorem (Theorem~\ref{thm:buck}) is only \(\Omega(d \log m)\).
+
+Since the publication of our results, two new developments have surfaced.
+%
+The first reduces the nonuniform complexity of Meiser's algorithm for the point
+location problem from
+\(O(d^3 \log d \log m)\) down to \(O(d^2 \log m)\).
+%
+The second invents a completely novel technique to reduce the nonuniform
+complexity of the same problem down to \(O(d \log d \log m)\), provided the
+coefficients of the hyperplanes are constants.
+
+We briefly sketch those two developments in the next subsections.
 
 \subsection{Using Vertical Decomposition}
 
-Ezra and
-Sharir~\cite{ES17}
-later improved the decision tree depth to \( O(n^2 \log n) \) by using
-vertical decomposition instead.
+In 2016, Ezra and Sharir~\cite{ES17} improve the decision tree depth of
+Meiser's algorithm by using vertical decomposition as the cell refinement
+subroutine.
+
+A big player in the complexity of our algorithm is the size of the sample
+needed for the \(\varepsilon\)-net. It turns out that with
+vertical decomposition the sample size can be significantly reduced: $O(d)$
+instead of $O(d^2 \log d)$ for simplices.
+%
+A sample size of $O(d \log d)$ can easily be attained using existing results on
+the VC-dimension of certain range spaces. One of the key results in~\cite{ES17}
+is to get the sample size down to $O(d)$.
+
+For instance,
+when applying this improved algorithm to the \(k\)-SUM problem or the
+subset-sum problem,
+the change in the sample size causes Meiser's decision tree to be
+much shallower than our implementation:
+the depth of the tree is reduced by a \(n \log n\) factor in both cases leading
+to overall complexities of \(O(n^2 \log n)\) and \(O(n^3)\) respectively.
 
 \subsection{Inference Dimension}
 
-In a breakthrough result, Kane, Lovett, and Moran~\cite{KLM18} proved
-that $k$-SUM can be solved using $O(n \log^2 n)$ $2k$-linear queries. This is
-close to the information theoretic lower bound of $\Omega(n \log n)$. Their
-decision tree is also a prune and search algorithm.
+In 2017, Kane, Lovett, and Moran~\cite{KLM18} proved that the point location
+problem can be solved in \(O(d \log d \log m)\) linear queries.
+
+Their decision tree is also a prune and search algorithm following
+the generic approach of Meiser: sample, locate,
+prune, recurse. The key ingredient is a new tool dubbed \emph{inference
+dimension} that takes the role of the VC-dimension in Meiser's algorithm.
+
+The major catch with this new decision tree is that it will only work for
+sparse hyperplanes: hyperplanes with a small hamming weight. This is precisely
+the case for the application of point location to the \(k\)-SUM and subset-sum
+problems. For those applications, the decision trees in~\cite{KLM18} are shallower than the
+decision trees in~\cite{ES17} by a factor of $n / \log n$:
+$O(n \log^2 n)$ for \(k\)-SUM and \(O(n^2 \log n)\) for subset-sum.
+
+Another feature of this algorithm is that it only uses \emph{comparison
+queries}. When applied to \(k\)-SUM, our algorithm and the one in~\cite{ES17} are \(n\)-linear
+decision trees, while the one in~\cite{KLM18} is a \(2k\)-linear decision tree.
+
+In 2018, the authors of~\cite{KLM18} published another paper generalizing their
+decision tree to work for arbitrary hyperplanes~\cite{KLM18b}. However,
+the depth they obtain is much worse in that case: $O(d^4 \log d \log m)$ for
+arbitrary hyperplanes. Moreover, it requires the use of \emph{generalized
+comparison queries} which are more complex than the comparison queries
+in~\cite{KLM18}.
+
+In 2019,  Hopkins, Kane, and Lovett~\cite{HKL19} provide another decision
+tree for point location of depth \(O(d \log^2 m)\) when the set of
+hyperplanes is drawn from a distribution with weak restrictions. This new
+algorithm only uses comparison queries.

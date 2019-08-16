@@ -1,6 +1,18 @@
-\section{Better Nonuniform Algorithms}
+\section{Meiser Solves \(k\)-SUM}
 
-\input{text/paper/ksum-algorithm/contribution/00-intro}
+The results in this section have been published in Paper A.
+Our main contribution in this paper is an efficient implementation of an
+existing algorithm by Meiser~\cite{M93} when applied to the \(k\)-SUM problem.
+
+This section is divided into three subsections:
+Subsection~\ref{paper:ksum-algorithm:contrib:query-complexity} gives the outline of the
+algorithm and analyses its complexity in the linear decision tree model.
+Subsection~\ref{paper:ksum-algorithm:contrib:time-complexity} gives a second
+slightly more complex implementation and analysis of this algorithm in the word-RAM
+model. Subsection~\ref{paper:ksum-algorithm:contrib:query-size} gives a simple
+tweak that can be applied to those algorithms in order to reduce the complexity
+of the queries involved.
+
 \input{text/paper/ksum-algorithm/contribution/01-query-complexity}
 \input{text/paper/ksum-algorithm/contribution/02-time-complexity}
 \input{text/paper/ksum-algorithm/contribution/03-query-size}

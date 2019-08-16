@@ -19,6 +19,27 @@ Real-RAM vs Word-RAM
 %paragraph on this in the introduction, pointing to where nonuniformity is
 %exploited.}
 
+%One of the original motivations behind solving this problem efficiently is that
+%the KNAPSACK and SUBSET-SUM problems reduce to it. The main motivation in this
+%paper focuses on k-SUM, the parameterized version of SUBSET-SUM.
+
+%Solving the point location problem amounts to compute the sign of the dot
+%product of the input point with the coefficient vector of each hyperplane and
+%can be solved in $O(dn)$ arithmetic operations by bruteforce.
+
+%The linear decision tree model does not allow to compute the dot product of the
+%input point with a fixed vector, nor does it count arithmetic operations. In
+%this model, an algorithm is not given direct access to the input. Instead, an
+%algorithm is allowed to ask an oracle low complexity queries about the input.
+%Based on the answers to those queries, an algorithm is allowed to make use of
+%unlimited computation power, at no cost, to deduce the answer to the original
+%problem. If not enough information is available to answer the problem, the
+%algorithm will use its costless computation power to decide which questions to
+%ask next. In the linear decision tree model, the low complexity queries output
+%the sign of a linear combination of the input point's coordinates. The cost of
+%an algorithm in this model is the number of queries this algorithm asks to
+%solve a problem.
+
 
 Allow a different algorithm for each input size.
 Compare to circuits: time to construct circuit does not count.
