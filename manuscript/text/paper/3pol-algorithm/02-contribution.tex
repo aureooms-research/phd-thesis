@@ -1,57 +1,29 @@
 \section{First Subquadratic Algorithms for 3POL}
-We focus on the computational complexity of 3POL\@. Since 3POL contains 3SUM,
-an interesting question is whether a generalization of Gr\o nlund and Pettie's
-3SUM algorithm exists for 3POL\@. If this is true, then we might wonder whether
-we can ``beat'' the $O(n^{11/6}) = O(n^{1.833\ldots})$ combinatorial bound of Raz,
-Sharir and de Zeeuw~\cite{RSZ15} with nonuniform algorithms. We give a positive
-answer to both questions: we design
-a uniform
-$O(n^2 {(\log \log n)}^{3/2} / {(\log n)}^{1/2})$-time
-real-RAM algorithm
-and
-a nonuniform
-$O(n^{12/7+\varepsilon}) = O(n^{1.7143})$-depth
-bounded-degree algebraic decision tree
-for 3POL\@.%
-\footnote{Throughout this document, $\varepsilon$ denotes a positive real
-number that can be made as small as desired.}
-To prove our uniform result, we present a fast algorithm for the Polynomial
-Dominance Reporting (PDR) problem, a far reaching generalization of the
-Dominance Reporting problem. As the algorithm for Dominance Reporting and its
-analysis by Chan~\cite{Cha08} is used in fast algorithms for all-pairs shortest
-paths, (min,+)-convolutions, and 3SUM, we expect this new algorithm will have
-more applications.
 
-Our results can be applied to many algebraic degeneracy testing problems, such
-as the General Position Testing~(GPT) problem: ``Given $n$ points in the plane, do
-three of them lie on a line?'' It is well known that GPT is 3SUM-hard,
-and it is open whether GPT admits a subquadratic algorithm. Raz, Sharir
-and de Zeeuw results on the 3POL problem~\cite{RSZ15} can be applied to obtain
-a combinatorial bound of $O(n^{11/6})$ on the
-number of collinear triples when the input points are known to be lying on
-a constant number of polynomial curves, provided those curves are neither
-lines nor cubic curves. A corollary of our first result is that
-GPT where the input points are constrained to lie on
-$o({(\log n)}^{1/6}/{(\log \log n)}^{1/2})$
-constant-degree polynomial curves (including lines and cubic curves)
-admits a subquadratic real-RAM algorithm and
-a strongly subquadratic bounded-degree algebraic decision tree.
-Interestingly, both reductions from 3SUM to GPT on 3 lines (map $a$ to $(a,0)$,
-$b$ to $(b,2)$, and $c$ to $(\frac c2, 1)$) and from 3SUM to GPT on a
-cubic curve (map $a$ to $(a^3,a)$, $b$ to $(b^3,b)$, and $c$ to $(c^3,c)$)
-construct such special instances of GPT\@.
-This constitutes the first step towards closing the major open question of
-whether GPT can be solved in subquadratic time.
-%
-To further convince the reader of the expressive power of the 3POL problem,
-we also give reductions from the problem of counting triples of points spanning
-unit circles, from the problem of counting triples of points spanning unit area
-triangles, and from the problem of counting collinear triples in any dimension.
+The results in this section have been published in Paper B.
+Our main contribution in this paper is the first subquadratic algorithm for
+the 3POL problem (Problem~\ref{problem:3pol}).
 
-The algorithms we present manipulate polynomial expressions.
+This section is divided into four subsections:
 %
-In computational geometry, it is customary to assume the real-RAM model can be
-extended to allow the computation of roots of constant degree polynomials.
-We distance ourselves from this practice and take particular care
-of using the real-RAM model and the bounded-degree algebraic decision tree
-model with only the four arithmetic operators.
+In \S\ref{sec:algo:explicit:nonuniform},
+we give a $O(n^{12/7+\varepsilon})$-depth bounded-degree
+algebraic decision tree for explicit 3POL, and in
+\S\ref{sec:algo:explicit:uniform}, we adapt this decision tree
+to run in $O(n^2 {(\log \log n)}^{3/2} / {(\log n)}^{1/2})$-time
+in the real-RAM model.
+%
+In \S\ref{sec:algo:implicit:nonuniform}, we generalize the decision tree from
+\S\ref{sec:algo:explicit:nonuniform} to work for 3POL with the same depth, up
+to constant factors.
+%
+Finally, in \S\ref{sec:algo:implicit:uniform}, we give a real-RAM
+implementation of this second decision tree to solve 3POL as fast as
+explicit 3POL, up to constant factors.
+
+Additional details and applications can be found in Appendix~\ref{appendix:paper:3pol-algorithm}.
+
+\input{text/paper/3pol-algorithm/text/sec/06-algorithms/01-nonuniform-explicit}
+\input{text/paper/3pol-algorithm/text/sec/06-algorithms/03-uniform-explicit}
+\input{text/paper/3pol-algorithm/text/sec/06-algorithms/05-nonuniform-implicit}
+\input{text/paper/3pol-algorithm/text/sec/06-algorithms/06-uniform-implicit}
