@@ -1,9 +1,7 @@
-\chapter{Geometry}
-
 We mainly consider the Euclidean plane \(\mathbb{R}^2\) and its
 \(d\)-dimensional analog \(\mathbb{R}^d\).
 
-\section{Arrangements of Hyperplanes}
+\chapter{Arrangements of Hyperplanes}
 
 An \emph{hyperplane} in \(\mathbb{R}^d\) is the set of points \(q \in \mathbb{R}^d\)
 satisfying some linear equation of the form \(\sum_{i=1}^{d} p_i q_i = 0\) for
@@ -35,35 +33,73 @@ Each sign vector \(\sigma \in \{\,
 defined as the set of points \(q\) such that \(q \in H_i^{\sigma_i}\) for all
 \(H_i \in \mathcal{H}\).
 
-\subsection{Counting Cells}
-It is interesting to understand the behavior of such arrangement.
-We want to bound the number of nonempty cells an arrangement can have.
+\section{Counting Cells}
+It is interesting to understand the behavior of such an arrangement when
+\(m\) grows. The goal is to bound the number of nonempty cells an arrangement
+can have. When \(m \leq d\) we can easily create patological examples where
+every possible cell exists and is equal to \(3^m\). But when we fix
+\(d\) and make \(m\) grow, we get another interesting behavior.
 
-\subsection{Pseudolines}
+We state a theorem due to Buck~\cite{Bu43} that allows us to conclude
+this chapter with the result that the decision tree complexity of sorting
+\(X + Y\) is \(O(n^2)\).
+
+The theorem goes as follows
+\begin{theorem}[Buck~\cite{Bu43}]\label{theorem:xy:counting}
+Consider the partition of space defined by an arrangement of $m$ hyperplanes in
+$\R^d$.
+The number of regions of dimension $k \le d$ is at most
+\begin{displaymath}
+	{m \choose d-k}
+	\left(
+		{m-d+k \choose 0}
+		+
+		{m-d+k \choose 1}
+		+
+		\cdots
+		+
+		{m-d+k \choose k}
+	\right)
+\end{displaymath}
+and the number of regions of all dimensions is \(O(m^d)\).
+\end{theorem}
+
+To use this theorem, we model Sorting \(X + Y\) as a point location problem in an
+arrangement of hyperplanes. Each instance of the problem is consisting of two
+sets of real numbers $\X$ and $\Y$, both of cardinality $n$. An instance can
+thus be encoded as a vertex in $\R^{2n}$. Here is a possible encoding,
+\begin{displaymath}
+x = (\X_1, \ldots, \X_n, \Y_1, \ldots, \Y_n).
+\end{displaymath}
+
+For every combination $(\X_{i_1}, \X_{j_1}, \Y_{i_2}, \Y_{j_2})$ of $4$
+components of this vertex we want to know whether $\X_{i_1} + \Y_{i_2} \le
+\X_{j_1} + \Y_{j_2}$. This can be rewritten as,
+$$\X_{i_1} + \Y_{i_2} - \X_{j_1} - \Y_{j_2} \ask{\le} 0$$
+and it is equivalent to asking if $x$ lies above, on or under an
+hyperplane of equation $\X_{i_1} + \Y_{i_2} - \X_{j_1} - \Y_{j_2} = 0$. There
+are \(O(n^4)\) of those hyperplanes, and thanks to \ref{theorem:xy:counting}
+we know that an arrangement built from them would contain
+\(O({(n^4)}^{2n}) = O(n^{8n})\) regions. Hence, for \(X+Y\), \(\card{\Gamma} =
+O(n^{8n})\) and by using the algorithm of Fredman to find the correct
+$n^2$-tuple, the decision tree complexity is
+\(O(n \log n + n^2) = O(n^2)\).
+
+In the next section we give a visual proof for a simplified version of
+Buck's theorem.
+
+
+
+\section{Pseudolines}
 \dots
 
 Pseudolines are generalized into pseudohyperplanes. We do not discuss this
 generalization in this thesis.
 
-\subsection{Zone Theorem}
+\section{Zone Theorem}
 \input{text/tool/zone-theorem}
 
-\subsection{Point Location}
-Describe the point location problem.
-\input{text/definition/point-location}
-
-\section{Point Configurations}
-
-\subsection{Wire Diagrams, \(\lambda\)-matrices, Stars, and Canonical Labelings}
-\input{text/tool/wire-diagrams}
-\input{text/tool/lambda-matrices}
-\input{text/tool/stars}
-\input{text/tool/canonical-labelings}
-
-\section{Duality}
-\input{text/tool/duality}
-
-\section{A Geometric View of Algebraic Decision Problems}
+\section{Geometric View}
 
 Explain how any decision about polynomial predicates applied to tuples of input
 real numbers is a geometry problem. Define point location.
@@ -73,27 +109,43 @@ sufficient to answer all queries. Such a prism is defined by a linear number of
 supporting queries.
 
 
-\section{Cell Partitioning}
 
-\subsection{Bottom Vertex Triangulation}
+\section{Point Location}
+Describe the point location problem.
+\input{text/definition/point-location}
+
+\chapter{Point Configurations}
+
+\section{Duality}
+\input{text/tool/duality}
+
+\section{Existing Encodings}
+\input{text/tool/wire-diagrams}
+\input{text/tool/lambda-matrices}
+\input{text/tool/stars}
+\input{text/tool/canonical-labelings}
+
+\chapter{Cell Partitioning}
+
+\section{Bottom Vertex Triangulation}
 \input{text/tool/bottom-vertex-triangulation}
 
-\subsection{Vertical Decomposition}
+\section{Vertical Decomposition}
 \input{text/tool/vertical-decomposition}
 
 
-\section{Divide and Conquer}
+\chapter{Divide and Conquer}
 
 This generalizes the idea of divide-and-conquer in sorting.
 
-\subsection{\(\varepsilon\)-nets}
+\section{\(\varepsilon\)-nets}
 \input{text/tool/epsilon-nets}
 
-\subsection{Cuttings}
+\section{Cuttings}
 \input{text/tool/cuttings}
 
-\subsection{Hierarchical Cuttings}
+\section{Hierarchical Cuttings}
 \input{text/tool/hierarchical-cuttings}
 
-\section{Existential Theory of the Reals}
+\chapter{Existential Theory of the Reals}
 \input{text/tool/existential-theory-of-the-reals}

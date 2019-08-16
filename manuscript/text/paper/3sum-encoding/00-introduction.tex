@@ -91,13 +91,13 @@ how to use $\tilde{O}(N^{1.5})$ space to achieve $O(1)$-time queries.
 \centering
 \caption{Table of results}\label{tor}
 \begin{tabular}{cccc}
-& Query time & Space (in bits) & Preprocessing time \\ \hline
+Encoding & Query time & Space (in bits) & Preprocessing time \\ \hline
 Trivial & $O(1)$ & $O(N^3)$ & $O(N^3)$ \\
 Almost trivial & $O(1)$ & $O(N^2 \log N)$ & $O(N^2)$ \\
-Order-type encoding \cite{CCILO18} & $O(\log N)$ & $O(\frac{N^2 \log^2 \log N}{\log N})$ & $O(N^2) $\\
-Order-type encoding \cite{CCILO18} & $O(\frac{\log N}{\log \log N})$ & $O(\frac{N^2 }{\log^{1-\epsilon} N})$ & $O(N^2)$ \\
-Numeric representation (\S\ref{s:numbers}) & $O(N)$ & $O(N^2)$ & $N^{O(1)}$\\
-Space-optimal representation (\S\ref{s:space}) & $N^{O(1)}$ & $O(N \log N)$ & $N^{O(1)}$\\
+Order Type \cite{CCILO18} & $O(\log N)$ & $O(\frac{N^2 \log^2 \log N}{\log N})$ & $O(N^2) $\\
+Order Type \cite{CCILO18} & $O(\frac{\log N}{\log \log N})$ & $O(\frac{N^2 }{\log^{1-\epsilon} N})$ & $O(N^2)$ \\
+Numerical (\S\ref{s:numbers}) & $O(N)$ & $O(N^2)$ & $N^{O(1)}$\\
+Space-optimal (\S\ref{s:space}) & $N^{O(1)}$ & $O(N \log N)$ & $N^{O(1)}$\\
 Query-optimal (\S\ref{s:sscqt}) &  $O(1)$ & $\tilde{O}(N^{1.5})$ & $O(N^{2})$ \\
 \end{tabular}
 \end{table}

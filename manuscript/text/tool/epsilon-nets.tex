@@ -1,0 +1,13 @@
+We use standard results on \enets{}. By combining a theorem due to Blumer et
+al.~\cite{BEHW89} with the results of Meiser~\cite{M93}\footnote{Note that
+Meiser used an older result due to Haussler and Welzl~\cite{H87} and got an
+extra $\log n$ factor in the size of the $\varepsilon$-net. We thank Hervé
+Fournier for pointing this out.}, it is possible to
+construct an \enet{} \(\NH\) for the range space
+defined by hyperplanes and simplices using a random uniform sampling on \(\Hy\).
+
+\input{text/theorem/epsilon-net-simplex}
+
+The contrapositive states that if no hyperplane in \(\net\) intersects
+a given simplex, then with high probability the number of hyperplanes of
+\(\Hy\) intersecting the simplex is at most \(\varepsilon \card{\Hy}\).

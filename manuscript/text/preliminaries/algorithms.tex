@@ -49,4 +49,40 @@ Decision Trees,
 Algebraic Decision Trees,
 Linear Decision Trees.
 
+\paragraph{Linear Decision Trees}
 
+The \emph{\(s\)-linear decision tree model} is a standard model of computation
+in which several lower bounds for \(k\)-SUM\ have been proven. In the decision tree
+model, one may ask well-defined questions to an oracle that are answered
+``yes'' or ``no.'' For $s$-linear decision trees, a well-defined question consists
+of testing the sign of a linear function on at most \(s\) numbers \(q_{i_1},\ldots,q_{i_s}\) of the
+input \(q_1,\ldots,q_n\) and can be written as
+%
+\begin{displaymath}
+	\alpha_1 q_{i_1} + \cdots + \alpha_s q_{i_s} \ask{\le} \alpha_0
+\end{displaymath}
+%
+Each question is defined to cost a single unit. All other operations can be
+carried out for free but may not examine the input vector $q$. We refer to
+$n$-linear decision trees simply as linear decision trees.
+
+\paragraph{Models of Computation}
+
+Similarly to Gr\o nlund and Pettie~\cite{GP18}, we consider both nonuniform
+and uniform models of computation.
+%
+For the nonuniform model, Gr\o nlund and Pettie consider linear
+decision trees, where one is only allowed to manipulate the input numbers
+through linear queries to an oracle. Each linear query has constant cost and
+all other operations are free but cannot inspect the input.
+%
+In this paper, we consider
+\emph{bounded-degree algebraic decision trees (ADT)}~\cite{R72,Y81,SY82},
+an algebraic generalization of linear decision trees,
+as the nonuniform model. In a bounded-degree algebraic decision tree, one
+performs constant cost branching operations that amount to test the sign of
+a constant-degree polynomial of the input numbers. Again,
+operations not involving the input are free.
+%
+For the uniform model we consider the real-RAM model with only the four
+arithmetic operators.

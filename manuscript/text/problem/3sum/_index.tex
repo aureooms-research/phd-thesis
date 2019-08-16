@@ -1,4 +1,4 @@
-\chapter{3SUM}
+\section{3SUM}
 
 \todo{Give at least one paragraph per citation on 3SUM.}
 
@@ -105,3 +105,89 @@ with the same running time and shaved off the $\sqrt{\log n}$ factor in the
 decision tree complexities of 3SUM and \(k\)-SUM given by Gr{\o}nlund and Pettie.
 
 Chan's and Lewenstein's algorithm? Chan's most recent log shaving?
+
+\subsection{MERGE THIS Algorithmic Results on the 3SUM Problem}
+For the sake of simplicity, we consider the following definition of 3SUM\@:
+\begin{problem}[3SUM]
+Given 3 sets $A$, $B$, and $C$, each containing $n$ real numbers, decide
+whether there exist $a \in A$, $b \in B$, and $c \in C$ such that $c=a+b$.
+\end{problem}
+
+Gajentaan and Overmars~\cite{GO95} were the first to take serious interest in
+the 3SUM problem. They introduced the concept of \(n^2\)-hard (or
+3SUM-hard) problems:
+they revealed a connection between seemingly unrelated geometric
+problems by showing that each of them is at least as hard as 3SUM.
+
+A quadratic lower bound for solving 3SUM holds in a restricted model of
+computation: the $3$-linear decision tree model. Erickson~\cite{Er99a}
+and Ailon and Chazelle~\cite{AC05} showed
+that, in this model, where one is only allowed to test the sign of a linear
+expression of up to three input numbers, no matter which decision tree you
+use, there always exists an instance for which a quadratic number of
+critical tuples must be tested.
+%\improve{Noam asks if there is some lower bound analog for 3POL.}
+\input{text/theorem/Er99a}
+
+While no evidence suggested that this lower bound could be extended to other
+models of computation, it was eventually conjectured that 3SUM requires
+$\Omega(n^2)$ time.
+
+Baran et al.~\cite{BDP08} were the first to give concrete evidence
+for doubting the conjecture.
+They gave subquadratic Las Vegas algorithms for 3SUM, where input
+numbers are restricted to be integer or rational, in the circuit RAM,
+word RAM, external memory, and cache-oblivious models of computation. Their idea
+is to exploit the parallelism of the models, using linear and
+universal hashing.
+
+Gr\o nlund~and~Pettie~\cite{GP18}, using a trick due to Fredman~\cite{Fr76},
+showed that there exist subquadratic decision trees for 3SUM when the queries
+are allowed to be $4$-linear.
+\input{text/theorem/GP18}
+They also gave deterministic and randomized
+subquadratic real-RAM algorithms for 3SUM, refuting the conjecture.
+Similarly to the subquadratic $4$-linear decision trees, these new results
+use the power of $4$-linear queries.
+%
+These algorithms were later improved by Freund~\cite{Fr15} and
+Gold~and~Sharir~\cite{GS15}.
+The currently best published bound for real-RAM 3SUM is
+\input{text/theorem/Fr15+GS15}
+Since then, the conjecture was eventually updated. This new conjecture is
+considered an essential part of the theory of complexity-within-P.
+\input{text/theorem/3sum-conjecture}
+
+The
+$k$-SUM problem is a generalization of 3SUM where we are given an $n$-set of
+real numbers and are asked to decide whether it contains a $k$-tuple that sums
+to zero. The lower bound of Erickson generalizes to \( \Omega (n^{\lceil k/2
+\rceil }) \) for \( k \)-linear decision trees that solve \( k \)-SUM\@.
+All the aforementioned subquadratic algorithms for 3SUM inspect the input
+through $4$-linear queries.  Gr\o nlund and Pettie's decision tree can be
+turned into a \( O(n^{k/2} \sqrt{\log{n}}) \)-depth $(2k-2)$-linear decision
+tree for $k$-SUM, for all odd $k \geq 3$.\footnote{The main result in Gold and Sharir's paper~\cite{GS15}
+is a \emph{randomized} \(O(n^{k/2})\)-depth \((2k-2)\)-linear decision tree for
+\(k\)-SUM, for all odd \(k \geq 3\).}
+
+Early results of Meyer auf der Heide~\cite{M84} and Meiser~\cite{M93} show that if one is allowed to
+use $n$-linear queries, the complexity drops to a polynomial in the input size
+whose exponent does not depend on $k$. Cardinal, Iacono, and
+Ooms~\cite{CIO16}
+carefully analyzed the complexity of Meiser's algorithm to show that $k$-SUM
+can be solved in \( O(n^3 \log^2 n) \) $n$-linear queries. They also showed how
+to efficiently implement this decision tree in the real-RAM model. This decision
+tree is a prune and search algorithm that relies on the simplicial
+decomposition of an arrangement of hyperplanes. Ezra and
+Sharir~\cite{ES17}
+later improved the decision tree depth to \( O(n^2 \log n) \) by using
+vertical decomposition instead.
+%
+
+In a breakthrough result, Kane, Lovett, and Moran~\cite{KLM17} proved
+that $k$-SUM can be solved using $O(n \log^2 n)$ $2k$-linear queries. This is
+close to the information theoretic lower bound of $\Omega(n \log n)$. Their
+decision tree is also a prune and search algorithm. The techniques used rely
+heavily on the linearity of the sum function in the 3SUM problem. We do not see
+how to apply their techniques to obtain subquadratic-depth decision trees for
+the 3POL problem.

@@ -1,41 +1,4 @@
-\section{The 3POL Problem}
-
-We consider an algebraic generalization of the 3SUM problem: we replace the sum
-function by a constant-degree polynomial in three variables $F \in
-\mathbb{R}[x,y,z]$ and ask to determine whether there exists a
-\emph{degenerate} triple $(a,b,c)$ of input numbers such that $F(a,b,c)=0$. We
-call this new problem the \emph{3POL problem}.
-
-Some combinatorics aspects of the 3POL problem have already been studied.
-%
-For the particular case $F(x,y,z) = f(x,y) - z$ where $f \in \mathbb{R}[x,y]$
-is a constant-degree bivariate polynomial, Elekes and Rónyai~\cite{ER00} show
-that the number of degenerate triples is $o(n^2)$ unless $f$ is
-\emph{special}. Special for $f$ means that $f$ has one of the two special forms
-\begin{displaymath}
-f(u,v)=h(\varphi(u)+\psi(v))
-\qquad
-\text{or}
-\qquad
-f(u,v)=h(\varphi(u)\cdot\psi(v)),
-\end{displaymath}
-where $h,\varphi,\psi$ are univariate polynomials of constant degree.
-It must be noted that the 3SUM problem falls in the special category since, in
-that case, \( f \) is the sum function.
-%
-Elekes and Szabó~\cite{ES12} later generalized this result to a broader range
-of functions $F$ using a wider definition of specialness.
-%
-Raz, Sharir and Solymosi~\cite{RSS14} and Raz, Sharir and de Zeeuw~\cite{RSZ15}
-improved both bounds to $O(n^{11/6})$.
-%
-They translated the problem into an incidence problem between points and
-constant-degree algebraic curves. Then, they showed that unless $f$ (or $F$) is
-special, these curves have low multiplicities. Finally, they applied a theorem
-due to Pach and Sharir~\cite{PS98} bounding the number of incidences between
-the points and the curves. Some of these ideas appear in our approach.
-
-%\subsection{Our results}
+\section{First Subquadratic Algorithms for 3POL}
 We focus on the computational complexity of 3POL\@. Since 3POL contains 3SUM,
 an interesting question is whether a generalization of Gr\o nlund and Pettie's
 3SUM algorithm exists for 3POL\@. If this is true, then we might wonder whether

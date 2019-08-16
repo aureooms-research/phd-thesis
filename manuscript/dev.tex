@@ -16,26 +16,43 @@
 \begin{document}
 \maketitle
 
+\frontmatter
 \input{text/summary}
 \input{text/acknowledgements}
 \input{text/toc}
-\input{text/overview}
+
 \mainmatter
-\input{text/preliminaries}
-\part{Problems}
+
+\input{text/overview}
+
+\part{Problems \& Contributions}
+\chapter{Problems}
 \input{text/problem/3sum/_index}
 \input{text/problem/ksum/_index}
 \input{text/problem/gpt/_index}
+\chapter{Contributions}
+\input{text/contributions}
+
+\part{Definitions}
+\input{text/preliminaries/algorithms}
+\input{text/preliminaries/data-structures}
+
+\part{Geometry}\label{sec:preliminaries}
+\input{text/preliminaries}
+
 \part{Algorithms}
 \input{text/paper/ksum-algorithm/_index}
 \input{text/paper/3pol-algorithm/_index}
+
 \part{Data Structures}
 \input{text/paper/order-type-encoding/_index}
 \input{text/paper/3sum-encoding/_index}
+
 \appendix
 \input{text/lexicon}
 \input{text/appendix}
 
+\backmatter
 \bibliography{bibliography/bibliography}
 
 \end{document}

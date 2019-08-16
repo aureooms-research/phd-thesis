@@ -1,7 +1,74 @@
 \chapter{Data Structures}
 
+\section{Succinct Data Structures}
+
 \section{Construction}
 
 \section{Queries}
 
 \section{Encodings}
+
+\section{Connection to Decision Trees}
+
+Give example with k-SUM, CIO, ES and KLM.
+
+Those yield succinct encoding from which the signs can be recovered.
+
+This is not necessarily true with algebraic decision trees because the answer
+set is not necessarily connected. With linear decision trees it is because the
+answer set is convex, and thus connected.
+
+Given a realizable order type, instead of encoding the answers to all possible
+of its order type queries, consider the problem of deciding whether one of
+those queries answers \(0\).
+This problem is the general position testing problem (GPT) and corresponds to
+deciding whether an input set of points in the plane contains a collinear
+triple.
+
+It is an open question whether solving this problem can be done in subquadratic
+time. In particular, no subquadratic constant-degree algebraic decision tree is
+known for that problem.
+
+A constant-degree algebraic decision tree is a rooted tree whose internal nodes are
+labeled with inequalities of the form \(f(\text{input}) \leq 0\), where
+\(f\) is a constant-degree polynomial,
+and whose leaves are labeled with \emph{yes} or \emph{no}.
+
+Observe the following: Assume we are given an instance of some real-input
+decision problem. Given a (computable???) decision tree of depth \(D\) for this problem for which
+each input query and answer can be encoded using at most \(Q\) bits, we can
+encode the instance using at most \(DQ\) bits by encoding the path traversed when
+executing the decision tree on this instance. The general position testing
+problem (GPT) asks if an input set of \(n\) points in the plane contains a
+collinear triple. It is an example of a real-input decision problem for which
+no subquadratic real-RAM algorithm is known even though the best known lower
+bound is \(\Omega(n \log n)\). Since shallow decision trees yield short encodings,
+we see the design of a subquadratic encoding for realizable order types as a
+stepping stone towards nonuniform and uniform subquadratic algorithms for
+GPT\@.
+
+Unfortunately, even though our encodings achieve subquadratic space for
+realizable order types, they cannot be used to test for isomorphism in
+subquadratic time. This is partly because the preprocessing time to construct
+the encoding is already quadratic.
+%
+However, observe that the preprocessing time we achieve in this contribution
+matches the best known upper bound for GPT in the algebraic decision tree
+model:
+\begin{theorem}
+  If there is an encoding with construction cost \(C(N)\) for
+  realizable order types in the algebraic decision tree model, then
+  there is a nonuniform algorithm for general position testing that runs
+  in time \(C(N)\) in the algebraic decision tree model.
+\end{theorem}
+%
+\begin{proof}
+  Construct the encoding. Then at zero cost in the nonuniform
+  model, run all \(O(n^3)\) queries on the encoding.
+\end{proof}
+%
+Goodman and Pollack saw GPT as a multidimensional generalization of
+sorting~\cite{GP83}.
+%
+We again stress the need for a better understanding of this fundamental
+problem.

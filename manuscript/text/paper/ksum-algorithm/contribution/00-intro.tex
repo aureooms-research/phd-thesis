@@ -85,9 +85,9 @@ changes in the analysis will likely be needed to do so.}
 \begin{tabular}{|c|c|c|c|c|}
 	\hline
 
-	& \# blocks & query size & \# queries & time \\
+	Theorem & blocks & query size & queries & time \\
 	\hline
-	Theorem~\ref{thm:cube} &
+	\ref{thm:cube} &
 	$1$ &
 	$n$ &
 	$\tilde{O}(n^3)$ & $\tilde{O}(n^{\lceil\frac{k}{2}+8\rceil})$
@@ -95,7 +95,7 @@ changes in the analysis will likely be needed to do so.}
 
 	\hline
 
-	Theorem~\ref{thm:query-size} &
+	\ref{thm:query-size} &
 	$b$ &
 	$k\lceil\frac{n}{b}\rceil$ &
 	$\tilde{O}(b^{k-4}n^3)$ &
@@ -104,8 +104,8 @@ changes in the analysis will likely be needed to do so.}
 
 	\hline
 
-	Corollary~\ref{cor:logn} &
-	$b=\Theta(\polylog(n))$ &
+	\ref{cor:logn} &
+	$b=n^{\Theta(1)}$ &
 	$o(n)$ &
 	$\tilde{O}(n^3)$ &
 	$\tilde{O}(n^{\lceil\frac{k}{2}+8\rceil})$
@@ -113,7 +113,7 @@ changes in the analysis will likely be needed to do so.}
 
 	\hline
 
-	Corollary~\ref{cor:ne} &
+	\ref{cor:ne} &
 	$b=\Theta(n^\alpha)$ &
 	$O(n^{1-\alpha})$ &
 	$\tilde{O}(n^{3+(k-4)\alpha})$ &

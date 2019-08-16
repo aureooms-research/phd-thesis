@@ -11,22 +11,11 @@ $\arrangement(\Hy)$ that contains $q$ in its interior (or that \emph{is} $q$ if
 $q$ is a $0$-cell of $\arrangement(\Hy)$), that is, the positions $\sigma(H,q) \in
 \signset$ of \(q\) with respect to all hyperplanes $H \in \Hy$. In the \(k\)-SUM
 problem, the set $\Hy$ is the set of $\Theta(n^k)$ hyperplanes with equations of the
-form $x_{i_1} + x_{i_2} + \cdots + x_{i_k} = 0$. 
+form $x_{i_1} + x_{i_2} + \cdots + x_{i_k} = 0$.
 These equations can be modified accordingly for \(k\)-LDT.
 
-We use standard results on \enets{}. By combining a theorem due to Blumer et
-al.~\cite{BEHW89} with the results of Meiser~\cite{M93}\footnote{Note that
-Meiser used an older result due to Haussler and Welzl~\cite{H87} and got an
-extra $\log n$ factor in the size of the $\varepsilon$-net. We thank Hervé
-Fournier for pointing this out.}, it is possible to
-construct an \enet{} \(\NH\) for the range space
-defined by hyperplanes and simplices using a random uniform sampling on \(\Hy\).
-\input{text/theorem/epsilon-net-simplex}
-The contrapositive states that if no hyperplane in \(\net\) intersects
-a given simplex, then with high probability the number of hyperplanes of
-\(\Hy\) intersecting the simplex is at most \(\varepsilon \card{\Hy}\).
-
-We can use this to design a prune and search algorithm as follows:
+We use Theorem~\ref{thm:enet} to design a prune and search algorithm for
+\(k\)-SUM as follows:
 (1) construct an \enet{} \(\net\),
 (2) compute the cell \(\cell\) of \(\arrangement(\net)\) containing the input
 point $q$ in its interior,
