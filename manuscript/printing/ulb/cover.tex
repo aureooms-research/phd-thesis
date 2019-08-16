@@ -1,0 +1,69 @@
+\documentclass[a4paper,french,12pt]{article} 
+\usepackage{graphicx} 
+\usepackage{hyperref} 
+\usepackage[latin1]{inputenc} 
+\usepackage{xcolor} 
+\usepackage[left=1cm, right=1cm, top=2cm, bottom=1cm]{geometry}
+\usepackage[francais]{babel}
+\usepackage{tcolorbox} 
+\usepackage{wrapfig}
+\usepackage{times}
+
+\definecolor{darkblue}{HTML}{004C93} 
+\tcbset{
+    center title,
+		top=1cm,
+		right=0cm,
+		left=0cm,
+    colback=darkblue,
+    colframe=white,
+    width=15.85cm,
+		height=5.62cm,
+		halign=right,
+		valign=top,
+		flush right,
+		sharp corners=all
+    }
+\pagenumbering{gobble}
+
+\begin{document}
+\includegraphics[width=12.3cm, height=3.07cm]{images/logo.png} \\ \\
+
+\begin{tcolorbox}
+\color[rgb]{1,1,1}
+\Large{[\textbf{Titre complet de la thèse]}} \\
+\large{\textit{[facultatif} Sous-titre de la thèse]}
+\end{tcolorbox} 
+
+\begin{tcolorbox}[colback=white, halign=left]
+\color{darkblue}
+\large{\textbf{Thèse présentée par [Prénom NOM]}} \\
+\color{black}
+\large{en vue de l'obtention du grade académique de docteur[e] en [nom du diplôme] \\
+Année académique 20[18]-20[19]}
+ 
+\vspace{2cm}
+
+\begin{flushright}
+\color{darkblue}
+Sous la direction [du/de la] Professeur[e] [Prénom NOM], \ [promoteur/promotrice]  \\
+(facultatif) et [du/de la] Professeur[e] [Prénom NOM], [co- \\
+promoteur/promotrice] \\
+\color{black}
+[facultatif nom de votre unité de recherche]
+\end{flushright}
+\end{tcolorbox}
+\vspace{4cm}
+
+
+\begin{wrapfigure}{r}{0.3\textwidth}
+\includegraphics{images/image_a_remplacer.png}
+\end{wrapfigure}
+\noindent
+\textbf{\textit{(facultatif)} Jury de thèse : } \\  \\
+Prénom NOM (Université libre de Bruxelles, Président) \\
+Prénom NOM ([Université], Secrétaire) \\
+Prénom NOM ([Université]) \\
+Prénom NOM ([Université]) \\
+Prénom NOM ([Université]) \\
+\end{document}
