@@ -1,0 +1,50 @@
+An \emph{hyperplane} in \(\mathbb{R}^d\) is the set of points \(q \in \mathbb{R}^d\)
+satisfying a linear equation of the form \(\sum_{i=1}^{d} p_i q_i = 0\) for
+some tuple of coefficients \(p \in \mathbb{R}^d\). An \emph{affine} hyperplane has an
+additional independent term \(p_0\) to get the equation \(\sum_{i=1}^{d}
+p_i q_i = p_0\). In general we will drop the adjective ``affine'' and talk about
+hyperplanes without specifying whether \(p_0 = 0\).
+%
+In the plane an hyperplane is a line. In \(\mathbb{R}^3\) an hyperplane is
+a plane. On the real line an hyperplane is a point.
+
+An hyperplane \(H\) partitions the space \(\mathbb{R}^d\) into two halfspaces,
+often denoted by \(H^-\) and \(H^+\).
+Naturally, \(H^-\) is defined to be the set of points such that
+\(\sum_{i=1}^{d} p_i q_i < p_0 \) and \(H^+\) is defined to be the set of
+points such that \(\sum_{i=1}^{d} p_i q_i > p_0 \). When we want to be more
+precise as to whether the inequality is strict we can write \(H^{<}\),
+\(H^{\leq}\), \(H^{>}\), or \(H^{\geq}\).
+We also define \(H^0\) and \(H^{=}\) as synonyms of \(H\).
+
+A set of hyperplanes \(\mathcal{H} = \{\, H_1, H_2, \ldots, H_m\,\}\)
+partitions \(\mathbb{R}^d\) into convex regions called \emph{cells}.
+%
+This partition is denoted by \(\mathcal{A}(\mathcal{H})\) and is called the
+\emph{arrangement} of \(\mathcal{H}\).
+%
+Each sign vector \(\sigma \in {\{\,-,0,+\,\}}^{m}\) corresponds to a
+(potentially empty) cell of this arrangement defined as the set of points \(q\)
+such that \(q \in H_i^{\sigma_i}\) for all \(H_i \in \mathcal{H}\).
+
+\section{Counting Cells}
+It is useful to understand the complexity of such an arrangement when
+the number \(m\) of hyperplanes grows and the dimension \(d\) is fixed.
+The goal is to bound the number of nonempty cells an arrangement
+can have. When \(m \leq d\) each of the \(3^m\) cells is nonempty, assuming
+general position. However, when we fix \(d\) and make \(m\) grow, we get a more
+reasonable behavior.
+%
+\input{text/theorem/Bu43}
+
+\section{Zone Theorem in Higher Dimension}
+\input{text/tool/zone-theorem}
+
+\section{Bottom Vertex Triangulation}
+\input{text/tool/bottom-vertex-triangulation}
+
+\section{Vertical Decomposition}
+\input{text/tool/vertical-decomposition}
+
+\section{Point Location}
+\input{text/geometry/point-location}
