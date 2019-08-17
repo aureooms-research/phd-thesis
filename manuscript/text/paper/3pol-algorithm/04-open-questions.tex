@@ -1,50 +1,55 @@
 \section{Open Questions}
 
-Better uniform algorithms for 3SUM and 3POL.
-
-Better nonuniform lower bound for 3SUM with 4-linear queries.
-
-Nonuniform algorithm for 3POL based on inference dimension.
-
-GPT in subquadratic time.
-
-There are a few interesting questions that are left unanswered:
-
 The best algorithms for 3SUM and 3POL are only \emph{slightly} subquadratic,
 shaving a polylogarithmic factor from quadratic runtime. The best lower bound
-we have for those problems \(\Omega(n \log n)\). A w
+we have for those problems is \(\Omega(n \log n)\). The current conjecture is that
+no significant improvement can be made with respect to known algorithms.
+\ConjectureSUM*
+
+We have to ask if this is indeed true.
 \begin{openquestion}
 	Is there a \(n^{2-\Omega(1)}\)-time real-RAM algorithm for 3SUM?
 \end{openquestion}
 
-The same question can be asked about the point location problem. The best
-linear decision tree for arbitrary hyperplanes has depth \(O(d^2 \log m)\) and
-the lower bound is \(\Omega(d \log m)\).
+The question can also be asked more generally for 3POL.
 \begin{openquestion}
-Is there a \(O(d \log m)\)-depth LDT for point location?
+	Is there a \(n^{2-\Omega(1)}\)-time real-RAM algorithm for 3POL?
 \end{openquestion}
 
-We showed how to efficiently implement Meiser's algorithm in the word-RAM model
-when applied to \(k\)-SUM. However, we did not manage to get the query
-complexity down to the current state of the art.
+The best known nonuniform algorithm for 3SUM is a \(6\)-linear decision tree of
+depth \(O(n \log^2 n)\), the nonuniform algorithms in~\cite{GP18,Fr15,GS15} are
+\(4\)-linear decision trees of depth \( \tilde{O}(n^{3/2}) \), and we know that
+there is no \(3\)-linear decision tree of depth \(o(n^2)\) for
+3SUM~\cite{Er99a}.
+We want to know whether better \(4\)-linear decision trees exists for 3SUM.
 \begin{openquestion}
-Is there a word-RAM algorithm for \(k\)-SUM using \(n^{3 - \Omega(1)}\)
-linear queries and running in time \(n^{\frac{k}{2}+O(1)}\)?
+	Is there a \(o(n^{3/2})\)-depth \(4\)-linear decision tree for 3SUM?
 \end{openquestion}
 
-We also have not managed to match the running time of the best known uniform
-algorithm.
+If this is the case, then we would also like to know if this model of
+computation suffers from more severe limitations than the \(6\)-linear decision tree
+model.
 \begin{openquestion}
-Is there a word-RAM algorithm for \(k\)-SUM using \(n^{o(k)}\) linear queries and
-running in time \( \tilde{O}(n^{\lceil \frac k2 \rceil})\)?
+	Is there a \(O(n \polylog n)\)-depth \(4\)-linear decision tree for 3SUM?
 \end{openquestion}
 
-Gr\o nlund and Pettie~\cite{GP18}
-showed how to solve 3SUM in slightly subquadratic time in the real-RAM model.
-However, so far, their technique and its subsequent
-improvements~\cite{Fr15,GS15,Ch18}, have failed to generalize to uniform algorithms
-for \(k\)-SUM.
+The inference dimension method introduced in~\cite{KLM18} is essentially a
+pigeon hole argument applied to linear combinations of linear equations with small coefficients.
+At first sight, this kind of argument does not seem to apply to polynomial
+equations, even when the polynomials are of degree two. One can of course apply
+a Veronese embedding~\cite{Har77,Har13} to linearize the equations but this has
+the effect of blowing up the dimension which directly impacts the efficiency of
+the method. Could some generalization of inference dimension, or any other
+method, yield better nonuniform algorithms for 3POL?
 \begin{openquestion}
-	Is there a \(o(n^{\lceil \frac k2 \rceil})\)-time real-RAM algorithm for
-	\(k\)-SUM with \(k \geq 4\)?
+	Is there a \(o(n^{12/7})\)-depth bounded-degree algebraic decision tree for
+	3POL?
+\end{openquestion}
+
+Despite all our efforts, we still lack a subquadratic algorithm for GPT, even a
+nonuniform one. Like 3SUM and 3POL, the best known lower bound is \(\Omega(n
+\log n)\)~\cite{???}.
+\begin{openquestion}
+	Is there a \(o(n^2)\)-depth bounded-degree algebraic decision tree for
+	GPT?
 \end{openquestion}
