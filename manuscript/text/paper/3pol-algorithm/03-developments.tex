@@ -1,9 +1,16 @@
 \section{Timothy Chan Strikes Again}
 
-Cite Chan's paper.
+In 2017, Timothy Chan presented a
+\(O((n^2 / \log^2 n)(\log \log n)^{O(1)})\)-time real-RAM algorithm for
+3SUM~\cite{Ch18}, shaving a logarithmic factor from previous solutions~\cite{Fr15,GS15}.
 
-Below is wrt 3SUM algorithms.
+His technique relies on cuttings in near-logarithmic dimension on an augmented
+real-RAM model with constant time nonstandard operations on $\Theta(\log n)$
+bits words. Cuttings essentially replace dominance reporting in Gr\o nlund and
+Pettie's algorithm~\cite{GP18}.
+This is inspired by another one of his papers on APSP~\cite{Cha10}.
 
-Chan~\cite{Ch18} shows that an additional logarithmic factor can be shaved
-by augmenting the real-RAM model with constant time nonstandard operations on
-$\Theta(\log n)$ bits words. His improvements extend to 3POL.
+This new technique for shaving off logarithmic factors
+can be applied to other problems, such as (\(\text{median}, +\))-convolution,
+(\(\text{median}, +\))-matrix multiplication, and 3SUM-hard problems in
+computational geometry including explicit 3POL.

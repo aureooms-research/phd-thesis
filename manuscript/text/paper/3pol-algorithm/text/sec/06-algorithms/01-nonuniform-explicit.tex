@@ -2,12 +2,14 @@
 \label{sec:algo:explicit:nonuniform}
 
 We begin with the description of a nonuniform algorithm for explicit 3POL which
-we use later as a basis for other algorithms. We prove the following:
-\begin{theorem}\label{thm:explicit:act}
-	There is a bounded-degree ADT of depth
-	$O(n^{12/7+\varepsilon})$
-	for explicit 3POL\@.
-\end{theorem}
+we use later as a basis for other algorithms.
+
+We recall the definition of the explicit 3POL problem
+%
+\ProblemPOLExplicit*
+
+We prove the following
+\TheoremPOLNonuniformExplicit*
 
 \paragraph{Idea}
 We partition the sets $A$ and $B$ into small groups of consecutive
@@ -311,4 +313,4 @@ Combining Lemma~\ref{lem:preprocessing} and Lemma~\ref{lem:batch} yields a $O(
 {(ng)}^{4/3+\varepsilon} + n^2 \log g / g)$-depth bounded-degree ADT for
 explicit 3POL\@. By optimizing over $g$, we get $g = \Theta(n^{2/7-\varepsilon})$, and
 the previous expression simplifies to $O(n^{12/7+\varepsilon})$, proving
-Theorem~\ref{thm:explicit:act}.
+\Cref{thm:explicit:act}.

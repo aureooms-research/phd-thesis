@@ -22,21 +22,25 @@ skip=6pt,list=false,hypcap=false
 \usepackage{amsfonts} % \mathbb{...}
 \usepackage{amsmath} % \binom{...}{...}
 \usepackage{amsthm} % \begin{proof}
+\usepackage{thmtools,thm-restate} % \begin{restatable}
 \usepackage{textcomp} % n\textdegree{} -> n°
 \usepackage{mathtools} % \DeclarePairedDelimiter
 \usepackage{mleftright} % \mleft \mright
 %\usepackage{xfrac} % \sfrac
 \usepackage{csquotes} % \displayquote
 
-\newtheorem{theorem}{Theorem}[chapter] % \begin{theorem}
-\newtheorem{lemma}[theorem]{Lemma} % \begin{lemma}
-\newtheorem{corollary}[theorem]{Corollary} % \begin{corollary}
-\newtheorem{definition}[theorem]{Definition} % \begin{definition}
-\newtheorem{observation}[theorem]{Observation} % \begin{observation}
-\newtheorem{problem}[theorem]{Problem} % \begin{problem}
-\newtheorem{conjecture}[theorem]{Conjecture} % \begin{conjecture}
-\newtheorem{proposition}[theorem]{Proposition} % \begin{proposition}
-\newtheorem{openquestion}[theorem]{Open Question} % \begin{openquestion}
+\usepackage{cleveref} % \Cref
+
+\declaretheorem{theorem} % \begin{theorem}
+\declaretheorem[sibling=theorem]{lemma} % \begin{lemma}
+\declaretheorem[sibling=theorem]{corollary} % \begin{corollary}
+\declaretheorem[sibling=theorem]{observation} % \begin{observation}
+\declaretheorem[sibling=theorem]{proposition} % \begin{proposition}
+\declaretheorem[sibling=theorem]{claim} % \begin{claim}
+\declaretheorem{definition} % \begin{definition}
+\declaretheorem{problem} % \begin{problem}
+\declaretheorem{conjecture} % \begin{conjecture}
+\declaretheorem[name=Open Question]{openquestion} % \begin{openquestion}
 
 \newcommand{\remark}[1]{\paragraph{Remark} #1}
 
