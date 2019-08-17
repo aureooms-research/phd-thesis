@@ -1,4 +1,44 @@
-\section{Open Questions}
+There are a few interesting questions that are left unanswered:
+
+The best linear decision tree for \(k\)-SUM has depth \(O_k(n \log^2 n)\) while
+the lower bound is \(\Omega_k(n \log n)\).
+Can we match the information theoretic lower bound for \(k\)-SUM with linear
+decision trees, that is,
+\begin{openquestion}
+Is there a \(O_k(n \log n)\)-depth LDT for \(k\)-SUM?
+\end{openquestion}
+
+The same question can be asked about the point location problem. The best
+linear decision tree for arbitrary hyperplanes has depth \(O(d^2 \log m)\) and
+the lower bound is \(\Omega(d \log m)\).
+\begin{openquestion}
+Is there a \(O(d \log m)\)-depth LDT for point location?
+\end{openquestion}
+
+We showed how to efficiently implement Meiser's algorithm in the word-RAM model
+when applied to \(k\)-SUM. However, we did not manage to get the query
+complexity down to the current state of the art.
+\begin{openquestion}
+Is there a word-RAM algorithm for \(k\)-SUM using \(n^{3 - \Omega(1)}\)
+linear queries and running in time \(n^{\frac{k}{2}+O(1)}\)?
+\end{openquestion}
+
+We also have not managed to match the running time of the best known uniform
+algorithm.
+\begin{openquestion}
+Is there a word-RAM algorithm for \(k\)-SUM using \(n^{o(k)}\) linear queries and
+running in time \( \tilde{O}(n^{\lceil \frac k2 \rceil})\)?
+\end{openquestion}
+
+Gr\o nlund and Pettie~\cite{GP18}
+showed how to solve 3SUM in slightly subquadratic time in the real-RAM model.
+However, so far, their technique and its subsequent
+improvements~\cite{Fr15,GS15,Ch18}, have failed to generalize to uniform algorithms
+for \(k\)-SUM.
+\begin{openquestion}
+	Is there a \(o(n^{\lceil \frac k2 \rceil})\)-time real-RAM algorithm for
+	\(k\)-SUM with \(k \geq 4\)?
+\end{openquestion}
 
 The best algorithms for 3SUM and 3POL are only \emph{slightly} subquadratic,
 shaving a polylogarithmic factor from quadratic runtime. The best lower bound

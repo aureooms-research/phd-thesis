@@ -1,4 +1,4 @@
-\section{Better Nonuniform Algorithms}
+\section{Better Nonuniform Algorithms for \(k\)-SUM}
 
 Meiser's algorithm solves a broader class of problems than the \(k\)-SUM
 problems. In its general formulation, this algorithm solves
@@ -45,7 +45,7 @@ much shallower than our implementation:
 the depth of the tree is reduced by a \(n \log n\) factor in both cases leading
 to overall complexities of \(O(n^2 \log n)\) and \(O(n^3)\) respectively.
 
-\subsection{Inference Dimension}
+\subsection{Using Inference Dimension}
 
 In 2017, Kane, Lovett, and Moran~\cite{KLM18} proved that the point location
 problem can be solved in \(O(d \log d \log m)\) linear queries.
@@ -77,3 +77,20 @@ In 2019,  Hopkins, Kane, and Lovett~\cite{HKL19} provide another decision
 tree for point location of depth \(O(d \log^2 m)\) when the set of
 hyperplanes is drawn from a distribution with weak restrictions. This new
 algorithm only uses comparison queries.
+
+\section{Timothy Chan Strikes Again}
+
+In 2017, Timothy Chan presented a
+\(O((n^2 / \log^2 n)(\log \log n)^{O(1)})\)-time real-RAM algorithm for
+3SUM~\cite{Ch18}, shaving a logarithmic factor from previous solutions~\cite{Fr15,GS15}.
+
+His technique relies on cuttings in near-logarithmic dimension on an augmented
+real-RAM model with constant time nonstandard operations on $\Theta(\log n)$
+bits words. Cuttings essentially replace dominance reporting in Gr\o nlund and
+Pettie's algorithm~\cite{GP18}.
+This is inspired by another one of his papers on APSP~\cite{Cha10}.
+
+This new technique for shaving off logarithmic factors
+can be applied to other problems, such as (\(\text{median}, +\))-convolution,
+(\(\text{median}, +\))-matrix multiplication, and 3SUM-hard problems in
+computational geometry including explicit 3POL.
