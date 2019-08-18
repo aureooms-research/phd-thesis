@@ -1,16 +1,18 @@
 \chapter{Encoding 3SUM}
 \label{paper:3sum-encoding}
 
-We consider the following problem: given three sets of real numbers, output a
-word-RAM data structure from which we can efficiently recover the sign of the
-sum of any triple of numbers, one in each set.
-
-This is similar to a previous work by some of
-the authors to encode the order type of a finite set of points. While this previous
-work showed that it was possible to achieve slightly subquadratic space and
-logarithmic query time, we show here that for the simpler 3SUM problem, one
-can achieve an encoding that takes \(\tilde{O}(N^{\frac 32})\) space for inputs sets
-of size \(N\) and allows constant time queries in the word-RAM.
-
+Given three sets of \(N\) real numbers
+\(A = \{\, a_1 < a_2 < \cdots < a_N\,\} \),
+\(B = \{\, b_1 < b_2 < \cdots < b_N\,\} \),
+and \(C = \{\, c_1 < c_2 < \cdots < c_N\,\}\),
+we wish to build a discrete data structure (using bits, words, and pointers) such that,
+given any triple \((i,j,k) \in {[N]}^3\) it is possible to compute the sign of
+\(a_i + b_j + c_k\) by only inspecting the data structure (we cannot consult
+\(A\), \(B\), or \(C\)).
+We refer to the map $\chi : {[N]}^3\to \{-,0,+\}, (i,j,k)\mapsto\mathrm{sgn}
+(a_i+b_i+c_k)$ as the {\em 3SUM type} of the instance $\langle A,B,C \rangle$.
+Obviously, one can simply construct a lookup table of size \(O(N^3)\), such
+that triple queries can be answered in \(O(1)\) time. We aim at improving on
+this trivial solution.
 
 \input{text/paper/3sum-encoding/02-contribution}

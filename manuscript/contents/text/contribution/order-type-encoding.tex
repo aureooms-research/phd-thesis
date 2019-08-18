@@ -111,12 +111,12 @@ Handbook~\cite{Go04}.
 	\centering{}
     \begin{subfigure}[t]{0.5\textwidth}
 		\centering{}
-		\includegraphics[scale=.\ifeurocg7\else9\fi]{figures/pappus-realizable}
+		\includegraphics[scale=.7]{figures/pappus-realizable}
 		\caption{Realizable order type.}
     \end{subfigure}%
     \begin{subfigure}[t]{0.5\textwidth}
 		\centering{}
-		\includegraphics[scale=.\ifeurocg7\else9\fi]{figures/pappus-abstract}
+		\includegraphics[scale=.7]{figures/pappus-abstract}
 		\caption{Abstract order type which is not realizable.}
     \end{subfigure}
 	\caption{Pappus's configuration.}\label{fig:pappus}
@@ -164,7 +164,7 @@ represented in the binary numeral system~\cite{GPS89}.
 \ifeurocg\else%
 \begin{figure}
 	\centering{}
-	\includegraphics[scale=.\ifeurocg7\else9\fi]{figures/perles}
+	\includegraphics[scale=.7]{figures/perles}
 	\caption{Perles's configuration.}\label{fig:perles}
 \end{figure}
 \fi%
@@ -177,8 +177,9 @@ Everett, Hurtado, and Noy complained that this encoding does not
 allow a fast decoding for individual triples~\cite{EHN99}.
 Knuth and Streinu independently gave new encodings of size \(O(n^2 \log n)\)
 that allow orientation queries in constant time~\cite{Knu92,St97}.\footnote{%
-We attract the attention of the reader on the fact that we express size in bits
-in this paper. Other papers,~\cite{EHN99} and~\cite{St97} in particular,
+We attract the attention of the reader on the fact that we express size in
+bits.
+Other authors,~\cite{EHN99} and~\cite{St97} in particular,
 express size in number of words, which is off by at least a logarithmic factor.}
 Felsner and Valtr showed how to encode abstract order types optimally in
 \(O(n^2)\) bits via the wiring diagram of their corresponding allowable
@@ -200,7 +201,7 @@ order types: we wish to design data structures using as few bits as possible
 that can be used to quickly answer orientation queries of a given abstract or
 realizable order type.
 \ifeurocg%
-\input{text/definition/encoding}
+\DefinitionEncoding*
 \fi%
 %
 \ifjournal%
@@ -208,53 +209,37 @@ realizable order type.
 	attain our main result. This section can be skipped entirely if deemed
 	unnecessary.
 \fi%
-\ifeurocg%
-We \else%
-In Section~\ref{sec:lines-and-pseudolines}, we \fi%
+In Section~\ref{sec:lines-and-pseudolines}, we
 give the first optimal encoding for abstract
 order types that allows efficient query of the orientation of any triple: the
 encoding is a data structure that uses \( O(n^2) \) bits of space with queries
 taking \(O(\log n)\) time in the word-RAM model with word size \(w \geq \log
 n\).
-\ifeurocg%
 \input{text/theorem/order-type-encoding/abstract}
-\fi%
 %
 Our encoding is far from being space-optimal for realizable order types.
 We show that its construction can be easily tuned to only require \(O(n^2
 {(\log{\log{n}})}^2 / \log{n})\) bits in this case.
-\ifeurocg%
 \input{text/theorem/order-type-encoding/realizable}
-\fi%
 %
 \ifeurocg%
 We \else%
 In Section~\ref{sec:query-time}, we \fi%
 further refine our encoding to
 reduce the query time to \(O(\log{n}/\log{\log{n}})\).
-\ifeurocg%
 \input{text/theorem/order-type-encoding/abstract-loglog}
 \input{text/theorem/order-type-encoding/realizable-loglog}
-\fi%
 %
 In the realizable case, we give quadratic upper bounds on the
 preprocessing time required to compute an encoding in the real-RAM model.
-\ifeurocg%
+\input{text/theorem/order-type-encoding/preprocessing}
 \input{text/theorem/order-type-encoding/preprocessing-loglog}
-\fi%
 %
-\ifeurocg%
-We \else\ifsocg%
-In the full version of the paper, we \else%
-In \appref~\ref{sec:hyperplanes} we \fi\fi%
+In \appref~\ref{sec:hyperplanes} we
 generalize our encodings to chirotopes of
-point sets in higher dimension\ifsocg~\cite{CCILO18}\fi.
-\ifeurocg%
+point sets in higher dimension.
 \input{text/theorem/order-type-encoding/realizable-d}
-\fi%
-\ifeurocg%
 \input{text/theorem/order-type-encoding/preprocessing-d}
-\fi%
 
 \subsection*{\iftitlecase%
 A Remark\else%
@@ -265,7 +250,8 @@ types that allows efficient query of the orientation of any triple. It is not
 known whether a subquadratic algebraic computation tree exists for
 identifying the order type of a given point set.
 Any such computation tree would yield another subquadratic encoding for
-realizable order types. We see the design of compact encodings for realizable
+realizable order types, although the obtained encoding
+might not be query-efficient. We see the design of compact encodings for realizable
 order types as a subgoal towards subquadratic nonuniform algorithms for this
 related problem, a major open problem in Computational Geometry. Note that
 pushing the preprocessing time below quadratic would yield such an algorithm.

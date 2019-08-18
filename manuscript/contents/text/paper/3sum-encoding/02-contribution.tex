@@ -1,42 +1,33 @@
-\section{Lower and Upper Bounds}
-
-\subsection{Representation by numbers} \label{s:numbers}
+\section{Representation by Numbers}%
+\label{s:numbers}
 
 A first natural idea is to encode the real 3SUM instance by \emph{rounding} its numbers to integers.
 We show a tight bound of $\Theta (N^2)$ bits for this representation.
-
-\begin{lemma}
-  \label{lem:bitsize}
-Every 3SUM instance has an equivalent integer instance
-where all values have absolute value at most $2^{O(N)}$. Furthermore, there
-exists an instance of 3SUM where all equivalent integer instances
-require numbers at least as large as the $N$th Fibonacci number and where the
-standard binary representation of the instance requires $\Omega(N^2)$ bits.
-\end{lemma}
+\TheoremSUMEncodingBitsize*
 
 \begin{proof}
-Every 3SUM instance \(A = \{\, a_1 < a_2 < \ldots < a_N\,\} \), 
+Every 3SUM instance \(A = \{\, a_1 < a_2 < \ldots < a_N\,\} \),
 \(B = \{\, b_1 < b_2 < \cdots < b_N\,\} \),
 and \(C = \{\, c_1 < c_2 < \cdots < c_N\,\}\)
-can be interpreted as the point 
+can be interpreted as the point
 \( (a_1,\ldots,a_N,b_1,\ldots,b_N,c_1,\ldots,c_N) \)
-in \(\mathbb{R}^{3N}\). 
+in \(\mathbb{R}^{3N}\).
 Let us use the variables \(x_1,\ldots,x_N\) to encode the first \(N\) dimensions
 of \(\mathbb{R}^{3N}\), \(y_1,\ldots,y_N\) to encode the next \(N\) dimensions,
-and \(z_1,\ldots,z_N$ for the remaining dimensions.
+and \(z_1,\ldots,z_N\) for the remaining dimensions.
 Consider the subset of $\mathbb{R}^{3N}$
-\[
-	\Delta = \{ (x_1,\ldots,x_N,y_1,\ldots,y_N,z_1,\ldots,z_N) \mid
-				x_i<x_{i+1}, ~y_j<y_{j+1}, ~ z_k<z_{k+1}~ \forall i,j,k \in [N-1]\}
-\]
-and the set $\Pi$ of $N^3$ hyperplanes $x_i+y_j+z_k=0$, where $i,j,k\in [N]$. 
+\begin{multline*}
+      \Delta = \{ (x_1,\ldots,x_N,y_1,\ldots,y_N,z_1,\ldots,z_N) \colon\, \\
+			      x_i<x_{i+1}, ~y_j<y_{j+1}, ~ z_k<z_{k+1}~ \forall i,j,k \in [N-1]\}
+\end{multline*}
+and the set $\Pi$ of $N^3$ hyperplanes $x_i+y_j+z_k=0$, where $i,j,k\in [N]$.
 Let $\mathcal{A}$ be the arrangement defined
 by $\Pi$ \emph{inside $\Delta$}. Instances of 3SUM correspond to points in $\Delta$.
-Moreoever, two 3SUM instances have the same 3SUM-type if and only if they are
-in the same cell of $\mathcal{A}$. 
+Moreoever, two 3SUM instances have the same 3SUM type if and only if they are
+in the same cell of $\mathcal{A}$.
 
-Consider an instance $\langle A,B,C \rangle$ and let $\sigma=\sigma(A,B,C)$ 
-be the cell of $\mathcal{A}$ that contains it. 
+Consider an instance $\langle A,B,C \rangle$ and let $\sigma=\sigma(A,B,C)$
+be the cell of $\mathcal{A}$ that contains it.
 Then $\sigma$ is the cell defined by the inequalities
 \begin{align*}
 	\forall{i,j,k}\in [N]&:~~~
@@ -73,10 +64,10 @@ the scaled instance $\langle \lambda A,\lambda B,\lambda C \rangle$ belongs to $
 Therefore, $\sigma'$ is nonempty.
 
 Since $\sigma'$ is defined by a collection of linear inequalities defining closed halfspaces,
-there exists a point $p$ in $\sigma'$ defined by a subset of at most $3N$ inequalities, 
+there exists a point $p$ in $\sigma'$ defined by a subset of at most $3N$ inequalities,
 where the inequalities are actually equalities. Let us assume for simplicity that
 exactly $3N$ equalities define the point $p$. Then, $p=(x,y,z)$ is the solution
-to a linear system of equations $M [x~ y ~z]^T=\delta$ 
+to a linear system of equations $M [x~ y ~z]^T=\delta$
 where $M$ and $\delta$ have their entries in $\{ -1,0,1 \}$
 and each row of $M$ has at most three non-zero entries. The solution $p$ to this
 system of equations is an instance equivalent to $\langle \lambda A,\lambda B,\lambda C \rangle$.
@@ -86,16 +77,16 @@ $\det(M_i)/\det(M)$,
 where $M_i$ is the matrix obtained by replacing the $i$th column of $M$ by $\delta$.
 We use the following simple bound on the determinant.
 Since $\det(M)=\sum_{\pi}\mathrm{sgn}(\pi) \prod_i m_{i,\pi(i)}$, where
-$\pi$ iterates over the permutations of $[3N]$, there are 
+$\pi$ iterates over the permutations of $[3N]$, there are
 at most $3^{3N}$ summands where $\pi$ gives non-zero product $\prod_i m_{i,\pi(i)}$ (we have
 to select one non-zero entry per row), and the product is always in $\{ -1,0,1\}$.
 Therefore $|\det(M)|\leq 3^{3N}$. Similarly, $|\det(M_i)|\leq 4^{3N}$ because
 each row of $M_i$ has at most $4$ non-zero entries.
-We conclude that the solution to the system $M [x~ y ~z]^T=\delta$ 
+We conclude that the solution to the system $M [x~ y ~z]^T=\delta$
 are rationals that can be expressed with $O(N)$ bits. This solution gives
-a 3SUM instance with rationals that is equivalent to $\langle A, B, C \rangle$. 
+a 3SUM instance with rationals that is equivalent to $\langle A, B, C \rangle$.
 Since all the rationals have the common denominator ($\det(M)$), we can scale the result
-by $\det(M)$ and we get an equivalent instance with integers, where 
+by $\det(M)$ and we get an equivalent instance with integers, where
 each integer has $O(N)$ bits.
 
 The proof of the second statement is by implementing the Fibonacci recurrence in each of the
@@ -114,7 +105,8 @@ each array contains a sequence growing at least as fast as the Fibonacci sequenc
 Note that this is a much smaller lower bound than for order types of points sets in the plane,
 the explicit representation of which can be shown to require exponentially many bits per coordinate~\cite{GPS89}.
 
-\subsection{Space-optimal representation} \label{s:space}
+\section{Space-Optimal Representation}%
+\label{s:space}
 
 By considering the arrangement of hyperplanes defining the 3SUM problem, we get an
 information-theoretic lower bound on the number of bits in a 3SUM-type.
@@ -135,9 +127,10 @@ requires to construct the whole arrangement which takes \(N^{O(N)}\) time.
 An alternative solution is to store a
 vertex of the arrangement of hyperplanes \(a_i + b_j + c_k \in \{\,
 -1, 0, 1\,\}\).
-There exists such a vertex that has the same 3SUM-type as the input point, as shown in the proof of Lemma~\ref{lem:bitsize}.
+There exists such a vertex that has the same 3SUM-type as the input point, as
+shown in the proof of Contribution~\ref{lem:bitsize}.
 To answer any query, either recompute the vertex from the basis then answer the query using arithmetic,
-or use linear programming. 
+or use linear programming.
 Hence we can build a data structure of $O(N\log N)$ bits such that triple queries can be answered in polynomial time.
 
 Note that we do not exploit much of the 3SUM structure here. In particular, the
@@ -145,11 +138,7 @@ same essentially holds for $k$-SUM, and can also be generalized to a {\sc
 Subset Sum} data structure of $O(N^2)$ bits, from which we can extract the sign
 of the sum of any subset of numbers.
 
-\section{Recycling Gr\o nlund and Pettie's Algorithm}
-
-
-
-\subsection{Subquadratic space and constant query time}\label{s:sscqt}
+\section{Subquadratic Space and Constant Query Time}\label{s:sscqt}
 Our encoding is inspired by  Gr{\o}nlund and Pettie's $\tilde{O}(N^{1.5})$
 non-uniform algorithm for 3SUM~\cite{GP18}.
 Our data structure stores three components, which we call the

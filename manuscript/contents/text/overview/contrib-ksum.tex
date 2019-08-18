@@ -1,11 +1,10 @@
-Our first contribution with paper A is a finer analysis of Meiser's algorithm
+Our first contribution is a finer analysis of Meiser's algorithm
 that shows that the depth of his decision tree when applied to \(k\)-SUM is
 actually \(O(n^3 \log^2 n)\).  On top of that, we show how to implement a
 variant of this decision tree in the real-RAM model so that its uniform running
 time is \(n^{\frac{k}{2} + O(1)}\) while keeping the nonuniform running time
 unchanged. Note that a naive implementation of Meiser's algorithm has a uniform
-running time of \(n^{k + O(1)}\). Those contributions are described in detail
-in Chapter~\ref{chapter:ksum-algorithm}.
+running time of \(n^{k + O(1)}\).
 
 The approach taken by Meiser's algorithm follows the prune and search method:
 Take a sample of the hyperplanes for which we do not yet know the relative
