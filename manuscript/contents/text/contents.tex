@@ -25,5 +25,6 @@
 \bibliography{bibliography/bibliography}
 
 \phantomsection
-\addcontentsline{toc}{chapter}{List of Theorems}
-\listoftheorems
+\renewcommand{\listtheoremname}{List of Contributions and Open Questions}
+\addcontentsline{toc}{chapter}{List of Contributions and Open Questions}
+\listoftheorems[ignoreall,show={contribution,openquestion}]
