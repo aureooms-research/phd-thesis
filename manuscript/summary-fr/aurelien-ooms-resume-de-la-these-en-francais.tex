@@ -1,0 +1,58 @@
+\documentclass[a4paper,french,12pt]{article}
+\usepackage[top=2cm, bottom=1cm]{geometry}
+\usepackage[latin1]{inputenc}
+\usepackage[francais]{babel}
+\usepackage{relsize}
+\usepackage{enumitem}
+\pagenumbering{gobble}
+
+\title{
+    Algortihms and Data Structures\\
+    for\\
+    3SUM and Friends\\[0.2em]
+    \smaller[2]Résumé de thèse en français
+}
+\author{Aurélien Ooms}
+
+\begin{document}
+\maketitle
+
+Les problèmes 3SUM, \(k\)-SUM, et GPT sont considérés comme des problèmes clés
+de la classe de complexité \(\textsc{P}\) en ce qu'ils capturent la complexité
+de nombreux autres problèmes de cette classe.
+%
+Malgré leur ancienneté dans le paysage de la géométrie algorithmique,
+de nombreuses questions au sujet de ces problèmes clés
+restent encore non résolues.
+
+Dans cette thèse nous developpons de nouveaux algorithmes et structures de
+données pour ces problèmes:
+\begin{enumerate}[label=\Alph*)]
+    \item Nous donnons le premier algorithme efficace pour
+    \(k\)-SUM utilisant peu de requêtes pour résoudre le problème.
+    \item Nous définissons un problème intermediaire à 3SUM et GPT, 3POL, et
+	montrons que les techniques existantes pour 3SUM peuvent être
+	généralisées pour obtenir des algorithmes sous-quadratiques pour 3POL.
+    \item Nous montrons que l'information combinatoire contenue dans une
+	instance du problème GPT peut être encodée en un nombre
+	sous-quadratique de bits tout en permettant l'accès efficace à cette
+	information.
+    \item Nous montrons que le nombre de bits d'un tel encodage peut être encore
+	réduit significativement pour les instances obtenues à partir de la
+	réduction du problème 3SUM.
+\end{enumerate}
+
+Ces nouveaux résultats nous permettent de mieux comprendre la nature
+fondamentale de ces problèmes. Par exemple, le point B) nous permet de résoudre
+certaines instances de GPT en temps sous-quadratique en exploitant leur
+structure.
+
+Malgré nos efforts, certaines questions restent encore ouvertes. On ne sait par
+exemple toujours pas si GPT admet un algorithme en temps sous-quadratique,
+uniforme ou non, dans les modèles de calculs habituellement étudiés.
+
+Nous espérons que les résultats développés dans cette thèse amènerons un jour,
+directement ou indirectement, à la résolution d'une ou plusieurs de ces
+questions ouvertes.
+
+\end{document}
