@@ -298,11 +298,14 @@ Since \(r = \Theta(\log^{\alpha} n)\) the bound becomes
 Subcell Mapper\else%
 Subcell mapper\fi}
 
+As before, let \(c_h\) be the constant hidden by the \(O(r^2)\) of the
+hierarchical cutting, and let \(c_z = 9.5\) be the constant in
+Theorem~\ref{thm:zone-theorem-2}.
 We need a way to map a subcell index \(0 \leq j_i \leq c_h r^2 - 1\) to the
-index \(0 \leq j_i' \leq c_z r - 1\) this subcell has in the list of subcells
-intersected by a given pseudoline. If we can achieve this in constant time,
-then we can also access the first intersection index this pseudoline has in
-this subcell.
+index \(0 \leq j_i' \leq \lfloor c_z r \rfloor - 2\) this subcell has in the
+list of subcells intersected by a given pseudoline. If we can achieve this in
+constant time, then we can also access the first intersection index this
+pseudoline has in this subcell.
 
 It is not hard to see that this operation boils down to computing
 \(\operatorname{rank}_{\texttt{10}}(j_i)\) where the data array is composed of
@@ -347,17 +350,17 @@ parameters of the hierarchy \(n\), \(r\) and \(t\), we obtain:
 \begin{lemma}\label{lem:space-2-all-query}
   The space taken by the encoding described in Section~\ref{sec:query-time} is
   proportional to
-    \begin{displaymath}
-    \underbrace{\log ntr}_{\text{Parameters}}
+    \begin{multline*}
+    \overbrace{\log ntr}^{\text{Parameters}}
     +
-    \underbrace{\frac{n^2}{t} (\log t + \log^{\alpha} n)}_{\text{Traces}}
+    \overbrace{\frac{n^2}{t} (\log t + \log^{\alpha} n)}^{\text{Traces}}
     +
-    \underbrace{2^{\Theta(\log^{2\alpha} n)}}_{\text{Intersection Oracle}}
+    \overbrace{2^{\Theta(\log^{2\alpha} n)}}^{\text{Intersection Oracle}}\\
     +
     \underbrace{\frac{n^2 \ell}{2^{\Theta(\log^{\alpha} n)}}}_{\text{Disambiguation Table}}
     +
     \underbrace{\frac{n^2}{t^2} ( \log \nu(t) + t \log t) + t^3 \nu(t)}_{\text{Leaves}}.
-    \end{displaymath}
+    \end{multline*}
 \end{lemma}
 As before,
 we take \(t = \sqrt{\delta \log n}\) for abstract order types and \(t = \delta

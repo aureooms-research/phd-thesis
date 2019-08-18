@@ -84,21 +84,21 @@ is offset by twice the space taken by the traces for that cell
   .
 \end{displaymath}
 
-Let \(c\) be the constant hidden by the \(O(r^2)\) of the hierarchical cutting.
+Let \(c_h\) be the constant hidden by the \(O(r^2)\) of the hierarchical cutting.
 %
 The space taken by a subtree rooted at a node of level \(i\) is bounded by
-\begin{displaymath}
+\begin{multline*}
   | \textsc{Subtree}_i |
   =
-  \underbrace{2 \left\lfloor \frac{n}{r^{i}} \right\rfloor |\textsc{Tr}_{i}|}_{\text{Traces at the root}}
+  \overbrace{2 \left\lfloor \frac{n}{r^{i}} \right\rfloor |\textsc{Tr}_{i}|}^{\text{Traces at the root}}
   +
-  \underbrace{2c \sum_{k=1}^{\ell-i-1} r^{2k} \left\lfloor \frac{n}{r^{i+k}}
-  \right\rfloor |\textsc{Tr}_{i+k}|}_{\text{Traces of the subtrees}}
+  \overbrace{2c_h \sum_{k=1}^{\ell-i-1} r^{2k} \left\lfloor \frac{n}{r^{i+k}}
+  \right\rfloor |\textsc{Tr}_{i+k}|}^{\text{Traces of the subtrees}}\\
   +
-  \underbrace{c r^{2(\ell-i)} | \textsc{Pointer} |}_{\text{Pointers}}
+  \underbrace{c_h r^{2(\ell-i)} | \textsc{Pointer} |}_{\text{Pointers}}
   +
-  \underbrace{2c r^{2(\ell-i)} | \textsc{Labeling} |}_{\text{Canonical labelings}}.
-\end{displaymath}
+  \underbrace{2c_h r^{2(\ell-i)} | \textsc{Labeling} |}_{\text{Canonical labelings}}.
+\end{multline*}
 
 The address of any other subcell
 \(\textsc{Addr}(\mathcal{C}_{0,j_1,j_2, \ldots, j_{i-1}, j_{i}})\)
