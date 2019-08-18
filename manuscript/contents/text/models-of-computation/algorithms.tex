@@ -1,109 +1,139 @@
 \section{Algorithms}
 
-In general, when we think of algorithms 
+We study two classes of algorithms: uniform and nonuniform.
 
+\emph{Uniform} algorithms are considered practical. They can be implemented on
+a real computer because they take care of data management issues in an
+automated way.
 
+\emph{Nonuniform} algorithms ignore the data management aspect of practical
+computation. They do not give details on how to structure the intermediate
+results of their computation. Those results are assumed to be instantly
+accessible without any organization. Since we consider problem instances of
+arbitrarily large size, this is not possible in practice:
+processor units can only hold a fixed amount of data at any given time. The
+data has to be stored somewhere in some structured way.
 
-To make clear what will be considered an algorithm in this thesis, we explain
-the different computation model that will be
+The naming uniform simply means that the algorithm (its description) is the
+same for all input sizes. This is what is generally expected from algorithm
+design: to output a finite size description of an automated problem solving
+method that works for any instance size.
+%
+Nonuniform algorithms on the other hand are allowed to have distinct
+descriptions for each input size. Each nonuniform algorithm can be seen as an
+infinite sequence of uniform algorithms \(A = A_1, A_2, \ldots\), each \(A_n\)
+hardcoding the data management part in its description. This description
+therefore is allowed to grow with \(n\).
+Designing a nonuniform algorithm \(A\) amounts to describing a method
+that given \(n\) outputs \(A_n\).
 
-\subsection{RAM Alorithms}
+In this thesis, we study the uniform \emph{random access machine} (RAM) models
+real-RAM and word-RAM, and the nonuniform decision tree models algebraic
+computation tree, algebraic decision tree, and linear decision tree. Those are
+described in the following paragraphs.
 
-Real-RAM vs Word-RAM
+\subsection{Random Access Machines}
 
-\subsection{Nonuniform Algorithms}
+The real-RAM and word-RAM models have the RAM in common. They both assume
+a memory whose access cost is constant and a constant number of standard
+operations on the numbers they manipulate.
 
-%\improve{In general, I think there can hardly be too many warnings and remarks on the
-%notion of nonuniformity. I expect reviewers to ask questions on, and
-%misunderstand, everything nonuniform. Maybe it would be worth having an whole
-%paragraph on this in the introduction, pointing to where nonuniformity is
-%exploited.}
+The real-RAM model is a classic of Computational Geometry. The input is assumed
+to consist of \(n\) real numbers and those numbers can be manipulated
+exactly at constant cost using arithmetic and comparison operators.
+This makes sense from the geometer's point of view since geometric data is
+best abstracted as real numbers.
+For data management purposes, the model also allows to manipulate \(\log
+n\)-bits integers with arithmetic, comparison, and bitwise operators but does
+not allow the conversion from a real number to an integer.
 
-%One of the original motivations behind solving this problem efficiently is that
-%the KNAPSACK and SUBSET-SUM problems reduce to it. The main motivation in this
-%paper focuses on k-SUM, the parameterized version of SUBSET-SUM.
+The word-RAM model models computers as we know them more closely. It considers
+an input consisting of \(n\) integers called words and allows a constant number
+of standard unary or binary operators to be executed in constant time. Those
+words have bitsize \(w \geq \log n\).
 
-%Solving the point location problem amounts to compute the sign of the dot
-%product of the input point with the coefficient vector of each hyperplane and
-%can be solved in $O(dn)$ arithmetic operations by bruteforce.
+\subsection{Computation and Decision Trees}
 
-%The linear decision tree model does not allow to compute the dot product of the
-%input point with a fixed vector, nor does it count arithmetic operations. In
-%this model, an algorithm is not given direct access to the input. Instead, an
-%algorithm is allowed to ask an oracle low complexity queries about the input.
-%Based on the answers to those queries, an algorithm is allowed to make use of
-%unlimited computation power, at no cost, to deduce the answer to the original
-%problem. If not enough information is available to answer the problem, the
-%algorithm will use its costless computation power to decide which questions to
-%ask next. In the linear decision tree model, the low complexity queries output
-%the sign of a linear combination of the input point's coordinates. The cost of
-%an algorithm in this model is the number of queries this algorithm asks to
-%solve a problem.
+A decision tree is a constant-degree rooted tree whose internal nodes encode
+queries to an omniscient oracle and whose leaves encode the result of the
+computation.
 
+Of course, for every problem asking to distinguish among \(f(n)\) input
+classes, there is a decision tree that will ask \(O(\log f(n))\)
+``yes/no'' questions of
+the form: ``Is the input in the following range of input classes?''
+The queries this decision tree makes are too powerful, they have no
+structure a priori and it is not at all obvious how they can be encoded.
+For a decision tree model to make sense, we have to restrict the kind of
+queries that can be made.
 
-Allow a different algorithm for each input size.
-Compare to circuits: time to construct circuit does not count.
+The complexity of a computation or decision tree is defined to be the length of
+its longest root to leaf path called the \emph{depth} of the tree.
 
-\paragraph{Computation Trees and Decision Trees}
-We consider \emph{algebraic computation trees}, whose internal nodes
-are labeled with arithmetic (\(r \gets o_1 \op o_2, \op \in
-\{\,+,-,\times,\div\,\}\)) and branching (\(z : 0\)) operations. We say that an
-algebraic computation tree $T$ \emph{realizes} an algorithm $A$ if the paths
-from the root to the leaves of $T$ correspond to the execution paths of \(A\)
-on all possible inputs \(q \in \mathbb{R}^n\), where \(n\) is fixed. A leaf is
-labeled with the output of the corresponding execution path of \(A\). Such a
-tree is \emph{well-defined} if any internal node labeled \(r \gets o_1 \op
-o_2\) has outdegree \(1\) and is such that either \(o_k = q_i\) for some \(i\)
-or there exists an ancestor \(o_k \gets x \op y\) of this node, and any
-internal node labeled \(z : 0\) has outdegree \(3\) and is such that either \(z
-= q_i\) for some \(i\) or there exists an ancestor \(z \gets x \op y\) of this
-node. In the algebraic computation tree model, we define the complexity
-\(f(n)\) of an algorithm $A$ to be the minimum depth of a well-defined
-computation tree that realizes $A$ for inputs of size $n$.
+\subsubsection{Linear Decision Trees}
 
-In the algebraic computation tree model, we only count the operations that
-involve the input, that is, members of the input or results of previous
-operations involving the input.
+A first natural way to restrict the complexity of the queries of our decision
+tree model is to only allow linear queries on the input. This will be
+sufficient to solve problems such as Sorting, Element Uniqueness, 3SUM,
+\(k\)-SUM, and subset-sum.
 
-Algebraic Computation Trees,
-Decision Trees,
-Algebraic Decision Trees,
-Linear Decision Trees.
-
-\paragraph{Linear Decision Trees}
-
-The \emph{\(s\)-linear decision tree model} is a standard model of computation
-in which several lower bounds for \(k\)-SUM\ have been proven. In the decision tree
-model, one may ask well-defined questions to an oracle that are answered
-``yes'' or ``no.'' For $s$-linear decision trees, a well-defined question consists
-of testing the sign of a linear function on at most \(s\) numbers \(q_{i_1},\ldots,q_{i_s}\) of the
-input \(q_1,\ldots,q_n\) and can be written as
+In the \emph{\(s\)-linear decision tree model}, queries consists
+in testing the sign of a linear function on at most \(s\) numbers \(q_{i_1},\ldots,q_{i_s}\) of the
+input \(q_1,\ldots,q_n\). Such a query is called a \(s\)-linear query and
+can be written as
 %
 \begin{displaymath}
-	\alpha_1 q_{i_1} + \cdots + \alpha_s q_{i_s} \ask{\le} \alpha_0
+	\alpha_1 q_{i_1} + \cdots + \alpha_s q_{i_s} \ask{\leq} \alpha_0
 \end{displaymath}
 %
 Each question is defined to cost a single unit. All other operations can be
 carried out for free but may not examine the input vector $q$. We refer to
 $n$-linear decision trees simply as linear decision trees.
 
-\paragraph{Models of Computation}
+Note that this model generalizes the Comparison Tree Model commonly used for
+Sorting and Element Uniqueness, where queries have the form \(q_i \ask{\leq}
+q_j\).
 
-Similarly to Gr\o nlund and Pettie~\cite{GP18}, we consider both nonuniform
-and uniform models of computation.
-%
-For the nonuniform model, Gr\o nlund and Pettie consider linear
-decision trees, where one is only allowed to manipulate the input numbers
-through linear queries to an oracle. Each linear query has constant cost and
-all other operations are free but cannot inspect the input.
-%
-In this paper, we consider
-\emph{bounded-degree algebraic decision trees (ADT)}~\cite{R72,Y81,SY82},
-an algebraic generalization of linear decision trees,
-as the nonuniform model. In a bounded-degree algebraic decision tree, one
-performs constant cost branching operations that amount to test the sign of
-a constant-degree polynomial of the input numbers. Again,
-operations not involving the input are free.
-%
-For the uniform model we consider the real-RAM model with only the four
-arithmetic operators.
+\subsubsection{Algebraic Decision Trees}
+The linear decision tree model is not powerful enough for more complicated
+problems. General Position Testing for instance involves discovering the sign
+of quadratic polynomials of the input, which is impossible in general with
+linear queries only.
+
+The (bounded-degree) \emph{algebraic decision tree (ADT)}~\cite{R72,Y81,SY82}
+is an algebraic generalization of linear decision trees.
+An algebraic decision tree performs constant-cost branching operations that
+amount to test the sign of
+a constant-degree polynomial of the input numbers.
+
+In this model, for an input \(q_1,\ldots,q_n\), a query can be written as
+\begin{displaymath}
+	p(q_1, \ldots, q_n) \ask{\le} 0,
+\end{displaymath}
+where \(p \in \mathbb{R}[x_1,\ldots, x_n]\) is a polynomial of constant
+degree. Again, operations not involving the input are free.
+
+\subsubsection{Algebraic Computation Trees}
+Computation trees differ from decision trees in that instead of asking
+``yes/no'' questions, they perform arithmetic operations on variables whose
+results can be remembered and reused as operands, but only inspected using
+comparison queries. This allows, for instance, to make decision based on
+arbitrary polynomial expressions of the input with a sane way of counting the
+complexity of constructing such an expression. This would not be allowed in
+the algebraic decision tree model.
+
+The internal nodes of an \emph{algebraic computation trees} are labeled with
+arithmetic (\(r \gets o_1 \op o_2, \op \in \{\,+,-,\times,\div\,\}\)) and
+branching (\(z : 0\)) operations. Any internal node labeled \(r \gets o_1 \op
+o_2\) has outdegree one and is
+such that either \(o_k = q_i\) for some \(i\) or there exists an ancestor \(o_k
+\gets x \op y\) of this node, and any internal node labeled \(z : 0\) has
+outdegree three and is such that either \(z = q_i\) for some \(i\) or there
+exists an ancestor \(z \gets x \op y\) of this node.
+Similarly to the previously described decision tree models, leafs of the tree
+correspond to input classes.
+
+Using this model can be interpreted as only counting the operations that
+involve the input, that is, members of the input or results of previous
+operations involving the input. All other arithmetic operations are for free.
+
