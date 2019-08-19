@@ -1,7 +1,7 @@
 .PHONY: all figures clean nuke
 .SECONDARY:
 
-VERSIONS := dev.pdf print.pdf
+VERSIONS := dev.pdf draft.pdf print.pdf
 
 LTX := pdflatex -interaction=nonstopmode -halt-on-error
 
@@ -69,8 +69,9 @@ figures/%.pdf:
 	cp $< $@
 	killall -HUP mupdf || true
 
-$(BUILDDIR)/dev/src.tex: $(shell texdeps dev.tex)
-#$(BUILDDIR)/print/src.tex: $(shell texdeps print.tex)
+#$(BUILDDIR)/dev/src.tex: $(shell texdeps dev.tex)
+#$(BUILDDIR)/print/src.tex: $(shell texdeps draft.tex)
+$(BUILDDIR)/print/src.tex: $(shell texdeps print.tex)
 
 $(BUILDDIR)/%/src.tex:
 	mkdir -p $(dir $@)
