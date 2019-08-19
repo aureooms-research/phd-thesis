@@ -1,28 +1,80 @@
-\section{Data Structures}
+\section{Data Structures}%
+\label{sec:models-of-computation:data-structures}
 
-\subsection{Succinct Data Structures}
+Data Structures are ubiquitous in algorithmics. Given some data, we want to
+store it in computer memory in a way that 1) allows us to efficiently access
+the information we want to extract from this data and 2) does not require too
+much storage space. The term \emph{structure} is by opposition to a randomly
+ordered stream of data.
 
-\subsection{Construction}
+Usually, a third important feature of those structures is that they can be also
+updated efficiently if the underlying data changes. We do not study or use that
+aspect in this thesis, instead we only require that those data structures can
+be constructed from scratch in an efficient way. Data
+structures allowing efficient updates are usually named \emph{dynamic}
+while the ones we study are \emph{static} data structures.
 
-\subsection{Queries}
+Those intuitive concepts are summarized as follows:
 
-\subsection{Encodings}
+\paragraph{Preprocessing Time} Given some data, the time it takes to construct
+the corresponding data structure in the given computation model.
+
+\paragraph{Space} The amount of space the data structure consumes in the given
+computation model. Can be expressed in bits, words, memory cells, \dots
+
+\paragraph{Query Time} Given a data structure, the time consumed by a
+single query in the given computation model.
+\\
+
+In \S\ref{sec:models-of-computation:data-structures:encodings} we give a precise
+definition of a particular type of data structure we study: encodings.
+In \S\ref{sec:models-of-computation:data-structures:trees} we explicit a
+connection between those encodings and nonuniform models of computation.
+
+\subsection{Encodings}%
+\label{sec:models-of-computation:data-structures:encodings}
+
+A data structure is called \emph{succinct} if its space usage is close to the ITLB.
+%
+This concept was first introduced by Jacobson in his PhD thesis~\cite{Ja88}.
+%
+Since then, it has been extensively studied.
+%
+Raman et al. studied the dynamic implementation of such data
+structures and gave the first rank-select succinct
+data structures~\cite{RRS01,RRS07}.
+%
+%P{\u a}tra{\cb s}cu studied the succinct encoding of arrays of
+%trits~\cite{Pa08}.
+%
+Those data structures are even efficient in practice as show by Vigna with
+their implementations~\cite{Vi08}.
+
+In this thesis, we also try to get good bounds on the space used by the data
+structures we design. However, in most cases we are still very far from the
+ITLB. We make all our data structure design problems fit in a single framework
+dubbed \emph{instance encoding} so that their space and query time
+requirements can be easily compared.
+
+\todo{Include preprocessing in the definition?}
 
 \input{text/definition/encoding}
 
 In Papers~\ref{paper:order-type-encoding}~and~\ref{paper:3sum-encoding} we
 design such encodings for order types of point configurations and 3SUM types of
-lists of numbers.
+lists of numbers. In the case of abstract order type we manage to
+obtain a \emph{compact} data structure, that is, a \(O(\text{ITLB})\)-bits encoding
+that allows efficient queries.
 
-\subsection{Connection to Decision Trees}
+\subsection{Connection to Nonuniform Algorithms}%
+\label{sec:models-of-computation:data-structures:trees}
 
-Give example with k-SUM, CIO, ES and KLM.
+% TODO Give example with k-SUM, CIO, ES and KLM.
+% TODO Those yield succinct encoding from which the signs can be recovered.
 
-Those yield succinct encoding from which the signs can be recovered.
-
-This is not necessarily true with algebraic decision trees because the answer
-set is not necessarily connected. With linear decision trees it is because the
-answer set is convex, and thus connected.
+%This is not necessarily true with algebraic decision trees because the answer
+%set is not necessarily connected. With linear decision trees it is because the
+%answer set is convex, and thus connected.
 
 Given a realizable order type, instead of encoding the answers to all possible
 of its order type queries, consider the problem of deciding whether one of
