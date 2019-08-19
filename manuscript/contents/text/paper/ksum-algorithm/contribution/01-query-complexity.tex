@@ -91,7 +91,7 @@ its coordinates are independent of \(q\), and thus this step involves no query a
 Step \step{2} prepares the recursive step by finding the hyperplanes containing
 \(q'\). This can be implemented as a ray-shooting algorithm that performs
 a number of comparisons between projections of $q$ on different hyperplanes of $\I$ without
-explicitly computing them. In~Appendix~\ref{app:keeplinear}, we prove that all such comparisons
+explicitly computing them. In \S\ref{app:keeplinear}, we prove that all such comparisons
 can be implemented using \(O(\card{\I})\) linear queries.
 Constructing \(\E'\) can be done by solving systems of linear
 equations that do not involve \(q\).
@@ -161,7 +161,7 @@ Because in our case hyperplanes have only $k$ nonzero coefficients, this uses a
 number of integer arithmetic operations on $\tilde{O}(n)$ bits integers that is
 proportional to the number of vertices times the number of hyperplanes.
 (For the justification of the bound on the number of bits needed to represent
-vertices of the arrangement see Appendix~\ref{app:bound}.)
+vertices of the arrangement see \S\ref{app:bound}.)
 Since we recurse on a fraction of the set, the overall complexity is
 $\tilde{O}(n^2\card{\Hy}) = \tilde{O}(n^{k+2})$. The next section is devoted
 to improving this running time.
