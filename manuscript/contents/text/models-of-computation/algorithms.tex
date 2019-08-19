@@ -1,4 +1,4 @@
-\section{[DONE] Algorithms}
+\section{[DONE] Algorithms}\label{sec:models-of-computation:algorithms}
 
 We study two classes of algorithms: uniform and nonuniform.
 
@@ -32,7 +32,7 @@ real-RAM and word-RAM, and the nonuniform decision tree models algebraic
 computation tree, algebraic decision tree, and linear decision tree. Those are
 described in the following paragraphs.
 
-\subsection{Random Access Machines}
+\subsection{Random Access Machines}\label{sec:models-of-computation:algorithms:ram}
 
 The real-RAM and word-RAM models have the RAM in common. They both assume
 a memory whose access cost is constant and a constant number of standard
@@ -52,11 +52,14 @@ an input consisting of \(n\) integers called words and allows a constant number
 of standard unary or binary operators to be executed in constant time. Those
 words have bitsize \(w \geq \log n\).
 
-\subsection{Computation and Decision Trees}
+\subsection{Computation and Decision Trees}%
+\label{sec:models-of-computation:algorithms:trees}
 
 A decision tree is a constant-degree rooted tree whose internal nodes encode
 queries to an omniscient oracle and whose leaves encode the result of the
 computation.
+
+\todo{Define input class and \emph{Information Theoretic Lower Bound} (ITLB).}
 
 Of course, for every problem asking to distinguish among \(f(n)\) input
 classes, there is a decision tree that will ask \(O(\log f(n))\)
