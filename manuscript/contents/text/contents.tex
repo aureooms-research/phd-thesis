@@ -1,15 +1,67 @@
+%\fancypagestyle{ulb_titlepage}{
+%\fancyhf{}
+%\renewcommand{\headrulewidth}{0pt}
+%\fancyhead[L]{\includegraphics[width=\textwidth]{figures/logo_ulb-left.jpg}}}
+
+\fancypagestyle{ulb_header_style}{
+\fancyhf{}
+\renewcommand{\headrulewidth}{.4pt}
+%\renewcommand{\footrulewidth}{.4pt}
+%\fancyhead[C]{\textbf{\Large UNIVERSIT\'{E} LIBRE DE BRUXELLES}}
+\fancyhead[C]{\Large UNIVERSIT\'{E} LIBRE DE BRUXELLES}
+%\fancyfoot[C]{\large Ann\'{e}e Acad\'{e}mique 2017/2018}
+}
+
+%%%%%%%%%%%%%%%% FRONTPAGE
+%\pictureincenteroftextblock{figures/logo_big.png}
+%\begin{titlepage}
+%\thispagestyle{ulb_titlepage}
+%\input{chapters/frontpage}
+%\afterpage{\blankpage}
+%\end{titlepage}
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+\thispagestyle{ulb_header_style}
+\input{text/titlepage/rearfront}
+%\afterpage{\blankpage}
+
+\clearemptydoublepage
+
+\fancypagestyle{plain}{
+\renewcommand{\headrulewidth}{.4pt}
+\fancyhf{}
+\rfoot{\small\thepage}}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE,RO]{\small\thepage}
+\fancyhead[LO]{\nouppercase{\scshape\rightmark}
+\renewcommand{\headrulewidth}{.4pt}}
+\cfoot{}
+\pagenumbering{roman}
+
 \frontmatter
 \input{text/summary}
 \input{text/acknowledgements}
 \input{text/toc}
 
+\clearemptydoublepage
 \mainmatter
 
 \input{text/birds-eye-view}
 
+\clearemptydoublepage
+\renewcommand{\sectionmark}[1]{\markright{#1}}
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+\fancyhead[LE,RO]{\small\thepage}
+\fancyhead[RE]{\nouppercase{\scshape\thesection.\ \rightmark}}
+\fancyhead[LO]{\nouppercase{\scshape\thechapter.\ \leftmark}}
+
+\clearemptydoublepage
 \part{All of It, Without Proof}
 \input{text/results}
 
+\clearemptydoublepage
 \part{The Computational Geometer's Toolbox}\label{sec:preliminaries}
 \input{text/geometry/_index}
 
@@ -19,12 +71,13 @@
 %\input{text/lexicon}
 %\input{text/appendix}
 
+\clearemptydoublepage
 \backmatter
-\phantomsection
+\fancyhead[RE,LO]{\nouppercase{\scshape\leftmark}}
 \addcontentsline{toc}{chapter}{Bibliography}
 \bibliography{bibliography/bibliography}
 
-\phantomsection
+\clearemptydoublepage
 \renewcommand{\listtheoremname}{List of Contributions and Open Questions}
 \addcontentsline{toc}{chapter}{List of Contributions and Open Questions}
 \listoftheorems[ignoreall,show={contribution,openquestion}]
