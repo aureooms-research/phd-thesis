@@ -2,12 +2,12 @@
 % lipics-like
 \usepackage{authblk}
 \usepackage[protrusion=true,expansion=true]{microtype}
-\usepackage{lettrine}
 \bibliographystyle{plainurl}
 
 \usepackage[x11names]{xcolor}
 \xdefinecolor{linkblue}{RGB}{20,65,109}
 \usepackage[colorlinks,linkcolor=linkblue,cite color=linkblue,pagebackref=true]{hyperref} % for hyperlinks
+\usepackage{fancyhdr}
 \usepackage{graphicx} % \includegraphics
 
 \usepackage[numbers,sort&compress]{natbib} % [1,3-9]
@@ -23,6 +23,12 @@
 \usepackage{csquotes} % \displayquote
 
 \usepackage{cleveref} % \Cref
+
+%%%%%%%%%%%%%%%%%% Page skipping
+
+\newcommand{\clearemptydoublepage}{\newpage{\pagestyle{empty}\cleardoublepage}}
+\newcommand{\blankpage}{\null\thispagestyle{empty}\addtocounter{page}{-1}\newpage}
+
 
 \declaretheorem{theorem} % \begin{theorem}
 \declaretheorem{contribution} % \begin{contribution}
