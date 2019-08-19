@@ -1,29 +1,22 @@
-\todo{Explain cutting tools and how they allow for fast algorithm.}
-
 What makes the success of our methods are now-standard geometric
 divide-and-conquer tools: \(\varepsilon\)-nets and cuttings.
 
-To illustrate this, we make the parallel between those tools and
-a very simple divide-and-conquer sorting algorithm: quicksort.
+The idea of an \(\varepsilon\)-net is simple, yet powerful. Given a sample of
+\(m\) hyperplanes in \(\mathbb{R}^d\), construct a sample of those hyperplanes
+of size \(f(d, \varepsilon)\) uniformly at random. Then, with high probability,
+any simplex that is not intersected by an hyperplane of the sample is intersected
+by at most \(\varepsilon m\) hyperplanes of the original set. The sample is
+called a \emph{net} because it does not let the fat simplices through: a
+simplex intersected by more than \(\varepsilon m\) hyperplanes must be intersected
+by one of the sample.
+%
+This yields an efficient point location tool: construct a sample, find the cell
+of its arrangement that contains the query point, find the simplex of its
+triangulation that contains the query point, and recurse on the fraction of
+hyperplanes that intersect it.
 
-Remember that the sorting problem consists in uncovering the answer to the
-\(n \choose 2\) pairwise comparisons of input numbers.
-The quicksort algorithm progresses as follows: it picks one element of the
-list, the pivot \(x_p\), and compares all the others to it. Let us say the algorithm is
-lucky, and at least \(\Omega(n)\) of the remaining input numbers are
-smaller than
-\(x_p\)
-and at least \(\Omega(n)\) of the remaining input numbers are larger than
-\(x_p\). Then, by transitivity, we know the answer to at least
-\(\Omega(n^2)\) comparisons
-even though we only explicitly asked for \(O(n)\) of them. It is easy to repeat
-this process by noticing that those \(\Omega(n^2)\) answers can be efficiently encoded by
-constructing two lists, one with the numbers smaller than \(x_p\) and one with
-the larger ones. Then the comparisons that are still unanswered are exactly the
-ones between two elements from the same list. Hence, we can solve the problem
-recursively by sorting the two lists individually.
-Too see that this takes only \(O(\log n)\) steps
-
-\todo{Random pivot vs e-net}
-
-\todo{Deterministic pivot vs cuttings. Also mention mergesort.}
+Triangulate the whole arrangement of the sample and you get a
+\(\varepsilon\)-cutting: a partition of space into simplices such
+that each simplex is intersected by at most \(\varepsilon m\) hyperplanes.
+We use cuttings in applications where multiple queries are made on the same set
+of hyperplanes.
