@@ -21,14 +21,27 @@ Finally, in \S\ref{sec:algo:implicit:uniform}, we give a real-RAM
 implementation of this second decision tree to solve 3POL as fast as
 explicit 3POL, up to constant factors (\Cref{thm:implicit:uniform}).
 
-Additional details and applications can be found in the remaining sections.
+Missing details are found in
+\S\ref{paper:3pol-algorithm:subproblems}
+and applications can be found in \S\ref{sec:applications}.
 
 \input{text/paper/3pol-algorithm/text/sec/06-algorithms/01-nonuniform-explicit}
 \input{text/paper/3pol-algorithm/text/sec/06-algorithms/03-uniform-explicit}
 \input{text/paper/3pol-algorithm/text/sec/06-algorithms/05-nonuniform-implicit}
 \input{text/paper/3pol-algorithm/text/sec/06-algorithms/06-uniform-implicit}
+
+\section{Subproblems}\label{paper:3pol-algorithm:subproblems}
+
+In \S\ref{sec:algo:point-curves-location} we prove \Cref{lem:batch} necessary for the
+implementation of our nonuniform algorithms.
+%
+In \S\ref{sec:algo:dominance} we prove \Cref{lem:dominance} necessary for the
+implementation of our uniform algorithms.
+
 \input{text/paper/3pol-algorithm/text/sec/06-algorithms/02-polynomial-batch-range-searching}
 \input{text/paper/3pol-algorithm/text/sec/06-algorithms/04-polynomial-dominance-reporting}
+
+\section{Applications}\label{sec:applications}
 \input{text/paper/3pol-algorithm/text/sec/07-applications/00-intro}
 \input{text/paper/3pol-algorithm/text/sec/07-applications/01-gpt}
 \input{text/paper/3pol-algorithm/text/sec/07-applications/02-unit-circles}
