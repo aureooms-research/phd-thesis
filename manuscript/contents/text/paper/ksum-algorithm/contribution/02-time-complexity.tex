@@ -6,26 +6,13 @@ the two most time-consuming steps of Algorithm~\ref{algo:meiser}.
 In order to efficiently implement the pruning
 step, we define an intermediate problem, that we call the \emph{double $k$-SUM}
 problem.
-\begin{problem}[double $k$-SUM]
-	Given two vectors $\nu_1, \nu_2 \in {[-1,1]}^n$, where the coordinates of
-	$\nu_i$ can be written down as fractions whose numerator and denominator
-	lie in the interval $[-M,M]$, enumerate all
-	$i\in {[n]}^k$ such that
-	$$
-	\left(\sum_{j=1}^{k} \nu_{1,i_j}\right)
-	\left(\sum_{j=1}^{k} \nu_{2,i_j}\right)
-	< 0.
-	$$
-\end{problem}
+\input{text/definition/double-ksum}
 
 In other words, we wish to list all hyperplanes of $\Hy$
 intersecting the open line segment $\nu_1\nu_2$.
 We give an efficient output-sensitive algorithm for this problem.
 
-\begin{lemma}\label{lem:double}
-	The double $k$-SUM problem can be solved in time $O(n^{\lceil \frac{k}{2}
-	\rceil} \log n \log M + Z)$, where $Z$ is the size of the solution.
-\end{lemma}
+\input{text/theorem/ksum-algorithm/double-ksum}
 \begin{proof}
 	If $k$ is even, we consider all possible $\frac{k}{2}$-tuples of numbers in
 	$\nu_1$ and $\nu_2$ and sort their sums in increasing order. This takes time
