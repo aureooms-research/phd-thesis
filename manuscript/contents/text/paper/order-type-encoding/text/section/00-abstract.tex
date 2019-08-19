@@ -18,7 +18,8 @@
 	known encodings can achieve quadratic space or fast orientation queries,
 	but not both.
 %
-	In this contribution, we give a compact encoding for abstract order types
+	In \S\ref{sec:lines-and-pseudolines},
+	we give a compact encoding for abstract order types
 	that allows an efficient query of the orientation of any triple: the encoding
 	uses \( O(n^2) \) bits and an orientation query takes \(O(\log n)\) time in
 	the word-RAM model with word size \(w \geq \log n\).
@@ -28,13 +29,15 @@
 	realizable order types, giving the first subquadratic encoding for those
 	order types with fast orientation queries.
 %
-	We further refine our encoding to attain \(O(\log n/\log\log n)\)
-	query time at the expense of a negligibly larger space requirement.
+	In \S\ref{sec:query-time}, we further refine our encoding to attain
+	\(O(\log n/\log\log n)\) query time at the expense of a negligibly larger
+	space requirement.
 %
 	In the realizable case, we show that all those encodings can be computed
 	efficiently.
 %
-	Finally, we generalize our results to the encoding of point configurations
+	In \S\ref{sec:hyperplanes},
+	we generalize our results to the encoding of point configurations
 	in higher dimension.
 %\end{abstract}
 %\clearpage
