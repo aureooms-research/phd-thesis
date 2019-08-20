@@ -31,11 +31,13 @@ Later in this document we mention GPT without specifying the dimension.
 The problem is then assumed to be in the plane.
 When we consider a different parameterization we explicitly mention it.
 
+\subsection{Reductions}
+
 When \(d=1\), GPT is exactly the element uniqueness problem.
 %
 \input{text/definition/gpt-1}
 
-A seemingly stupid way to solve this problem is to
+One seemingly stupid way to solve this problem is to
 consider the Vandermonde matrix
 %
 \begin{displaymath}
@@ -60,25 +62,39 @@ and to compute its determinant
 \prod_{1 \leq i < j \leq n} (q_j - q_i).
 \end{displaymath}
 
+This can be done in \(O(n \log n)\) ring operations by defining
+%
+\(p(x) = \prod_{i=0}^{n-1} (x-r_i)\)
+%
+and computing
+%
+\begin{align*}
+{\det(V)}^2 &= \mathrm{disc}_x(p(x)) \\
+&= {(-1)}^{\binom{n}{2}} \mathrm{res}_x(p(x), \mathrm{diff}_x(p(x))) \\
+&= {(-1)}^{\binom{n}{2}} \prod_{i=0}^{n-1} \mathrm{diff}_x(p(x))(r_i),
+\end{align*}
+%
+using fast polynomial interpolation to first find the coefficients of
+\(p(x)\) and then using fast polynomial evaluation to evaluate
+\(\mathrm{diff}_x(p(x))\) at all \(r_i\)~\cite{St73,Ku73a,Ku73b,ASU75}.
+
 Reduction from 3SUM to GPT (folklore)
 
 Reduction from \(k\)-SUM to GPT in higher dimension (weird moment curve of Erickson)
+
+\subsection{Lower Bounds}
 
 Lower bounds (Goodman Pollack Seidel? Ailon)
 
 Ben-or applies Milnor Thom
 
+\subsection{Algorithms}
+
 Naive algorithm
 
 Duality and constructing the dual arrangement
 
-Pseudoline arrangements
-
-Encodings
-
-Canonical Labelings
-
-\todo{Give at least one paragraph per citation on 3POL.}
+\subsection{The Intermediate Problem}
 
 We consider an algebraic generalization of the 3SUM problem: we replace the sum
 function by a constant-degree polynomial in three variables $F \in
@@ -88,7 +104,14 @@ call this new problem the \emph{3POL problem}.
 
 \input{text/definition/3pol}
 
-Some combinatorics aspects of the 3POL problem have already been studied.
+\subsection{Combinatorics}
+
+In a series of results spanning fifteen years,
+Elekes and Rónyai~\cite{ER00},
+Elekes and Szabó~\cite{ES12},
+Raz, Sharir and Solymosi~\cite{RSS14}, and
+Raz, Sharir and de Zeeuw~\cite{RSZ15}
+give upper bounds on the number of degenerate triples for the 3POL problem.
 %
 For the particular case $F(x,y,z) = f(x,y) - z$ where $f \in \mathbb{R}[x,y]$
 is a constant-degree bivariate polynomial, Elekes and Rónyai~\cite{ER00} show
@@ -115,45 +138,25 @@ They translated the problem into an incidence problem between points and
 constant-degree algebraic curves. Then, they showed that unless $f$ (or $F$) is
 special, these curves have low multiplicities. Finally, they applied a theorem
 due to Pach and Sharir~\cite{PS98} bounding the number of incidences between
-the points and the curves. Some of these ideas appear in our approach.
-
-
-\subsection{Combinatorics Results on 3POL and GPT}
-In a series of results spanning fifteen years,
-Elekes and Rónyai~\cite{ER00},
-Elekes and Szabó~\cite{ES12},
-Raz, Sharir and Solymosi~\cite{RSS14}, and
-Raz, Sharir and de Zeeuw~\cite{RSZ15}
-give upper bounds on the number of degenerate triples for the 3POL problem.
-The last and strongest result is the following:
-\begin{theorem}[Raz, Sharir and de Zeeuw~\cite{RSZ15}]
-	Let $A$, $B$, $C$ be $n$-sets of real numbers and $F \in \mathbb{R}[x,y,z]$
-	be a polynomial of constant degree, then
-	\begin{displaymath}
-		%| \{\, (a,b,c) \in ( A \times B \times C ) \st F(a,b,c) = 0 \,\} | = O(n^{11/6}),
-		| Z(F) \cap ( A \times B \times C ) | = O(n^{11/6}),
-	\end{displaymath}
-	unless $F$ has some group related form.\footnote{Because our results do not
-	depend on the meaning of \emph{group related form}, we do not bother
-	defining it here. We refer the reader to Raz, Sharir and de Zeeuw~\cite{RSZ15}
-	for the exact definition.}
-\end{theorem}
+the points and the curves.
+%
+\input{text/theorem/RSZ15}
 
 Raz, Sharir and de Zeeuw~\cite{RSZ15} also look at the number of degenerate
 triples for the General Position Testing problem when the input is restricted
 to points lying on a constant number of constant-degree algebraic curves.
-\begin{theorem}[Raz, Sharir and de Zeeuw~\cite{RSZ15}]\label{thm:rsz15:col}
-Let $C_1, C_2, C_3$ be three (not necessarily distinct) irreducible algebraic curves
-of degree at most $d$ in $\mathbb{C}^2$, and let $S_1 \subset C_1, S_2 \subset C_2, S_3
-\subset C_3$ be finite subsets. Then the
-number of proper collinear triples in $S_1 \times S_2 \times S_3$ is
-\begin{displaymath}
-	O_d( |S_1|^{1/2} |S_2|^{2/3} |S_3|^{2/3} + |S_1|^{1/2} (|S_1|^{1/2} + |S_2| +
-|S_3| ) ),
-\end{displaymath}
-unless $C_1 \cup C_2 \cup C_3$ is a line or a cubic curve.
-\end{theorem}
+%
+\input{text/theorem/RSZ15-gpt}
 
 Nassajian Mojarrad, Pham, Valculescu and de Zeeuw~\cite{MPVd16} and
 Raz, Sharir and de Zeeuw~\cite{RSZ16} proved bounds for versions of the
 problem where $F$ is a $4$-variate polynomial.
+
+
+\subsection{Encodings}
+
+Pseudoline arrangements
+
+Encodings
+
+Canonical Labelings
