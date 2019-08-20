@@ -1,4 +1,4 @@
-\chapter{[DONE] Developments}
+\chapter{[DONE] Developments}\label{chapter:developments}
 
 Since the publication of our results, new developments have surfaced.
 
@@ -13,6 +13,31 @@ Our analysis of Meiser's algorithm yields a nonuniform upper bound of \(O(d^3 \l
 d \log m)\) for this problem. However, this is far from optimal.
 The information theoretic lower bound obtained through
 Buck's theorem (Theorem~\ref{thm:buck}) is only \(\Omega(d \log m)\).
+
+%Cardinal, Iacono, and
+%Ooms~\cite{CIO16}
+%carefully analyzed the complexity of Meiser's algorithm to show that $k$-SUM
+%can be solved in \( O(n^3 \log^2 n) \) $n$-linear queries.
+
+%They also showed how
+%to efficiently implement this decision tree in the real-RAM model.
+
+%This decision
+%tree is a prune and search algorithm that relies on the simplicial
+%decomposition of an arrangement of hyperplanes.
+
+%Ezra and
+%Sharir~\cite{ES17}
+%later improved the decision tree depth to \( O(n^2 \log n) \) by using
+%vertical decomposition instead.
+
+%In a breakthrough result, Kane, Lovett, and Moran~\cite{KLM17} proved
+%that $k$-SUM can be solved using $O(n \log^2 n)$ $2k$-linear queries. This is
+%close to the information theoretic lower bound of $\Omega(n \log n)$. Their
+%decision tree is also a prune and search algorithm. The techniques used rely
+%heavily on the linearity of the sum function in the 3SUM problem. We do not see
+%how to apply their techniques to obtain subquadratic-depth decision trees for
+%the 3POL problem.
 
 Two new developments have surfaced.
 %

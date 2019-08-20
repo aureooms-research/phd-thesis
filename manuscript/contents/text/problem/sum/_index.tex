@@ -1,0 +1,238 @@
+\section{[DONE] 3SUM \& \(k\)-SUM}\label{sec:problem:sum}
+
+The 3SUM problem is defined as follows: given $n$ distinct real numbers, decide
+whether any three of them sum to zero.
+%
+\input{text/definition/3sum}
+%
+The seminal paper by Gajentaan and Overmars showed the crucial role
+of 3SUM in understanding the complexity of several problems in computational
+geometry~\cite{GO95}.
+
+A popular conjecture is that no $n^{2-\Omega(1)}$-time real-RAM algorithm
+solves 3SUM.
+%
+\input{text/theorem/3sum-conjecture}
+%
+This conjecture has been used to show conditional
+lower bounds for problems in \(\textsc{P}\),
+notably in computational geometry with problems
+such as
+GeomBase, general position testing (GPT)~\cite{GO95}
+and
+Polygonal Containment~\cite{BH01},
+and more recently for string problems such as
+Local Alignment~\cite{AVW14}
+and
+Jumbled Indexing~\cite{ACLL14},
+as well as
+dynamic versions of graph problems~\cite{Pa10,KPP14,AV14},
+triangle enumeration and Set Disjointness~\cite{KPP16}.
+
+
+The \(k\)-SUM problem is a straightforward generalization of the 3SUM problem:
+given \(n\) distinct real numbers, decide whether \(k\) of them sum to zero.
+%
+\input{text/definition/ksum}
+
+It has been known for long that \(k\)-SUM is $\textsc{W}[1]$-hard and proved
+recently to be $\textsc{W}[1]$-complete~\cite{ALW14}.
+The \(k\)-SUM problem is also a fixed-parameter version of the subset-sum
+problem, a standard \textit{NP}-complete problem.
+
+Similarly to 3SUM, the \(k\)-SUM problem
+has proved to be a computational bottleneck in high dimensional convex hull
+construction or general
+position testing~\cite{Er99b}.
+
+For all those reasons, 3SUM and \(k\)-SUM are considered as key subjects of an
+emerging theory of complexity-within-\(\textsc{P}\) (or ``fine-grained''
+complexity), on par with other problems such as
+all-pairs shortest paths,
+orthogonal vectors,
+boolean matrix multiplication,
+and conjectures such as
+the Strong Exponential Time Hypothesis~\cite{MO01,PW10,AVY15,HKNS15,CGIMPS16}.
+
+%Cite that paper that links \(n^2\)-hard problems to P vs NP?
+
+
+\subsection{Variants}
+
+For the sake of simplicity, we will sometimes consider the following definition of 3SUM\@:
+\begin{problem}[3SUM]
+Given 3 sets $A$, $B$, and $C$, each containing $n$ real numbers, decide
+whether there exist $a \in A$, $b \in B$, and $c \in C$ such that $c=a+b$.
+\end{problem}
+
+The \(k\)-SUM problem can be further generalized to the
+linear degeneracy testing problem (\(k\)-LDT) where we allow
+coefficients other than zero and one.
+%
+\input{text/definition/kldt}
+%
+Our algorithms apply to this more general problem with only minor changes.
+
+\todo{Add reduction found in GP18.}
+
+\todo{Add reduction found in KLM18.}
+
+\subsection{Point Location}
+
+The \(k\)-SUM problem amounts to deciding in $n$-dimensional space, for each hyperplane
+\(H\) of equation \(x_{i_1} + x_{i_2} + \cdots +x_{i_k} = 0\), whether \(q\)
+lies on, above, or below \(H\). Hence this indeed amounts to locating the point
+$q$ in the arrangement formed by those hyperplanes. We emphasize that the set
+of hyperplanes depends only on $k$ and $n$ and not on the actual input vector
+$q$.
+
+\input{text/definition/point-location}
+
+\subsection{Lower Bounds}
+
+In Erickson~\cite{Er99a}, it is shown that we cannot solve \(k\)-SUM or
+\(k\)-LDT in subquadratic time in the \(k\)-linear decision tree model:
+%
+\input{text/theorem/Er99a}
+%
+The proof uses an adversary argument which can be explained geometrically. As
+we already observed, we can solve \(k\)-LDT problems by modeling them as point
+location problems in an arrangement of hyperplanes. Solving one such problem
+amounts to determining which cell of the arrangement contains the input point.
+The adversary argument of Erickson~\cite{Er99a} is that there exists a cell having
+$\Omega(n^{\lceil\frac{k}{2}\rceil})$ boundary facets and in this model point
+location in such a cell requires testing each facet.
+
+%The lower bound of Erickson generalizes to \( \Omega (n^{\lceil k/2
+%\rceil }) \) for \( k \)-linear decision trees that solve \( k \)-SUM\@.
+
+%Erickson proved a near-matching lower bound in the $k$-linear
+%decision tree model~\cite{Er99a}.
+
+Ailon and Chazelle slightly extended the range of query sizes for which a
+nontrivial lower bound could be established, elaborating on Erickson's
+technique~\cite{AC05}.
+%
+They study \(s\)-linear decision trees to solve the \(k\)-SUM problem when
+\(s > k\). In particular, they give an additional proof for the
+$\Omega(n^{\ceil{\frac{k}{2}}})$ lower bound of Erickson and
+generalize the lower bound for the \(s\)-linear decision tree model when \(s >
+k\). Note that the exact lower bound given by Erickson for \(s = k\) is
+$\Omega({(nk^{-k})}^{\ceil{\frac{k}{2}}})$ while the one given by
+Ailon and Chazelle is $\Omega({(nk^{-3})}^{\ceil{\frac{k}{2}}})$. Their result
+improves therefore the lower bound for \(s = k\) when \(k\) is large.
+The lower bound they prove for \(s > k\) is the following
+%
+\input{text/theorem/AC05}
+%
+This lower bound breaks down when
+\(k = \Omega(n^{\frac{1}{3}})\) or \(s \ge 2 k\) and the cases where \(k < 6\)
+give trivial lower bounds. For example, in the case
+of 3SUM with \(s = 4\) we only get an $\Omega(n)$ lower bound.
+
+\subsection{Uniform Algorithms}
+
+On the real-RAM and word-RAM,
+it is easy to solve any \(k\)-SUM instance in time \(O(n^{k/2} \log n)\) for
+\(k\) even and \(O(n^{(k+1)/2})\) for \(k\) odd,
+and hence 3SUM in time \(O(n^2)\). Those algorithms inspect the input using
+\(k\)-linear queries exclusively and the lower bounds of Erickson and Ailon and
+Chazelle in this model of computation essentially match their complexity.
+
+Because fixing two of the numbers $a$ and $b$ in a triple only allows for one
+solution to the equation $a + b + x = 0$, an instance of 3SUM has at most
+$n^2$ degenerate triples. An instance giving a matching lower bound is for
+example the set $\{\,\frac{1-n}{2},\ldots,\frac{n-1}{2}\,\}$ (for odd $n$)
+with $\frac{3}{4} n^2 + \frac 14$ degenerate triples.
+%
+One might be tempted to think that the number of ``solutions'' to the problem
+would lower bound the complexity of algorithms for the decision version of the
+problem, as it is the case for this problem, and other problems, in restricted
+models of computation~\cite{Er96,Er99a}.
+%
+This intuition is incorrect.
+%
+%Indeed, Gr\o nlund and Pettie~\cite{GP18} proved that there exist
+%$\tilde{O}(n^{3/2})$-depth linear decision trees and $o(n^2)$-time real-RAM
+%algorithms for 3SUM\@.
+
+Baran et al. were the first to give subquadratic algorithms for
+3SUM~\cite{BDP08}. They design subquadratic Las Vegas
+algorithms for 3SUM on integer and
+rational numbers in the circuit RAM, word RAM, external memory, and
+cache-oblivious models of computation. The idea of their approach is to exploit
+the parallelism of the models, using linear and universal hashing. However,
+since their algorithms do not handle real inputs,
+this did not settle the question of subquadratic algorithms in whole
+generality.
+
+The first subquadratic algorithms for real-input 3SUM were given by
+Gr{\o}nlund and Pettie~\cite{GP18}.
+Using a trick due to Fredman~\cite{Fr76},
+they prove the existence of a linear decision tree
+solving the 3SUM problem using a strongly subquadratic number of linear queries.
+The classical quadratic algorithm for 3SUM uses \(3\)-linear queries
+while the decision tree of Gr{\o}nlund and Pettie uses \(4\)-linear queries and
+requires $O(n^{\frac{3}{2}} \sqrt{\log n})$ of them.
+\input{text/theorem/GP18}
+
+They show how to adapt this decision tree to run in subquadratic time in the
+real-RAM model. They design two subquadratic 3SUM
+real-RAM algorithms. A deterministic one running in
+$O(n^2/{(\log n/\log \log n)}^{\frac{2}{3}})$
+time and a randomized one running in
+$O(n^2 {(\log \log n)}^2 / \log n)$ time with high probability.
+
+Freund~\cite{Fr15} and Gold and Sharir~\cite{GS15} later gave improvements on the
+results of Gr{\o}nlund and Pettie~\cite{GP18}. Freund~\cite{Fr15} gave a deterministic algorithm for
+3SUM running in \(O( {n^2\log \log n}/{\log n})\) time.
+Gold and Sharir~\cite{GS15} gave another deterministic algorithm for 3SUM
+with the same running time and shaved off the $\sqrt{\log n}$ factor in the
+decision tree complexities of 3SUM and \(k\)-SUM given by Gr{\o}nlund and Pettie.
+\input{text/theorem/Fr15+GS15}
+
+Chan and Lewenstein designed strongly subquadratic algorithms for a higher
+dimensional variant of integer 3SUM with applications to jumbled
+indexing~\cite{CL15}. This result generalizes the idea that 3SUM on small
+integers can be solved in strongly subquadratic time.
+
+\subsection{Nonuniform Algorithms}
+
+It has been well established that there exist nonuniform
+polynomial-time algorithms for the subset-sum and knapsack problems.
+%
+Meyer auf der Heide~\cite{M84} was the first to use a point location algorithm to solve
+the knapsack problem in the linear decision tree model in polynomial time. He
+thereby answered a question raised by Dobkin and Lipton~\cite{DL74,DL78},
+Yao~\cite{Y82} and others. However, if one uses this algorithm to locate a
+point in an arbitrary arrangement of hyperplanes the running time is increased
+by a factor linear in the greatest coefficient in the equations of all
+hyperplanes.
+%
+A second algorithm was described by Meiser~\cite{M93}, and is derived from a
+data structure for point location in arrangements of hyperplanes using the
+bottom vertex decomposition.
+%
+The complexity of Meiser's point location algorithm is polynomial in the
+dimension, logarithmic in the number of hyperplanes and does not depend on the
+value of the coefficients in the equations of the hyperplanes. A useful
+complete description of this algorithm is given by Bürgisser et al.~\cite{B97}
+(Section 3.4).
+
+When applied to \(k\)-SUM, those algorithms can be cast as the construction of
+a linear decision tree in which the queries have non-constant size, even though
+\(k\) is constant. They both yield \(n^{O(1)}\)-time nonuniform algorithms for
+\(k\)-SUM where the constant of proportionality does not depend on \(k\).
+
+The nonuniform algorithm of Gr\o nlund and
+Pettie for 3SUM in the \(4\)-linear decision tree model
+generalizes to \(k\)-SUM~\cite{GP18}.
+In the $(2k-2)$-linear decision tree model,
+only $O(n^\frac{k}{2}\sqrt{\log n})$ queries are required for odd values of $k$.
+Putting this in perspective with the lower bounds of Erickson and Ailon and
+Chazelle, this indicates that increasing the size of the queries can yield
+significant improvements on the depth of the minimal-height decision tree.
+
+The results of Meyer auf der Heide and Meiser show that
+if one is allowed to use $n$-linear queries instead, the complexity drops to a
+polynomial in the input size whose exponent does not depend on $k$.
