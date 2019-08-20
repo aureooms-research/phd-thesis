@@ -205,14 +205,6 @@ pages="1--12"
   year      = {2010},
 }
 
-@book{GO04,
-  editor    = {Jacob E. Goodman and
-               Joseph O'Rourke},
-  title     = {Handbook of Discrete and Computational Geometry, Second Edition},
-  publisher = {Chapman and Hall/CRC},
-  year      = {2004},
-}
-
 @article{Cla88,
   author    = {Kenneth L. Clarkson},
   title     = {A Randomized Algorithm for Closest-Point Queries},
@@ -284,7 +276,7 @@ pages="1--12"
   year      = {1995},
 }
 
-@book{B97,
+@book{BCS97,
   author    = {Peter B{\"{u}}rgisser and
                Michael Clausen and
                Mohammad Amin Shokrollahi},
@@ -292,16 +284,18 @@ pages="1--12"
   series    = {Grundlehren der mathematischen Wissenschaften},
   volume    = {315},
   publisher = {Springer},
-  year      = {1997},
+  year      = {1997}
 }
 
 @article{Bu43,
   title={Partition of space},
-  author={Buck, RC},
-  journal={American Mathematical Monthly},
+  author={Buck, Robert Creighton},
+  journal={The American Mathematical Monthly},
+  volume={50},
+  number={9},
   pages={541--544},
   year={1943},
-  publisher={JSTOR}
+  publisher={Taylor \& Francis}
 }
 
 @article{M02,
@@ -557,16 +551,14 @@ article{T51,
 }
 
 @Inbook{T51,
-author="Tarski, Alfred",
-editor="Caviness, Bob F.
-and Johnson, Jeremy R.",
-title="A Decision Method for Elementary Algebra and Geometry",
-bookTitle="Quantifier Elimination and Cylindrical Algebraic Decomposition",
-year="1998",
-publisher="Springer Vienna",
-address="Vienna",
-pages="24--84",
-isbn="978-3-7091-9459-1"
+  author="Tarski, Alfred",
+  title="A Decision Method for Elementary Algebra and Geometry",
+  bookTitle="Quantifier Elimination and Cylindrical Algebraic Decomposition",
+  year="1998",
+  publisher="Springer Vienna",
+  address="Vienna",
+  pages="24--84",
+  isbn="978-3-7091-9459-1"
 }
 
 
@@ -1135,18 +1127,6 @@ isbn="978-3-7091-9459-1"
                Greece, September 14-16, 2015, Proceedings},
   pages     = {977--988},
   year      = {2015},
-  crossref  = {DBLP:conf/esa/2015},
-}
-
-@proceedings{DBLP:conf/esa/2015,
-  editor    = {Nikhil Bansal and
-               Irene Finocchi},
-  title     = {Algorithms - {ESA} 2015 - 23rd Annual European Symposium, Patras,
-               Greece, September 14-16, 2015, Proceedings},
-  series    = {LNCS},
-  volume    = {9294},
-  publisher = {Springer},
-  year      = {2015},
 }
 
 % point location
@@ -1663,7 +1643,16 @@ isbn="978-3-7091-9459-1"
   publisher={Elsevier}
 }
 
-@incollection{Go04,
+@book{GO04,
+  editor    = {Jacob E. Goodman and
+               Joseph O'Rourke},
+  title     = {Handbook of Discrete and Computational Geometry, Second Edition},
+  publisher = {Chapman and Hall/CRC},
+  year      = {2004},
+}
+
+
+@incollection{Goo04,
   author    = {Jacob E. Goodman},
   title     = {Pseudoline Arrangements},
   booktitle = {Handbook of Discrete and Computational Geometry, 2nd Ed.},
@@ -1751,7 +1740,7 @@ isbn="978-3-7091-9459-1"
 
 % Rank-Select
 
-@article{BH17,
+@inproceedings{BH17,
   author    = {Tim Baumann and
                Torben Hagerup},
   title     = {Rank-Select Indices Without Tears},
@@ -1774,11 +1763,11 @@ isbn="978-3-7091-9459-1"
 
 % Succinct Data Structures
 
-@article{Ja88,
+@phdthesis{Ja88,
   title={Succinct static data structures},
   author={Jacobson, Guy Joseph},
   year={1988},
-  publisher={Carnegie Mellon University}
+  school={Carnegie Mellon University}
 }
 
 @inproceedings{RRS01,
@@ -1802,6 +1791,17 @@ isbn="978-3-7091-9459-1"
   pages     = {305--313},
   publisher = {{IEEE} Computer Society},
   year      = {2008}
+}
+
+@inproceedings{DPT10,
+  author    = {Yevgeniy Dodis and
+               Mihai P{\u a}tra{\cb s}cu and
+               Mikkel Thorup},
+  title     = {Changing base without losing space},
+  booktitle = {Proceedings of the 42nd {ACM} Symposium on Theory of Computing, {STOC}
+               2010, Cambridge, Massachusetts, USA, 5-8 June 2010},
+  pages     = {593--602},
+  year      = {2010},
 }
 
 @inproceedings{Vi08,
@@ -1975,25 +1975,4 @@ isbn="978-3-7091-9459-1"
  publisher = {{ACM}},
  title = {Coordinate Representation of Order Types Requires Exponential Storage},
  year = {1989}
-}
-
-@inproceedings{DPT10,
-  author    = {Yevgeniy Dodis and
-               Mihai P{\u a}tra{\cb s}cu and
-               Mikkel Thorup},
-  title     = {Changing base without losing space},
-  booktitle = {Proceedings of the 42nd {ACM} Symposium on Theory of Computing, {STOC}
-               2010, Cambridge, Massachusetts, USA, 5-8 June 2010},
-  pages     = {593--602},
-  year      = {2010},
-  crossref  = {DBLP:conf/stoc/2010},
-}
-
-@proceedings{DBLP:conf/stoc/2010,
-  editor    = {Leonard J. Schulman},
-  title     = {Proceedings of the 42nd {ACM} Symposium on Theory of Computing, {STOC}
-               2010, Cambridge, Massachusetts, USA, 5-8 June 2010},
-  publisher = {{ACM}},
-  year      = {2010},
-  isbn      = {978-1-4503-0050-6},
 }
