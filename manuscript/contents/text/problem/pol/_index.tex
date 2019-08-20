@@ -31,7 +31,21 @@ Later in this document we mention GPT without specifying the dimension.
 The problem is then assumed to be in the plane.
 When we consider a different parameterization we explicitly mention it.
 
+\subsection{Variants}
+
+Similarly to the 3SUM, \(k\)-SUM, and \(k\)-LDT problems, we can study a
+variant of GPT where the tested triples come from different sets.
+%
+\input{text/definition/gpt-2-variant}
+
 \subsection{Reductions}
+
+% TODO Reduction from 3SUM to GPT (folklore)
+
+Given an instance of 3SUM \(\langle A,B,C \rangle\), we can reduce it to the
+following instance of GPT
+
+% DONE Reduction from \(k\)-SUM to GPT
 
 When \(d=1\), GPT is exactly the element uniqueness problem.
 %
@@ -52,35 +66,68 @@ V(x) = \begin{pmatrix}
 and to compute its determinant
 %
 \begin{displaymath}
-\det(V(q)) = \begin{vmatrix}
+|V(q)| = \det\begin{pmatrix}
     1       & q_1     & q_1^2     & \dots  & q_1^{n-1}     \\
     1       & q_2     & q_2^2     & \dots  & q_2^{n-1}     \\
     \vdots  & \vdots  & \vdots    & \ddots & \vdots        \\
     1       & q_n & q_n^2 & \dots  & q_n^{n-1}
-\end{vmatrix}
+\end{pmatrix}
 =
 \prod_{1 \leq i < j \leq n} (q_j - q_i).
 \end{displaymath}
 
 This can be done in \(O(n \log n)\) ring operations by defining
 %
-\(p(x) = \prod_{i=0}^{n-1} (x-r_i)\)
+\(p(x) = \prod_{i=0}^{n-1} (x-q_i)\)
 %
 and computing
 %
 \begin{align*}
-{\det(V)}^2 &= \mathrm{disc}_x(p(x)) \\
+{\det(V(q))}^2 &= \mathrm{disc}_x(p(x)) \\
 &= {(-1)}^{\binom{n}{2}} \mathrm{res}_x(p(x), \mathrm{diff}_x(p(x))) \\
-&= {(-1)}^{\binom{n}{2}} \prod_{i=0}^{n-1} \mathrm{diff}_x(p(x))(r_i),
+&= {(-1)}^{\binom{n}{2}} \prod_{i=0}^{n-1} \mathrm{diff}_x(p(x))(q_i),
 \end{align*}
 %
 using fast polynomial interpolation to first find the coefficients of
 \(p(x)\) and then using fast polynomial evaluation to evaluate
-\(\mathrm{diff}_x(p(x))\) at all \(r_i\)~\cite{St73,Ku73a,Ku73b,ASU75}.
+\(\mathrm{diff}_x(p(x))\) at all \(q_i\)~\cite{St73,Ku73a,Ku73b,ASU75}.
 
-Reduction from 3SUM to GPT (folklore)
+Consider points on the moment curve $m_d(t) = (t, t^2, \ldots, t^d)$. Given a
+GPT instance consisting of points $m_d(q_i)$ on this curve the determinant
+in Problem~\ref{problem:gpt-d} becomes
+%
+\begin{displaymath}
+\det\begin{pmatrix}
+1      & q_1^1 & q_1^2 & \cdots & q_1^d \\
+1      & q_2^1 & q_2^2 & \cdots & q_2^d \\
+\vdots & \vdots  & \vdots  & \ddots & \vdots  \\
+1      & q_{d+1}^1 & q_{d+1}^2 & \cdots & q_{d+1}^d
+\end{pmatrix}
+=
+|V(q)|.
+\end{displaymath}
 
-Reduction from \(k\)-SUM to GPT in higher dimension (weird moment curve of Erickson)
+Consider points on the weird moment curve $\omega_d(t) = (t, t^2, \ldots,
+t^{d-1}, t^{d+1})$~\cite{Er99b}.
+If our input only consists of points $\omega_d(q_i)$ on this curve then the
+determinant becomes
+%
+\begin{displaymath}
+\det\begin{pmatrix}
+1      & q_0^1 & q_0^2 & \cdots & q_0^{d-1} & q_0^{d+1} \\
+1      & q_1^1 & q_1^2 & \cdots & q_1^{d-1} & q_1^{d+1} \\
+\vdots & \vdots  & \vdots  & \ddots & \vdots & \vdots  \\
+1      & q_d^1 & q_d^2 & \cdots & q_d^{d-1} & q_d^{d+1}
+\end{pmatrix} = |V(q)| \cdot \sum_{i=1}^{d+1} q_i,
+\end{displaymath}
+%
+which is the predicate we want to test for $(d+1)$-SUM (modulo the $|V(q)|$
+factor which is nonzero for distinct input numbers).
+
+In the plane, this reduction from 3SUM to the cubic curve \(\omega_2(t) = (t,
+t^3)\) is also folklore.
+%Note that the weird moment curve in two dimensions is precisely the cubic curve
+%from the reduction from 3SUM to GPT.
 
 \subsection{Lower Bounds}
 
@@ -93,6 +140,8 @@ Ben-or applies Milnor Thom
 Naive algorithm
 
 Duality and constructing the dual arrangement
+
+No subquadratic algorithm known, uniform or nonuniform.
 
 \subsection{The Intermediate Problem}
 
