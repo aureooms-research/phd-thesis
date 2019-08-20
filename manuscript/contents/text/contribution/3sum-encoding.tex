@@ -50,8 +50,9 @@ word-RAM.
 We also study lower and upper bounds of other natural 3SUM type encodings.
 
 As there are only $O(n^3)$ queries, a table
-of size $(\log_2 3) n^3 + O(1)$ bits suffices to give constant query time
-\cite{DPT10}. This can be improved to $O(n^2\log n)$ bits of space by 
+of size $(\log_2 3) n^3 + O(1)$ bits suffices to give constant query time~\cite{DPT10}.
+%
+This can be improved to $O(n^2\log n)$ bits of space by
 storing for each pair $(i,j)$ the values
 \(k_<(i,j) = \max \{ 0\}\cup \{k \colon\, a_i + b_j + c_k < 0\}\) and
 \(k_>(i,j) = \min \{ n+1\}\cup \{k \colon\, a_i + b_j + c_k > 0\}\).
