@@ -1,18 +1,64 @@
 \section{GPT \& 3POL}\label{sec:problem:pol}
 
-\todo{Give at least one paragraph per citation on GPT.}
-
-The General Position Testing problem (GPT) asks whether, given \(n\) points in
-the plane, three of them are collinear. Because of some elementary algebra, the
-following form is equivalent:
-
+In the plane, the General Position Testing problem (GPT) asks whether, given
+\(n\) points, three of them are collinear. Because of some
+elementary algebra, the following form is equivalent:
+%
 \input{text/definition/gpt-2}
 
-Generalization of GPT to any dimension:
+Note that this determinant is a degree-two polynomial in six variables
+\begin{displaymath}
+	x_i y_j - y_i x_j - x_i y_k + y_i x_k + x_j y_k - y_j x_k.
+\end{displaymath}
 
+In Computational Geometry it is better know as the clockwise/counterclockwise predicate
+and is more commonly written
+\begin{displaymath}
+	(x_j - x_i)(y_k - y_i) - (y_j - y_i)(x_k - x_i),
+\end{displaymath}
+with only five subtractions and two multiplications.
+
+The problem generalizes to higher dimension: given \(n\) points in
+\(\mathbb{R}^d\), decide whether any \(d+1\) of them lie on a common
+hyperplane. Again, using algebra:
+%
 \input{text/definition/gpt-d}
 
-Link to sorting when \(d=2\) and Vandermonde determinant.
+Again, this determinant is a degree \(d\) polynomial in
+\(d^2 + d\) variables.
+
+Later in this document we mention GPT without specifying the dimension.
+The problem is then assumed to be in the plane.
+When we consider a different parameterization we explicitly mention it.
+
+When \(d=1\), GPT is exactly the element uniqueness problem.
+%
+\input{text/definition/gpt-1}
+
+A seemingly stupid way to solve this problem is to
+consider the Vandermonde matrix
+%
+\begin{displaymath}
+V(x) = \begin{pmatrix}
+    1       & x_1     & x_1^2     & \dots  & x_1^{n-1}     \\
+    1       & x_2     & x_2^2     & \dots  & x_2^{n-1}     \\
+    \vdots  & \vdots  & \vdots    & \ddots & \vdots        \\
+    1       & x_n & x_n^2 & \dots  & x_n^{n-1}
+\end{pmatrix},
+\end{displaymath}
+%
+and to compute its determinant
+%
+\begin{displaymath}
+\det(V(q)) = \begin{vmatrix}
+    1       & q_1     & q_1^2     & \dots  & q_1^{n-1}     \\
+    1       & q_2     & q_2^2     & \dots  & q_2^{n-1}     \\
+    \vdots  & \vdots  & \vdots    & \ddots & \vdots        \\
+    1       & q_n & q_n^2 & \dots  & q_n^{n-1}
+\end{vmatrix}
+=
+\prod_{1 \leq i < j \leq n} (q_j - q_i).
+\end{displaymath}
 
 Reduction from 3SUM to GPT (folklore)
 
