@@ -136,7 +136,7 @@ of 3SUM with \(s = 4\) we only get an $\Omega(n)$ lower bound.
 
 On the real-RAM and word-RAM,
 it is easy to solve any \(k\)-SUM instance in time \(O(n^{k/2} \log n)\) for
-\(k\) even and \(O(n^{(k+1)/2})\) for \(k\) odd,
+\(k\) even and \(O(n^{\frac{k+1}{2}})\) for \(k\) odd,
 and hence 3SUM in time \(O(n^2)\). Those algorithms inspect the input using
 \(k\)-linear queries exclusively and the lower bounds of Erickson and Ailon and
 Chazelle in this model of computation essentially match their complexity.
@@ -146,7 +146,7 @@ solution to the equation $a + b + x = 0$, an instance of 3SUM has at most
 $n^2$ degenerate triples. An instance giving a matching lower bound is for
 example the set
 of \(n\) integers
-$\{\,\frac{1-n}{2},\ldots,\frac{n-1}{2}\,\}$ (for odd $n$)
+$\{\,\frac{1-n}{2},\frac{3-n}{2},\ldots,\frac{n-1}{2}\,\}$ (for odd $n$)
 with $\frac{3}{4} n^2 + \frac 14$ degenerate triples.
 %
 One might be tempted to think that the number of ``solutions'' to the problem
@@ -172,7 +172,7 @@ generality.
 
 The first subquadratic algorithms for real-input 3SUM were given by
 Gr{\o}nlund and Pettie~\cite{GP18}.
-Using a trick due to Fredman~\cite{Fr76},
+Using an old trick due to Fredman~\cite{Fr76},
 they prove the existence of a linear decision tree
 solving the 3SUM problem using a strongly subquadratic number of linear queries.
 The classical quadratic algorithm for 3SUM uses \(3\)-linear queries
@@ -195,15 +195,26 @@ with the same running time and shaved off the $\sqrt{\log n}$ factor in the
 decision tree complexities of 3SUM and \(k\)-SUM given by Gr{\o}nlund and Pettie.
 \input{text/theorem/Fr15+GS15}
 
-Chan and Lewenstein designed strongly subquadratic algorithms for a higher
-dimensional variant of integer 3SUM with applications to jumbled
+Chan and Lewenstein designed strongly subquadratic word-RAM algorithms for a
+high-dimensional variant of integer 3SUM with applications to jumbled
 indexing~\cite{CL15}. This result generalizes the idea that 3SUM on small
 integers can be solved in strongly subquadratic time.
 
 \subsection{Nonuniform Algorithms}
 
+The nonuniform algorithm of Gr\o nlund and
+Pettie for 3SUM in the \(4\)-linear decision tree model
+generalizes to \(k\)-SUM~\cite{GP18}.
+In the $(2k-2)$-linear decision tree model,
+only $O(n^\frac{k}{2}\sqrt{\log n})$ queries are required for odd values of $k$.
+Putting this in perspective with the lower bounds of Erickson and Ailon and
+Chazelle, this indicates that increasing the size of the queries, thus making
+the model more powerful, does yield
+improvements on the depth of the minimal-height decision tree.
+
 It has been well established that there exist nonuniform
-polynomial-time algorithms for the subset-sum and knapsack problems.
+polynomial-time algorithms for the subset-sum and knapsack problems, even
+though those problems are \textsc{NP}-complete.
 %
 Meyer auf der Heide~\cite{M84} was the first to use a point location algorithm to solve
 the knapsack problem in the linear decision tree model in polynomial time. He
@@ -215,28 +226,17 @@ hyperplanes.
 %
 A second algorithm was described by Meiser~\cite{M93}, and is derived from a
 data structure for point location in arrangements of hyperplanes using the
-bottom vertex decomposition.
+\emph{bottom vertex triangulation} (see
+\S\ref{sec:geometry:arrangements:triangulation}).
 %
 The complexity of Meiser's point location algorithm is polynomial in the
 dimension, logarithmic in the number of hyperplanes and does not depend on the
-value of the coefficients in the equations of the hyperplanes. A useful
-complete description of this algorithm is given by Bürgisser et al.~\cite{B97}
-(Section 3.4).
+coefficients in the equations of the hyperplanes. A useful
+complete description of this algorithm is given by Bürgisser et
+al.~\cite[Section~3.4]{BCS97}.
 
 When applied to \(k\)-SUM, those algorithms can be cast as the construction of
-a linear decision tree in which the queries have non-constant size, even though
-\(k\) is constant. They both yield \(n^{O(1)}\)-time nonuniform algorithms for
-\(k\)-SUM where the constant of proportionality does not depend on \(k\).
-
-The nonuniform algorithm of Gr\o nlund and
-Pettie for 3SUM in the \(4\)-linear decision tree model
-generalizes to \(k\)-SUM~\cite{GP18}.
-In the $(2k-2)$-linear decision tree model,
-only $O(n^\frac{k}{2}\sqrt{\log n})$ queries are required for odd values of $k$.
-Putting this in perspective with the lower bounds of Erickson and Ailon and
-Chazelle, this indicates that increasing the size of the queries can yield
-significant improvements on the depth of the minimal-height decision tree.
-
-The results of Meyer auf der Heide and Meiser show that
-if one is allowed to use $n$-linear queries instead, the complexity drops to a
-polynomial in the input size whose exponent does not depend on $k$.
+a \(n\)-linear decision tree, even though \(k\) is constant.
+They both yield \(n^{O(1)}\)-time nonuniform algorithms for
+\(k\)-SUM where the constant of proportionality does not depend on \(k\), thus
+exhibiting the potential superiority of $n$-linear queries.
