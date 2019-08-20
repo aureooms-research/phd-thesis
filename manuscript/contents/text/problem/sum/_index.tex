@@ -77,6 +77,8 @@ Our algorithms apply to this more general problem with only minor changes.
 
 \todo{Add reduction found in KLM18.}
 
+\todo{Sorting \(X + Y\)?}
+
 \subsection{Point Location}
 
 The \(k\)-SUM problem amounts to deciding in $n$-dimensional space, for each hyperplane
@@ -142,7 +144,9 @@ Chazelle in this model of computation essentially match their complexity.
 Because fixing two of the numbers $a$ and $b$ in a triple only allows for one
 solution to the equation $a + b + x = 0$, an instance of 3SUM has at most
 $n^2$ degenerate triples. An instance giving a matching lower bound is for
-example the set $\{\,\frac{1-n}{2},\ldots,\frac{n-1}{2}\,\}$ (for odd $n$)
+example the set
+of \(n\) integers
+$\{\,\frac{1-n}{2},\ldots,\frac{n-1}{2}\,\}$ (for odd $n$)
 with $\frac{3}{4} n^2 + \frac 14$ degenerate triples.
 %
 One might be tempted to think that the number of ``solutions'' to the problem
