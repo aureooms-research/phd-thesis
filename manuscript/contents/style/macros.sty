@@ -2,7 +2,6 @@
 % lipics-like
 \usepackage{authblk}
 \usepackage[protrusion=true,expansion=true]{microtype}
-\bibliographystyle{plainurl}
 
 \usepackage[x11names]{xcolor}
 \xdefinecolor{linkblue}{RGB}{20,65,109}
@@ -10,7 +9,9 @@
 \usepackage{fancyhdr}
 \usepackage{graphicx} % \includegraphics
 
-\usepackage[numbers,sort&compress]{natbib} % [1,3-9]
+%% bibliography
+\usepackage[numbers,sort&compress]{natbib} % [1,3-9] and page backref
+\bibliographystyle{plainurl}
 
 \usepackage{amsfonts} % \mathbb{...}
 \usepackage{amsmath} % \binom{...}{...}
