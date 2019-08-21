@@ -189,20 +189,37 @@ determinant becomes
 which is the predicate we want to test for $(d+1)$-SUM (modulo the $|V(q)|$
 factor which is nonzero for distinct input numbers).
 
-In the plane, this reduction from 3SUM to the cubic curve \(\omega_2(t) = (t,
-t^3)\) is also part of folklore.
+In the plane, this reduction from instances of 3SUM to points on
+the cubic curve \(\omega_2(t) = (t, t^3)\) is also part of folklore.
 %Note that the weird moment curve in two dimensions is precisely the cubic curve
 %from the reduction from 3SUM to GPT.
 
 \subsection{Lower Bounds}
 
+% TODO decision vs identification
+
+Even though we consider,
+The number of
+
 Lower bounds (Goodman Pollack Seidel? Ailon)
+
+Complexity of an arrangement of surfaces~\cite[24.1.4]{Hal04}.
 
 Ben-or applies Milnor Thom
 
+This discrepancy stems from the algebraic nature of realizable order types, as
+illustrated by the main tool used in the upper bound proofs (the
+Petrovski\u{\i}-Ole\u{\i}nik-Thom-Milnor Theorem~\cite{Mi64,Th65,BPR06}).
+
+
 \subsection{Algorithms}
 
-Naive algorithm
+By brute-force, GPT can be solved in \(O(n^3)\) time.
+
+A substantial improvement can be made by using
+
+~\cite{Hal04}
+Construction of the arrangement~\cite[Theorem 24.4.1]{Hal04}
 
 Duality and constructing the dual arrangement
 
@@ -210,15 +227,27 @@ No subquadratic algorithm known, uniform or nonuniform.
 
 \subsection{The Intermediate Problem}
 
-We consider an algebraic generalization of the 3SUM problem: we replace the sum
-function by a constant-degree polynomial in three variables $F \in
-\mathbb{R}[x,y,z]$ and ask to determine whether there exists a
+On par with GPT we consider an algebraic generalization of the 3SUM problem:
+we replace the sum function by a constant-degree polynomial in three variables
+$F \in \mathbb{R}[x,y,z]$ and ask to determine whether there exists a
 \emph{degenerate} triple $(a,b,c)$ of input numbers such that $F(a,b,c)=0$. We
-call this new problem the \emph{3POL problem}.
-
+call this problem the \emph{3POL problem}.
+%
 \input{text/definition/3pol}
 
-\subsection{Combinatorics}
+In addition to generalizing 3SUM, this problem can model particular
+instances of GPT: consider points in the plane that are constrained to
+lie on three parameterized polynomial curves of constant degree, then an
+algorithm for 3POL can determine whether any three of those points are
+collinear. Note that this generalizes the reductions from 3SUM found in
+\S\ref{sec:problem:pol:reductions-from-ksum}, where the input points either lie
+on three horizontal lines or on a single cubic curve.
+%
+In fact, this problem is not new: it has already been studied before from a
+combinatorics point of view as exposed in the next section.
+
+\subsection{\done Combinatorics}%
+\label{sec:problem:pol:combinatorics}
 
 In a series of results spanning fifteen years,
 Elekes and Rónyai~\cite{ER00},
