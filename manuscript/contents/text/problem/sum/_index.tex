@@ -82,15 +82,86 @@ Our algorithms apply to this more general problem with only minor changes.
 \subsection{Point Location}
 
 The \(k\)-SUM problem amounts to deciding in $n$-dimensional space, for each hyperplane
-\(H\) of equation \(x_{i_1} + x_{i_2} + \cdots +x_{i_k} = 0\), whether \(q\)
+\(H \in \mathcal{H}\) of equation \(x_{i_1} + x_{i_2} + \cdots +x_{i_k} = 0\), whether \(q\)
 lies on, above, or below \(H\). Hence this indeed amounts to locating the point
-$q$ in the arrangement formed by those hyperplanes. We emphasize that the set
-of hyperplanes depends only on $k$ and $n$ and not on the actual input vector
-$q$.
+$q$ in the arrangement \(\mathcal{A}(\mathcal{H})\) induced by those hyperplanes.
+We emphasize that the set of hyperplanes depends only on $k$ and $n$ and not on
+the actual input vector $q$.
 
 \input{text/definition/point-location}
 
-\subsection{Lower Bounds}
+\subsection{Information Theoretic Lower Bound}
+
+The ITLB for sorting is the logarithm of the number of possible
+permutations of the input, that is \(\lceil \log n! \rceil = \Omega(n \log
+n)\), for \emph{any} decision tree. This does not hold for element uniqueness:
+in an arbitrarily powerful decision tree model, using a single query, we can
+find out whether the input contains duplicates. This matches the useless lower
+bound of \(\log 2 = 1\).
+
+This constatation holds for any decision problem: if the problem amounts to
+retrieve a single bit of information, the ``yes/no'' answer, we cannot we derive
+any useful lower bound for arbitrary decision tree models.
+
+Restricting our model to only allow linear queries,
+we can derive a more useful lower bound for element uniqueness.
+\begin{lemma}
+	In the linear decision tree model,
+	any algorithm solving the
+	Element Uniqueness problem
+	must
+	sort its input (if it has no duplicates).
+\end{lemma}
+\begin{proof}
+	Assume that the input \(q\) has no duplicates.
+	%
+	Then, looking at \(q\) as a point in \(\mathbb{R}^n\), \(q\) is contained
+	in a \(d\)-cell of the arrangement of hyperplanes of equation
+	\(x_i = x_j\).
+	%
+	Sorting the input amounts to identifying this cell.
+	%
+	Assume we have solved the element uniqueness problem for this instance
+	and further assume, by contradiction,
+	that we have not identified the cell containing \(q\).
+	%
+	In the model we consider, each query/answer pair corresponds to a halfspace
+	containing \(q\).
+	%
+	Because we have not identified the \(d\)-cell containing \(q\), it must be
+	that points from at least two \(d\)-cells of the arrangement are contained
+	in the intersection of the halfspaces.
+	%
+	Because halfspaces are convex sets, their intersection is convex too, and
+	thus connected. In this connected set, a path
+	from \(q\) to any point from the other \(d\)-cell must at some point
+	intersect one of the hyperplanes \(x_i = x_j\) that separates the two
+	cells.
+	%
+	An adversary can therefore update \(q\) to be this intersection point
+	without changing any of the previous answers, even though this new point
+	contains duplicates, a contradiction.
+\end{proof}
+%
+Because of the decision tree lower bound on Sorting, we have
+%
+\begin{corollary}
+	Any linear decision tree solving the
+	Element Uniqueness problem
+	has depth \(\Omega(n \log n)\).
+\end{corollary}
+%
+The same conclusion can be drawn for the 3SUM and \(k\)-SUM problems since
+Element Uniqueness reduces to them.
+%
+\begin{corollary}
+	Any linear decision tree solving the
+	\(k\)-SUM problem
+	has depth \(\Omega(n \log n)\).
+\end{corollary}
+
+
+\subsection{Higher Lower Bounds}
 
 In Erickson~\cite{Er99a}, it is shown that we cannot solve \(k\)-SUM or
 \(k\)-LDT in subquadratic time in the \(k\)-linear decision tree model:
