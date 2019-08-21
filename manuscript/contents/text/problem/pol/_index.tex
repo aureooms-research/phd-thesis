@@ -1,8 +1,9 @@
 \section{GPT \& 3POL}\label{sec:problem:pol}
 
 In the plane, the General Position Testing problem (GPT) asks whether, given
-\(n\) points, three of them are collinear. Because of some
-elementary algebra, the following form is equivalent:
+\(n\) points, three of them are collinear~\cite{???}.
+%
+Because of some elementary algebra, the following form is equivalent:
 %
 \input{text/definition/gpt-2}
 
@@ -36,23 +37,79 @@ When we consider a different parameterization we explicitly mention it.
 
 \subsection{Variants}
 
-Similarly to the 3SUM, \(k\)-SUM, and \(k\)-LDT problems, we can study a
+Similarly to the 3SUM problem, we can study a
 variant of GPT where the tested triples come from different sets.
 %
 \input{text/definition/gpt-2-variant}
 
 This variant is useful for a particular reduction from 3SUM.
-A similar variant can be defined for the \(d\)-dimensional problem. However, we
-do not study it here.
+A similar variant can be defined for the \(d\)-dimensional problem.
 
-\subsection{Reductions}
+\subsection{[DONE] Reductions from \(k\)-SUM}
 
-% TODO Reduction from 3SUM to GPT (folklore)
+This section is divided into two parts.
+%
+The first part exposes a folk reduction from \(k\)-SUM to GPT showing
+GPT in \(\mathbb{R}^d\) is as hard as \((d+1\))-SUM.
+%
+The second part expose other interesting connections between \(k\)-SUM and GPT
+that can be drawn through Vandermonde determinants, yielding equivalent
+hardness proofs for GPT~\cite{Er99b}.
 
-Given an instance of 3SUM \(\langle A,B,C \rangle\), we can reduce it to the
-following instance of GPT
 
-% DONE Reduction from \(k\)-SUM to GPT
+\subsubsection{Folklore}
+
+Given an instance of the three-set variant of 3SUM,
+we can reduce it to an instance of GPT where the input sets are on three
+horizontal lines.
+%
+\begin{lemma}
+Given three sets \(A\), \(B\), and \(C\) of \(n\) real numbers, let
+\begin{align*}
+    A' &= \{\, a' = (a,0) \colon\, a \in A\,\},\\
+    B' &= \{\, b' = (b,2) \colon\, b \in B\,\},\\
+    C' &= \{\, c' = (-c/2,1) \colon\, c \in C\,\}.
+\end{align*}
+Then for any \(a \in A\), \(b \in B\), and \(c \in C\), we have that
+\(a+b+c=0\) if and only if \(a'\), \(b'\), and \(c'\) are collinear.
+\end{lemma}
+%
+\begin{proof}
+    The equation of a line defined by points \(a' \in A'\) and \(b' \in B'\)
+    is
+    \begin{align*}
+	y &= \frac{2}{b-a} x - \frac{2}{b-a} a\\
+	\iff x &= a + \frac{y (b-a)}{2},
+    \end{align*}
+    which simplifies to \(x = \frac{a+b}{2}\) when \(y = 1\).
+\end{proof}
+
+Therefore, solving GPT is at least as hard as solving 3SUM.
+
+In the dual, this reduction is even easier to apprehend and trivially
+generalizes to \(d\)-dimensional GPT.
+%
+\begin{lemma}
+Given \(k\) sets \(S_i\) of \(n\) real numbers,
+in \(\mathbb{R}^{k-1}\)
+let
+\(S_i'\), \(1 \leq i \leq k-1\),
+be the set of \(n\) hyperplanes \(x_i = s\) for \(s \in S_i\) and let
+\(S_k'\) be the set of \(n\) hyperplanes \(\sum_{i=1}^{k-1} x_i + s = 0\) for
+\(s \in S_k\).
+Then for any \(s_i \in S_i\), \(1 \leq i \leq k\),
+we have that
+\(\sum_{i=1}^{k} s_i = 0\)
+the corresponding hyperplanes intersect.
+\end{lemma}
+%
+\begin{proof}
+    Trivially.
+\end{proof}
+%
+This proves that GPT in \(\mathbb{R}^d\) is as hard as (\(d+1\))-SUM.
+
+\subsubsection{Points on the Weird Moment Curve}
 
 When \(d=1\), GPT is exactly the element uniqueness problem.
 %
@@ -132,7 +189,7 @@ which is the predicate we want to test for $(d+1)$-SUM (modulo the $|V(q)|$
 factor which is nonzero for distinct input numbers).
 
 In the plane, this reduction from 3SUM to the cubic curve \(\omega_2(t) = (t,
-t^3)\) is also folklore.
+t^3)\) is also part of folklore.
 %Note that the weird moment curve in two dimensions is precisely the cubic curve
 %from the reduction from 3SUM to GPT.
 
