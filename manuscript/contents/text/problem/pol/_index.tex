@@ -101,6 +101,7 @@ be the set of \(n\) hyperplanes \(x_i = s\) for \(s \in S_i\) and let
 Then for any \(s_i \in S_i\), \(1 \leq i \leq k\),
 we have that
 \(\sum_{i=1}^{k} s_i = 0\)
+if and only if
 the corresponding hyperplanes intersect.
 \end{lemma}
 %
@@ -141,7 +142,8 @@ and to compute its determinant
 \prod_{1 \leq i < j \leq n} (q_j - q_i).
 \end{displaymath}
 
-This can be done in \(O(n \log n)\) ring operations by defining
+This can be done in \(O(n \log n)\) ring multiplications
+by defining
 %
 \(p(x) = \prod_{i=0}^{n-1} (x-q_i)\)
 %
@@ -194,23 +196,76 @@ the cubic curve \(\omega_2(t) = (t, t^3)\) is also part of folklore.
 %Note that the weird moment curve in two dimensions is precisely the cubic curve
 %from the reduction from 3SUM to GPT.
 
-\subsection{Lower Bounds}
+\subsection{Lower Bounds and Order Types}
 
-% TODO decision vs identification
+Even though 3SUM and \(k\)-SUM reduce to GPT, it does not necessarily mean that
+the lower bounds for those problems carry over.
+%
+The lower bounds in
+\S\ref{sec:problem:sum:itlb} are in the linear decision tree model and we
+cannot hope to solve GPT in those models because they do not allow us to answer
+quadratic polynomial queries on the input.
+%
+If we want good lower bounds in the algebraic decision tree model and in the
+algebraic computation tree model we need to resort to different proofs.
 
-Even though we consider,
-The number of
+Given an instance of GPT, its \emph{order type} is defined to be the map that
+sends each triple of input points to its orientation.
+%
+If we consider the problem of identifying the order type of a set of points, we
+can achieve a lower bound that holds in any arbitrary decision tree model. It
+suffices for that to bound the number of possible order types.
+\begin{theorem}[name={Goodman and Pollack~\cite{GP86}, Alon~\cite{Al86}},label={thm:order-types:realizable}]
+    There are  \(2^{\Theta(n \log n)}\) order types of point sets.
+\end{theorem}
+%
+With the following corollary
+\begin{corollary}
+    A decision tree identifying the order type of a point sets has depth
+    \(\Omega(n \log n)\).
+\end{corollary}
 
-Lower bounds (Goodman Pollack Seidel? Ailon)
+The question now is whether we can do the same as in the Element Uniqueness vs
+Sorting case: show that the decision problem is as hard as the identification
+problem. Ben-Or shows exactly that
+%
+\begin{theorem}[name=Ben-Or~\cite{Be83},label=thm:Be83]
+    Given any set \(W \subset \mathbb{R}^d\),
+    let \(N = \max \{\, \# W , \#(\mathbb{R}^d - W)\,\}\),
+    where \(\#(\cdot)\) denotes the number of connected components of a set.
+    The depth of any algebraic
+    computation tree or bounded-degree algebraic decision tree
+    deciding whether an input point \(q \in \mathbb{R}^d\) is in \(W\)
+    is \(\Omega(\log N - d)\).
+\end{theorem}
 
-Complexity of an arrangement of surfaces~\cite[24.1.4]{Hal04}.
+\begin{corollary}
+    Any algebraic computation tree or bounded-tree algebraic decision tree that
+    solves GPT has depth \(\Omega(n \log n)\).
+\end{corollary}
 
-Ben-or applies Milnor Thom
+\begin{proof}
+    Let \(W \subset \mathbb{R}^{2n}\) be the set defined by the union of the
+    \(n \choose 3\) algebraic varieties of equation
+    \begin{displaymath}
+	(x_j - x_i)(y_k - y_i) - (y_j - y_i)(x_k - x_i) = 0.
+    \end{displaymath}
+    %
+    Solving GPT on input \(q\) amounts to deciding whether \(q \in W\).
+    %
+    The set \(\mathbb{R}^{2n} - W\) has \(2^{\Theta(n \log n)}\) by
+    \Cref{thm:order-types:realizable}.
+\end{proof}
 
-This discrepancy stems from the algebraic nature of realizable order types, as
-illustrated by the main tool used in the upper bound proofs (the
-Petrovski\u{\i}-Ole\u{\i}nik-Thom-Milnor Theorem~\cite{Mi64,Th65,BPR06}).
+Note that both
+\Cref{thm:order-types:realizable}
+and
+\Cref{thm:Be83} rely on
+the
+Petrovski\u{\i}-Ole\u{\i}nik-Thom-Milnor Theorem~\cite{Mi64,Th65,BPR06} that
+bounds the number of connected components of algebraic varieties.
 
+%Complexity of an arrangement of surfaces~\cite[24.1.4]{Hal04}.
 
 \subsection{Algorithms}
 
@@ -218,10 +273,8 @@ By brute-force, GPT can be solved in \(O(n^3)\) time.
 
 A substantial improvement can be made by using
 
-~\cite{Hal04}
-Construction of the arrangement~\cite[Theorem 24.4.1]{Hal04}
-
 Duality and constructing the dual arrangement
+Construction of the arrangement~\cite[Theorem 24.4.1]{Hal04}
 
 No subquadratic algorithm known, uniform or nonuniform.
 
@@ -298,7 +351,8 @@ problem where $F$ is a $4$-variate polynomial.
 
 \subsection{Encodings}
 
-Pseudoline arrangements
+Pseudoline arrangements YES NOT IN TOOLBOX (MAYBE MOVE ARRANGEMENTS TO kSUM
+SECTION?)
 
 Encodings
 
