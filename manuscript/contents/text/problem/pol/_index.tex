@@ -11,8 +11,11 @@ Note that this determinant is a degree-two polynomial in six variables
 	x_i y_j - y_i x_j - x_i y_k + y_i x_k + x_j y_k - y_j x_k.
 \end{displaymath}
 
-In Computational Geometry it is better know as the clockwise/counterclockwise predicate
-and is more commonly written
+In Computational Geometry it is better known as the clockwise/counterclockwise
+predicate because for given points \(i\), \(j\), and \(k\) the sign of this
+expression gives the orientation of the triangle those points define.
+%
+It is more commonly written as
 \begin{displaymath}
 	(x_j - x_i)(y_k - y_i) - (y_j - y_i)(x_k - x_i),
 \end{displaymath}
@@ -37,6 +40,10 @@ Similarly to the 3SUM, \(k\)-SUM, and \(k\)-LDT problems, we can study a
 variant of GPT where the tested triples come from different sets.
 %
 \input{text/definition/gpt-2-variant}
+
+This variant is useful for a particular reduction from 3SUM.
+A similar variant can be defined for the \(d\)-dimensional problem. However, we
+do not study it here.
 
 \subsection{Reductions}
 
@@ -107,7 +114,7 @@ in Problem~\ref{problem:gpt-d} becomes
 |V(q)|.
 \end{displaymath}
 
-Consider points on the weird moment curve $\omega_d(t) = (t, t^2, \ldots,
+Consider points on the \emph{weird} moment curve $\omega_d(t) = (t, t^2, \ldots,
 t^{d-1}, t^{d+1})$~\cite{Er99b}.
 If our input only consists of points $\omega_d(q_i)$ on this curve then the
 determinant becomes
