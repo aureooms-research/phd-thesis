@@ -1,18 +1,10 @@
-\begin{theorem}[name=Buck~\cite{Bu43},label=thm:buck]
+\begin{theorem}[name={Buck~\cite{Bu43}, see also~\cite[Theorem~24.1.1 and Corollary~24.1.2]{Hal04}},label=thm:buck]
 Consider the partition of space defined by an arrangement of $m$ hyperplanes in
 $\R^d$.
 The number of regions of dimension $k \le d$ is at most
 \begin{displaymath}
-	{m \choose d-k}
-	\left(
-		{m-d+k \choose 0}
-		+
-		{m-d+k \choose 1}
-		+
-		\cdots
-		+
-		{m-d+k \choose k}
-	\right)
+	{m \choose d-k} \sum_{i=0}^{k} {m-d+k \choose i}.
 \end{displaymath}
-and the number of regions of all dimensions is \(O(m^d)\).
+This bound is attained when the hyperplanes are in general position.
+The number of regions of all dimensions is \(\Theta(m^d)\) in that case.
 \end{theorem}
