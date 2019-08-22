@@ -33,7 +33,7 @@ hyperplanes with respect to the last (oriented) dual hyperplane.
   corresponds to linearly dependent subsets of \(d+1\) hyperplanes.
 \fi%
 
-We gave an encoding for the two-dimensional case in Section~\ref{sec:lines-and-pseudolines}.
+We gave an encoding for the two-dimensional case in \S\ref{sec:lines-and-pseudolines}.
 With this encoding, a query is answered by traversing the levels of
 some hierarchical cutting, branching on the location of the intersection of two
 of the three query lines. We generalize this idea to \(d\) dimensions. Now the
@@ -47,7 +47,7 @@ of the intersection of \(d\) of the \(d+1\) query hyperplanes.
 Intersection Location\else%
 Intersection location\fi}
 
-In Section~\ref{sec:lines-and-pseudolines}, we solved the following two-dimensional subproblem:
+In \S\ref{sec:lines-and-pseudolines}, we solved the following two-dimensional subproblem:
 
 \begin{problem}
   Given a triangle and \(n\) lines in the plane, build a data structure that,
@@ -165,7 +165,7 @@ We prove the following:
   \(C \cap (H_{i_3} \cap H_{i_4} \cap \cdots \cap H_{i_d})\)
   of dimension zero, one, or two,
   then we use the encoding of size \(O(n \log n)\) described in
-  Section~\ref{sec:lines-and-pseudolines} as a base case.
+  \S\ref{sec:lines-and-pseudolines} as a base case.
 \end{proof}
 
 %Note that there is a linear lower bound for encoding this subproblem in
@@ -179,7 +179,7 @@ Theorem~\ref{thm:preprocessing-d}).
 
 \paragraph*{Encoding}
 We build a hierarchical cutting as in
-Section~\ref{sec:lines-and-pseudolines} (this time in dimension
+\S\ref{sec:lines-and-pseudolines} (this time in dimension
 \(d\)).
 %
 Given \(n\) hyperplanes in \(\mathbb{R}^d\) and some fixed
@@ -240,7 +240,7 @@ encoding.
 
 For the space taken by the hierarchy,
 we generalize Lemma~\ref{lem:space-2-hierarchy} of
-Section~\ref{sec:lines-and-pseudolines}. Let \(H_r^\ell(n,d) \in \mathbb{N}\) be the maximum
+\S\ref{sec:lines-and-pseudolines}. Let \(H_r^\ell(n,d) \in \mathbb{N}\) be the maximum
 amount of space (bits), over all arrangements of \(n\) hyperplanes in \(\mathbb{R}^d\),
 taken by the \(\ell \in \mathbb{N}\) levels of a hierarchy with parameter \(r \in
 (1,+\infty)\).
@@ -298,7 +298,7 @@ The final picture is almost the same as in Figure~\ref{fig:space-analysis}.
 Summing all terms, we obtain
 %
 \begin{lemma}\label{lem:space-d-all}
-    The space taken by the encoding described in Section~\ref{sec:hyperplanes}
+    The space taken by the encoding described in \S\ref{sec:hyperplanes}
     is proportional to
     \begin{displaymath}
       \underbrace{\log dntr}_{\text{Parameters}}
@@ -323,7 +323,7 @@ Correctness and Query Complexity\else%
 Correctness and query complexity\fi}
 As before, a query is answered by traversing the hierarchy, which takes
 \(O(\log n)\) time. The query time can be further improved using the method from
-Section~\ref{sec:query-time} with \(r = \Theta(t^{d-2} \log t)\). This proves the
+\S\ref{sec:query-time} with \(r = \Theta(t^{d-2} \log t)\). This proves the
 query time constraint in Theorem~\ref{thm:realizable-d}.
 
 \paragraph*{\iftitlecase%

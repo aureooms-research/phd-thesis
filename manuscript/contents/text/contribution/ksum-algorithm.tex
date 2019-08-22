@@ -1,6 +1,6 @@
 \section{Meiser Applied to \(k\)-SUM}
 
-In Section~\ref{paper:ksum-algorithm:contrib:query-complexity}, we show the existence of an $n$-linear
+In \S\ref{paper:ksum-algorithm:contrib:query-complexity}, we show the existence of an $n$-linear
 decision tree of depth $\tilde{O}(n^3)$ for \(k\)-SUM using a careful
 implementation of Meiser's algorithm~\cite{M93}.
 Although the high-level algorithm itself is not new, we refine the
@@ -19,7 +19,7 @@ it can be implemented in the linear decision tree model with an
 $\tilde{O}(n^3)$ upper bound.
 Moreover, this result implies the same improved upper bound on the depth of
 algebraic computation trees for the $k$-SUM problem,
-as shown in Appendix~\ref{app:act}.
+as shown in \S\ref{app:act}.
 
 There are two subtleties to this result. The first is inherent to the chosen
 complexity model: even if the number of queries to the input is small (in
@@ -39,7 +39,7 @@ $\tilde{O}(n^{k+2})$.\footnote{%
 	that the whole algorithm can run in randomized polynomial-time.}
 
 
-In Section~\ref{paper:ksum-algorithm:contrib:time-complexity} we improve on this and present an
+In \S\ref{paper:ksum-algorithm:contrib:time-complexity} we improve on this and present an
 algorithm to choose which decisions to perform whereby the running time can be
 reduced to $\tilde{O}(n^{\frac{k}{2}+8})$. Hence, we obtain an
 $\tilde{O}(n^{\frac{k}{2}+8})$ time randomized algorithm in the RAM model
@@ -67,7 +67,7 @@ non-minimal query size is clearly essential to a drastic reduction in the number
 This gives rise to the natural question as to what is the relation between query size and number of queries.
 In particular, one natural question is whether queries of size less than $n$
 would still allow the problem to be solved using a number of queries that is a
-polynomial independent of $k$. We show that this is possible; in Section~\ref{paper:ksum-algorithm:contrib:query-size},
+polynomial independent of $k$. We show that this is possible; in \S\ref{paper:ksum-algorithm:contrib:query-size},
 we introduce a range of
 algorithms exhibiting an explicit tradeoff between the number of queries and
 their size. Using a blocking scheme, we show that we can restrict to
@@ -81,7 +81,7 @@ the first time such tradeoffs are explicitly tackled. Table~\ref{tor:ksum-algori
 \caption{Complexities of our new algorithms for the \(k\)-SUM problem. The query
 size is the maximum number of elements of the input that can be involved in a
 single linear query. The number of blocks is a parameter that allows us to
-change the query size (see Section~\ref{paper:ksum-algorithm:contrib:query-size}).
+change the query size (see \S\ref{paper:ksum-algorithm:contrib:query-size}).
 The origin of the constant in the exponent of the time complexity is due to
 Lemma~\ref{lem:bound}. We conjecture it can be reduced, though substantial
 changes in the analysis will likely be needed to do so.}
