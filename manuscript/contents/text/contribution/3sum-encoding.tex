@@ -82,23 +82,25 @@ lines only have three slopes.
 Can we do better for the case of 3SUM? We answer this in the affirmative.
 In Section~\ref{s:space} we show how to use an optimal $O(n \log n)$ bits of
 space with a polynomial query time. Finally, in section~\ref{s:sscqt} we show
-how to use $\tilde{O}(n^{1.5})$ space to achieve $O(1)$-time queries.
+how to use $\tilde{O}(n^{3/2})$ space to achieve $O(1)$-time queries.
 \input{text/theorem/3sum-encoding/space-optimal}
 \input{text/theorem/3sum-encoding/gp}
 
-Table~\ref{tor} gives a summary of our results.
+Table~\ref{tor:3sum-encoding} gives a summary of our results.
 
 \begin{table}
 \centering
-\caption{Table of results}\label{tor}
-\begin{tabular}{cccc}
-Encoding & Query time & Space (in bits) & Preprocessing time \\ \hline
-Trivial & $O(1)$ & $O(n^3)$ & $O(n^3)$ \\
-Almost trivial & $O(1)$ & $O(n^2 \log n)$ & $O(n^2)$ \\
-Order type \cite{CCILO18} & $O(\log n)$ & $O(\frac{n^2 \log^2 \log n}{\log n})$ & $O(n^2) $\\
-Order type \cite{CCILO18} & $O(\frac{\log n}{\log \log n})$ & $O(\frac{n^2 }{\log^{1-\epsilon} n})$ & $O(n^2)$ \\
-Numerical (\S\ref{s:numbers}) & $O(n)$ & $O(n^2)$ & $n^{O(1)}$\\
-Space-optimal (\S\ref{s:space}) & $n^{O(1)}$ & $O(n \log n)$ & $n^{O(1)}$\\
-Query-optimal (\S\ref{s:sscqt}) &  $O(1)$ & $\tilde{O}(n^{1.5})$ & $O(n^{2})$ \\
+\caption{Table of results}\label{tor:3sum-encoding}
+\begin{tabular}{|c|c|c|c|}
+\hline
+Encoding & Query time & Space (bits) & Preprocessing \\ \hline \hline
+Trivial & $O(1)$ & $O(n^3)$ & $O(n^3)$ \\ \hline
+Almost trivial & $O(1)$ & $O(n^2 \log n)$ & $O(n^2)$ \\ \hline
+Order type (Paper~\ref{paper:order-type-encoding}) & $O(\log n)$ & $O(\frac{n^2 \log^2 \log n}{\log n})$ & $O(n^2) $\\ \hline
+Order type (Paper~\ref{paper:order-type-encoding}) & $O(\frac{\log n}{\log \log n})$ & $O(\frac{n^2 }{\log^{1-\epsilon} n})$ & $O(n^2)$ \\ \hline
+\hline
+Numerical (\S\ref{s:numbers}) & $O(n)$ & $O(n^2)$ & $n^{O(1)}$\\ \hline
+Space-optimal (\S\ref{s:space}) & $n^{O(1)}$ & $O(n \log n)$ & $n^{O(1)}$\\ \hline
+Query-optimal (\S\ref{s:sscqt}) &  $O(1)$ & $\tilde{O}(n^{3/2})$ & $O(n^{2})$ \\ \hline
 \end{tabular}
 \end{table}

@@ -31,7 +31,7 @@
 \newcommand{\blankpage}{\null\thispagestyle{empty}\addtocounter{page}{-1}\newpage}
 
 
-\declaretheorem{theorem} % \begin{theorem}
+\declaretheorem[numberwithin=chapter]{theorem} % \begin{theorem}
 \declaretheorem{contribution} % \begin{contribution}
 \declaretheorem[sibling=theorem]{lemma} % \begin{lemma}
 \declaretheorem[sibling=theorem]{corollary} % \begin{corollary}
@@ -40,7 +40,7 @@
 \declaretheorem[sibling=theorem]{claim} % \begin{claim}
 \declaretheorem[style=definition]{definition} % \begin{definition}
 \declaretheorem[style=definition]{problem} % \begin{problem}
-\declaretheorem{conjecture} % \begin{conjecture}
+\declaretheorem[numberwithin=chapter]{conjecture} % \begin{conjecture}
 \declaretheorem[name=Open Question]{openquestion} % \begin{openquestion}
 
 \newcommand{\remark}[1]{\paragraph{Remark} #1}

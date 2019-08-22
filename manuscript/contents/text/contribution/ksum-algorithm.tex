@@ -74,7 +74,7 @@ their size. Using a blocking scheme, we show that we can restrict to
 $o(n)$-linear decision trees. We also give a
 range of tradeoffs for $O(n^{1-\alpha})$-linear decision trees. Although the
 proposed algorithms still involve nonconstant-size queries, this is
-the first time such tradeoffs are explicitly tackled. Table~\ref{tab:results} summarizes our results.
+the first time such tradeoffs are explicitly tackled. Table~\ref{tor:ksum-algorithm} summarizes our results.
 
 \begin{table}
 \centering
@@ -85,11 +85,12 @@ change the query size (see Section~\ref{paper:ksum-algorithm:contrib:query-size}
 The origin of the constant in the exponent of the time complexity is due to
 Lemma~\ref{lem:bound}. We conjecture it can be reduced, though substantial
 changes in the analysis will likely be needed to do so.}
-\label{tab:results}
+\label{tor:ksum-algorithm}
 \begin{tabular}{|c|c|c|c|c|}
 	\hline
 
-	Theorem & blocks & query size & queries & time \\
+	Theorem & Blocks & Query Size & Queries & Time \\
+	\hline
 	\hline
 	\ref{thm:cube} &
 	$1$ &

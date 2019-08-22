@@ -82,6 +82,36 @@ problem.
 \input{text/theorem/3pol-algorithm/nonuniform-implicit}
 \input{text/theorem/3pol-algorithm/uniform-implicit}
 
+Table~\ref{tor:3pol-algorithm} gives a summary of our results.
+
+\begin{table}
+\centering
+\caption{3POL results.}
+\label{tor:3pol-algorithm}
+\begin{tabular}{|c|c|c|}
+	\hline
+
+	Contribution & Model & Complexity \\
+	\hline
+	\hline
+	\ref{thm:implicit:3POL} &
+	Nonuniform &
+	\(O(n^{12/7 + \epsilon})\)
+	\\
+
+	\hline
+
+	\ref{thm:implicit:uniform} &
+	Uniform &
+	$O(n^2 {(\log \log n)}^{3/2} / {(\log n)}^{1/2})$
+	\\
+
+	\hline
+
+\end{tabular}
+\end{table}
+
+
 \paragraph{Remark}
 
 Similarly to Gr\o nlund and Pettie~\cite{GP18}, we consider both nonuniform

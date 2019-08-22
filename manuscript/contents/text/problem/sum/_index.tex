@@ -1,4 +1,4 @@
-\section{\done 3SUM \& \(k\)-SUM}\label{sec:problem:sum}
+\section{3SUM \& \(k\)-SUM}\label{sec:problem:sum}
 
 The 3SUM problem is defined as follows: given $n$ distinct real numbers, decide
 whether any three of them sum to zero.
@@ -164,8 +164,9 @@ Element Uniqueness reduces to them.
 
 \subsection{Higher Lower Bounds}
 
-In Erickson~\cite{Er99a}, it is shown that we cannot solve \(k\)-SUM or
-\(k\)-LDT in subquadratic time in the \(k\)-linear decision tree model:
+In 1999, Erickson showed that we cannot solve \(k\)-SUM or
+\(k\)-LDT in subquadratic time in the \(k\)-linear decision tree
+model~\cite{Er99a}:
 %
 \input{text/theorem/Er99a}
 %
@@ -183,8 +184,8 @@ location in such a cell requires testing each facet.
 %Erickson proved a near-matching lower bound in the $k$-linear
 %decision tree model~\cite{Er99a}.
 
-Ailon and Chazelle slightly extended the range of query sizes for which a
-nontrivial lower bound could be established, elaborating on Erickson's
+In 2005, Ailon and Chazelle slightly extended the range of query sizes for
+which a nontrivial lower bound could be established, elaborating on Erickson's
 technique~\cite{AC05}.
 %
 They study \(s\)-linear decision trees to solve the \(k\)-SUM problem when
@@ -227,23 +228,19 @@ problem, as it is the case for this problem, and other problems, in restricted
 models of computation~\cite{Er96,Er99a}.
 %
 This intuition is incorrect.
-%
-%Indeed, Gr\o nlund and Pettie~\cite{GP18} proved that there exist
-%$\tilde{O}(n^{3/2})$-depth linear decision trees and $o(n^2)$-time real-RAM
-%algorithms for 3SUM\@.
 
-Baran et al. were the first to give subquadratic algorithms for
+In 2008, Baran et al. gave the first subquadratic algorithms for
 3SUM~\cite{BDP08}. They design subquadratic Las Vegas
 algorithms for 3SUM on integer and
 rational numbers in the circuit RAM, word RAM, external memory, and
 cache-oblivious models of computation. The idea of their approach is to exploit
 the parallelism of the models, using linear and universal hashing. However,
 since their algorithms do not handle real inputs,
-this did not settle the question of subquadratic algorithms in whole
+this did not settle the question of subquadratic algorithms in full
 generality.
 
-The first subquadratic algorithms for real-input 3SUM were given by
-Gr{\o}nlund and Pettie~\cite{GP18}.
+In 2014, Gr{\o}nlund and Pettie gave
+the first subquadratic algorithms for real-input 3SUM~\cite{GP18}.
 Using an old trick due to Fredman~\cite{Fr76},
 they prove the existence of a linear decision tree
 solving the 3SUM problem using a strongly subquadratic number of linear queries.
@@ -259,18 +256,20 @@ $O(n^2/{(\log n/\log \log n)}^{\frac{2}{3}})$
 time and a randomized one running in
 $O(n^2 {(\log \log n)}^2 / \log n)$ time with high probability.
 
-Freund~\cite{Fr15} and Gold and Sharir~\cite{GS15} later gave improvements on the
-results of Gr{\o}nlund and Pettie~\cite{GP18}. Freund~\cite{Fr15} gave a deterministic algorithm for
-3SUM running in \(O( {n^2\log \log n}/{\log n})\) time.
-Gold and Sharir~\cite{GS15} gave another deterministic algorithm for 3SUM
-with the same running time and shaved off the $\sqrt{\log n}$ factor in the
-decision tree complexities of 3SUM and \(k\)-SUM given by Gr{\o}nlund and Pettie.
-\input{text/theorem/Fr15+GS15}
+In 2015, Chan and Lewenstein designed strongly subquadratic word-RAM algorithms
+for a high-dimensional variant of integer 3SUM with applications to jumbled
+indexing~\cite{CL15}. This result generalizes the folk wisdom that 3SUM on small
+integers can be solved in nearlinear time using FFT's.
 
-Chan and Lewenstein designed strongly subquadratic word-RAM algorithms for a
-high-dimensional variant of integer 3SUM with applications to jumbled
-indexing~\cite{CL15}. This result generalizes the idea that 3SUM on small
-integers can be solved in strongly subquadratic time.
+The same year, Freund~\cite{Fr15} and Gold and Sharir~\cite{GS15}
+improved on the results of Gr{\o}nlund and Pettie~\cite{GP18}.
+Freund~\cite{Fr15} gave a deterministic algorithm for 3SUM running in \(O(
+{n^2\log \log n}/{\log n})\) time. Gold and Sharir~\cite{GS15} gave another
+deterministic algorithm for 3SUM with the same running time and shaved off the
+$\sqrt{\log n}$ factor in the decision tree complexities of 3SUM and \(k\)-SUM
+given by Gr{\o}nlund and Pettie.
+%
+\input{text/theorem/Fr15+GS15}
 
 \subsection{Nonuniform Algorithms}
 
@@ -288,18 +287,22 @@ It has been well established that there exist nonuniform
 polynomial-time algorithms for the subset-sum and knapsack problems, even
 though those problems are \textsc{NP}-complete.
 %
-Meyer auf der Heide~\cite{M84} was the first to use a point location algorithm to solve
-the knapsack problem in the linear decision tree model in polynomial time. He
+In 1984,
+Meyer auf der Heide was the first to use a point location algorithm to solve
+the knapsack problem in the linear decision tree model in polynomial time~\cite{M84}.
+He
 thereby answered a question raised by Dobkin and Lipton~\cite{DL74,DL78},
 Yao~\cite{Y82} and others. However, if one uses this algorithm to locate a
 point in an arbitrary arrangement of hyperplanes the running time is increased
 by a factor linear in the greatest coefficient in the equations of all
 hyperplanes.
 %
-A second algorithm was described by Meiser~\cite{M93}, and is derived from a
-data structure for point location in arrangements of hyperplanes using the
-\emph{bottom vertex triangulation} (see
-\S\ref{sec:geometry:arrangements:triangulation}).
+In 1993,
+a second algorithm was described by Meiser~\cite{M93}, and is derived from a
+point location data structure for arrangements of hyperplanes using
+\emph{bottom vertex triangulation} and \emph{\(\varepsilon\)-nets} (see
+\S\ref{sec:geometry:arrangements:triangulation} and
+\S\ref{sec:divide-and-conquer:epsilon-nets}).
 %
 The complexity of Meiser's point location algorithm is polynomial in the
 dimension, logarithmic in the number of hyperplanes and does not depend on the

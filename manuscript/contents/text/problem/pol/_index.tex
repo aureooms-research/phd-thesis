@@ -12,13 +12,19 @@ Note that this determinant is a degree-two polynomial in six variables
 	x_i y_j - y_i x_j - x_i y_k + y_i x_k + x_j y_k - y_j x_k.
 \end{displaymath}
 
-In Computational Geometry it is better known as the clockwise/counterclockwise
-predicate because for given points \(i\), \(j\), and \(k\) the sign of this
-expression gives the orientation of the triangle those points define.
+In Computational Geometry this determinant is better known as
+the (counterclockwise) orientation \(\nabla(i,j,k) \in \{\, -, 0, +\,\}\) of
+the points
+\(i\), \(j\), and \(k\) with coordinates \((x_i, y_i)\), \((x_j, y_j)\), and
+\((x_k, y_k)\) and is defined as the sign of this determinant.
 %
-It is more commonly written as
+It is called \emph{orientation} or \emph{sidedness}
+because for three given points this sign
+gives the orientation of the triangle those points define.
+%
+It is often written as
 \begin{displaymath}
-	(x_j - x_i)(y_k - y_i) - (y_j - y_i)(x_k - x_i),
+    \nabla(i,j,k) = \mathrm{sign}((x_j - x_i)(y_k - y_i) - (y_j - y_i)(x_k - x_i)),
 \end{displaymath}
 with only five subtractions and two multiplications.
 
@@ -35,7 +41,7 @@ Later in this document we mention GPT without specifying the dimension.
 The problem is then assumed to be in the plane.
 When we consider a different parameterization we explicitly mention it.
 
-\subsection{\done Variants}
+\subsection{Variants}
 
 Similarly to the 3SUM problem, we can study a
 variant of GPT where the tested triples come from different sets.
@@ -45,7 +51,7 @@ variant of GPT where the tested triples come from different sets.
 This variant is useful for a particular reduction from 3SUM.
 A similar variant can be defined for the \(d\)-dimensional problem.
 
-\subsection{\done Reductions from \(k\)-SUM}%
+\subsection{Reductions from \(k\)-SUM}%
 \label{sec:problem:pol:reductions-from-ksum}
 
 This section is divided into two parts.
@@ -53,7 +59,7 @@ This section is divided into two parts.
 The first part exposes a folk reduction from \(k\)-SUM to GPT showing
 GPT in \(\mathbb{R}^d\) is as hard as \((d+1\))-SUM.
 %
-The second part expose other interesting connections between \(k\)-SUM and GPT
+The second part exposes other interesting connections between \(k\)-SUM and GPT
 that can be drawn through Vandermonde determinants, yielding equivalent
 hardness proofs for GPT~\cite{Er99b}.
 
@@ -64,7 +70,7 @@ Given an instance of the three-set variant of 3SUM,
 we can reduce it to an instance of GPT where the input sets are on three
 horizontal lines.
 %
-\begin{lemma}
+\begin{observation}[label=obs:3sum-to-gpt]
 Given three sets \(A\), \(B\), and \(C\) of \(n\) real numbers, let
 \begin{align*}
     A' &= \{\, a' = (a,0) \colon\, a \in A\,\},\\
@@ -73,7 +79,7 @@ Given three sets \(A\), \(B\), and \(C\) of \(n\) real numbers, let
 \end{align*}
 Then for any \(a \in A\), \(b \in B\), and \(c \in C\), we have that
 \(a+b+c=0\) if and only if \(a'\), \(b'\), and \(c'\) are collinear.
-\end{lemma}
+\end{observation}
 %
 \begin{proof}
     The equation of a line defined by points \(a' \in A'\) and \(b' \in B'\)
@@ -90,7 +96,7 @@ Therefore, solving GPT is at least as hard as solving 3SUM.
 In the dual, this reduction is even easier to apprehend and trivially
 generalizes to \(d\)-dimensional GPT.
 %
-\begin{lemma}
+\begin{observation}
 Given \(k\) sets \(S_i\) of \(n\) real numbers,
 in \(\mathbb{R}^{k-1}\)
 let
@@ -103,7 +109,7 @@ we have that
 \(\sum_{i=1}^{k} s_i = 0\)
 if and only if
 the corresponding hyperplanes intersect.
-\end{lemma}
+\end{observation}
 %
 \begin{proof}
     Trivially.
@@ -171,8 +177,9 @@ in Problem~\ref{problem:gpt-d} becomes
 1      & q_{d+1}^1 & q_{d+1}^2 & \cdots & q_{d+1}^d
 \end{pmatrix}
 =
-|V(q)|.
+|V(q)|,
 \end{displaymath}
+and solving the problem amounts to deciding Element Uniqueness.
 
 Consider points on the \emph{weird} moment curve $\omega_d(t) = (t, t^2, \ldots,
 t^{d-1}, t^{d+1})$~\cite{Er99b}.
@@ -206,18 +213,32 @@ The lower bounds in
 cannot hope to solve GPT in those models because they do not allow us to answer
 quadratic polynomial queries on the input.
 %
-If we want good lower bounds in the algebraic decision tree model and in the
-algebraic computation tree model we need to resort to different proofs.
+That being said, solving an instance of GPT as in \Cref{obs:3sum-to-gpt} with
+orientation predicates is the same as trying to solve the original 3SUM
+instance with \(3\)-linear queries. Hence, the quadratic lower bound of
+Erickson~\cite{Er99a} carries over and GPT requires \(\Omega(n^2)\) time in a
+model where one is only allowed orientation queries. More generally, GPT in
+\(\mathbb{R}^d\) requires \(\Omega(n^{\lceil \frac{d+1}{2} \rceil})\) time in a
+model where one is only allowed to query the orientation of \(d\)-simplexes of
+the input points.
+
+However, neither those lower bounds, nor the weaker ones in the \(n\)-linear
+decision tree model, carry over in the more generous algebraic decision
+tree model and algebraic computation tree model.
+%
+To get a superlinear lower bound for GPT in those models we need work a little
+bit harder.
 
 Given an instance of GPT, its \emph{order type} is defined to be the map that
 sends each triple of input points to its orientation.
 %
+\input{text/definition/order-type}
+%
 If we consider the problem of identifying the order type of a set of points, we
 can achieve a lower bound that holds in any arbitrary decision tree model. It
 suffices for that to bound the number of possible order types.
-\begin{theorem}[name={Goodman and Pollack~\cite{GP86}, Alon~\cite{Al86}},label={thm:order-types:realizable}]
-    There are  \(2^{\Theta(n \log n)}\) order types of point sets.
-\end{theorem}
+%
+\input{text/theorem/GP86}
 %
 With the following corollary
 \begin{corollary}
@@ -240,8 +261,8 @@ problem. Ben-Or shows exactly that
 \end{theorem}
 
 \begin{corollary}
-    Any algebraic computation tree or bounded-tree algebraic decision tree that
-    solves GPT has depth \(\Omega(n \log n)\).
+    Any algebraic computation tree or bounded-degree algebraic decision tree
+    that solves GPT has depth \(\Omega(n \log n)\).
 \end{corollary}
 
 \begin{proof}
@@ -251,32 +272,190 @@ problem. Ben-Or shows exactly that
 	(x_j - x_i)(y_k - y_i) - (y_j - y_i)(x_k - x_i) = 0.
     \end{displaymath}
     %
-    Solving GPT on input \(q\) amounts to deciding whether \(q \in W\).
+    Solving GPT on input \(q \in \mathbb{R}^{2n}\)
+    amounts to deciding whether \(q \in W\).
     %
-    The set \(\mathbb{R}^{2n} - W\) has \(2^{\Theta(n \log n)}\) by
-    \Cref{thm:order-types:realizable}.
+    The set \(\mathbb{R}^{2n} - W\) has \(2^{\Omega(n \log n)}\) connected
+    components by
+    \Cref{thm:GP86}.
 \end{proof}
 
 Note that both
-\Cref{thm:order-types:realizable}
+\Cref{thm:GP86}
 and
 \Cref{thm:Be83} rely on
 the
-Petrovski\u{\i}-Ole\u{\i}nik-Thom-Milnor Theorem~\cite{Mi64,Th65,BPR06} that
-bounds the number of connected components of algebraic varieties.
+Petrovski\u{\i}-Ole\u{\i}nik-Thom-Milnor (POTM) Theorem that
+bounds the number of connected components of
+algebraic varieties~\cite{Mi64,Th65,BPR06}.
 
 %Complexity of an arrangement of surfaces~\cite[24.1.4]{Hal04}.
 
 \subsection{Algorithms}
 
 By brute-force, GPT can be solved in \(O(n^3)\) time.
-
-A substantial improvement can be made by using
-
-Duality and constructing the dual arrangement
-Construction of the arrangement~\cite[Theorem 24.4.1]{Hal04}
-
+%
+Quadratic time can be achieved by constructing the dual
+arrangement~\cite[Theorem 24.4.1]{Hal04}.
+%
 No subquadratic algorithm known, uniform or nonuniform.
+%
+Essentially, nothing known.
+
+
+\subsection{More on Order Types}
+
+A great deal of the literature in computational geometry deals with the notion
+of order type~\cite{%
+AAK02a,
+AAK02b,
+ACKLV16,
+AKPV14,
+AK01,
+AK05,
+AKMPW15,
+AMP13,
+Al86,
+AILOW14,
+BLSWZ93,
+BMS01,
+BRS92,
+Epp18,
+EHN99,
+Fe96,
+FV11,
+FL78,
+Go80,
+GP83,
+GP84,
+GP86,
+GP91,
+GP93,
+GPS89,
+HM94,
+HMMS11,
+Knu92,
+Le26,
+MMIB12,
+NV98,
+Ri89,
+RZ04,
+Ri56,
+St97%
+}.
+The order type of a point set has been further abstracted into combinatorial
+objects known as (rank-three) \emph{oriented matroids}~\cite{FL78}. The
+\emph{chirotope axioms} define consistent systems of signs of
+triples~\cite{BLSWZ93}.
+%
+From the topological representation theorem~\cite{BMS01}, all such
+\emph{abstract} order types correspond to pseudoline arrangements, while, from
+the standard projective duality, order types of point sets correspond to
+straight line arrangements. See Chapter 6 of The Handbook for more
+details~\cite{RZ04}.
+
+When the order type of a pseudoline arrangement can be realized by an
+arrangement of straight lines, we call the pseudoline arrangement
+\emph{stretchable}.
+%
+As an example of a nonstretchable arrangement, Levi gives Pappus's
+configuration where eight triples of concurrent straight lines force a ninth,
+whereas the ninth triple cannot be enforced by pseudolines~\cite{Le26} (see
+Figure~\ref{fig:pappus}).
+%
+Ringel shows how to convert the so-called ``non-Pappus'' arrangement of
+Figure~\ref{fig:pappus}~(b) to a simple arrangement while preserving
+nonstretchability~\cite{Ri56}.
+%
+All arrangements of eight or fewer pseudolines are stretchable~\cite{GP80}, and
+the only nonstretchable simple arrangement of nine pseudolines is the one given
+by Ringel~\cite{Ri89}.
+%
+More information on pseudoline arrangements is available in Chapter 5 of The
+Handbook~\cite{Go04}.
+
+\begin{figure}
+	\centering{}
+    \begin{subfigure}[t]{0.5\textwidth}
+		\centering{}
+		\includegraphics[scale=.7]{figures/pappus-realizable}
+		\caption{Realizable order type.}
+    \end{subfigure}%
+    \begin{subfigure}[t]{0.5\textwidth}
+		\centering{}
+		\includegraphics[scale=.7]{figures/pappus-abstract}
+		\caption{Abstract order type which is not realizable.}
+    \end{subfigure}
+	\caption{Pappus's configuration.}\label{fig:pappus}
+\end{figure}
+
+Figure~\ref{fig:pappus} shows that not all pseudoline arrangements are
+stretchable. Indeed, most are not: there are \(2^{\Theta(n^2)}\)
+abstract order types~\cite{Fe96} and only \(2^{\Theta(n \log n)}\) realizable
+order types (\Cref{thm:GP86}).
+%
+\input{text/theorem/Fe96}
+%
+This discrepancy stems from the algebraic nature of realizable order types, as
+illustrated by the main tool used in the upper bound proofs (the
+POTM Theorem~\cite{Mi64,Th65,BPR06}).
+
+\subsection{Encodings}
+
+Regarding encoding the function \(\chi\) of \Cref{def:order-type}
+(as in \Cref{def:encoding}),
+\Cref{thm:Fe96} together with information theory
+imply that \(\Theta(n^2)\) bits are necessary
+and sufficient for abstract order types whereas \(\Theta(n \log n)\) bits are
+necessary and sufficient for realizable order types.
+Optimal encodings matching those bounds can be produced
+by a simple enumeration algorithm.
+%
+However, it is unclear how the original information can be
+efficiently reconstructed from those encodings.
+%
+On the other hand, storing all \( \binom{n}{3} \) orientations in a lookup
+table to render this information accessible seems wasteful.
+
+Another obvious idea for encoding the order type of a point set is to store
+the coordinates of the points, and answer orientation queries
+by computing the corresponding determinant. While this should work in many practical
+settings, it cannot work for all point sets. Perles's configuration shows that
+some configuration of points, containing collinear triples, forces at least one
+coordinate to be irrational~\cite{Gr05} (see Figure~\ref{fig:perles}).
+%
+It is easy to see that
+order types of points in general position can always be represented by rational
+(or integer) coordinates.
+%
+However, it is well known that some configurations require doubly
+exponential coordinates, hence coordinates with exponential bitsizes if
+represented in the binary numeral system~\cite{GPS89}.
+
+\begin{figure}
+	\centering{}
+	\includegraphics[scale=.7]{figures/perles}
+	\caption{Perles's configuration.}\label{fig:perles}
+\end{figure}
+
+Goodman and Pollack defined \(\lambda\)-matrices which can encode abstract order
+types using \( O(n^2 \log{n}) \) bits~\cite{GP83} and can be constructed in
+\(O(n^2)\) time~\cite{EOS86}. They asked if the space
+requirements could be moved closer to the information-theoretic lower bounds.
+Everett, Hurtado, and Noy complained that this encoding does not
+allow a fast decoding for individual triples~\cite{EHN99}.
+Knuth and Streinu independently gave new encodings of size \(O(n^2 \log n)\)
+that allow orientation queries in constant time~\cite{Knu92,St97}.\footnote{%
+We attract the attention of the reader on the fact that we express size in
+bits.
+Other authors,~\cite{EHN99} and~\cite{St97} in particular,
+express size in number of words, which is off by at least a logarithmic factor.}
+Felsner and Valtr showed how to encode abstract order types optimally in
+\(O(n^2)\) bits via the wiring diagram of their corresponding allowable
+sequence~\cite{Fe96, FV11} (as defined in~\cite{Go80}). Aloupis et al.\ gave
+an encoding of size \(O(n^2)\) that can be computed in \(O(n^2)\) time and that
+can be used to test for the isomorphism of two distinct point sets in the same
+amount of time~\cite{AILOW14}.
 
 \subsection{The Intermediate Problem}
 
@@ -299,7 +478,7 @@ on three horizontal lines or on a single cubic curve.
 In fact, this problem is not new: it has already been studied before from a
 combinatorics point of view as exposed in the next section.
 
-\subsection{\done Combinatorics}%
+\subsection{Combinatorics}%
 \label{sec:problem:pol:combinatorics}
 
 In a series of results spanning fifteen years,
@@ -347,13 +526,3 @@ to points lying on a constant number of constant-degree algebraic curves.
 Nassajian Mojarrad, Pham, Valculescu and de Zeeuw~\cite{MPVd16} and
 Raz, Sharir and de Zeeuw~\cite{RSZ16} proved bounds for versions of the
 problem where $F$ is a $4$-variate polynomial.
-
-
-\subsection{Encodings}
-
-Pseudoline arrangements YES NOT IN TOOLBOX (MAYBE MOVE ARRANGEMENTS TO kSUM
-SECTION?)
-
-Encodings
-
-Canonical Labelings

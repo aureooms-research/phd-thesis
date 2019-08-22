@@ -2,22 +2,22 @@
 \label{s:numbers}
 
 A first natural idea is to encode the real 3SUM instance by \emph{rounding} its numbers to integers.
-We show a tight bound of $\Theta (N^2)$ bits for this representation.
+We show a tight bound of $\Theta (n^2)$ bits for this representation.
 \TheoremSUMEncodingBitsize*
 
 \begin{proof}
-Every 3SUM instance \(A = \{\, a_1 < a_2 < \ldots < a_N\,\} \),
-\(B = \{\, b_1 < b_2 < \cdots < b_N\,\} \),
-and \(C = \{\, c_1 < c_2 < \cdots < c_N\,\}\)
+Every 3SUM instance \(A = \{\, a_1 < a_2 < \ldots < a_n\,\} \),
+\(B = \{\, b_1 < b_2 < \cdots < b_n\,\} \),
+and \(C = \{\, c_1 < c_2 < \cdots < c_n\,\}\)
 can be interpreted as the point
-\( (a_1,\ldots,a_N,b_1,\ldots,b_N,c_1,\ldots,c_N) \)
+\( (a_1,\ldots,a_n,b_1,\ldots,b_n,c_1,\ldots,c_n) \)
 in \(\mathbb{R}^{3N}\).
-Let us use the variables \(x_1,\ldots,x_N\) to encode the first \(N\) dimensions
-of \(\mathbb{R}^{3N}\), \(y_1,\ldots,y_N\) to encode the next \(N\) dimensions,
-and \(z_1,\ldots,z_N\) for the remaining dimensions.
+Let us use the variables \(x_1,\ldots,x_n\) to encode the first \(n\) dimensions
+of \(\mathbb{R}^{3N}\), \(y_1,\ldots,y_n\) to encode the next \(n\) dimensions,
+and \(z_1,\ldots,z_n\) for the remaining dimensions.
 Consider the subset of $\mathbb{R}^{3N}$
 \begin{multline*}
-      \Delta = \{ (x_1,\ldots,x_N,y_1,\ldots,y_N,z_1,\ldots,z_N) \colon\, \\
+      \Delta = \{ (x_1,\ldots,x_n,y_1,\ldots,y_n,z_1,\ldots,z_n) \colon\, \\
 			      x_i<x_{i+1}, ~y_j<y_{j+1}, ~ z_k<z_{k+1}~ \forall i,j,k \in [N-1]\}
 \end{multline*}
 and the set $\Pi$ of $N^3$ hyperplanes $x_i+y_j+z_k=0$, where $i,j,k\in [N]$.
@@ -83,11 +83,11 @@ to select one non-zero entry per row), and the product is always in $\{ -1,0,1\}
 Therefore $|\det(M)|\leq 3^{3N}$. Similarly, $|\det(M_i)|\leq 4^{3N}$ because
 each row of $M_i$ has at most $4$ non-zero entries.
 We conclude that the solution to the system $M [x~ y ~z]^T=\delta$
-are rationals that can be expressed with $O(N)$ bits. This solution gives
+are rationals that can be expressed with $O(n)$ bits. This solution gives
 a 3SUM instance with rationals that is equivalent to $\langle A, B, C \rangle$.
 Since all the rationals have the common denominator ($\det(M)$), we can scale the result
 by $\det(M)$ and we get an equivalent instance with integers, where
-each integer has $O(N)$ bits.
+each integer has $O(n)$ bits.
 
 The proof of the second statement is by implementing the Fibonacci recurrence in each of the
 arrays $A,B,C$. This can be achieved by letting:
@@ -112,18 +112,18 @@ By considering the arrangement of hyperplanes defining the 3SUM problem, we get 
 information-theoretic lower bound on the number of bits in a 3SUM-type.
 
 \begin{lemma}
-  There are $2^{\Theta(N\log N)}$ distinct 3SUM-types of size $N$.
+  There are $2^{\Theta(n\log n)}$ distinct 3SUM-types of size $N$.
 \end{lemma}
 \begin{proof}
   3SUM-types of size $N$ are in one-to-one correspondence with cells of the
   arrangement of $N^3$ hyperplanes in $\mathbb{R}^{3N}$. The
-  number of such cells is $O(N^{9N})$ and at least ${(N!)}^2$.
+  number of such cells is $O(n^{9N})$ and at least ${(n!)}^2$.
 \end{proof}
 
 In order to reach this lower bound, we can simply
-encode the label of the cell of the arrangement in \(\Theta(N \log N)\) bits.
+encode the label of the cell of the arrangement in \(\Theta(n \log n)\) bits.
 However, decoding the information
-requires to construct the whole arrangement which takes \(N^{O(N)}\) time.
+requires to construct the whole arrangement which takes \(n^{O(n)}\) time.
 An alternative solution is to store a
 vertex of the arrangement of hyperplanes \(a_i + b_j + c_k \in \{\,
 -1, 0, 1\,\}\).
@@ -131,15 +131,15 @@ There exists such a vertex that has the same 3SUM-type as the input point, as
 shown in the proof of Contribution~\ref{lem:bitsize}.
 To answer any query, either recompute the vertex from the basis then answer the query using arithmetic,
 or use linear programming.
-Hence we can build a data structure of $O(N\log N)$ bits such that triple queries can be answered in polynomial time.
+Hence we can build a data structure of $O(n\log n)$ bits such that triple queries can be answered in polynomial time.
 
 Note that we do not exploit much of the 3SUM structure here. In particular, the
 same essentially holds for $k$-SUM, and can also be generalized to a {\sc
-Subset Sum} data structure of $O(N^2)$ bits, from which we can extract the sign
+Subset Sum} data structure of $O(n^2)$ bits, from which we can extract the sign
 of the sum of any subset of numbers.
 
 \section{Subquadratic Space and Constant Query Time}\label{s:sscqt}
-Our encoding is inspired by  Gr{\o}nlund and Pettie's $\tilde{O}(N^{1.5})$
+Our encoding is inspired by  Gr{\o}nlund and Pettie's $\tilde{O}(n^{3/2})$
 non-uniform algorithm for 3SUM~\cite{GP18}.
 Our data structure stores three components, which we call the
 \emph{differences}, the \emph{staircase} and the \emph{square neighbors}.
@@ -148,10 +148,10 @@ Our data structure stores three components, which we call the
   Partition $A$ and $B$ into \emph{blocks} of $\sqrt{N}$ consecutive elements.
   Let $D$ be the set of all differences of the form $a_{i_1}-a_{i_2}$ and
   $b_{j_1}-b_{j_2}$
-  where the items come from the same block. There are $O(N^{1.5})$ such
+  where the items come from the same block. There are $O(n^{3/2})$ such
   differences. Sort $D$ and store a table indicating for each difference in $D$
-  its rank among all differences in $D$. This takes $O(\log N)$ bits for each
-  of the $O(N^{1.5})$ differences, for a total of $O(N^{1.5}\log N)$ bits.
+  its rank among all differences in $D$. This takes $O(\log n)$ bits for each
+  of the $O(n^{3/2})$ differences, for a total of $O(n^{3/2}\log n)$ bits.
 
 \paragraph{Staircase.}
   Look at the table $G$ formed by all sums of the form $a_i+b_j$. It is
@@ -167,8 +167,8 @@ Our data structure stores three components, which we call the
   $j'$ such that some elements of the square $G'[i',j']$ are  $\geq c$, denote this as
   $U[k,i']$.
   %
-  We thus store, in $L$ and $U$, $2 \sqrt{N}$ values of size $O(\log N)$ for each
-  of the $N$ elements of $C$, for a total space usage of $O(N^{1.5}\log N)$ bits.
+  We thus store, in $L$ and $U$, $2 \sqrt{N}$ values of size $O(\log n)$ for each
+  of the $N$ elements of $C$, for a total space usage of $O(n^{3/2}\log n)$ bits.
   %
   We call this the \emph{staircase} as this implicitly classifies, for each $c
   \in C$, whether each square has elements larger than $c$, smaller than $c$, or
@@ -180,7 +180,7 @@ Our data structure stores three components, which we call the
   staircase, we store the location of the predecessor and successor of $c_k$.
   Those squares are the \(G'[i',j']\) such that
   $L[k,i'] \le j' \le U[k,i']$, for $i',j' \in [1,\sqrt{N}]$.
-  This takes space $O(N^{1.5}\log N)$.
+  This takes space $O(n^{3/2}\log n)$.
 
 To execute a query $(a_i,b_j,c_k)$, only a constant number of lookups in the
 tables stored are needed.
@@ -210,7 +210,7 @@ between $a_i+b_j$ and $c_k$.
 \end{figure}
 
 %Because 3SUM reduces to GPT, we can reuse the data structure in~\cite{CCILO18} after reduction.
-%Our encoding is based on using Gr{\o}nlund and Pettie's $\tilde{O}(N^{1.5})$ non-uniform algorithm for 3SUM, which we review.
+%Our encoding is based on using Gr{\o}nlund and Pettie's $\tilde{O}(n^{3/2})$ non-uniform algorithm for 3SUM, which we review.
 %
 %
 %
