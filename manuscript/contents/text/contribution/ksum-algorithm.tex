@@ -1,5 +1,8 @@
 \section{\done Meiser Applied to \(k\)-SUM}
 
+In Paper~\ref{paper:ksum-algorithm}
+we focus on the computational complexity of \(k\)-SUM\@.
+%
 In \S\ref{paper:ksum-algorithm:contrib:query-complexity}, we show the existence of an $n$-linear
 decision tree of depth $\tilde{O}(n^3)$ for \(k\)-SUM using a careful
 implementation of Meiser's algorithm~\cite{M93}.
@@ -99,18 +102,20 @@ changes in the analysis will likely be needed to do so.}
 \begin{tabular}{|c|c|c|c|c|}
 	\hline
 
-	Theorem & Blocks & Query Size & Queries & Time \\
+	Reference & Blocks & Query Size & Queries & Time \\
 	\hline
 	\hline
-	\ref{thm:cube} &
+
+	\(\cdot\) (\ref{thm:cube}) &
 	$1$ &
 	$n$ &
-	$\tilde{O}(n^3)$ & $\tilde{O}(n^{\lceil\frac{k}{2}+8\rceil})$
+	$\tilde{O}(n^3)$ \S\ref{paper:ksum-algorithm:contrib:query-complexity} &
+	$\tilde{O}(n^{\lceil\frac{k}{2}+8\rceil})$ \S\ref{paper:ksum-algorithm:contrib:time-complexity}
 	\\
 
 	\hline
 
-	\ref{thm:query-size} &
+	\S\ref{paper:ksum-algorithm:contrib:query-size} (\ref{thm:query-size}) &
 	$b$ &
 	$k\lceil\frac{n}{b}\rceil$ &
 	$\tilde{O}(b^{k-4}n^3)$ &
@@ -119,7 +124,7 @@ changes in the analysis will likely be needed to do so.}
 
 	\hline
 
-	\ref{cor:logn} &
+	\S\ref{paper:ksum-algorithm:contrib:query-size} (\ref{cor:logn}) &
 	$b=n^{\Theta(1)}$ &
 	$o(n)$ &
 	$\tilde{O}(n^3)$ &
@@ -128,7 +133,7 @@ changes in the analysis will likely be needed to do so.}
 
 	\hline
 
-	\ref{cor:ne} &
+	\S\ref{paper:ksum-algorithm:contrib:query-size} (\ref{cor:ne}) &
 	$b=\Theta(n^\alpha)$ &
 	$O(n^{1-\alpha})$ &
 	$\tilde{O}(n^{3+(k-4)\alpha})$ &
