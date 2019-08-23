@@ -28,8 +28,17 @@ In what follows, we use the notation \([n] = \{\,1,2,\ldots ,n\,\}\).
 
 Big-Oh notation
 
-(here the notation $\tilde{O}$ ignores polylogarithmic
-factors)
+The notation $\tilde{O}$ ignores polylogarithmic.
 
 Throughout this document, $\varepsilon$ denotes a positive real
 number that can be made as small as desired.
+
+\(O_{p_1,p_2, \ldots}(f(n))\) means that the constant of proportionality
+depends on the parameters \(p_i\).
+
+When we write \(O(f(n_1,n_2, \ldots))\) we assume that one of the variables
+\(n_i\) is
+the one going towards infinity in the big-oh notation, while the others are
+monotone growing functions of \(n_i\).
+
+Logarithms are in base two unless otherwise indicated.

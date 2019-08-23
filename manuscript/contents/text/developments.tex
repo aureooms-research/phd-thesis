@@ -1,8 +1,10 @@
-\chapter{\done Developments}\label{chapter:developments}
+\chapter{\done Developments}%
+\label{chapter:developments}
 
 Since the publication of our results, new developments have surfaced.
 
-\section{Better Nonuniform Algorithms for \(k\)-SUM}
+\section{Better Nonuniform Algorithms for \(k\)-SUM}%
+\label{sec:developments:ksum-algorithm}
 
 Meiser's algorithm solves a broader class of problems than the \(k\)-SUM
 problems. In its general formulation, this algorithm solves
@@ -51,7 +53,8 @@ coefficients of the hyperplanes are constants.
 
 We briefly sketch those two developments in the next subsections.
 
-\subsection{Using Vertical Decomposition}
+\subsection{Using Vertical Decomposition}%
+\label{sec:developments:ksum-algorithm:ES17}
 
 In 2016, Ezra and Sharir~\cite{ES17} improve the decision tree depth of
 Meiser's algorithm by using vertical decomposition as the cell refinement
@@ -74,7 +77,8 @@ much shallower than our implementation:
 the depth of the tree is reduced by a \(n \log n\) factor in both cases leading
 to overall complexities of \(O(n^2 \log n)\) and \(O(n^3)\) respectively.
 
-\subsection{Using Inference Dimension}
+\subsection{Using Inference Dimension}%
+\label{sec:developments:ksum-algorithm:KLM18}
 
 In 2017, Kane, Lovett, and Moran~\cite{KLM18} proved that the point location
 problem can be solved in \(O(d \log d \log m)\) linear queries.
@@ -107,7 +111,8 @@ tree for point location of depth \(O(d \log^2 m)\) when the set of
 hyperplanes is drawn from a distribution with weak restrictions. This new
 algorithm only uses comparison queries.
 
-\section{Timothy Chan Strikes Again}
+\section{Timothy Chan Strikes Again}%
+\label{sec:developments:3pol-algorithm}
 
 In 2017, Timothy Chan presented a
 \(O((n^2 / \log^2 n)(\log \log n)^{O(1)})\)-time real-RAM algorithm for
