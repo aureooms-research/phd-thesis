@@ -1,4 +1,4 @@
-\subsection{Incidences on unit circles}%
+\subsection{Incidences on Unit Circles}%
 \label{sec:paper:3pol-algorithm:application:circles}
 
 Raz, Sharir and Solymosi~\cite{RSS15} mention the following problem as a
@@ -18,7 +18,9 @@ original problem:
 
 Our new algorithms indeed allow us to solve the decision version of their
 problems in subquadratic time.
-\begin{problem}[Unit Circles Spanned by Points on Three Unit Circles (UCSPTUC)]
+\begin{problem}[%
+	label=problem:UCSPTUC%
+]
 	Let $C_1,C_2,C_3$ be three unit circles in $\mathbb{R}^2$ with centers
 	$c_1,c_2,c_3$, and, for each $i=1,2,3$, let $S_i =
 	\{\,(x_{i,1},y_{i,1}),(x_{i,2},y_{i,2}),\ldots,(x_{i,n},y_{i,n})\,\}$ be a
@@ -27,7 +29,7 @@ problems in subquadratic time.
 \end{problem}
 
 \begin{theorem}
-	UCSPTUC can be solved in
+	\Cref{problem:UCSPTUC} can be solved in
 	$O(n^2 {(\log \log n)}^\frac{3}{2} / {(\log n)}^\frac{1}{2})$ time.
 \end{theorem}
 

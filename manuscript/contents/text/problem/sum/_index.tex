@@ -91,6 +91,23 @@ the actual input vector $q$.
 
 \input{text/definition/point-location}
 
+The Point Location problem is a classic problem in Computational Geometry.
+
+Because the bounds in \Cref{thm:buck} are attained when \(\mathcal{H}\) is in
+general position, there is a lower bound of \(\Omega(d \log m)\) on the depth
+of decision trees solving this problem.
+
+For our purpose, it is useful to see the \(k\)-SUM problem as a point location
+problem in \(\mathbb{R}^n\) where the coordinates of \(q\) are the input
+numbers and where \(\mathcal{H}\) is the set of all \(n \choose k\) hyperplanes
+of equation \(\sum_{j=1}^{k} x_{i_j} = 0\).
+
+Sorting can also be seen as a point location problem in \(\mathbb{R}^n\).
+In this case \(\mathcal{H}\) is the set of all \(n \choose 2\) hyperplanes of
+equation \(x_i = x_j\). The arrangement \(\mathcal{A}(\mathcal{H})\) has
+exactly \(n!\) \(n\)-dimensional cell that correspond to the \(n!\)
+permutations the input might have.
+
 \subsection{Information Theoretic Lower Bound}%
 \label{sec:problem:sum:itlb}
 
