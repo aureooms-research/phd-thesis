@@ -1,6 +1,9 @@
 \begin{contribution}[label=thm:cube,restate=TheoremKSUMCube]
 There exist linear decision trees of depth \(O(n^3\log^2 n)\) solving
-the \(k\)-SUM and the \(k\)-LDT problems. Furthermore, for the two problems there
+the \(k\)-SUM and the \(k\)-LDT problems. Furthermore, for the \(k\)-SUM
+problem there
 exists an $\tilde{O}(n^{\ceil{\frac{k}{2}}+8})$ Las Vegas algorithm in
 the word-RAM model expected to perform $O(n^3 \log^2 n)$ linear queries on the input.
+This algorithm also solves the \(k\)-LDT problem within the same time bounds
+provided the coefficients of the underlying linear equation are constant rational numbers.
 \end{contribution}

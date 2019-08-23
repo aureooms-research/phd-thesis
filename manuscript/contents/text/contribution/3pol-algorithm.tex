@@ -1,17 +1,4 @@
-\section{\done Gr\o nlund and Pettie Applied to 3POL}
-
-
-%Similarly to Gr\o nlund and Pettie~\cite{GP18}, we consider both nonuniform
-%and uniform models of computation.
-%
-%For the uniform model we consider the real-RAM model with only the four
-%arithmetic operators.
-
-%For the nonuniform model, Gr\o nlund and Pettie consider linear
-%decision trees, where one is only allowed to manipulate the input numbers
-%through linear queries to an oracle. Each linear query has constant cost and
-%all other operations are free but cannot inspect the input.
-%
+\section{Gr\o nlund and Pettie Applied to 3POL}
 
 In Paper~\ref{paper:3pol-algorithm}
 we focus on the computational complexity of 3POL\@. Since 3POL contains 3SUM,
@@ -25,11 +12,10 @@ We give a positive
 answer to both questions: we design
 a uniform
 $O(n^2 {(\log \log n)}^{3/2} / {(\log n)}^{1/2})$-time
-real-RAM algorithm
+algorithm
 and
 a nonuniform
-$O(n^{12/7+\varepsilon}) = O(n^{1.7143})$-depth
-bounded-degree algebraic decision tree
+$O(n^{12/7+\varepsilon}) = O(n^{1.7143})$-time algorithm
 for 3POL\@.
 %
 To prove our uniform result, we present a fast algorithm for the Polynomial
@@ -38,6 +24,82 @@ Dominance Reporting problem. As the algorithm for Dominance Reporting and its
 analysis by Chan~\cite{Cha08} is used in fast algorithms for all-pairs shortest
 paths, (min,+)-convolutions, and 3SUM, we expect this new algorithm will have
 more applications.
+
+To make the exposition of our results simpler,
+we study two different variants of the 3POL problem.
+The first variant is the 3POL problem as defined in the previous chapter
+(\S\ref{sec:problem:pol:3pol}).
+We recall its definition here.
+\ProblemPOLImplicit*
+The second variant is a special case of the 3POL problem where we
+restrict the trivariate polynomial $F$ to have the form $F(a,b,c) = f(a,b) -
+c$. We call it the explicit 3POL problem because the dependency on the third
+variable is explicitly given:
+%
+\input{text/definition/3pol-explicit}
+
+Similarly to Gr\o nlund and Pettie~\cite{GP18}, we consider both nonuniform
+and uniform models of computation.
+%
+For the nonuniform model, Gr\o nlund and Pettie consider linear
+decision trees.
+%
+Because linear decision trees are not powerful enough to even solve the
+problems we are looking at,
+in this contribution, we consider
+\emph{bounded-degree algebraic decision trees (ADT)},
+an algebraic generalization of linear decision trees
+(see~\S\ref{sec:models-of-computation:algorithms:trees}).
+%
+For the uniform model we consider the real-RAM model with only the four
+arithmetic operators (see \S\ref{sec:models-of-computation:algorithms:ram}),
+the same model as in~\cite{GP18}.
+
+In \S\ref{sec:algo:explicit:nonuniform} and \S\ref{sec:algo:explicit:uniform},
+we first design uniform and nonuniform algorithms for explicit 3POL.
+%
+\input{text/theorem/3pol-algorithm/nonuniform-explicit}
+\input{text/theorem/3pol-algorithm/uniform-explicit}
+
+In \S\ref{sec:algo:implicit:nonuniform} and \S\ref{sec:algo:implicit:uniform},
+we show that those algorithms can be adapted to solve the more general 3POL
+problem.
+%
+\input{text/theorem/3pol-algorithm/nonuniform-implicit}
+\input{text/theorem/3pol-algorithm/uniform-implicit}
+
+Table~\ref{tor:3pol-algorithm} gives a summary of our results.
+
+\begin{table}
+\centering
+\caption{Algorithmic results for 3POL and its explicit variant.}
+\label{tor:3pol-algorithm}
+\begin{tabular}{|c|c|c|}
+	\hline
+
+	Reference & Model & Complexity \\
+	\hline
+	\hline
+	\S\ref{sec:algo:explicit:nonuniform} (\ref{thm:explicit:nonuniform}),
+	\S\ref{sec:algo:implicit:nonuniform} (\ref{thm:implicit:nonuniform}) &
+	ADT &
+	\(O(n^{12/7 + \epsilon})\)
+	\\
+
+	\hline
+
+	\S\ref{sec:algo:explicit:uniform}(\ref{thm:explicit:uniform}),
+	\S\ref{sec:algo:implicit:uniform}(\ref{thm:implicit:uniform}) &
+	real-RAM &
+	$O(n^2 {(\log \log n)}^{3/2} / {(\log n)}^{1/2})$
+	\\
+
+	\hline
+
+\end{tabular}
+\end{table}
+
+\paragraph{Applications}
 
 Our results can be applied to many algebraic degeneracy testing problems, such
 as GPT, a well known 3SUM-hard problem for which no subquadratic algorithm is
@@ -74,81 +136,8 @@ and
 from the problem of counting collinear triples in any dimension
 (\S\ref{sec:paper:3pol-algorithm:application:gpt}).
 
-To make the exposition of our results simpler,
-we study two different variants of the 3POL problem.
-The first variant is the 3POL problem as defined in the previous chapter
-(\S\ref{sec:problem:pol:3pol}).
-We recall its definition here.
-\ProblemPOLImplicit*
-The second variant is a special case of the 3POL problem where we
-restrict the trivariate polynomial $F$ to have the form $F(a,b,c) = f(a,b) -
-c$. We call it the explicit 3POL problem because the dependency on the third
-variable is explicitly given:
-\input{text/definition/3pol-explicit}
-We first design uniform and nonuniform algorithms for this easier problem.
-
-\input{text/theorem/3pol-algorithm/nonuniform-explicit}
-\input{text/theorem/3pol-algorithm/uniform-explicit}
-
-Those algorithms can then be adapted to work for the more general 3POL
-problem.
-
-\input{text/theorem/3pol-algorithm/nonuniform-implicit}
-\input{text/theorem/3pol-algorithm/uniform-implicit}
-
-Table~\ref{tor:3pol-algorithm} gives a summary of our results.
-
-\begin{table}
-\centering
-\caption{Algorithmic results for 3POL and its explicit variant.}
-\label{tor:3pol-algorithm}
-\begin{tabular}{|c|c|c|}
-	\hline
-
-	Reference & Model & Complexity \\
-	\hline
-	\hline
-	\S\ref{sec:algo:explicit:nonuniform} (\ref{thm:explicit:nonuniform}),
-	\S\ref{sec:algo:implicit:nonuniform} (\ref{thm:implicit:nonuniform}) &
-	Nonuniform &
-	\(O(n^{12/7 + \epsilon})\)
-	\\
-
-	\hline
-
-	\S\ref{sec:algo:explicit:uniform}(\ref{thm:explicit:uniform}),
-	\S\ref{sec:algo:implicit:uniform}(\ref{thm:implicit:uniform}) &
-	Uniform &
-	$O(n^2 {(\log \log n)}^{3/2} / {(\log n)}^{1/2})$
-	\\
-
-	\hline
-
-\end{tabular}
-\end{table}
-
 
 \paragraph{A Remark}
-
-Similarly to Gr\o nlund and Pettie~\cite{GP18}, we consider both nonuniform
-and uniform models of computation.
-%
-For the nonuniform model, Gr\o nlund and Pettie consider linear
-decision trees, where one is only allowed to manipulate the input numbers
-through linear queries to an oracle. Each linear query has constant cost and
-all other operations are free but cannot inspect the input.
-%
-In this paper, we consider
-\emph{bounded-degree algebraic decision trees (ADT)}~\cite{R72,Y81,SY82},
-an algebraic generalization of linear decision trees,
-as the nonuniform model. In a bounded-degree algebraic decision tree, one
-performs constant cost branching operations that amount to test the sign of
-a constant-degree polynomial of the input numbers. Again,
-operations not involving the input are free.
-See \S\ref{sec:models-of-computation:algorithms:trees} for details.
-%
-For the uniform model we consider the real-RAM model with only the four
-arithmetic operators (see \S\ref{sec:models-of-computation:algorithms:ram}).
 
 The algorithms we present manipulate polynomial expressions.
 %
@@ -158,4 +147,3 @@ We distance ourselves from this practice and take particular care
 of using the real-RAM model and the bounded-degree algebraic decision tree
 model with only the four arithmetic operators (see Chapter~\ref{chapter:etr} on
 the Existential Theory of the Reals).
-

@@ -400,7 +400,29 @@ This discrepancy stems from the algebraic nature of realizable order types, as
 illustrated by the main tool used in the upper bound proofs (the
 POTM Theorem~\cite{Mi64,Th65,BPR06}).
 
-\subsection{Encodings}
+\subsection{Encodings}%
+\label{sec:problem:pol:encodings}
+
+At SoCG'86, Bernard Chazelle asked~\cite{GP93}:
+\begin{quotation}
+``How many bits does it take to know an order type?''
+\end{quotation}
+
+This question is of importance in Computational Geometry for the following two
+reasons:
+%
+First, in many algorithms dealing with sets of points in the plane,
+the only relevant information carried by the input is the combinatorial
+configuration of the points given by the orientation of each triple of points in the
+set (clockwise, counterclockwise, or collinear)~\cite{Knu92,Ed12,Epp18}.
+%
+Second, computers as we know them can only handle numbers with
+finite description and we cannot assume that they can handle arbitrary
+real numbers without some sort of encoding. The study of \emph{robust}
+algorithms is focused on ensuring the correct solution of problems on finite
+precision machines. Chapter 41 of The Handbook of Discrete and Computational
+Geometry is dedicated to this issue~\cite{Ya04}.
+
 
 Regarding encoding the function \(\chi\) of \Cref{def:order-type}
 (as in \Cref{def:encoding}),

@@ -23,8 +23,10 @@ Each grid cell $I_{i_1}\times I_{i_2}\times \cdots \times I_{i_k}$ corresponds t
 the indices $i_j$ need not be distinct). Hence each such instance has size at most $k\lceil \frac{n}{b}\rceil$.
 \end{proof}
 
-Combining Lemma~\ref{lem:block} and Theorem~\ref{thm:cube} directly yields the following.
-\input{text/theorem/ksum-algorithm/query-size}
+Combining Lemma~\ref{lem:block} and Theorem~\ref{thm:cube} directly yields our
+second contribution.
+%
+\TheoremKSUMQuerySize*
 
 The following two corollaries are obtained by taking
 $b=\Theta(\polylog(n))$, and $b=\Theta(n^{\alpha})$, respectively

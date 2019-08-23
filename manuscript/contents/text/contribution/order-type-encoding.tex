@@ -1,39 +1,29 @@
 \section{Subquadratic Encodings for GPT}
-At SoCG'86, Bernard Chazelle asked~\cite{GP93}:
-\begin{quotation}
-``How many bits does it take to know an order type?''
-\end{quotation}
 
-This question is of importance in Computational Geometry for the following two
-reasons:
-%
-First, in many algorithms dealing with sets of points in the plane,
-the only relevant information carried by the input is the combinatorial
-configuration of the points given by the orientation of each triple of points in the
-set (clockwise, counterclockwise, or collinear)~\cite{Knu92,Ed12,Epp18}.
-%
-Second, computers as we know them can only handle numbers with
-finite description and we cannot assume that they can handle arbitrary
-real numbers without some sort of encoding. The study of \emph{robust}
-algorithms is focused on ensuring the correct solution of problems on finite
-precision machines. Chapter 41 of The Handbook of Discrete and Computational
-Geometry is dedicated to this issue~\cite{Ya04}.
+\todo{Add definition of the order type / chirotope function}
 
-In this contribution, we are interested in \emph{compact} encodings for
+In Paper~\ref{paper:order-type-encoding},
+we are interested in \emph{compact} encodings for
 order types: we wish to design data structures using as few bits as possible
 that can be used to quickly answer orientation queries of a given abstract or
 realizable order type.
 %
 There exist various ways to encode abstract order types optimally (see
-\S\ref{sec:problem:pol:order-types}).
+\S\ref{sec:problem:pol:encodings}).
 %
 However, it is not known how to decode the orientation of one triple from any
 of those optimal encodings in, say, sublinear time.
 %
 Moreover, since the information-theoretic lower bound for realizable order
-types is only \(\Omega(n \log{n})\), we must ask if this space bound is
+types is only \(\Omega(n \log n)\), we must ask if this space bound is
 approachable for those order types while keeping orientation queries reasonably
 efficient.
+
+For ease of presentation, we state our results in terms of the encoding
+definition of \S\ref{sec:models-of-computation:data-structures:encodings} that
+we restate here.
+%
+\DefinitionEncoding*
 
 In \S\ref{sec:lines-and-pseudolines}, we
 give the first optimal encoding for abstract
@@ -44,8 +34,8 @@ n\).
 \input{text/theorem/order-type-encoding/abstract}
 %
 Our encoding is far from being space-optimal for realizable order types.
-We show that its construction can be easily tuned to only require \(O(n^2
-{(\log{\log{n}})}^2 / \log{n})\) bits in this case.
+We show that its construction can be easily tuned to only require
+slightly subquadratic space in this case.
 \input{text/theorem/order-type-encoding/realizable}
 %
 \ifeurocg%
@@ -58,8 +48,7 @@ reduce the query time to \(O(\log{n}/\log{\log{n}})\).
 %
 In the realizable case, we give quadratic upper bounds on the
 preprocessing time required to compute an encoding in the real-RAM model.
-\input{text/theorem/order-type-encoding/preprocessing}
-\input{text/theorem/order-type-encoding/preprocessing-loglog}
+\input{text/theorem/order-type-encoding/preprocessing-2}
 %
 In \S\ref{sec:hyperplanes} we
 generalize our encodings to chirotopes of
@@ -71,30 +60,28 @@ Table~\ref{tor:order-type-encoding} gives a summary of our results.
 
 \begin{table}
 \centering
-\caption{Table of results}\label{tor:order-type-encoding}
+\caption{Past results and new contributions on order type encoding.}%
+\label{tor:order-type-encoding}
 \begin{tabular}{|c|c|c|c|}
 \hline
-Encoding & Query time & Space (bits) & Preprocessing \\ \hline \hline
+Reference & Query Time & Space (bits) & Preprocessing \\ \hline \hline
 Trivial & $O(1)$ & $O(n^3)$ & $O(n^3)$ \\ \hline
 Enumeration & \(2^{\Omega(n \log n)}\) & \(O(n \log n)\) & \(2^{\Omega(n \log n)}\) \\ \hline
-\(\lambda\)-matrices~\cite{GP83} & \(O(n^2)\) & \(O(n^2 \log n)\) & \(O(n^2)\) \\ \hline
+\(\lambda\)-matrices~\cite{GP83} & ? & \(O(n^2 \log n)\) & \(O(n^2)\) \\ \hline
+Numerical~\cite{GPS89} & $O(n)$ & \(2^{\Theta(n)}\) & ? \\ \hline
 Permutations~\cite{Knu92,St97} & $O(1)$ & $O(n^2 \log n)$ & $O(n^2)$ \\ \hline
 Wiring diagrams~\cite{Fe96,FV11} & \(O(n^2)\) & \(O(n^2)\) & \(O(n^2)\) \\ \hline
 Canonical Labeling~\cite{AILOW14} & ? & \(O(n^2)\) & \(O(n^2)\) \\ \hline
-Numerical~\cite{GPS89} & $O(n)$ & \(2^{\Theta(n)}\) & ? \\ \hline
 \hline
-Abstract (Contrib.~\ref{thm:abstract-loglog}) & $O(\frac{\log n}{\log \log n})$ & $O(n^2)$ & $O(n^2)$ \\ \hline
-Realizable (Contrib.~\ref{thm:realizable}) & $O(\log n)$ & $O(\frac{n^2 \log^2 \log n}{\log n})$ & $O(n^2) $\\ \hline
-Realizable (Contrib.~\ref{thm:realizable-loglog}) & $O(\frac{\log n}{\log \log n})$ & $O(\frac{n^2}{\log^{1-\epsilon} n})$ & $O(n^2)$ \\ \hline
-Realizable in \(\mathbb{R}^d\) (Contrib.~\ref{thm:realizable-d}) &
+Abstract~\S\ref{sec:lines-and-pseudolines},\S\ref{sec:query-time}~(\ref{thm:abstract-loglog}) & $O(\frac{\log n}{\log \log n})$ & $O(n^2)$ & $O(n^2)$ \\ \hline
+Realizable~\S\ref{sec:lines-and-pseudolines},\S\ref{sec:query-time}~(\ref{thm:realizable}) & $O(\log n)$ & $O(\frac{n^2 \log^2 \log n}{\log n})$ & $O(n^2) $\\ \hline
+Realizable~\S\ref{sec:lines-and-pseudolines},\S\ref{sec:query-time}~(\ref{thm:realizable-loglog}) & $O(\frac{\log n}{\log \log n})$ & $O(\frac{n^2}{\log^{1-\epsilon} n})$ & $O(n^2)$ \\ \hline
+Realizable in \(\mathbb{R}^d\)~\S\ref{sec:hyperplanes}~(\ref{thm:realizable-d}) &
 $O(\frac{\log n}{\log \log n})$ & $O(\frac{n^d \log^2 \log n}{\log n})$ & $O(n^d)$ \\ \hline
 \end{tabular}
 \end{table}
 
-\subsection*{\iftitlecase%
-A Remark\else%
-A remark\fi}\label{sec:a-remark}
-
+\paragraph{A Remark}
 Our data structure is the first subquadratic encoding for realizable order
 types that allows efficient query of the orientation of any triple. It is not
 known whether a subquadratic algebraic computation tree exists for

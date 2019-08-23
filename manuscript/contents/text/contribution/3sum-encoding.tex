@@ -1,56 +1,59 @@
 \section{Strongly Subquadratic Encodings for 3SUM}
 
-In the 3SUM problem, we are given an array of numbers as input and are asked
-whether any three of them sum to \(0\). In the mid-nineties, this problem was
-identified as a bottleneck of many important problems in geometry, such as
-detection of affine degeneracies or motion planning~\cite{GO95}. Since then, it
-has become a central problem in fine-grained complexity theory~\cite{PW10}. It
-has long been conjectured to require $\Omega(n^2)$ time. In 2014, it was shown
-to be solvable in $o(n^2)$ time, but no algorithm with running time
-$O(n^{2-\delta})$ with constant $\delta>0$ is known~\cite{GP18}.
+\todo{Add definition of the 3SUM type function}
 
-Lower bounds exist in restricted models of computation. Most notably,
-$\Omega(n^2)$ \(3\)-linear queries are needed to solve 3SUM~\cite{Er99a}, and
-nontrivial lower bounds have also been proven for slightly more powerful linear
-decision trees~\cite{AC05}. However, in a recent breakthrough contribution,
-Kane, Lovett, and Moran showed that 3SUM could be solved using $O(n\log^2 n)$
-6-linear queries~\cite{KLM18}, hence within a $O(\log n)$ factor of the
-information-theoretic lower bound.
+%In the 3SUM problem, we are given an array of numbers as input and are asked
+%whether any three of them sum to \(0\). In the mid-nineties, this problem was
+%identified as a bottleneck of many important problems in geometry, such as
+%detection of affine degeneracies or motion planning~\cite{GO95}. Since then, it
+%has become a central problem in fine-grained complexity theory~\cite{PW10}. It
+%has long been conjectured to require $\Omega(n^2)$ time. In 2014, it was shown
+%to be solvable in $o(n^2)$ time, but no algorithm with running time
+%$O(n^{2-\delta})$ with constant $\delta>0$ is known~\cite{GP18}.
 
-Linear decision trees are examples of {\em nonuniform algorithms}, in which we
-are allowed to have different algorithms for different input sizes.
-Algebraic decision trees generalize linear decision trees
-by allowing decision based on the sign of constant-degree polynomials at each
-node~\cite{SY82}.
+%Lower bounds exist in restricted models of computation. Most notably,
+%$\Omega(n^2)$ \(3\)-linear queries are needed to solve 3SUM~\cite{Er99a}, and
+%nontrivial lower bounds have also been proven for slightly more powerful linear
+%decision trees~\cite{AC05}. However, in a recent breakthrough contribution,
+%Kane, Lovett, and Moran showed that 3SUM could be solved using $O(n\log^2 n)$
+%6-linear queries~\cite{KLM18}, hence within a $O(\log n)$ factor of the
+%information-theoretic lower bound.
 
-Any decision tree identifying the 3SUM type of a 3SUM instance yields a concise
-encoding of this 3SUM type:
-just write down the outcome of the successive tests. Knowing the decision tree
-by convention, this sequence of bits is sufficient to recover the sign of any
-triple.
+%Linear decision trees are examples of {\em nonuniform algorithms}, in which we
+%are allowed to have different algorithms for different input sizes.
+%Algebraic decision trees generalize linear decision trees
+%by allowing decision based on the sign of constant-degree polynomials at each
+%node~\cite{SY82}.
 
-The question we consider here is how to make such a representation efficient,
-in the sense that not only does it use merely a few bits, but the answer to any
-triple query can be recovered efficiently. Understanding the interplay between
-nonuniform algorithms and such data structures hopefully sheds light on the
-intrinsic structure of the problem.
+%Any decision tree identifying the 3SUM type of a 3SUM instance yields a concise
+%encoding of this 3SUM type:
+%just write down the outcome of the successive tests. Knowing the decision tree
+%by convention, this sequence of bits is sufficient to recover the sign of any
+%triple.
 
-We consider the following problem: given three sets of real numbers, output a
+%The question we consider here is how to make such a representation efficient,
+%in the sense that not only does it use merely a few bits, but the answer to any
+%triple query can be recovered efficiently. Understanding the interplay between
+%nonuniform algorithms and such data structures hopefully sheds light on the
+%intrinsic structure of the problem.
+
+In Paper~\ref{paper:3sum-encoding},
+we consider the following problem: given three sets of real numbers, output a
 word-RAM data structure from which we can efficiently recover the sign of the
 sum of any triple of numbers, one in each set.
 
 This problem is similar to the problem of encoding the order
 type of a finite set of points studied in Paper~\ref{paper:order-type-encoding}.
-While this previous work showed that it was
+While this contribution showed that it was
 possible to achieve slightly subquadratic space and logarithmic query time, we
 show here that we can encode the \emph{3SUM type} of \(n\) numbers using
-\(\tilde{O}(n^{\frac 32})\) bits to allow for constant time queries in the
+\(\tilde{O}(n^{3/2})\) bits to allow for constant time queries in the
 word-RAM.
-
+%
 We also study lower and upper bounds of other natural 3SUM type encodings.
 
 As there are only $O(n^3)$ queries, a table
-of size $(\log_2 3) n^3 + O(1)$ bits suffices to give constant query time~\cite{DPT10}.
+of size $n^3 \log_2 3 + O(1)$ bits suffices to give constant query time~\cite{DPT10}.
 %
 This can be improved to $O(n^2\log n)$ bits of space by
 storing for each pair $(i,j)$ the values
@@ -80,27 +83,37 @@ encoding of them so that the orientation of any triple (the \emph{order type})
 can be determined was studied; our problem is a special case of this where the
 lines only have three slopes.
 Can we do better for the case of 3SUM? We answer this in the affirmative.
+
+Again, for ease of presentation, we state our results in terms of the encoding
+definition of \S\ref{sec:models-of-computation:data-structures:encodings} that
+we restate here.
+%
+\DefinitionEncoding*
+
 In \S\ref{s:space} we show how to use an optimal $O(n \log n)$ bits of
-space with a polynomial query time. Finally, in \S\ref{s:sscqt} we show
-how to use $\tilde{O}(n^{3/2})$ space to achieve $O(1)$-time queries.
+space with a polynomial query time.
 \input{text/theorem/3sum-encoding/space-optimal}
+
+Finally, in \S\ref{s:sscqt} we show
+how to use $\tilde{O}(n^{3/2})$ space to achieve $O(1)$-time queries.
 \input{text/theorem/3sum-encoding/gp}
 
-Table~\ref{tor:3sum-encoding} gives a summary of our results.
+Table~\ref{tor:3sum-encoding} gives a summary of past and new results.
 
 \begin{table}
 \centering
-\caption{Table of results}\label{tor:3sum-encoding}
+\caption{Past results and new contributions on 3SUM type encoding.}%
+\label{tor:3sum-encoding}
 \begin{tabular}{|c|c|c|c|}
 \hline
-Encoding & Query time & Space (bits) & Preprocessing \\ \hline \hline
+Reference & Query time & Space (bits) & Preprocessing \\ \hline \hline
 Trivial & $O(1)$ & $O(n^3)$ & $O(n^3)$ \\ \hline
 Almost trivial & $O(1)$ & $O(n^2 \log n)$ & $O(n^2)$ \\ \hline
 Order type (Paper~\ref{paper:order-type-encoding}) & $O(\log n)$ & $O(\frac{n^2 \log^2 \log n}{\log n})$ & $O(n^2) $\\ \hline
 Order type (Paper~\ref{paper:order-type-encoding}) & $O(\frac{\log n}{\log \log n})$ & $O(\frac{n^2 }{\log^{1-\epsilon} n})$ & $O(n^2)$ \\ \hline
 \hline
-Numerical (\S\ref{s:numbers}) & $O(n)$ & $O(n^2)$ & $n^{O(1)}$\\ \hline
-Space-optimal (\S\ref{s:space}) & $n^{O(1)}$ & $O(n \log n)$ & $n^{O(1)}$\\ \hline
-Query-optimal (\S\ref{s:sscqt}) &  $O(1)$ & $\tilde{O}(n^{3/2})$ & $O(n^{2})$ \\ \hline
+Numerical \S\ref{s:numbers}(\ref{lem:bitsize}) & $O(n)$ & $O(n^2)$ & $n^{O(1)}$\\ \hline
+Space-optimal \S\ref{s:space}(\ref{theorem:3sum-encoding:space-optimal}) & $n^{O(1)}$ & $O(n \log n)$ & $n^{O(1)}$\\ \hline
+Query-optimal \S\ref{s:sscqt}(\ref{theorem:3sum-encoding:gp}) &  $O(1)$ & $\tilde{O}(n^{3/2})$ & $O(n^{2})$ \\ \hline
 \end{tabular}
 \end{table}

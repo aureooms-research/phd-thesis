@@ -1,7 +1,10 @@
-\section{\done Meiser Applied to \(k\)-SUM}
+\section{Meiser Applied to \(k\)-SUM}
 
 In Paper~\ref{paper:ksum-algorithm}
-we focus on the computational complexity of \(k\)-SUM\@.
+we focus on the computational complexity of \(k\)-SUM\@. We recall its
+definition.
+%
+\ProblemKSUM*
 %
 In \S\ref{paper:ksum-algorithm:contrib:query-complexity}, we show the existence of an $n$-linear
 decision tree of depth $\tilde{O}(n^3)$ for \(k\)-SUM using a careful
@@ -60,7 +63,7 @@ expected to perform $\tilde{O}(n^3)$ linear queries on the input.
 %
 \input{text/theorem/ksum-algorithm/decision-tree}
 
-For those analyses, we consider algorithms in the standard integer RAM model with
+For those analyses, we consider algorithms in the standard word-RAM model with
 $\Theta(\log n)$-size words, but in which the input $q\in\mathbb{R}^n$ is
 accessible \emph{only} via a linear query oracle. Hence we are not allowed to
 manipulate the input numbers directly. The complexity is measured in two ways:
@@ -80,20 +83,36 @@ non-minimal query size is clearly essential to a drastic reduction in the number
 This gives rise to the natural question as to what is the relation between query size and number of queries.
 In particular, one natural question is whether queries of size less than $n$
 would still allow the problem to be solved using a number of queries that is a
-polynomial independent of $k$. We show that this is possible; in \S\ref{paper:ksum-algorithm:contrib:query-size},
-we introduce a range of
+polynomial independent of $k$. We show that this is possible; in
+\S\ref{paper:ksum-algorithm:contrib:query-size},
+using a blocking scheme,
+we introduce a family of
 algorithms exhibiting an explicit tradeoff between the number of queries and
-their size. Using a blocking scheme, we show that we can restrict to
-$o(n)$-linear decision trees. We also give a
-range of tradeoffs for $O(n^{1-\alpha})$-linear decision trees. Although the
-proposed algorithms still involve nonconstant-size queries, this is
-the first time such tradeoffs are explicitly tackled. Table~\ref{tor:ksum-algorithm} summarizes our results.
+their size.
+%
+\input{text/theorem/ksum-algorithm/query-size}
+
+We expose two corollaries of this contribution:
+%
+We show that we can restrict our algorithms to
+use $o(n)$-linear queries while keeping the same complexity bounds, up to
+polylogarithmic factors.
+%
+We also give a range of tradeoffs for $O(n^{1-\alpha})$-linear decision trees.
+%
+Although the proposed algorithms still involve nonconstant-size queries, this
+is the first time such tradeoffs are explicitly tackled.
+%
+Table~\ref{tor:ksum-algorithm} summarizes our results.
 
 \begin{table}
 \centering
-\caption{Complexities of our new algorithms for the \(k\)-SUM problem. The query
-size is the maximum number of elements of the input that can be involved in a
-single linear query. The number of blocks is a parameter that allows us to
+\caption{Complexities of past and new algorithms for the \(k\)-SUM problem.
+%The query
+%size is the maximum number of elements of the input that can be involved in a
+%single linear query.
+For our new algorithms,
+the number of blocks is a parameter that allows us to
 change the query size (see \S\ref{paper:ksum-algorithm:contrib:query-size}).
 The origin of the constant in the exponent of the time complexity is due to
 Lemma~\ref{lem:bound}. We conjecture it can be reduced, though substantial
@@ -103,6 +122,34 @@ changes in the analysis will likely be needed to do so.}
 	\hline
 
 	Reference & Blocks & Query Size & Queries & Time \\
+	\hline
+	\hline
+
+	Folklore &
+	-- &
+	$k$ &
+	$ \tilde{O}(n^{\lceil \frac k2 \rceil})$ &
+	$ \tilde{O}(n^{\lceil \frac k2 \rceil})$
+	\\
+
+	\hline
+
+	Meiser~\cite{M93} &
+	-- &
+	$n$ &
+	$\tilde{O}(n^3)$~\S\ref{paper:ksum-algorithm:contrib:query-complexity} &
+	$\tilde{O}(n^{k + 2})$~\S\ref{paper:ksum-algorithm:contrib:query-complexity}
+	\\
+
+	\hline
+
+	\cite{GP18,GS15} &
+	-- &
+	$2k-2$ &
+	$\tilde{O}(n^{\frac k2})$ &
+	$\tilde{O}(n^{\frac k2})$
+	\\
+
 	\hline
 	\hline
 
