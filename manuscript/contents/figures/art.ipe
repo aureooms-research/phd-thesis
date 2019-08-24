@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE ipe SYSTEM "ipe.dtd">
 <ipe version="70212" creator="Ipe 7.2.12">
-<info created="D:20190308111716" modified="D:20190823193347"/>
+<info created="D:20190308111716" modified="D:20190823234259"/>
 <ipestyle name="basic">
 <symbol name="arrow/arc(spx)">
 <path stroke="sym-stroke" fill="sym-stroke" pen="sym-pen">
@@ -202,13 +202,13 @@ h
 <dashstyle name="dash dotted" value="[4 2 1 2] 0"/>
 <dashstyle name="dash dot dotted" value="[4 2 1 2 1 2] 0"/>
 <textsize name="large" value="\large"/>
+<textsize name="small" value="\small"/>
+<textsize name="tiny" value="\tiny"/>
 <textsize name="Large" value="\Large"/>
 <textsize name="LARGE" value="\LARGE"/>
 <textsize name="huge" value="\huge"/>
 <textsize name="Huge" value="\Huge"/>
-<textsize name="small" value="\small"/>
 <textsize name="footnote" value="\footnotesize"/>
-<textsize name="tiny" value="\tiny"/>
 <textstyle name="center" begin="\begin{center}" end="\end{center}"/>
 <textstyle name="itemize" begin="\begin{itemize}" end="\end{itemize}"/>
 <textstyle name="item" begin="\begin{itemize}\item{}" end="\end{itemize}"/>
@@ -232,64 +232,52 @@ h
 <page>
 <layer name="alpha"/>
 <view layers="alpha" active="alpha"/>
-<path layer="alpha" matrix="1 0 0 1 -27.1773 -98.9531" stroke="black" fill="seagreen" dash="dashed" pen="fat">
-416 752 m
-304 528 l
+<path layer="alpha" matrix="0 2.29303 -2.29303 0 1319.56 -211.305" stroke="black" pen="fat">
+32 0 0 32 288 448 e
 </path>
-<path matrix="1.17865 0 0 1 -41.4688 -98.9531" stroke="black" fill="darkblue" pen="heavier">
-80 528 m
-528 528 l
-528 528 l
+<path matrix="0 2.29303 -2.29303 0 1262.09 -116.264" stroke="black" pen="fat">
+32 0 0 32 288 448 e
 </path>
-<path matrix="3 0 0 3 -515.177 -1138.95" stroke="black" fill="darkblue" pen="heavier">
-256 496 m
-192 624 l
-192 624 l
+<path matrix="0 2.29303 -2.29303 0 1331.55 -114.636" stroke="black" dash="dashed" pen="fat">
+32 0 0 32 288 448 e
 </path>
-<path matrix="1.7 0 0 1.7 -313.577 -626.953" stroke="black" fill="darkblue" pen="heavier">
-272 800 m
-512 720 l
-512 720 l
+<path matrix="0 2.29303 -2.29303 0 1357.13 -116.264" stroke="black" pen="fat">
+32 0 0 32 288 448 e
 </path>
-<path matrix="1.15 0 0 1.15 -89.577 -168.553" stroke="black" fill="darkblue" pen="heavier">
-416 464 m
-496 784 l
-</path>
-<path matrix="1.75 0 0 1.75 -315.176 -694.953" stroke="black" fill="darkblue" pen="heavier">
-368 816 m
-512 624 l
-512 624 l
-</path>
-<path matrix="1 0 0 1 -27.1773 -98.9531" stroke="black" pen="ultrafat">
-240 528 m
-416 752 l
-432 528 l
-240 528 l
-240 528 l
-</path>
-<path matrix="1.1875 0 0 1.1875 -72.1773 -254.953" stroke="black" fill="darkblue" pen="heavier">
-112 512 m
-240 832 l
-</path>
-<path matrix="1.02885 0 0 1.02857 -29.3697 -118.61" stroke="black" fill="darkblue" pen="heavier">
-76 688 m
-492 828 l
-</path>
-<path matrix="1 0 0 1 -27.1773 -98.9531" stroke="black" pen="ultrafat">
-240 528 m
-432 528 l
-</path>
-<use name="mark/disk(sx)" pos="340.823 557.047" size="large" stroke="black"/>
-<use name="mark/disk(sx)" pos="276.823 429.047" size="large" stroke="black"/>
+<use matrix="0 2.29303 -2.29303 0 1247.33 -592.168" name="mark/disk(sx)" pos="423.643 426.331" size="large" stroke="black"/>
+<use matrix="0 2.29303 -2.29303 0 1247.33 -592.168" name="mark/disk(sx)" pos="448.055 447.926" size="large" stroke="black"/>
+<use matrix="-0.407496 -2.25653 2.25653 -0.407496 -550.223 1760.59" name="mark/disk(sx)" pos="477.662 438.149" size="large" stroke="black"/>
+<use matrix="0 2.29303 -2.29303 0 1247.33 -592.168" name="mark/disk(sx)" pos="476.062 466.949" size="large" stroke="black"/>
+<use matrix="0 2.29303 -2.29303 0 1247.33 -592.168" name="mark/disk(sx)" pos="466.125 428.972" size="large" stroke="black"/>
+<use matrix="0 2.29303 -2.29303 0 1244.58 -590.699" name="mark/disk(sx)" pos="523.432 425.87" size="large" stroke="black"/>
+<use matrix="0 2.29303 -2.29303 0 1247.33 -592.168" name="mark/disk(sx)" pos="476.985 374.046" size="large" stroke="black"/>
+<use matrix="0 2.29303 -2.29303 0 1243.09 -591.263" name="mark/disk(sx)" pos="464.065 405.866" size="large" stroke="black"/>
+<use matrix="0 2.29303 -2.29303 0 1303.2 -611.234" name="mark/disk(sx)" pos="527.428 402.834" size="large" stroke="black"/>
 </page>
 <page>
 <layer name="alpha"/>
 <view layers="alpha" active="alpha"/>
-<path layer="alpha" matrix="2.33383 0 0 2.47969 -194.73 -1200.4" stroke="black" dash="dotted" pen="fat">
+<path layer="alpha" matrix="-1 0 -0 -1 576 1318.28" stroke="black" pen="fat">
+192 576 m
+384 576 l
+288 742.277 l
+h
+</path>
+<path matrix="-1 0 -0 -1 576 1318.28" stroke="black" dash="dashed" pen="heavier">
+288 576 m
+288 742.277 l
+</path>
+<use matrix="-1 0 -0 -1 576 1318.28" name="mark/disk(sx)" pos="288 653.237" size="large" stroke="black"/>
+<use matrix="-1 0 -0 -1 576 1318.28" name="mark/disk(sx)" pos="288 576" size="large" stroke="black"/>
+</page>
+<page>
+<layer name="alpha"/>
+<view layers="alpha" active="alpha"/>
+<path layer="alpha" matrix="2.33383 0 0 2.18797 -194.73 -976.357" stroke="black" dash="dotted" pen="fat">
 184 640 m
 184 768 l
 </path>
-<path matrix="2.33383 0 0 2.47969 -194.73 -1200.4" stroke="black" dash="dotted" pen="fat">
+<path matrix="2.33383 0 0 2.18797 -194.73 -976.357" stroke="black" dash="dotted" pen="fat">
 232 640 m
 232 768 l
 </path>
@@ -309,15 +297,15 @@ h
 128 776 m
 256 776 l
 </path>
-<path matrix="2.33383 0 0 2.33383 -194.73 -1107.05" stroke="black" dash="dotted" pen="fat">
+<path matrix="2.33383 0 0 2.05926 -194.73 -893.987" stroke="black" dash="dotted" pen="fat">
 176 640 m
 176 776 l
 </path>
-<path matrix="2.33383 0 0 2.33383 -194.73 -1107.05" stroke="black" dash="dotted" pen="fat">
+<path matrix="2.33383 0 0 2.05926 -194.73 -893.987" stroke="black" dash="dotted" pen="fat">
 144 640 m
 144 776 l
 </path>
-<path matrix="2.33383 0 0 2.33383 -194.73 -1107.05" stroke="black" dash="dotted" pen="fat">
+<path matrix="2.33383 0 0 2.05926 -194.73 -893.987" stroke="black" dash="dotted" pen="fat">
 256 640 m
 256 776 l
 </path>
@@ -346,11 +334,7 @@ h
 252 724 m
 48 0 0 -48 204 724 204 772 a
 </path>
-<path matrix="2.33383 0 0 2.33383 -194.73 -1424.45" stroke="black" dash="dotted" pen="fat">
-128 776 m
-256 776 l
-</path>
-<path matrix="2.33383 0 0 2.33383 -493.46 -1107.05" stroke="black" dash="dotted" pen="fat">
+<path matrix="2.33383 0 0 2.05926 -493.46 -893.987" stroke="black" dash="dotted" pen="fat">
 256 640 m
 256 776 l
 </path>
@@ -888,126 +872,5 @@ h
 448 688 l
 </path>
 <use matrix="0.85 0 0 0.85 35.2 103.2" name="mark/square(sx)" pos="401.137 641.137" size="large" stroke="black"/>
-</page>
-<page>
-<layer name="alpha"/>
-<view layers="alpha" active="alpha"/>
-<path layer="alpha" matrix="0.909091 0 0 1 -112 320" fill="0.922" opacity="40%">
-176 480 m
-176 352 l
-528 352 l
-528 480 l
-h
-</path>
-<path matrix="1 0 0 1 -128 320" fill="0.922" opacity="40%">
-288 352 m
-288 80 l
-496 80 l
-496 352 l
-h
-</path>
-<path matrix="1 0 0 1 -128 320" fill="0.922" opacity="40%">
-496 183.651 m
-496 80 l
-672 80 l
-672 183.651 l
-h
-</path>
-<path matrix="1 0 0 1.04167 -112 333.333" stroke="black" dash="dotted" pen="heavier">
-192 64 m
-192 448 l
-</path>
-<path matrix="1 0 0 1.04167 -96 333.333" stroke="black" dash="dotted" pen="heavier">
-192 64 m
-192 448 l
-</path>
-<path matrix="1 0 0 1.04167 32 333.333" stroke="black" dash="dotted" pen="heavier">
-192 64 m
-192 448 l
-</path>
-<path matrix="1 0 0 1.04167 208 333.333" stroke="black" dash="dotted" pen="heavier">
-192 64 m
-192 448 l
-</path>
-<path matrix="1 0 0 1.04167 224 333.333" stroke="black" dash="dotted" pen="heavier">
-192 64 m
-192 448 l
-</path>
-<path matrix="1 0 0 1.04167 336 333.333" stroke="black" dash="dotted" pen="heavier">
-192 64 m
-192 448 l
-</path>
-<path matrix="1 0 0 1.04167 80 333.333" stroke="black" dash="dotted" pen="heavier">
-192 64 m
-192 448 l
-</path>
-<path matrix="1 0 0 1.04167 -128 333.333" stroke="black" dash="dotted" pen="heavier">
-192 64 m
-192 448 l
-</path>
-<path matrix="1 0 0 1.04167 128 333.333" stroke="black" dash="dotted" pen="heavier">
-192 64 m
-192 448 l
-</path>
-<path matrix="1 0 0 1 -112 368" stroke="black" dash="dotted" pen="heavier">
-160 416 m
-656 416 l
-</path>
-<path matrix="1 0 0 1 -112 0" stroke="black" dash="dotted" pen="heavier">
-160 416 m
-656 416 l
-</path>
-<path matrix="1 0 0 1 -112 16" stroke="black" dash="dotted" pen="heavier">
-160 416 m
-656 416 l
-</path>
-<path matrix="1 0 0 1 -112 80" stroke="black" dash="dotted" pen="heavier">
-160 416 m
-656 416 l
-</path>
-<path matrix="1 0 0 1 -112 96" stroke="black" dash="dotted" pen="heavier">
-160 416 m
-656 416 l
-</path>
-<path matrix="1 0 0 1 -112 128" stroke="black" dash="dotted" pen="heavier">
-160 416 m
-656 416 l
-</path>
-<path matrix="1 0 0 1 -112 320" stroke="black" dash="dotted" pen="heavier">
-160 416 m
-656 416 l
-</path>
-<path matrix="1 0 0 1 -112 272" stroke="black" dash="dotted" pen="heavier">
-160 416 m
-656 416 l
-</path>
-<path matrix="1 0 0 1 -112 240" stroke="black" dash="dotted" pen="heavier">
-160 416 m
-656 416 l
-</path>
-<path matrix="1 0 0 1 -128 320" stroke="dark grey" dash="dashed" pen="heavier">
-288 480 m
-288 80 l
-</path>
-<path matrix="1 0 0 1 80 320" stroke="dark grey" dash="dashed" pen="heavier">
-288 480 m
-288 80 l
-</path>
-<path matrix="1 0 0 1 -128 320" stroke="dark grey" dash="dashed" pen="heavier">
-176 352 m
-672 352 l
-</path>
-<path matrix="1 0 0 1 -128 151.651" stroke="dark grey" dash="dashed" pen="heavier">
-176 352 m
-672 352 l
-</path>
-<use matrix="1 0 0 1 -128 320" name="mark/square(sx)" pos="192 464" size="large" stroke="dark grey"/>
-<use matrix="1 0 0 1 -128 320" name="mark/fsquare(sfx)" pos="224 416" size="large" stroke="dark grey" fill="0.922"/>
-<use matrix="1 0 0 1 -128 320" name="mark/fsquare(sfx)" pos="448 192" size="large" stroke="dark grey" fill="0.922"/>
-<use matrix="1 0 0 1 -128 320" name="mark/square(sx)" pos="448 224" size="large" stroke="dark grey"/>
-<use matrix="1 0 0 1 -128 320" name="mark/square(sx)" pos="352 368" size="large" stroke="dark grey"/>
-<use matrix="1 0 0 1 -128 320" name="mark/square(sx)" pos="544 112" size="large" stroke="dark grey"/>
-<use matrix="1 0 0 1 -128 320" name="mark/fsquare(sfx)" pos="528 112" size="large" stroke="dark grey" fill="0.922"/>
-<use matrix="1 0 0 1 -128 320" name="mark/fsquare(sfx)" pos="448 176" size="large" stroke="black" fill="0.922"/>
 </page>
 </ipe>
