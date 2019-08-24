@@ -10,18 +10,18 @@ and
 Pat Morin}%
 \label{paper:3sum-encoding}
 
-Given three sets of \(N\) real numbers
-\(A = \{\, a_1 < a_2 < \cdots < a_N\,\} \),
-\(B = \{\, b_1 < b_2 < \cdots < b_N\,\} \),
-and \(C = \{\, c_1 < c_2 < \cdots < c_N\,\}\),
+Given three sets of \(n\) real numbers
+\(A = \{\, a_1 < a_2 < \cdots < a_n\,\} \),
+\(B = \{\, b_1 < b_2 < \cdots < b_n\,\} \),
+and \(C = \{\, c_1 < c_2 < \cdots < c_n\,\}\),
 we wish to build a discrete data structure (using bits, words, and pointers) such that,
-given any triple \((i,j,k) \in {[N]}^3\) it is possible to compute the sign of
+given any triple \((i,j,k) \in {[n]}^3\) it is possible to compute the sign of
 \(a_i + b_j + c_k\) by only inspecting the data structure (we cannot consult
 \(A\), \(B\), or \(C\)).
-We refer to the map $\chi : {[N]}^3\to \{-,0,+\}, (i,j,k)\mapsto\mathrm{sgn}
+We refer to the map $\chi : {[n]}^3\to \{-,0,+\}, (i,j,k)\mapsto\mathrm{sgn}
 (a_i+b_i+c_k)$ as the {\em 3SUM type} of the instance $\langle A,B,C \rangle$.
 
-Obviously, one can simply construct a lookup table of size \(O(N^3)\), such
+Obviously, one can simply construct a lookup table of size \(O(n^3)\), such
 that triple queries can be answered in \(O(1)\) time.
 %
 In \S\ref{s:numbers} we show that a minimal integer representation of a

@@ -11,16 +11,16 @@ Every 3SUM instance \(A = \{\, a_1 < a_2 < \ldots < a_n\,\} \),
 and \(C = \{\, c_1 < c_2 < \cdots < c_n\,\}\)
 can be interpreted as the point
 \( (a_1,\ldots,a_n,b_1,\ldots,b_n,c_1,\ldots,c_n) \)
-in \(\mathbb{R}^{3N}\).
+in \(\mathbb{R}^{3n}\).
 Let us use the variables \(x_1,\ldots,x_n\) to encode the first \(n\) dimensions
-of \(\mathbb{R}^{3N}\), \(y_1,\ldots,y_n\) to encode the next \(n\) dimensions,
+of \(\mathbb{R}^{3n}\), \(y_1,\ldots,y_n\) to encode the next \(n\) dimensions,
 and \(z_1,\ldots,z_n\) for the remaining dimensions.
-Consider the subset of $\mathbb{R}^{3N}$
+Consider the subset of $\mathbb{R}^{3n}$
 \begin{multline*}
       \Delta = \{ (x_1,\ldots,x_n,y_1,\ldots,y_n,z_1,\ldots,z_n) \colon\, \\
-			      x_i<x_{i+1}, ~y_j<y_{j+1}, ~ z_k<z_{k+1}~ \forall i,j,k \in [N-1]\}
+			      x_i<x_{i+1}, ~y_j<y_{j+1}, ~ z_k<z_{k+1}~ \forall i,j,k \in [n-1]\}
 \end{multline*}
-and the set $\Pi$ of $N^3$ hyperplanes $x_i+y_j+z_k=0$, where $i,j,k\in [N]$.
+and the set $\Pi$ of $n^3$ hyperplanes $x_i+y_j+z_k=0$, where $i,j,k\in [n]$.
 Let $\mathcal{A}$ be the arrangement defined
 by $\Pi$ \emph{inside $\Delta$}. Instances of 3SUM correspond to points in $\Delta$.
 Moreoever, two 3SUM instances have the same 3SUM type if and only if they are
@@ -30,28 +30,28 @@ Consider an instance $\langle A,B,C \rangle$ and let $\sigma=\sigma(A,B,C)$
 be the cell of $\mathcal{A}$ that contains it.
 Then $\sigma$ is the cell defined by the inequalities
 \begin{align*}
-	\forall{i,j,k}\in [N]&:~~~
+	\forall{i,j,k}\in [n]&:~~~
 	\begin{cases}
 		x_i+y_j+z_k > 0 & \text{if $\chi(i,j,k)=+1$,}\\
 		x_i+y_j+z_k = 0 & \text{if $\chi(i,j,k)=0$,}\\
 		x_i+y_j+z_k < 0 & \text{if $\chi(i,j,k)=-1$.}
 	\end{cases}\\
-	\forall{i,j,k}\in [N-1]&:~~~
+	\forall{i,j,k}\in [n-1]&:~~~
 		\begin{cases}
 		x_i - x_{i+1}<0,\\
 		y_j - y_{j+1}<0,\\
 		z_k - z_{k+1}<0.
 	\end{cases}
 \end{align*}
-Let $\sigma'$ be the subset of $\mathbb{R}^{3N}$ defined by the following inequalities:
+Let $\sigma'$ be the subset of $\mathbb{R}^{3n}$ defined by the following inequalities:
 \begin{align*}
-	\forall{i,j,k}\in [N]&:~~~
+	\forall{i,j,k}\in [n]&:~~~
 	\begin{cases}
 		x_i+y_j+z_k \geq 1 & \text{if $\chi(i,j,k)=+1$,}\\
 		x_i+y_j+z_k = 0 & \text{if $\chi(i,j,k)=0$,}\\
 		x_i+y_j+z_k \leq -1 & \text{if $\chi(i,j,k)=-1$.}
 	\end{cases}\\
-	\forall{i,j,k}\in [N-1]&:~~~
+	\forall{i,j,k}\in [n-1]&:~~~
 		\begin{cases}
 		x_i - x_{i+1} \leq 1,\\
 		y_j - y_{j+1} \leq 1,\\
@@ -64,9 +64,9 @@ the scaled instance $\langle \lambda A,\lambda B,\lambda C \rangle$ belongs to $
 Therefore, $\sigma'$ is nonempty.
 
 Since $\sigma'$ is defined by a collection of linear inequalities defining closed halfspaces,
-there exists a point $p$ in $\sigma'$ defined by a subset of at most $3N$ inequalities,
+there exists a point $p$ in $\sigma'$ defined by a subset of at most $3n$ inequalities,
 where the inequalities are actually equalities. Let us assume for simplicity that
-exactly $3N$ equalities define the point $p$. Then, $p=(x,y,z)$ is the solution
+exactly $3n$ equalities define the point $p$. Then, $p=(x,y,z)$ is the solution
 to a linear system of equations $M [x~ y ~z]^T=\delta$
 where $M$ and $\delta$ have their entries in $\{ -1,0,1 \}$
 and each row of $M$ has at most three non-zero entries. The solution $p$ to this
@@ -77,10 +77,10 @@ $\det(M_i)/\det(M)$,
 where $M_i$ is the matrix obtained by replacing the $i$th column of $M$ by $\delta$.
 We use the following simple bound on the determinant.
 Since $\det(M)=\sum_{\pi}\mathrm{sgn}(\pi) \prod_i m_{i,\pi(i)}$, where
-$\pi$ iterates over the permutations of $[3N]$, there are
-at most $3^{3N}$ summands where $\pi$ gives non-zero product $\prod_i m_{i,\pi(i)}$ (we have
+$\pi$ iterates over the permutations of $[3n]$, there are
+at most $3^{3n}$ summands where $\pi$ gives non-zero product $\prod_i m_{i,\pi(i)}$ (we have
 to select one non-zero entry per row), and the product is always in $\{ -1,0,1\}$.
-Therefore $|\det(M)|\leq 3^{3N}$. Similarly, $|\det(M_i)|\leq 4^{3N}$ because
+Therefore $|\det(M)|\leq 3^{3n}$. Similarly, $|\det(M_i)|\leq 4^{3n}$ because
 each row of $M_i$ has at most $4$ non-zero entries.
 We conclude that the solution to the system $M [x~ y ~z]^T=\delta$
 are rationals that can be expressed with $O(n)$ bits. This solution gives
@@ -92,9 +92,9 @@ each integer has $O(n)$ bits.
 The proof of the second statement is by implementing the Fibonacci recurrence in each of the
 arrays $A,B,C$. This can be achieved by letting:
 \begin{eqnarray*}
-  a_i + b_1 + c_{N-i+1} & = & 0, \text{for }i\in [N] \\
-  a_1 + b_i + c_{N-i+1} & = & 0, \text{for }i\in [N] \\
-  a_{i-1} + b_{i-2} + c_{N-i+1} & < & 0, \text{for }i\in \{3,4,\ldots ,N\},
+  a_i + b_1 + c_{n-i+1} & = & 0, \text{for }i\in [n] \\
+  a_1 + b_i + c_{n-i+1} & = & 0, \text{for }i\in [n] \\
+  a_{i-1} + b_{i-2} + c_{n-i+1} & < & 0, \text{for }i\in \{3,4,\ldots,n\},
 \end{eqnarray*}
 The first two sets of equations ensure that the two arrays $A$ and $B$ are identical, while
 the array $C$ contains the corresponding negated numbers, in reverse order.
@@ -112,12 +112,12 @@ By considering the arrangement of hyperplanes defining the 3SUM problem, we get 
 information-theoretic lower bound on the number of bits in a 3SUM-type.
 
 \begin{lemma}
-  There are $2^{\Theta(n\log n)}$ distinct 3SUM-types of size $N$.
+  There are $2^{\Theta(n\log n)}$ distinct 3SUM-types of size $n$.
 \end{lemma}
 \begin{proof}
-  3SUM-types of size $N$ are in one-to-one correspondence with cells of the
-  arrangement of $N^3$ hyperplanes in $\mathbb{R}^{3N}$. The
-  number of such cells is $O(n^{9N})$ and at least ${(n!)}^2$.
+  3SUM-types of size $n$ are in one-to-one correspondence with cells of the
+  arrangement of $n^3$ hyperplanes in $\mathbb{R}^{3n}$. The
+  number of such cells is $O(n^{9n})$ and at least ${(n!)}^2$.
 \end{proof}
 
 In order to reach this lower bound, we can simply
@@ -138,14 +138,16 @@ same essentially holds for $k$-SUM, and can also be generalized to a {\sc
 Subset Sum} data structure of $O(n^2)$ bits, from which we can extract the sign
 of the sum of any subset of numbers.
 
-\section{Subquadratic Space and Constant Query Time}\label{s:sscqt}
+\section{Subquadratic Space and Constant Query Time}%
+\label{s:sscqt}
+
 Our encoding is inspired by  Gr{\o}nlund and Pettie's $\tilde{O}(n^{3/2})$
 non-uniform algorithm for 3SUM~\cite{GP18}.
 Our data structure stores three components, which we call the
 \emph{differences}, the \emph{staircase} and the \emph{square neighbors}.
 
 \paragraph{Differences.}
-  Partition $A$ and $B$ into \emph{blocks} of $\sqrt{N}$ consecutive elements.
+  Partition $A$ and $B$ into \emph{blocks} of $\sqrt{n}$ consecutive elements.
   Let $D$ be the set of all differences of the form $a_{i_1}-a_{i_2}$ and
   $b_{j_1}-b_{j_2}$
   where the items come from the same block. There are $O(n^{3/2})$ such
@@ -156,36 +158,36 @@ Our data structure stores three components, which we call the
 \paragraph{Staircase.}
   Look at the table $G$ formed by all sums of the form $a_i+b_j$. It is
   monotonic in its rows and columns due to $A$ and $B$ being sorted. We view it
-  as being partitioned into a grid $G'$ of size $\sqrt{N}\times \sqrt{N}$ where
-  each \emph{square} of the grid is also of size $\sqrt{N}\times \sqrt{N}$.
+  as being partitioned into a grid $G'$ of size $\sqrt{n}\times \sqrt{n}$ where
+  each \emph{square} of the grid is also of size $\sqrt{n}\times \sqrt{n}$.
   %
-  For each element $c_k \in C$, for each $i'\in[1,\sqrt{N}]$ we store the largest
+  For each element $c_k \in C$, for each $i'\in[1,\sqrt{n}]$ we store the largest
   $j'$ such that some elements of the square $G'[i',j']$ are  $< c$, denote this as
   $L[k,i']$.
   %
-  We also store, for each $c_k \in C$, for each $i'\in[1,\sqrt{N}]$ the smallest
+  We also store, for each $c_k \in C$, for each $i'\in[1,\sqrt{n}]$ the smallest
   $j'$ such that some elements of the square $G'[i',j']$ are  $\geq c$, denote this as
   $U[k,i']$.
   %
-  We thus store, in $L$ and $U$, $2 \sqrt{N}$ values of size $O(\log n)$ for each
-  of the $N$ elements of $C$, for a total space usage of $O(n^{3/2}\log n)$ bits.
+  We thus store, in $L$ and $U$, $2 \sqrt{n}$ values of size $O(\log n)$ for each
+  of the $n$ elements of $C$, for a total space usage of $O(n^{3/2}\log n)$ bits.
   %
   We call this the \emph{staircase} as this implicitly classifies, for each $c
   \in C$, whether each square has elements larger than $c$, smaller than $c$, or
-  some larger and some smaller; only $O(\sqrt{N})$ can be in the last case, which
+  some larger and some smaller; only $O(\sqrt{n})$ can be in the last case, which
   we refer to as the \emph{staircase} of $c$.
 
 \paragraph{Square neighbors.}
-  For each element $c_k \in C$, for each of the $O(\sqrt{N})$ squares on the
+  For each element $c_k \in C$, for each of the $O(\sqrt{n})$ squares on the
   staircase, we store the location of the predecessor and successor of $c_k$.
   Those squares are the \(G'[i',j']\) such that
-  $L[k,i'] \le j' \le U[k,i']$, for $i',j' \in [1,\sqrt{N}]$.
+  $L[k,i'] \le j' \le U[k,i']$, for $i',j' \in [1,\sqrt{n}]$.
   This takes space $O(n^{3/2}\log n)$.
 
 To execute a query $(a_i,b_j,c_k)$, only a constant number of lookups in the
 tables stored are needed.
-Let us define \(i' = \lceil i / \sqrt{N} \rceil\)
-and \(j' = \lceil i / \sqrt{N} \rceil\) to be the indices of the cell of
+Let us define \(i' = \lceil i / \sqrt{n} \rceil\)
+and \(j' = \lceil i / \sqrt{n} \rceil\) to be the indices of the cell of
 \(G'\) containing the point \((a_i, b_j)\).
 If $j' < L[k,i']$, then we know $a_i + b_j < c_k$.
 If $j' > U[k,j']$, then we know $a_i + b_j > c_k$.
@@ -244,7 +246,7 @@ between $a_i+b_j$ and $c_k$.
 %  \tilde{O}(\frac{n^2}{g})\).
 %\end{itemize}
 %
-%We choose \(g = \Theta(\sqrt{N})\) to balance those two expressions and obtain a
+%We choose \(g = \Theta(\sqrt{n})\) to balance those two expressions and obtain a
 %nonuniform running time of
 %\(\tilde{O}(n^{\frac 32})\).
 %
