@@ -90,7 +90,13 @@ $(BUILDDIR)/%/src.tex:
 	mkdir -p $(dir $@)
 	flatex --include_sty $< $@
 
-$(BUILDDIR)/%/paper.bib: $(BUILDDIR)/%/src.tex
+$(BUILDDIR)/%/src-shake.tex: $(BUILDDIR)/%/src.tex
+	texshake < $<  > $@
+
+$(BUILDDIR)/%/src-trim.tex: $(BUILDDIR)/%/src.tex
+	textrim < $< > $@
+
+$(BUILDDIR)/%/paper.bib: $(BUILDDIR)/%/src-trim.tex
 	texcites < $< | \
 		bibfilter $(shell sed -E -n 's/\\bibliography\{(.*)\}/\1/p' $<).bib \
 		> $(dir $@)paper.bib
