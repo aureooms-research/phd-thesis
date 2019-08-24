@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE ipe SYSTEM "ipe.dtd">
-<ipe version="70107" creator="Ipe 7.2.1">
-<info created="D:20150523201504" modified="D:20160217164402"/>
+<ipe version="70212" creator="Ipe 7.2.12">
+<info created="D:20150523201504" modified="D:20190823195754"/>
 <ipestyle name="basic">
 <symbol name="arrow/arc(spx)">
 <path stroke="sym-stroke" fill="sym-stroke" pen="sym-pen">
@@ -202,13 +202,13 @@ h
 <dashstyle name="dash dotted" value="[4 2 1 2] 0"/>
 <dashstyle name="dash dot dotted" value="[4 2 1 2 1 2] 0"/>
 <textsize name="large" value="\large"/>
-<textsize name="small" value="\small"/>
-<textsize name="tiny" value="\tiny"/>
 <textsize name="Large" value="\Large"/>
 <textsize name="LARGE" value="\LARGE"/>
 <textsize name="huge" value="\huge"/>
 <textsize name="Huge" value="\Huge"/>
+<textsize name="small" value="\small"/>
 <textsize name="footnote" value="\footnotesize"/>
+<textsize name="tiny" value="\tiny"/>
 <textstyle name="center" begin="\begin{center}" end="\end{center}"/>
 <textstyle name="itemize" begin="\begin{itemize}" end="\end{itemize}"/>
 <textstyle name="item" begin="\begin{itemize}\item{}" end="\end{itemize}"/>
@@ -232,52 +232,52 @@ h
 <page>
 <layer name="alpha"/>
 <view layers="alpha" active="alpha"/>
-<text layer="alpha" matrix="1 0 0 1 -43.1773 -46.9531" transformations="translations" pos="420 768" stroke="black" type="label" width="11.3" height="8.896" depth="0" valign="baseline" size="huge">$\nu$</text>
-<path matrix="1 0 0 1 -43.1773 -34.9531" stroke="seagreen" fill="seagreen" dash="dashed" pen="fat">
+<text layer="alpha" matrix="1 0 0 1 -43.1773 -46.9531" transformations="translations" pos="420 768" stroke="black" type="label" width="11.3" height="8.896" depth="0" valign="baseline" size="huge" style="math">\nu</text>
+<path matrix="1 0 0 1 -43.1773 -34.9531" stroke="black" fill="seagreen" dash="dashed" pen="fat">
 416 752 m
 304 528 l
 </path>
-<path matrix="1.13393 0 0 1 -53.8916 -34.9531" stroke="darkblue" fill="darkblue" pen="fat">
+<path matrix="1.13393 0 0 1 -53.8916 -34.9531" stroke="black" fill="darkblue" pen="fat">
 80 528 m
 528 528 l
 528 528 l
 </path>
-<path matrix="3 0 0 3 -531.177 -1074.95" stroke="darkblue" fill="darkblue" pen="fat">
+<path matrix="3 0 0 3 -531.177 -1074.95" stroke="black" fill="darkblue" pen="fat">
 256 496 m
 192 624 l
 192 624 l
 </path>
-<path matrix="1 0 0 0.997656 52.8227 158.21" stroke="seagreen" fill="0" pen="fat" rarrow="normal/normal">
+<path matrix="1 0 0 0.997656 52.8227 158.21" stroke="black" fill="0" pen="fat" rarrow="normal/normal">
 288 496 m
 320 560 l
 320 560 l
 </path>
-<path matrix="1.7 0 0 1.7 -329.577 -562.953" stroke="darkblue" fill="darkblue" pen="fat">
+<path matrix="1.7 0 0 1.7 -329.577 -562.953" stroke="black" fill="darkblue" pen="fat">
 272 800 m
 512 720 l
 512 720 l
 </path>
-<path matrix="1.15 0 0 1.15 -105.577 -104.553" stroke="darkblue" fill="darkblue" pen="fat">
+<path matrix="1.15 0 0 1.15 -105.577 -104.553" stroke="black" fill="darkblue" pen="fat">
 416 464 m
 496 784 l
 </path>
-<path matrix="1.75 0 0 1.75 -331.176 -630.953" stroke="darkblue" fill="darkblue" pen="fat">
+<path matrix="1.75 0 0 1.75 -331.176 -630.953" stroke="black" fill="darkblue" pen="fat">
 368 816 m
 512 624 l
 512 624 l
 </path>
-<path matrix="1 0 0 1 -43.1773 -34.9531" stroke="black" pen="fat">
+<path matrix="1 0 0 1 -43.1773 -34.9531" stroke="black" pen="ultrafat" join="2">
 240 528 m
 416 752 l
 432 528 l
 240 528 l
 240 528 l
 </path>
-<path matrix="1.1875 0 0 1.1875 -88.1773 -190.953" stroke="darkblue" fill="darkblue" pen="fat">
+<path matrix="1.1875 0 0 1.1875 -88.1773 -190.953" stroke="black" fill="darkblue" pen="fat">
 112 512 m
 240 832 l
 </path>
-<path matrix="1.02885 0 0 1.02857 -45.3697 -54.6102" stroke="darkblue" fill="darkblue" pen="fat">
+<path matrix="1.02885 0 0 1.02857 -45.3697 -54.6102" stroke="black" fill="darkblue" pen="fat">
 76 688 m
 492 828 l
 </path>
@@ -287,17 +287,17 @@ h
 <path matrix="1 0 0 1 -43.1773 -34.9531" stroke="black" fill="black" pen="fat">
 4 0 0 4 304 528 e
 </path>
-<text matrix="1 0 0 1 -47.1773 -59.9748" transformations="translations" pos="400 716" stroke="black" type="label" width="21.011" height="14.725" depth="4.02" valign="baseline" size="huge">$\vec{\nu q}$</text>
-<text matrix="1 0 0 1 -27.1773 -22.9531" transformations="translations" pos="276 608" stroke="black" type="label" width="13.646" height="14.119" depth="0" valign="baseline" size="huge">$S$</text>
-<text matrix="1 0 0 1 272.823 181.047" transformations="translations" pos="168 480" stroke="black" type="label" width="19.998" height="14.119" depth="0" valign="baseline" size="huge">$\mathcal{N}$</text>
-<text matrix="1 0 0 1 -48.6602 -49.8066" transformations="translations" pos="356 668" stroke="black" type="label" width="9.712" height="8.894" depth="4.02" valign="baseline" size="huge">$q$</text>
-<text matrix="1 0 0 1 -114.031 -166.156" transformations="translations" pos="356 668" stroke="black" type="label" width="14.155" height="15.466" depth="4.02" valign="baseline" size="huge">$q&apos;$</text>
+<text matrix="1 0 0 1 -47.1773 -59.9748" transformations="translations" pos="400 716" stroke="black" type="label" width="21.011" height="14.725" depth="4.02" valign="baseline" size="huge" style="math">\vec{\nu q}</text>
+<text matrix="1 0 0 1 -27.1773 -22.9531" transformations="translations" pos="276 608" stroke="black" type="label" width="13.646" height="14.119" depth="0" valign="baseline" size="huge" style="math">S</text>
+<text matrix="1 0 0 1 288.823 229.047" transformations="translations" pos="168 480" stroke="black" type="label" width="19.998" height="14.119" depth="0" valign="baseline" size="huge" style="math">\mathcal{N}</text>
+<text matrix="1 0 0 1 -48.6602 -49.8066" transformations="translations" pos="356 668" stroke="black" type="label" width="9.712" height="8.894" depth="4.02" valign="baseline" size="huge" style="math">q</text>
+<text matrix="1 0 0 1 -114.031 -166.156" transformations="translations" pos="356 668" stroke="black" type="label" width="14.155" height="15.466" depth="4.02" valign="baseline" size="huge" style="math">q&apos;</text>
 <path matrix="1 0 0 1 -43.1773 -34.9531" stroke="black" pen="ultrafat">
 240 528 m
 432 528 l
 </path>
-<text matrix="1 0 0 1 -30.5381 -30.5381" transformations="translations" pos="314.977 492.07" stroke="black" type="label" width="18.089" height="15.468" depth="0" valign="baseline" size="huge">$S&apos;$</text>
-<text matrix="1 0 0 1 -118.805 106.302" transformations="translations" pos="319.774 384.47" stroke="black" type="label" width="185.041" height="-0.007" depth="7.18" valign="baseline" size="huge">$\underbrace{\hspace{2.57in}}$</text>
-<text matrix="1 0 0 1 -107.177 57.0469" transformations="translations" pos="276 608" stroke="black" type="label" width="15.959" height="14.119" depth="0" valign="baseline" size="huge">$C$</text>
+<text matrix="1 0 0 1 -30.5381 -30.5381" transformations="translations" pos="314.977 492.07" stroke="black" type="label" width="18.089" height="15.468" depth="0" valign="baseline" size="huge" style="math">S&apos;</text>
+<text matrix="1 0 0 1 -118.805 106.302" transformations="translations" pos="319.774 384.47" stroke="black" type="label" width="185.041" height="-0.007" depth="7.18" valign="baseline" size="huge" style="math">\underbrace{\hspace{2.57in}}</text>
+<text matrix="1 0 0 1 -59.177 41.0469" transformations="translations" pos="276 608" stroke="black" type="label" width="15.959" height="14.119" depth="0" valign="baseline" size="huge" style="math">C</text>
 </page>
 </ipe>
