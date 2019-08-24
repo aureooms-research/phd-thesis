@@ -59,7 +59,7 @@ of $p$ with respect to the hyperplane $H$.)
 	containing \(q\), and a set $\E$ of hyperplanes in general position
 	containing \(q\), such that the cell
 	$$
-	\cell = \{\,p \sut \sigma(H,p) = \sigma(H,q)
+	\cell = \{\,p \colon\, \sigma(H,p) = \sigma(H,q)
 			\ \text{or}\ \sigma(H,p) = 0
 			\ \text{for all}\ H \in (\I \cup \E)
 		\,\}
@@ -116,7 +116,7 @@ Hence given an input point \(q \in [-1,1]\), an arrangement of hyperplanes
 \(\arrangement(\net)\), and the value of \(\sigma(H,q)\) for all
 \(H \in (\net\cup\B)\), we can compute the desired simplex \(\simplex\)
 by running Algorithm~\ref{algo:simplex} on \(q\),
-\(\I=\{\,H \in (\net\cup\B) \sut \sigma(H,q) \neq 0\,\}\), and
+\(\I=\{\,H \in (\net\cup\B) \colon\, \sigma(H,q) \neq 0\,\}\), and
 \(\E \subseteq (\net\cup\B) \setminus\I\).
 This uses $O(n^3 \log n)$ linear queries.
 Figure~\ref{fig:meiser:step} illustrates a step of the algorithm.
