@@ -1,7 +1,23 @@
 \chapter{\done Divide and Conquer}
 
-In this chapter we expose standard divide-an-conquer methods in
-Computational Geometry.
+A general divide-and-conquer paradigm in algorithms is, given an instance of
+size \(n\), to divide it into at most
+\(a\) smaller instances of size at most \(\frac{n}{b}\) solved recursively
+with an additive preprocessing and postprocessing cost of \(f(n)\), solving
+constant size instances by brute force.
+%
+The time complexity \(T(n)\) of such an algorithm can then be expressed as the
+reccurence
+\begin{displaymath}
+	T(n) = a \cdot T\left(\frac nb\right) + f(n).
+\end{displaymath}
+%
+The asymptotic behavior of such a recurrence can then be derived from the
+Master Theorem~\cite{BHS80,CLRS09}.
+
+In this chapter we expose standard divide-an-conquer techniques in
+Computational Geometry that allow the implementation of this paradigm (or
+variants of it).
 %
 Papers~\ref{paper:ksum-algorithm},~\ref{paper:3pol-algorithm},
 and~\ref{paper:order-type-encoding} explicitly rely on those techniques.

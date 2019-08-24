@@ -79,7 +79,7 @@ This provides an implementation of the pruning step in Meiser's algorithm, that
 is, step~\step{4} of Algorithm~\ref{algo:meiser}.
 
 \begin{corollary}\label{cor:double}
-	Given a simplex $\simplex$, we can compute all $k$-SUM hyperplanes
+	Given a simplex $\simplex$, we can compute the \(Z\) $k$-SUM hyperplanes
 	intersecting its interior in $\tilde{O}(n^2 (n^{\lceil \frac k2 \rceil}
 	\log M + Z))$ time, where $\log M$ is proportional to the number of bits
 	necessary to represent $\simplex$.
@@ -149,7 +149,11 @@ Then, in order to prune the hyperplanes in $\Hy$, we have to
 compute a simplex $\simplex$ that does not intersect any hyperplane of
 $\net$. For this, we observe that the above call to Algorithm~\ref{algo:meiser}
 involves computing a sequence of simplices for the successive pruning
-steps. We save the description of those simplices. Recall that there are
+steps.
+%
+\todo{OK. Why can we not just run Alg 1 on the net \(\mathcal{N}\) directly?}
+%
+We save the description of those simplices. Recall that there are
 $O(\log n)$ of them, all of them contain the input $q$ and have vertices
 coinciding with vertices of the original arrangement $\arrangement(\Hy)$. In
 order to compute a simplex $\simplex$ avoiding all hyperplanes of
