@@ -50,7 +50,9 @@ structures (for constant \(d\)).
   Finally, he proves a lemma for the efficient construction of
   sparse \(\varepsilon\)-nets whose correctness again only relies on incidence
   properties of line arrangements~\cite[Lemma 3.2]{C93}.
-  Using those three lemmas together with bottom vertex triangulation he is
+  Using those three lemmas together with bottom vertex triangulation
+  (\S\ref{sec:arrangements:triangulation})
+  he is
   able to prove his main result:
 \else%
 In the plane, hierarchical cuttings can be
@@ -65,7 +67,8 @@ constructed for arrangement of pseudolines with the same properties.
 \end{lemma}
 
 For pseudoline arrangements, bottom vertex triangulation can be traded for
-vertical decomposition.
+vertical decomposition
+(\S\ref{sec:arrangements:vertical-decomposition}).
 \begin{lemma}\label{lem:hierarchical-cutting-2}
   Given \(n\) pseudolines, for any real parameter \(r > 1\), we can construct
   a \(\ell\)-levels hierarchical cutting of parameter
@@ -88,3 +91,5 @@ cutting with some appropriate constant parameter \(r'\), and then skip levels th
 not need. This is used in \S\ref{sec:query-time} to reduce the query time
 from \(O(\log n)\) to \(O(\frac{\log n}{\log \log n})\).
 \fi
+
+\todo{We use this in the order type encoding paper}

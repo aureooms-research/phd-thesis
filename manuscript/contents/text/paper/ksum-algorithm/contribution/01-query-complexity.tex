@@ -29,9 +29,11 @@ constant fraction \(\varepsilon\) of the hyperplanes remains after the pruning s
 and thus the cumulative number of queries made to determine the enclosing cell at
 each step is $O(n^2 \log n \log \card{\Hy})$ when done in a brute-force way.
 However, we still need to explain how to find a simplex \(\simplex\) inscribed
-in \(\cell\) and containing \(q\) in its interior. This procedure corresponds to the well-known
+in \(\cell\) and containing \(q\) in its interior.
+%
+This procedure corresponds to the well-known
 \emph{bottom vertex decomposition} (or \emph{triangulation}) of a hyperplane
-arrangement~\cite{GO04,Cla88}.
+arrangement (see \S\ref{sec:arrangements:triangulation}).
 
 \subsubsection{Finding a simplex}
 

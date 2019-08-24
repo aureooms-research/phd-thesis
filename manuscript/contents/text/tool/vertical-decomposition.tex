@@ -1,2 +1,51 @@
 \section{Vertical Decomposition}%
 \label{sec:arrangements:vertical-decomposition}
+
+\begin{figure}
+	\centering{}
+    \begin{subfigure}[t]{0.5\textwidth}
+		\centering
+		\includegraphics{figures/decomposition}
+		\caption{Some curves in $\mathbb{R}^2$.}%
+		\label{fig:some-curves-in-R2}
+    \end{subfigure}%
+    \begin{subfigure}[t]{0.5\textwidth}
+		\centering
+		\includegraphics{figures/recursion}
+		\caption{Vertical decomposition of the curves in Figure~\ref{fig:some-curves-in-R2}.}%
+    \end{subfigure}
+	\caption{Vertical decomposition.}\label{fig:vd}
+\end{figure}
+
+Given an arrangement of curves in \(\mathbb{R}^2\), its vertical decomposition
+is the partition of space obtained by shooting a vertical segment from each
+vertex of the arrangement until it hits a curve of the arrangement. The
+vertical decomposition of an arrangement of two circles is illustrated
+in Figure~\ref{fig:vd}.
+
+This decomposition can be generalized to work for hypersurfaces in
+\(\mathbb{R}^d\). Unfortunatly, the behaviour of such decompositions quickly
+degenerates with \(d\).
+While bottom vertex triangulation gives a bound of \(O(n^d)\) cells in
+\(\mathbb{R}^d\) and
+vertical decomposition gives a bound of \(O(n^2)\) cells in \(\mathbb{R}^2\),
+we only know of a few upper bounds in fixed dimensions and some of them are
+worse than \(O(n^d)\). This is why in our application of Meiser's algorithm we
+use the bottom vertex triangulation. However, as observed by Ezra and
+Sharir~\cite{ES17}, the bad behaviour of vertical decompositions is not a
+bottleneck of Meiser's algorithm since we only need to look at a single cell of
+the decomposition. Moreover, the complexity of those cells is better than that
+of simplicial ones: vertical decomposition yields prisms supported by at most
+\(2d\) hyperplanes of the arrangement whereas simplices of
+the bottom vertex triangulation are supported by \(d^2 + d\) hyperplanes in the
+worst case. This has a direct impact on the VC-dimension of the range spaces
+defined by those objects and makes vertical decomposition the winning strategy
+for this particular algorithm.
+
+For the construction of the vertical decomposition of an arrangment of
+polynomial curves in \(\mathbb{R}^2\),
+we refer the reader to Pach and Sharir~\cite{Alcala}, Chazelle et
+al.~\cite{CEGS91}, and Edelsbrunner et al.~\cite{EGPPSS92}.
+
+\todo{Add remark that we only care about vertical decomposition of a constant
+number of curves in \(\mathbb{R}^2\)}.

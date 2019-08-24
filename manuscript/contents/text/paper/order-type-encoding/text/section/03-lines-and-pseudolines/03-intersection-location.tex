@@ -1,6 +1,6 @@
-\paragraph*{\iftitlecase%
-Intersection Location\else%
-Intersection location\fi} When the arrangement consists of straight lines,
+\paragraph*{Intersection Location}
+%
+When the arrangement consists of straight lines,
 locating the intersection \(p_a' \cap p_b'\) in \(\Xi\) is trivial if we
 know the real parameters of \(p_a'\) and \(p_b'\) and of the descriptions
 of the subcells of \(\Xi\). However, in our model we are not allowed to store
@@ -50,20 +50,22 @@ We formalize this observation with the following definition:
   is the cyclic ordering of the pseudolines crossing its boundary.
 \end{definition}
 %
-\ifeurocg\else%
 For an arrangement of pseudolines, we use the standard vertical decomposition
-to construct a hierarchical cutting.
-This decomposition partitions the space into trapezoidal cells.
-For an arrangement of lines, we can
-use the standard bottom-vertex triangulation instead, which allows us to
-generalize our results to higher dimensions\ifsocg~\cite{CCILO18}\else{} in
-\S\ref{sec:hyperplanes}\fi.
-In the plane, the bottom-vertex triangulation partitions the space into
-triangular cells.\fi
+(\S\ref{sec:arrangements:vertical-decomposition})
+to construct a hierarchical cutting
+(\S\ref{sec:divide-and-conquer:hierarchical-cuttings}).
 %
-\ifeurocg%
-Location in a non-full-dimensional cell can be encoded similarily.%
-\else
+This decomposition partitions the space into trapezoidal cells.
+%
+For an arrangement of lines, we can
+use the standard bottom-vertex triangulation
+(\S\ref{sec:arrangements:triangulation})
+instead, which allows us to
+generalize our results to higher dimensions in \S\ref{sec:hyperplanes}.
+%
+In the plane, the bottom-vertex triangulation partitions the space into
+triangular cells.
+%
 Note that non-full-dimensional cells are easier to encode. For a 0-dimensional
 cell and a pseudoline, we store whether the pseudoline lies above, lies below,
 or contains the 0-dimensional cell. For a 1-dimensional cell, a pseudoline
@@ -78,4 +80,3 @@ cell if they intersect its interior. If that is the case, the location of
 the intersection of those two pseudolines in the cutting is the
 non-full-dimensional cell. A constant number of bits can be added to the
 encoding each time we need to know the dimension of the cell we encode.
-\fi

@@ -17,26 +17,11 @@ such pairs and because they can easily be filtered from the output.
 
 \paragraph{Tools} The proof of Lemma~\ref{lem:batch} involves stantard
 computational geometry tools: vertical decomposition of an
-arrangement of polynomial curves (see Figure~\ref{fig:vd}),
-$\varepsilon$-nets, cuttings and derandomization.
-For the construction of the vertical
-decomposition of an arrangment of polynomial curves, we refer the reader to
-Pach and Sharir~\cite{Alcala}, Chazelle et al.~\cite{CEGS91}, and Edelsbrunner
-et al.~\cite{EGPPSS92}. For cuttings, $\varepsilon$-nets and derandomization, we
-refer the reader to Matou\v{s}ek~\cite{M95,M96}, Chazelle and
-Matou\v{s}ek~\cite{CM96} and Brönnimann et al.~\cite{BCM99}.
-\begin{figure*}
-    \centering
-    \includegraphics{figures/decomposition}
-    \caption{Some curves in $\mathbb{R}^2$.}
-    \label{fig:some-curves-in-R2}
-\end{figure*}
-\begin{figure*}
-    \centering
-    \includegraphics{figures/recursion}
-    \caption{Vertical decomposition of the curves in Figure~\ref{fig:some-curves-in-R2}.}%
-    \label{fig:vd}
-\end{figure*}
+arrangement of polynomial curves (see
+\S\ref{sec:arragements:vertical-decomposition}),
+$\varepsilon$-nets (see \S\ref{sec:divide-and-conquer:epsilon-nets})
+and cuttings (see \S\ref{sec:divide-and-conquer:cuttings}).
+cand derandomization.
 
 \begin{proof}[Proof of Lemma~\ref{lem:batch}]
 Fix some constant $r \geq 2$.
