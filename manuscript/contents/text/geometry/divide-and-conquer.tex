@@ -1,15 +1,15 @@
 \chapter{\done Divide and Conquer}
 
-A general divide-and-conquer paradigm in algorithms is, given an instance of
-size \(n\), to divide it into at most
+A general divide-and-conquer paradigm in algorithm design is,
+given an instance of size \(n\), to divide it into at most
 \(a\) smaller instances of size at most \(\frac{n}{b}\) solved recursively
 with an additive preprocessing and postprocessing cost of \(f(n)\), solving
 constant size instances by brute force.
 %
-The time complexity \(T(n)\) of such an algorithm can then be expressed as the
+An upper bound \(T(n)\) on the time complexity of such an algorithm is the
 reccurence
 \begin{displaymath}
-	T(n) = a \cdot T\left(\frac nb\right) + f(n).
+	T(n) = a \,\, T\mleft(\frac nb\mright) + f(n).
 \end{displaymath}
 %
 The asymptotic behavior of such a recurrence can then be derived from the
@@ -26,8 +26,6 @@ The construction in
 Paper~\ref{paper:3sum-encoding} can also be interpreted as an ad-hoc
 implementation of those concepts.
 
-\input{text/tool/epsilon-nets}
-
-\input{text/tool/cuttings}
+\input{text/tool/epsilon-nets-and-cuttings}
 
 \input{text/tool/hierarchical-cuttings}

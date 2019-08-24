@@ -1,3 +1,34 @@
+\section{Bottom Vertex Triangulation}%
+\label{sec:arrangements:triangulation}
+
+\begin{figure}
+  \centering{}
+  \includegraphics[width=.5\linewidth]{figures/bottom-vertex-triangulation}
+  \caption{%
+    The bottom vertex triangulation of a cell in an arrangement of lines.%
+  }%
+  \label{fig:bvt}
+\end{figure}
+
+Given an arrangement of hyperplanes in \(\mathbb{R}^d\), its bottom vertex
+triangulation is the partition of space obtained by triangulating each cell of
+the arrangement recursively as follows: taking \(d=2\) as the base case
+(because edges are already simplices),
+let \(p\) be its bottom-most vertex,
+for each facet of the cell not containing \(p\),
+for each \(d-1\)-dimensional simplex \(S'\) of the bottom vertex triangulation
+of the facet in \(\mathbb{R}^{d-1}\),
+construct a \(d\)-dimensional simplex \(S\) that is the convex hull of
+\(S'\) and \(p\).
+%
+The
+bottom vertex triangulation of an arrangement of lines in the plane is illustrated
+in Figure~\ref{fig:bvt}.
+
+Weeelll known~\cite{GO04,Cla88}.
+
+\todo{We use this in Meiser's algorithm and Order Type encoding paper. In
+Meiser we only construct one simplex.}
 \section{Vertical Decomposition}%
 \label{sec:arrangements:vertical-decomposition}
 
