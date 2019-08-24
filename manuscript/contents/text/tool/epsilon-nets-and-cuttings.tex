@@ -146,41 +146,46 @@ triangulation intersect the net, each simplex is intersected by at most a
 Through this construction we obtain \(O(c^d \log^d c)\) simplicial cells each
 intersected by at most \(\frac{n}{c}\) hyperplanes.
 
-In \S\ref{sec:algo:point-curves-location} we use a similar technique to obtain
-a partition of \(\mathbb{R}^2\) into \(O(c^2 \log^2 c)\) pseudotrapezoidal
-cells so that each cell is intersected by at most a \(\frac 1c\)-fraction of
-some input polynomial curves.
-
 For hyperplanes in constant dimension,
 there exist various ways of constructing \(\frac{1}{c}\)-cuttings of size
 \(O(c^d)\), thereby removing the polylogarithmic factor overhead (see for
 instance \S\ref{sec:divide-and-conquer:hierarchical-cuttings}).
+
+\subsection{More Complex Ranges}
+
+In \S\ref{sec:algo:point-curves-location} we use a tecjmoqie
+a similar technique to obtain
+a partition of \(\mathbb{R}^2\) into \(O(c^2 \log^2 c)\) pseudotrapezoidal
+cells so that each cell is intersected by at most a \(\frac 1c\)-fraction of
+some input polynomial curves.
+
+
+Linearization~\cite{YY85,AM94}.
+
 
 
 \subsection{Derandomization}
 
 The
 \(\varepsilon\)-net
-construction method based on sampling
+construction based on sampling
 described above can be made deterministic.
 %
-Derandomization is achieved through
+Derandomization is usually achieved through
 the method of conditional probabilities of Raghavan~\cite{Rag88}
-and Spencer~\cite{Spe94}.
+and Spencer~\cite{Spe94} (as in~\cite{C93}).
 
-% TODO rephrase this
-For cuttings, $\varepsilon$-nets and derandomization, we
+This method yields a construction time that is linear in the size of
+the ground set for \(\varepsilon\)-nets and \(\varepsilon\)-cuttings with
+constant \(\varepsilon\).
+
+For the derandomization of nets and cuttings, we
 refer the reader to Matou\v{s}ek~\cite{M95,M96}, Chazelle and
 Matou\v{s}ek~\cite{CM96} and Brönnimann et al.~\cite{BCM99}.
-
-\todo{Construction in linear time}.
+%
+The Handbook also has a nice section on derandomization
+techniques~\cite[Section~40.6]{CMR04}.
 
 See~\cite[Section~40.1]{CMR04} for more on randomized divide-and-conquer.
-See~\cite[Section~40.6]{CMR04} for more on derandomization.
 See~\cite[Section~40.7]{CMR04} for more on the deterministic construction of
 \(\varepsilon\)-nets.
-
-\subsection{More Complex Ranges}
-
-Linearization~\cite{YY85,AM94}.
-
