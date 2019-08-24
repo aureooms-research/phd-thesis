@@ -72,10 +72,10 @@ figures/%.pdf:
 	cp $< $@
 	killall -HUP mupdf || true
 
-#$(BUILDDIR)/dev/src.tex: $(shell texdeps dev.tex)
+$(BUILDDIR)/dev/src.tex: $(shell texdeps dev.tex)
 #$(BUILDDIR)/draft/src.tex: $(shell texdeps draft.tex)
 #$(BUILDDIR)/print/src.tex: $(shell texdeps print.tex)
-$(BUILDDIR)/proof/src.tex: $(shell texdeps proof.tex)
+#$(BUILDDIR)/proof/src.tex: $(shell texdeps proof.tex)
 
 $(BUILDDIR)/%/src.tex:
 	mkdir -p $(dir $@)
