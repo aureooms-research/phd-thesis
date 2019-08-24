@@ -18,22 +18,22 @@ A simple example of a range space is to take a finite set of points on the real
 line as the ground set and to take the subsets of points induced by intervals
 as the ranges.
 %
-For simplicity, the examples, definitions, and lemmas
-we state here consider the case of finite
-ground sets but can be generalized to infinite universes.
-%
-In general we have the following definition.
+In general, we have the following definition.
 %
 \input{text/definition/range-space}
+%
+Note that, for simplicity, the examples, definitions, and lemmas
+we state here consider the case of finite
+ground sets. Those can be generalized to infinite universes.
 
-In general \(\mathcal{R}\) could be equal to \(2^{X}\).
+In the worst case, \(\mathcal{R}\) could be equal to \(2^{X}\).
 %
 If \(X\) is taken to be points in \(\mathbb{R}^d\) and the ranges are taken to
 be subsets induced by simple geometric objects, as in most geometric
 applications, this is not possible.
 
-Take the example of points and intervals on the real line for instance.
-For any set of points only \(O({| X |}^2)\) subsets can be induced by
+For instance, consider points and intervals on the real line.
+For any set of points, only \(O({| X |}^2)\) subsets can be induced by
 intervals.
 %
 Another example is that of points in the
@@ -60,8 +60,10 @@ shattered subset.
 \input{text/definition/vc-dimension}
 
 The Perles-Sauer-Shelah-Vapnik-Chervonenkis lemma gives a direct connection
-between this dimension and the number of ranges.
+between this parameter and the number of ranges.
+%
 \input{text/theorem/perles-sauer-shelah-lemma}
+%
 In our examples, notice the discrepancy between the ``identical''
 \(O({|X|}^2)\) bounds on the number of ranges and the different VC-dimensions
 (two and three respectively).
@@ -98,7 +100,7 @@ See~\cite[Section~40.4]{CMR04} for more on range spaces and \(\varepsilon\)-nets
 Consider the range space where the ground set is a finite set of hyperplanes
 \(\mathcal{H}\) in \(\mathbb{R}^n\)
 and where the ranges are the subsets of hyperplanes that can be obtained by
-intersecting the ground set with any simplex.
+intersecting the ground set with a simplex.
 
 By combining a theorem due to Blumer et
 al.~\cite{BEHW89} with the results of Meiser~\cite{M93}\footnote{Note that
@@ -112,7 +114,7 @@ In Paper~\ref{paper:ksum-algorithm}
 we are interested in the dependency of those bounds on the ambiant dimension
 \(n\).
 This is not explicitly tackled in \Cref{thm:enet-general}
-since the VC-dimension of this range space depends on \(n\).
+since here the VC-dimension of this range space depends on \(n\).
 %
 \input{text/theorem/epsilon-net-simplex}
 %
@@ -129,19 +131,20 @@ bounded-complexity cells that together partition \(\mathbb{R}^{d}\).
 %
 For our purposes, a cell is of bounded complexity if its boundary is defined by
 a number of lines, pseudolines, or hyperplanes of some arrangement
-that depends only on the dimension, and not on the size of the arrangement.
+that solely depends on the dimension, and not on the size of the arrangement.
 %
-A \(\frac{1}{c}\)-cutting of a set of \(n\) hyperplanes is a cutting with the
+A \(\frac{1}{c}\)-cutting of a set of \(n\) elements is a cutting with the
 constraint that each of its cells is intersected by at most \(\frac{n}{c}\)
-hyperplanes.
+elements.
 
 In constant dimension,
-a straightforward way to construct a \(\frac 1c\)-cutting is to first contruct
+a straightforward way to construct a \(\frac 1c\)-cutting for a set of
+hyperplanes is to first contruct
 a \(\frac 1c\)-net for the range space consisting of hyperplanes as elements
 and simplices as ranges and then triangulate its arrangement as in
 \S\ref{sec:arrangements:triangulation}. Because none of the simplices of the
 triangulation intersect the net, each simplex is intersected by at most a
-\(\frac 1c\)-fraction of the ground set.
+\(\frac 1c\)-fraction of the hyperplanes.
 %
 Through this construction we obtain \(O(c^d \log^d c)\) simplicial cells each
 intersected by at most \(\frac{n}{c}\) hyperplanes.
@@ -151,18 +154,21 @@ there exist various ways of constructing \(\frac{1}{c}\)-cuttings of size
 \(O(c^d)\), thereby removing the polylogarithmic factor overhead (see for
 instance \S\ref{sec:divide-and-conquer:hierarchical-cuttings}).
 
-\subsection{More Complex Ranges}
+\subsection{Nonlinear Ranges}
 
-In \S\ref{sec:algo:point-curves-location} we use a tecjmoqie
+In Paper~\ref{paper:3pol-algorithm} (\S\ref{sec:algo:point-curves-location}) we use a
 a similar technique to obtain
 a partition of \(\mathbb{R}^2\) into \(O(c^2 \log^2 c)\) pseudotrapezoidal
 cells so that each cell is intersected by at most a \(\frac 1c\)-fraction of
-some input polynomial curves.
+some input polynomial curves. Because those curves have bounded degree, we can
+design a range space with finite VC-dimension and exploit it.
 
-
-Linearization~\cite{YY85,AM94}.
-
-
+In the same paper (\S\ref{sec:algo:dominance}) we use the technique of
+linearization~\cite{YY85,AM94} in order to tackle a more general problem
+in any constant dimension: given a system of polynomial inequalities, we can
+define a single variable for each monomial so that each inequality becomes
+linear. This has the effect of greatly increasing the ambient dimension but
+allows to use the techniques that normally only apply to linear ranges.
 
 \subsection{Derandomization}
 
@@ -174,18 +180,19 @@ described above can be made deterministic.
 Derandomization is usually achieved through
 the method of conditional probabilities of Raghavan~\cite{Rag88}
 and Spencer~\cite{Spe94} (as in~\cite{C93}).
-
+%
 This method yields a construction time that is linear in the size of
 the ground set for \(\varepsilon\)-nets and \(\varepsilon\)-cuttings with
 constant \(\varepsilon\).
+%
+\input{text/theorem/M95}
 
-For the derandomization of nets and cuttings, we
-refer the reader to Matou\v{s}ek~\cite{M95,M96}, Chazelle and
+For other concrete examples of derandomization of nets and cuttings, we
+refer the reader to Matou\v{s}ek~\cite{M96}, Chazelle and
 Matou\v{s}ek~\cite{CM96} and Brönnimann et al.~\cite{BCM99}.
 %
-The Handbook also has a nice section on derandomization
-techniques~\cite[Section~40.6]{CMR04}.
-
-See~\cite[Section~40.1]{CMR04} for more on randomized divide-and-conquer.
-See~\cite[Section~40.7]{CMR04} for more on the deterministic construction of
-\(\varepsilon\)-nets.
+The Handbook has a nice overview of the
+subject~\cite[Section~40.7]{CMR04}.
+See also~\cite[Section~40.1]{CMR04} for more on randomized divide-and-conquer
+and~\cite[Section~40.6]{CMR04} for more on derandomization.
+%
