@@ -1,15 +1,17 @@
 \chapter{\done Divide and Conquer}
 
 A general divide-and-conquer paradigm in algorithm design is,
-given an instance of size \(n\), to divide it into at most
-\(a\) smaller instances of size at most \(\frac{n}{b}\) solved recursively
-with an additive preprocessing and postprocessing cost of \(f(n)\), solving
-constant size instances by brute force.
+given an instance of size \(n\), to 1) divide it into at most
+\(a\) smaller instances of size at most \(\frac{n}{b}\) in \(p(n)\)
+preprocessing time, 2) solve those instances recursively,
+solving constant size instances by brute force, and 3) postprocess the
+solutions of those smaller instances to obtain the solution to the original
+one in \(p(n)\) time.
 %
 An upper bound \(T(n)\) on the time complexity of such an algorithm is the
 reccurence
 \begin{displaymath}
-	T(n) = a \,\, T\mleft(\frac nb\mright) + f(n).
+	T(n) = a \,\, T\mleft(\frac nb\mright) + p(n).
 \end{displaymath}
 %
 The asymptotic behavior of such a recurrence can then be derived from the

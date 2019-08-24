@@ -2,21 +2,24 @@
 \label{sec:divide-and-conquer:epsilon-nets-and-cuttings}
 
 The efficient construction of \(\varepsilon\)-nets and cuttings
-is an existential condition for many divide-and-conquer schemes
+is a necessary condition for many divide-and-conquer schemes
 in Computational Geometry.
 %
-Those constructions are based on the concept Vapnik-Chervonenkis dimension
-(VC-dimension) of range spaces.
+Those constructions are based on the concept
+of Vapnik-Chervonenkis dimension
+(VC-dimension) of a range space.
 
-A range space consists of a ground set (or universe) and a family of
-subsets of this ground set called ranges.
+\subsection{Range Spaces}
+
+A \emph{range space} (or set system) consists of a \emph{ground set} (or universe) and a family of
+subsets of this ground set called \emph{ranges}.
 %
 A simple example of a range space is to take a finite set of points on the real
 line as the ground set and to take the subsets of points induced by intervals
 as the ranges.
 %
 For simplicity, the examples, definitions, and lemmas
-we state here consider only the case of finite
+we state here consider the case of finite
 ground sets but can be generalized to infinite universes.
 %
 In general we have the following definition.
@@ -24,8 +27,10 @@ In general we have the following definition.
 \input{text/definition/range-space}
 
 In general \(\mathcal{R}\) could be equal to \(2^{X}\).
-If \(X\) is taken to be points in \(\mathbb{R}^d\) and the ranges are taken to be subsets
-induced by simple geometric objects, as in most applications, this is not possible.
+%
+If \(X\) is taken to be points in \(\mathbb{R}^d\) and the ranges are taken to
+be subsets induced by simple geometric objects, as in most geometric
+applications, this is not possible.
 
 Take the example of points and intervals on the real line for instance.
 For any set of points only \(O({| X |}^2)\) subsets can be induced by
@@ -36,6 +41,8 @@ plane and subsets induced by halfplanes. Because any halfplane can be moved to
 have exactly two points on its boundary, there are \(O({| X |}^2)\) such subsets.
 %
 Those observations can be generalized. For that we need a few more definitions.
+
+\subsection{VC-dimension}
 
 A set is \emph{shattered} by a family of ranges if each of its subsets can be induced by a
 range of the family.
@@ -59,6 +66,9 @@ In our examples, notice the discrepancy between the ``identical''
 \(O({|X|}^2)\) bounds on the number of ranges and the different VC-dimensions
 (two and three respectively).
 
+\subsection{Epsilon Nets}
+\label{sec:divide-and-conquer:epsilon-nets}
+
 A net is a subset of the ground set such that it hits every large range.
 %
 \input{text/definition/epsilon-net}
@@ -73,8 +83,42 @@ ranges is large.
 %
 For many problems,
 such partitions of space with a small number of
-small ranges usually leads to practical divide-and-conquer schemes.
-These partitions are called \emph{cuttings}.
+small ranges usually lead to practical divide-and-conquer schemes.
+These partitions are called \emph{cuttings} (see
+\S\ref{sec:divide-and-conquer:cuttings}).
+
+A very neat result is that, for constant VC-dimension, a reasonably small
+\(\varepsilon\)-net can be constructed efficiently by random sampling.
+\input{text/theorem/epsilon-net}
+
+See~\cite[Section~40.4]{CMR04} for more on range spaces and \(\varepsilon\)-nets.
+
+\subsection{Hyperplanes in Linear Dimension}
+
+Consider the range space where the ground set is a finite set of hyperplanes
+\(\mathcal{H}\) in \(\mathbb{R}^n\)
+and where the ranges are the subsets of hyperplanes that can be obtained by
+intersecting the ground set with any simplex.
+
+By combining a theorem due to Blumer et
+al.~\cite{BEHW89} with the results of Meiser~\cite{M93}\footnote{Note that
+Meiser used an older result due to Haussler and Welzl~\cite{H87} and got an
+extra $\log n$ factor in the size of the $\varepsilon$-net. We thank Hervé
+Fournier for pointing this out.}, it is possible to
+obtain good bounds on \(\varepsilon\)-nets constructed by
+random sampling.
+%
+In Paper~\ref{paper:ksum-algorithm}
+we are interested in the dependency of those bounds on the ambiant dimension
+\(n\).
+This is not explicitly tackled in \Cref{thm:enet-general}
+since the VC-dimension of this range space depends on \(n\).
+%
+\input{text/theorem/epsilon-net-simplex}
+%
+The contrapositive states that if no hyperplane in \(\net\) intersects
+a given simplex, then with high probability the number of hyperplanes of
+\(\Hy\) intersecting the simplex is at most \(\frac{| \Hy |}{r}\).
 
 \subsection{Cuttings}%
 \label{sec:divide-and-conquer:cuttings}
@@ -84,58 +128,45 @@ is a set of (possibly unbounded and/or non-full dimensional)
 bounded-complexity cells that together partition \(\mathbb{R}^{d}\).
 %
 For our purposes, a cell is of bounded complexity if its boundary is defined by
-a number of lines or pseudolines (and later, hyperplanes) of the arrangement
+a number of lines, pseudolines, or hyperplanes of some arrangement
 that depends only on the dimension, and not on the size of the arrangement.
 %
 A \(\frac{1}{c}\)-cutting of a set of \(n\) hyperplanes is a cutting with the
 constraint that each of its cells is intersected by at most \(\frac{n}{c}\)
-hyperplanes. There exist various ways of constructing \(\frac{1}{c}\)-cuttings of
-size \(O(c^d)\).
-Those cuttings allow for efficient divide-and-conquer
-solutions to many geometric problems.
+hyperplanes.
 
-\todo{We use this in 3POL algo.}
-
-A very neat result is that, for constant VC-dimension, a reasonably small
-\(\varepsilon\)-net can be constructed efficiently by random sampling.
-\input{text/theorem/epsilon-net}
-
-See~\cite[Section~40.4]{CMR04} for more on
-range spaces and \(\varepsilon\)-nets.
-
-\paragraph{Hyperplanes and Simplices}
-
-Define a range space where the ground set is a finite set of hyperplanes and
-where the ranges be the subsets of hyperplanes that can be obtained by
-intersecting the ground set with any simplex.
-
-By combining a theorem due to Blumer et
-al.~\cite{BEHW89} with the results of Meiser~\cite{M93}\footnote{Note that
-Meiser used an older result due to Haussler and Welzl~\cite{H87} and got an
-extra $\log n$ factor in the size of the $\varepsilon$-net. We thank Hervé
-Fournier for pointing this out.}, it is possible to
-construct an \enet{} \(\NH\) for this range space
-using a random uniform sampling on \(\Hy\).
+In constant dimension,
+a straightforward way to construct a \(\frac 1c\)-cutting is to first contruct
+a \(\frac 1c\)-net for the range space consisting of hyperplanes as elements
+and simplices as ranges and then triangulate its arrangement as in
+\S\ref{sec:arrangements:triangulation}. Because none of the simplices of the
+triangulation intersect the net, each simplex is intersected by at most a
+\(\frac 1c\)-fraction of the ground set.
 %
-\input{text/theorem/epsilon-net-simplex}
-%
-The contrapositive states that if no hyperplane in \(\net\) intersects
-a given simplex, then with high probability the number of hyperplanes of
-\(\Hy\) intersecting the simplex is at most \(\varepsilon \card{\Hy}\).
+Through this construction we obtain \(O(c^d \log^d c)\) simplicial cells each
+intersected by at most \(\frac{n}{c}\) hyperplanes.
 
-\paragraph{Derandomization}
+In \S\ref{sec:algo:point-curves-location} we use a similar technique to obtain
+a partition of \(\mathbb{R}^2\) into \(O(c^2 \log^2 c)\) pseudotrapezoidal
+cells so that each cell is intersected by at most a \(\frac 1c\)-fraction of
+some input polynomial curves.
+
+For hyperplanes in constant dimension,
+there exist various ways of constructing \(\frac{1}{c}\)-cuttings of size
+\(O(c^d)\), thereby removing the polylogarithmic factor overhead (see for
+instance \S\ref{sec:divide-and-conquer:hierarchical-cuttings}).
+
+
+\subsection{Derandomization}
 
 The
 \(\varepsilon\)-net
 construction method based on sampling
-described above can be made deterministic when a deterministic algorithm is
-sought.
+described above can be made deterministic.
 %
 Derandomization is achieved through
 the method of conditional probabilities of Raghavan~\cite{Rag88}
 and Spencer~\cite{Spe94}.
-
-\todo{Make hyperplane nets and polynomial nets cohabitate somehow}
 
 % TODO rephrase this
 For cuttings, $\varepsilon$-nets and derandomization, we
@@ -144,15 +175,12 @@ Matou\v{s}ek~\cite{CM96} and Brönnimann et al.~\cite{BCM99}.
 
 \todo{Construction in linear time}.
 
-\todo{We use this in Meiser's algo and we use it in the 3POL algo for the batch range
-searching crap. Check polynomial dominance reporting though.}
-
 See~\cite[Section~40.1]{CMR04} for more on randomized divide-and-conquer.
 See~\cite[Section~40.6]{CMR04} for more on derandomization.
 See~\cite[Section~40.7]{CMR04} for more on the deterministic construction of
 \(\varepsilon\)-nets.
 
-\paragraph{More Complex Ranges}
+\subsection{More Complex Ranges}
 
 Linearization~\cite{YY85,AM94}.
 
