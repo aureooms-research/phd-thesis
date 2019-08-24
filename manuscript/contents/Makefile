@@ -61,6 +61,9 @@ figures/trace.pdf: view=3-1
 figures/new-trace.pdf: figures/schematics.ipe
 figures/new-trace.pdf: view=4-1
 
+figures/bottom-vertex-triangulation.pdf: figures/arrangements.ipe
+figures/bottom-vertex-triangulation.pdf: view=1-1
+
 figures/%.pdf:
 	ipetoipe -pdf -export -view $(view) $^ $@
 
