@@ -64,6 +64,15 @@ figures/new-trace.pdf: view=4-1
 figures/bottom-vertex-triangulation.pdf: figures/arrangements.ipe
 figures/bottom-vertex-triangulation.pdf: view=1-1
 
+figures/longstory.pdf: figures/art.ipe
+figures/longstory.pdf: view=1-1
+figures/geometry.pdf: figures/art.ipe
+figures/geometry.pdf: view=2-1
+figures/algorithms.pdf: figures/art.ipe
+figures/algorithms.pdf: view=3-1
+figures/data-structures.pdf: figures/art.ipe
+figures/data-structures.pdf: view=4-1
+
 figures/%.pdf:
 	ipetoipe -pdf -export -view $(view) $^ $@
 
