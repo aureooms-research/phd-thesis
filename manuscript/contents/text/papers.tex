@@ -1,9 +1,18 @@
 \clearemptydoublepage
+\renewcommand{\parthook}{% Update \parthook
+\AddToShipoutPictureBG*{% Add picture to background of THIS page only
+\AtPageLowerLeft{\includegraphics[width=\paperwidth,trim=-36mm -28mm -34mm 0]{figures/algorithms}}}% Insert image
+\renewcommand{\parthook}{}}% Restore \parthook
 \part{\done Algorithms}
 \input{text/paper/ksum-algorithm/_index}
 \input{text/paper/3pol-algorithm/_index}
 
 \clearemptydoublepage
+\renewcommand{\parthook}{% Update \parthook
+\AddToShipoutPictureBG*{% Add picture to background of THIS page only
+\AtPageLowerLeft{\includegraphics[width=\paperwidth,trim=-36mm -33mm -34mm 0]{figures/data-structures}}}% Insert image
+%\AtPageLowerLeft{\centerline{\includegraphics[height=10cm,trim=0 -28mm 0 0]{figures/data-structures}}}}% Insert image
+\renewcommand{\parthook}{}}% Restore \parthook
 \part{\done Data Structures}
 \input{text/paper/order-type-encoding/_index}
 \input{text/paper/3sum-encoding/_index}

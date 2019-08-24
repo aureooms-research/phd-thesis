@@ -36,7 +36,7 @@
 
 %%% PART
 \titleformat{\part}[display]{
-   \thispagestyle{empty}\centering\vspace{4cm}
+   \thispagestyle{empty}\parthook\centering
 }{
    \fontsize{72}{36}\selectfont\bfseries\thepart
 }{
@@ -113,3 +113,12 @@
 \captionsetup[table]{labelformat=simple,labelfont={rm,bf},labelsep=period,margin=3.5mm,font={small}}%
 \captionsetup[subfloat]{labelformat=simple,labelfont={rm,bf},labelsep=period,margin=2.5mm,font={small},format=hang}
 \newsavebox{\largestimage}
+
+\usepackage{eso-pic,etoolbox}
+\providecommand{\parthook}{}
+%\patchcmd{\part}{\thispagestyle}{\thispagestyle\parthook}{}{}
+%\newcommand{\partimage}[2][]{% \parthook[<options>]{<image>}
+  %\renewcommand{\parthook}{% Update \parthook
+    %\AddToShipoutPictureBG*{% Add picture to background of THIS page only
+      %\AtPageLowerLeft{\includegraphics[width=\paperwidth,height=\paperheight,#1]{#2}}}% Insert image
+    %\renewcommand{\parthook}{}}}% Restore \parthook
