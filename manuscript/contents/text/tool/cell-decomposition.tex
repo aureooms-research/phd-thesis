@@ -1,6 +1,16 @@
-\section{Cell Decomposition}
+\section{\done Cell Decomposition}
 
-\dots
+Cells of arrangements may not behave nicely. In particular, they may have
+arbitray description complexity.
+%
+In this section we give two decomposition schemes that allow to partition cells
+into low-complexity subcells.
+%
+Access to such decompositions is an essential ingredient of divide-and-conquer
+methods described in \Cref{chapter:divide-and-conquer}.
+
+Lookup the Handbook~\cite[\S{}24.3.2]{Hal04},
+for a more general overview of cell decomposition techniques.
 
 \subsection{Bottom Vertex Triangulation}%
 \label{sec:arrangements:triangulation}
@@ -18,9 +28,9 @@ Given an arrangement of hyperplanes in \(\mathbb{R}^d\), its bottom vertex
 triangulation is the partition of space obtained by triangulating each cell of
 the arrangement recursively as follows: taking \(d=2\) as the base case
 (because edges are already simplices),
-let \(p\) be its bottom-most vertex,
+let \(p\) be the bottom-most vertex of the cell,
 for each facet of the cell not containing \(p\),
-for each \(d-1\)-dimensional simplex \(S'\) of the bottom vertex triangulation
+for each (\(d-1\))-dimensional simplex \(S'\) of the bottom vertex triangulation
 of the facet in \(\mathbb{R}^{d-1}\),
 construct a \(d\)-dimensional simplex \(S\) that is the convex hull of
 \(S'\) and \(p\).
@@ -29,10 +39,17 @@ The
 bottom vertex triangulation of an arrangement of lines in the plane is illustrated
 in Figure~\ref{fig:bvt}.
 
-Weeelll known~\cite{GO04,Cla88}.
+In Paper~\ref{paper:ksum-algorithm} we construct a simplex of the bottom vertex
+triangulation of a \(\varepsilon\)-net as part of a point location procedure.
+%
+In Paper~\ref{paper:3pol-algorithm} (\S\ref{sec:algo:dominance})
+and Paper~\ref{paper:order-type-encoding} (all sections)
+we use hierarchical cuttings based on this decomposition in order to construct
+an efficient point location data structure.
 
-\todo{We use this in Meiser's algorithm and Order Type encoding paper. In
-Meiser we only construct one simplex.}
+See also~\cite{Cla88} for a more thorough description and an application to
+nearest neighbour data structures.
+
 \subsection{Vertical Decomposition}%
 \label{sec:arrangements:vertical-decomposition}
 
@@ -58,6 +75,31 @@ vertex of the arrangement until it hits a curve of the arrangement. The
 vertical decomposition of an arrangement of two circles is illustrated
 in Figure~\ref{fig:vd}.
 
+We use this decomposition in Paper~\ref{paper:3pol-algorithm}
+(\S\ref{sec:algo:point-curves-location}) in order to apply a divide-and-conquer
+algorithm of Matou{\v s}ek~\cite{Ma93} to an arrangement of curves.
+This algorithm was originally designed to work for an arrangement of
+hyperplanes using bottom-vertex triangulation decomposition.
+%
+In Paper~\ref{paper:order-type-encoding} (\S\ref{sec:lines-and-pseudolines},
+\S\ref{sec:query-time}), we use this decomposition in order to
+encode the order type of an arrangement of pseudolines.
+
+Note that in the first application we only use vertical decomposition on a
+constant number of bounded-degree polynomial curves.
+%
+In the second application we only care about the existence of such a
+decomposition.
+%
+For those reasons, we do not discuss efficient construction of this
+decomposition.
+
+For the construction of the vertical decomposition of an arrangment of
+polynomial curves in \(\mathbb{R}^2\),
+we refer the reader to Pach and Sharir~\cite{Alcala}, Chazelle et
+al.~\cite{CEGS91}, and Edelsbrunner et al.~\cite{EGPPSS92}.
+
+\paragraph{A Remark}
 This decomposition can be generalized to work for hypersurfaces in
 \(\mathbb{R}^d\). Unfortunatly, the behaviour of such decompositions quickly
 degenerates with \(d\).
@@ -76,11 +118,3 @@ the bottom vertex triangulation are supported by \(d^2 + d\) hyperplanes in the
 worst case. This has a direct impact on the VC-dimension of the range spaces
 defined by those objects and makes vertical decomposition the winning strategy
 for this particular algorithm.
-
-For the construction of the vertical decomposition of an arrangment of
-polynomial curves in \(\mathbb{R}^2\),
-we refer the reader to Pach and Sharir~\cite{Alcala}, Chazelle et
-al.~\cite{CEGS91}, and Edelsbrunner et al.~\cite{EGPPSS92}.
-
-\todo{Add remark that we only care about vertical decomposition of a constant
-number of curves in \(\mathbb{R}^2\)}.
