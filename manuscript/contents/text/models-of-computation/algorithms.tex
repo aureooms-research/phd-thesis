@@ -58,24 +58,37 @@ words have bitsize \(w \geq \log n\).
 \label{sec:models-of-computation:algorithms:trees}
 
 A decision tree is a constant-degree rooted tree whose internal nodes encode
-queries to an omniscient oracle and whose leaves encode the result of the
-computation.
+binary queries to an omniscient oracle and whose leaves encode the result of the
+computation. The complexity of the tree is defined to be the length of
+its longest root to leaf path called the \emph{depth} of the tree.
 
-\todo{Define input class and \emph{Information Theoretic Lower Bound}.}
+A decision tree cannot inspect the input directly.
+To make progress, it inquires about the input through ``yes/no'' questions
+asked to the oracle. The oracle answers those questions by ``yes'' or ``no''
+honestly and accuratly.
 
-\todo{Define oracle}
+An identification problem consists in, given an input of size \(n\),
+distinguishing among \(f(n)\) input classes, that is, to put the instance in
+the right box. A decision problem is an identification where \(f(n) = 2\).
 
-Of course, for every problem asking to distinguish among \(f(n)\) input
-classes, there is a decision tree that will ask \(O(\log f(n))\)
-``yes/no'' questions of
-the form: ``Is the input in the following range of input classes?''
-The queries this decision tree makes are too powerful, they have no
-structure a priori and it is not at all obvious how they can be encoded.
+Of course, for every identification problem with \(f(n)\) input classes,
+there is a decision tree that solves the problem by asking
+\(O(\log f(n))\) ``yes/no'' questions of the form:
+``Is the input in the following range of input classes?''
+%
+This is best possible: every query carries at most one additional bit of
+information, and there are at least \(\lceil \log f(n) \rceil\) bits necessary
+to label each input class. This lower bound is called the Information Theoretic
+Lower Bound, or ITLB, and holds for any decision tree model.
+
+The queries the above decision tree makes are too powerful to make the study of
+this kind of model interesting in general.
+%
+Moreover, practically, those queries have no structure a priori and it is not at
+all obvious how they can be encoded.
+%
 For a decision tree model to make sense, we have to restrict the kind of
 queries that can be made.
-
-The complexity of a computation or decision tree is defined to be the length of
-its longest root to leaf path called the \emph{depth} of the tree.
 
 \subsubsection{Linear Decision Trees}
 
