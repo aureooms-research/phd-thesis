@@ -1,44 +1,55 @@
-\chapternonum{Lexicon}
+\chapternonum{A Remark on Notation}
 
-space
+This short chapter hopes to lift any ambiguity in the notation used.
 
-time
+\section*{Big-Oh}
 
-an hyperplane \(H\).
+To express the asymptotic behaviour of functions representing resource
+complexities (time and space) we use the standard \emph{big-oh} notation
+(see for instance~\cite[Chapter~3]{CLRS09}). For brevity, we add a few
+tweaks.
 
-a set of hyperplanes \(\mathcal{H}\).
+\begin{itemize}
 
-a set of sets \(\mathcal{S}\)
+\item The notation $\tilde{O}(\cdot)$ ignores polylogarithmic factors. For instance
+	\(n^3 \log^2 n = \tilde{O}(n^3)\).
 
-an arrangement of hyperplanes \(\mathcal{A}(\mathcal{H})\).
+\item The symbol $\epsilon$ (not to be mistaken for \(\varepsilon\))
+	denotes a positive real number that can be made as small as desired.
+	Writing \(T(n) = O(n^{12/7 + \epsilon})\) means that for any fixed
+	\(\delta > 0\), \(T(n) = O(n^{12/7 + \delta})\), where the constant of
+	proportionality may depend on \(\delta\).
+	In particular, \(n^2 \log^2 n = O(n^{2 + \epsilon})\).
 
-a polygonal (convex) cell C (or P ?)
+\item The notation \(O_{p_1,p_2, \ldots}(f(n))\) means that the constant of
+	proportionality depends on the parameters \(p_i\).
 
-a simplicial cell \(S\).
+\item When we write \(O(f(n_1,n_2, \ldots))\) we assume that one of the variables
+	\(n_i\) is the one going towards infinity in the big-oh definition, while the
+	others are monotone functions of \(n_i\) (increasing or decreasing
+	depending on the context).
 
-a trapezoidal cell \(T\)
+\end{itemize}
 
-epsilon
+Because this asymptotic notation takes little care of constant factors,
+logarithms are in base two unless otherwise indicated.
 
-\(\mathbb{R}^d\) euclidean space
+\section*{Sets}
 
-\(k\)-subset
+We denote by \(\mathbb{R}^d\) the \(d\)-dimensional Euclidean space
+and try to be consistent with the set notation used to reprensent the subsets
+of this space.
+\begin{itemize}
+	\item A point is indicated by a lowercase letter, for instance a vertex \(p\).
+	\item A set of points is indicated by an uppercase letter, for instance an
+		hyperplane \(H\), a cell \(C\), or a simplex \(S\).
+	\item A set of sets of points is indicated by a calligraphic uppercase
+		letter, for instance
+		a set of hyperplanes \(\mathcal{H}\),
+		a net \(\mathcal{N}\), or an arrangement \(\mathcal{A}(\mathcal{H})\).
+\end{itemize}
 
-In what follows, we use the notation \([n] = \{\,1,2,\ldots ,n\,\}\).
+For finite sets,
+we sometimes use the short notation \([n] = \{\,1,2,\ldots ,n\,\}\) and
+describe a set of cardinality \(n\) as a \(n\)-set.
 
-Big-Oh notation
-
-The notation $\tilde{O}$ ignores polylogarithmic.
-
-Throughout this document, $\varepsilon$ denotes a positive real
-number that can be made as small as desired.
-
-\(O_{p_1,p_2, \ldots}(f(n))\) means that the constant of proportionality
-depends on the parameters \(p_i\).
-
-When we write \(O(f(n_1,n_2, \ldots))\) we assume that one of the variables
-\(n_i\) is
-the one going towards infinity in the big-oh notation, while the others are
-monotone growing functions of \(n_i\).
-
-Logarithms are in base two unless otherwise indicated.
