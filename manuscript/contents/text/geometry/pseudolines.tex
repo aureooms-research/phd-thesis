@@ -1,3 +1,64 @@
 \section{Pseudolines}
 
-\dots
+In the plane, line arrangements are generalized to pseudoline arrangements by
+dropping the ``straight'' nature of lines.
+%
+A pseudoline in \(\mathbb{R}^2\) is a simple curve connecting points at
+infinity.
+An arrangement of pseudolines is a collection of pseudolines that pairwise
+intersect exactly once.
+%
+This definition can be made more formal by considering pairwise-intersecting
+simple closed curves in the projective plane instead.
+%
+Some important differences between line and pseudoline arrangements have
+already been discussed in \S\ref{sec:problem:pol:order-types}.
+
+Putting those differences aside, pseudoline arrangements share sufficient
+similarity with line arrangements as to allow a generic algorithmic
+treatment of both kinds.
+%
+For instance,
+%
+their arrangement complexities
+(\S\ref{sec:arrangements:arrangement-complexity})
+are
+asymptotically the same,
+%
+the Zone Theorem (\S\ref{sec:arrangements:zone-theorem}) holds in general,
+%
+canonical labelings (\S\ref{sec:point-configurations:canonical-labelings})
+can be constructed by looking at the order type only
+(see \S\ref{sec:problem:pol:lb} for a definition of order type),
+and generic cell decompositions
+(\S\ref{sec:arrangements:cell-decomposition})
+allow the use of the divide-and-conquer methods of
+Chapter~\ref{chapter:divide-and-conquer} in both cases.
+
+In Paper~\ref{paper:order-type-encoding} we consider the problem of encoding
+order types of line or pseudoline arrangements.
+%
+Strictly speaking, an order type consists of pure combinatorial information and
+does not require an embedding to be known.
+%
+In particular, given an order type, it is
+\(\exists \mathbb{R}\)-complete to decide whether a straigth embedding
+exists~\cite{Mne85,Mne88}.
+%
+For simplicity, the algorithms constructing the encodings in
+Paper~\ref{paper:order-type-encoding} assume an embedding is given.
+
+For more on pseudoline arrangements see Chapter
+5 of the Handbook on the subject~\cite{Goo04}.
+%
+For more on equivalent representations of pseudoline arrangements see Chapter
+6 of the Handbook on oriented matroids~\cite{RZ04}.
+
+%For Basic properties~\cite[\S{}5.1]{Goo04}.
+%Combinatorial results~\cite[\S{}5.4]{Goo04}.
+%Topology~\cite[\S{}5.5]{Goo04}.
+%Computation~\cite[\S{}5.6]{Goo04}.
+
+%\begin{theorem}[Goodman~\cite{Go80}]
+	%Every arrangement of pseudolines is isomorphic to a wiring diagram.
+%\end{theorem}
