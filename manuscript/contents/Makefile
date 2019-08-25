@@ -73,6 +73,9 @@ figures/algorithms.pdf: view=3-1
 figures/data-structures.pdf: figures/art.ipe
 figures/data-structures.pdf: view=4-1
 
+figures/landscape.pdf: figures/landscape.ipe
+figures/landscape.pdf: view=1-1
+
 figures/%.pdf:
 	ipetoipe -pdf -export -view $(view) $^ $@
 
