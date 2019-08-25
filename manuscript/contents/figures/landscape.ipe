@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE ipe SYSTEM "ipe.dtd">
 <ipe version="70212" creator="Ipe 7.2.12">
-<info created="D:20190825164018" modified="D:20190825164927"/>
+<info created="D:20190825164018" modified="D:20190825171207"/>
 <preamble>\usepackage{amsmath}
 \usepackage{amsfonts}</preamble>
 <ipestyle name="basic">
@@ -235,7 +235,7 @@ h
 <layer name="alpha"/>
 <layer name="beta"/>
 <view layers="alpha beta" active="beta"/>
-<text layer="alpha" matrix="1 0 0 1 284 -140" transformations="translations" pos="80 800" stroke="black" type="label" width="175.888" height="17.215" depth="4.82" valign="baseline" size="Huge">GPT in the plane</text>
+<text layer="alpha" matrix="1 0 0 1 284 -136" transformations="translations" pos="80 800" stroke="black" type="label" width="175.888" height="17.215" depth="4.82" valign="baseline" size="Huge">GPT in the plane</text>
 <text matrix="1 0 0 1 56 -168" transformations="translations" pos="192 768" stroke="black" type="label" width="62.286" height="16.934" depth="0" valign="baseline" size="Huge">3SUM</text>
 <text matrix="1 0 0 1 -12 88" transformations="translations" pos="208 704" stroke="black" type="label" width="128.795" height="18.564" depth="6.18" valign="baseline" size="Huge">($d+1$)-SUM</text>
 <text matrix="1 0 0 1 220 -72" transformations="translations" pos="144 672" stroke="black" type="label" width="59.058" height="16.934" depth="0" valign="baseline" size="Huge">3POL</text>
@@ -269,7 +269,6 @@ h
 112 504 m
 112 536 l
 </path>
-<text matrix="1 0 0 1 -148 -168" transformations="translations" pos="216 832" stroke="black" type="label" width="149.713" height="16.939" depth="4.82" valign="baseline" size="Huge">Sorting $X + Y$</text>
 <path matrix="0 -1 1 0 -76 720" stroke="black" pen="fat" arrow="normal/normal">
 112 504 m
 112 536 l
@@ -280,8 +279,6 @@ h
 </path>
 <text matrix="1 0 0 1 -76 60" transformations="translations" pos="116 448" stroke="black" type="label" width="17.843" height="8.814" depth="0" valign="baseline" size="Huge" style="math">=</text>
 <text matrix="1 0 0 1 -76 -52" transformations="translations" pos="144 560" stroke="black" type="label" width="124.06" height="17.215" depth="4.82" valign="baseline" size="Huge">1D-Hopcroft</text>
-<text matrix="1 0 0 1 -76 12" transformations="translations" pos="116 448" stroke="black" type="label" width="19.279" height="11.495" depth="0" valign="baseline" size="Huge" style="math">\simeq</text>
-<text matrix="1 0 0 1 16 36" transformations="translations" pos="56 424" stroke="black" type="label" width="71.805" height="16.936" depth="4.82" valign="baseline" size="Huge">Sorting</text>
 <text matrix="1 0 0 1 56 -104" transformations="translations" pos="192 768" stroke="black" type="label" width="62.286" height="16.934" depth="0" valign="baseline" size="Huge">4SUM</text>
 <path matrix="1 0 0 1 168 184" stroke="black" pen="fat" arrow="normal/normal">
 112 504 m
@@ -291,17 +288,12 @@ h
 112 504 m
 112 536 l
 </path>
-<text matrix="1 0 0 1 108 216" transformations="translations" pos="116 448" stroke="black" type="label" width="19.279" height="11.495" depth="0" valign="baseline" size="Huge" style="math">\simeq</text>
 <text matrix="1 0 0 1 340 0" transformations="translations" pos="116 448" stroke="black" type="label" width="96.07" height="16.934" depth="0" valign="baseline" size="Huge">$=$ 3D-OV</text>
 <text matrix="1 0 0 1 -76 36" transformations="translations" pos="116 448" stroke="black" type="label" width="17.843" height="8.814" depth="0" valign="baseline" size="Huge" style="math">=</text>
 <text matrix="1 0 0 1 -76 -76" transformations="translations" pos="144 560" stroke="black" type="label" width="70.745" height="16.934" depth="0" valign="baseline" size="Huge">2D-OV</text>
 <path matrix="0 -1 1 0 -180 720" stroke="black" pen="fat" arrow="normal/normal">
 112 504 m
 112 536 l
-</path>
-<path matrix="1.27648 0 0 1.27648 -4.56807 -177.632" stroke="black" pen="fat" arrow="normal/normal">
-248 628 m
-292 656 l
 </path>
 <path matrix="-1 0 -0 -1 624 1156" stroke="black" pen="fat" arrow="normal/normal">
 112 504 m
@@ -323,8 +315,8 @@ h
 <text matrix="1 0 0 1 28 64" transformations="translations" pos="260 520" stroke="black" type="label" width="56.189" height="10.282" depth="2.99" valign="baseline" size="large" style="math">O(n \log^2 n)</text>
 <text matrix="1 0 0 1 28 128" transformations="translations" pos="260 520" stroke="black" type="label" width="56.189" height="10.282" depth="2.99" valign="baseline" size="large" style="math">O(n \log^2 n)</text>
 <text matrix="1 0 0 1 28 252" transformations="translations" pos="260 520" stroke="black" type="label" width="56.189" height="10.282" depth="2.99" valign="baseline" size="large" style="math">O(n \log^2 n)</text>
-<text matrix="1 0 0 1 -20 -4" transformations="translations" pos="424 776" stroke="black" type="label" width="30.219" height="9.872" depth="2.99" valign="baseline" size="large" style="math">O(n^d)</text>
-<text matrix="1 0 0 1 -24 -132" transformations="translations" pos="424 776" stroke="black" type="label" width="30.096" height="9.474" depth="2.99" valign="baseline" size="large" style="math">O(n^2)</text>
+<text matrix="1 0 0 1 -20 0" transformations="translations" pos="424 776" stroke="black" type="label" width="30.219" height="9.872" depth="2.99" valign="baseline" size="large" style="math">O(n^d)</text>
+<text matrix="1 0 0 1 24 -128" transformations="translations" pos="424 776" stroke="black" type="label" width="30.096" height="9.474" depth="2.99" valign="baseline" size="large" style="math">O(n^2)</text>
 <text matrix="1 0 0 1 -8 0" transformations="translations" pos="252 584" stroke="black" type="label" width="26.452" height="9.474" depth="2.99" valign="baseline" size="large" style="math">o(n^2)</text>
 <text matrix="1 0 0 1 108 0" transformations="translations" pos="252 584" stroke="black" type="label" width="26.452" height="9.474" depth="2.99" valign="baseline" size="large" style="math">o(n^2)</text>
 <text matrix="1 0 0 1 -24 -4" transformations="translations" pos="240 652" stroke="black" type="label" width="56.189" height="9.474" depth="2.99" valign="baseline" size="large" style="math">O(n^2 \log n)</text>
@@ -350,49 +342,45 @@ h
 469.086 577.751
 471.294 565.776 c
 </path>
-<path matrix="1 0 0 1 0 -24" stroke="black" pen="heavier">
-348.913 717.971 m
-595 718.709 l
-</path>
-<path stroke="black" dash="dashed" pen="heavier">
-564 608 m
-592 608 l
-</path>
-<path matrix="1 0 0 1 0 -60" stroke="black" dash="dashed" pen="heavier">
-564 608 m
-592 608 l
-</path>
 <path stroke="black" dash="dotted" pen="heavier">
 280 728 m
 280 744 l
 </path>
-<path stroke="black" dash="dashed" pen="heavier">
+<path matrix="5.8 0 0 1 -1438.4 0" stroke="black" dash="dashed" pen="heavier">
 248 632 m
 308 632 l
 </path>
-<path matrix="1 0 0 1 0 68" stroke="black" dash="dashed" pen="heavier">
-248 632 m
-308 632 l
-</path>
-<path matrix="1 0 0 1 4 132" stroke="black" dash="dashed" pen="heavier">
-248 632 m
-308 632 l
-</path>
-<path matrix="1 0 0 1 352 180" stroke="black" pen="fat" arrow="normal/normal">
+<path matrix="1 0 0 1 352 184" stroke="black" pen="fat" arrow="normal/normal">
 112 504 m
 112 536 l
 </path>
-<path matrix="1 0 0 1 352 244" stroke="black" pen="fat" arrow="normal/normal">
+<path matrix="1 0 0 1 352 248" stroke="black" pen="fat" arrow="normal/normal">
 112 504 m
 112 536 l
 </path>
-<path matrix="1 0 0 1 184 -4" stroke="black" dash="dotted" pen="heavier">
+<path matrix="1 0 0 1 184 0" stroke="black" dash="dotted" pen="heavier">
 280 728 m
 280 744 l
 </path>
-<path matrix="1 0 0 1 0 40" stroke="black" pen="heavier">
-348.913 717.971 m
-595 718.709 l
+<path matrix="5.8 0 0 1 -1438.4 68" stroke="black" dash="dashed" pen="heavier">
+248 632 m
+308 632 l
+</path>
+<path matrix="5.8 0 0 1 -1438.4 132" stroke="black" dash="dashed" pen="heavier">
+248 632 m
+308 632 l
+</path>
+<path stroke="black" pen="heavier">
+348 764 m
+596 764 l
+</path>
+<path matrix="1 0 0 1 0 -64" stroke="black" pen="heavier">
+348 764 m
+596 764 l
+</path>
+<path stroke="black" pen="fat" arrow="normal/normal">
+324 616 m
+412 656 l
 </path>
 </page>
 </ipe>
