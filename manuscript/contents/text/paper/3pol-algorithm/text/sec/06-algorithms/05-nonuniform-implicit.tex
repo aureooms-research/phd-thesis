@@ -44,7 +44,9 @@ hold
 \end{lemma}
 
 \paragraph{Interleavings}
-Let $\mathcal{P} = (P_1,P_2,\ldots,P_m)$ be a tuple of $m$ univariate nonzero
+Let $\mathcal{P} = (P_1,P_2,\ldots,P_m)$ be a tuple of $m$
+(nonzero)
+univariate
 polynomials.
 Let $\{\,p_{i,1} < \cdots < p_{i,\Delta_i}\,\}$
 be the set of real roots of $P_i$ (\emph{without} multiplicities).
@@ -72,7 +74,8 @@ $(b,b')$-cells that encode equivalence classes. Each cell $\mathcal{C}$ is
 mapped to a unique interleaving $I$, and if we take any two points $(a_1,a_1')$
 and $(a_2,a_2')$ inside $\mathcal{C}$,
 \(I\) is realized by
-both $(F(a_1,b,z),F(a_1',b',z))$ and
+both polynomial tuples
+$(F(a_1,b,z),F(a_1',b',z))$ and
 $(F(a_2,b,z),F(a_2',b',z))$.
 %
 It is possible that a degenerate case arises where we cannot associate an
@@ -92,7 +95,9 @@ we do not sort the roots explicitly, but we must be able to recover the order
 from the previous computation steps.
 
 \paragraph{$\gamma_{b,b'}$ and $\delta_{b}$ curves}
-We consider the set of interleavings $\mathcal{I}$ that $(F(x,b,z),F(y,b',z))$
+We consider the set of interleavings $\mathcal{I}$ that the
+polynomial tuple
+$(F(x,b,z),F(y,b',z))$
 realizes, where $z$ is a variable, and $x$ and $y$ are parameters.
 We identify four types of event that can happen when the parameters $x$ and $y$
 vary continuously (ignoring zero polynomials):
@@ -118,7 +123,7 @@ have at least one common root.%
 and curves.}
 Note that this curve is defined
 by the equation
-$\res(F(x,b,z),F(y,b,z);z) = 0$,
+\[\res(F(x,b,z),F(y,b,z);z) = 0,\]
 that is, the set of pairs $(x,y)$ for which the resultant (in $z$) of
 $F(x,b,z)$ and $F(y,b,z)$ vanishes. This resultant is a polynomial in
 $\mathbb{R}[x,y]$ of degree $O(\deg(F)^2)$ and can be computed in constant time~\cite{CLO07}.
@@ -314,7 +319,10 @@ This gives us the information needed for the binary search in step (2).
 \paragraph{Analysis}
 The analysis mirrors the explicit case (described immediately after
 Lemma~\ref{lem:batch}). Combining Lemma~\ref{lem:preprocessing-implicit} and
-Lemma~\ref{lem:batch} yields a $O( {(ng)}^{4/3+\varepsilon} + n^2 \log g /
-g)$-depth bounded-degree ADT for 3POL\@. By optimizing over $g$, we get $g =
+Lemma~\ref{lem:batch} yields a
+bounded-degree ADT of depth $O({(ng)}^{4/3+\varepsilon} + n^2 \log g / g)$
+for 3POL\@.
+%
+By optimizing over $g$, we get $g =
 \Theta(n^{2/7-\varepsilon})$, and the previous expression simplifies to
 $O(n^{12/7+\varepsilon})$, proving Theorem~\ref{thm:implicit:nonuniform}.

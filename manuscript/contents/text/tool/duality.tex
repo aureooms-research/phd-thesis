@@ -2,6 +2,7 @@
 \label{sec:point-configurations:duality}
 
 Technically speaking, the encoding we describe for realizable chirotopes
+in Paper~\ref{paper:order-type-encoding}
 encodes the chirotope of a given arrangement of lines or hyperplanes.
 Moreover, for ease of presentation, we make the assumption that the vertices of
 this arrangement have finite coordinates. In the two-dimensional case, this
@@ -14,15 +15,15 @@ In two dimensions, we wish to encode order types of point configurations.
 Since our encoding construction algorithm works with an arrangement of lines as
 input, we need a mapping from those primal points to their dual lines. This
 mapping should preserve the order type of the point configuration, hence it
-needs to be orientation-preserving. One such orientation-preserving duality is
+needs to be \emph{order-preserving}. One such order-preserving duality is
 the mapping \((a,b) \leftrightarrow y = ax - b\) (see Figure~\ref{fig:duality}).
-\aurelien{This is not orientation-preserving. It is orientation-reversing.
+\aurelien{This is not order-preserving. It is orientation-reversing.
 Combinatorially equivalent.}
 
 \begin{figure}
   \centering{}
   \includegraphics[scale=1]{figures/duality}
-  \caption{Orientation preserving duality: ``\(p\) is above \(l\)'' if and only if
+  \caption{Order preserving duality: ``\(p\) is above \(l\)'' if and only if
   ``\(l'\) is above \(p'\)''.}\label{fig:duality}
 \end{figure}
 
@@ -32,8 +33,8 @@ configuration defining a vertical line, that is, with the same \(x\) coordinate.
 This is easily done by performing a tiny rotation in the primal.
 This (proper) rotation does not change the order type of the point set.
 
-In higher dimension, the orientation-preserving point-line duality generalizes
-to the following orientation-preserving point-hyperplane duality: We map each
+In higher dimension, the order-preserving point-line duality generalizes
+to the following order-preserving point-hyperplane duality: We map each
 \(d\)-dimensional point \((x_1, x_2, \ldots, x_d) \in \mathbb{R}^d\) to the hyperplane \(y_d =
 \sum_{i=1}^{d-1} x_i y_i - x_d \) and the hyperplane \(x_d = \sum_{i=1}^{d-1}
 y_i x_i - y_d \) to the \(d\)-dimensional point \(( y_1, y_2, \ldots, y_d) \in

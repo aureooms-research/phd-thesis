@@ -22,7 +22,7 @@ problems in subquadratic time.
 	label=problem:UCSPTUC%
 ]
 	Let $C_1,C_2,C_3$ be three unit circles in $\mathbb{R}^2$ with centers
-	$c_1,c_2,c_3$, and, for each $i=1,2,3$, let $S_i =
+	$c_i$, and, for each $i=1,2,3$, let $S_i =
 	\{\,(x_{i,1},y_{i,1}),(x_{i,2},y_{i,2}),\ldots,(x_{i,n},y_{i,n})\,\}$ be a
 	set of $n$ points lying on $C_i$. Decide whether any triple of points
 	$(p_1,p_2,p_3) \in S_1 \times S_2 \times S_3$ spans a unit circle.
@@ -72,11 +72,14 @@ problems in subquadratic time.
 	+\left(\frac{1-t_3^2}{1+t_3^2},\frac{2t_3}{1+t_3^2}\right)$ span a unit
 	circle.
 
-	Hence, the sets
+	Hence,
+	the polynomial \(F\)
+	together with
+	the sets
 	$\{\,t_{1,1},t_{1,2},\ldots,t_{1,n}\,\}$,
 	$\{\,t_{2,1},t_{2,2},\ldots,t_{2,n}\,\}$, and
 	$\{\,t_{3,1},t_{3,2},\ldots,t_{3,n}\,\}$
-	together with $F$ give an instance of 3POL we can solve in subquadratic
+	give an instance of 3POL we can solve in subquadratic
 	time with our new algorithms.
 
 	Unfortunately, the computation $\sqrt{\cdot}$ is not allowed in our model, and
@@ -95,11 +98,12 @@ problems in subquadratic time.
 		\end{displaymath}
 	\end{problem}
 
-	The sets
+	Hence, the polynomial \(F\) together with
+	the sets
 	$\{\,t_{1,1}^2,t_{1,2}^2,\ldots,t_{1,n}^2\,\}$,
 	$\{\,t_{2,1}^2,t_{2,2}^2,\ldots,t_{2,n}^2\,\}$, and
 	$\{\,t_{3,1}^2,t_{3,2}^2,\ldots,t_{3,n}^2\,\}$
-	together with $F$ give an instance of this variant of 3POL\@.
+	give an instance of this variant of 3POL\@.
 	Note that those sets are computable in our models.
 
 	We can tweak our algorithms so that they work for this new version of

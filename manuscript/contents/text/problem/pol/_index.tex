@@ -185,7 +185,7 @@ in Problem~\ref{problem:gpt-d} becomes
 and solving the problem amounts to deciding Element Uniqueness.
 
 Consider points on the \emph{weird} moment curve $\omega_d(t) = (t, t^2, \ldots,
-t^{d-1}, t^{d+1})$~\cite{Er99b}.
+t^{d-1}, t^{d+1})$.
 If our input only consists of points $\omega_d(q_i)$ on this curve then the
 determinant becomes
 %
@@ -198,8 +198,8 @@ determinant becomes
 \end{pmatrix} = |V(q)| \cdot \sum_{i=1}^{d+1} q_i,
 \end{displaymath}
 %
-which is the predicate we want to test for $(d+1)$-SUM (modulo the $|V(q)|$
-factor which is nonzero for distinct input numbers).
+which is the predicate we want to test for $(d+1)$-SUM~\cite{Er99b}
+(modulo the $|V(q)|$ factor which is nonzero for distinct input numbers).
 
 In the plane, this reduction from instances of 3SUM to points on
 the cubic curve \(\omega_2(t) = (t, t^3)\) is also part of folklore.
@@ -250,19 +250,21 @@ With the following corollary
     \(\Omega(n \log n)\).
 \end{corollary}
 
-The question now is whether we can do the same as in the Element Uniqueness vs
-Sorting case: show that the decision problem is as hard as the identification
-problem. Ben-Or shows exactly that
+The question now is whether we can do the same as in the Element Uniqueness
+versus Sorting case: show that the decision problem is as hard as the identification
+problem. Ben-Or~\cite{Be83} shows exactly that.
 %
 \begin{theorem}[name=Ben-Or~\cite{Be83},label=thm:Be83]
-    Given any set \(W \subset \mathbb{R}^d\),
-    let \(N = \max \{\, \# W , \#(\mathbb{R}^d - W)\,\}\),
-    where \(\#(\cdot)\) denotes the number of connected components of a set.
-    The depth of any algebraic
+    Given a set \(W \subset \mathbb{R}^d\) having \(N\) connected components,
+    the depth of any algebraic
     computation tree or bounded-degree algebraic decision tree
     deciding whether an input point \(q \in \mathbb{R}^d\) is in \(W\)
     is \(\Omega(\log N - d)\).
 \end{theorem}
+%
+Because this Theorem applies to both \(W\) and its complement, we can replace
+\(N\) by \(\max \{\, \# W , \#(\mathbb{R}^d - W)\,\}\) in the statement,
+where \(\# X\) denote the number of connected components of the set \(X\).
 
 \begin{corollary}
     Any algebraic computation tree or bounded-degree algebraic decision tree

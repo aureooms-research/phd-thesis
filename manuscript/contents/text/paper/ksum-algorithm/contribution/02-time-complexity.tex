@@ -79,7 +79,8 @@ This provides an implementation of the pruning step in Meiser's algorithm, that
 is, step~\step{4} of Algorithm~\ref{algo:meiser}.
 
 \begin{corollary}\label{cor:double}
-	Given a simplex $\simplex$, we can compute the \(Z\) $k$-SUM hyperplanes
+	In the word-RAM model,
+	given a simplex $\simplex$, we can compute the \(Z\) $k$-SUM hyperplanes
 	intersecting its interior in $\tilde{O}(n^2 (n^{\lceil \frac k2 \rceil}
 	\log M + Z))$ time, where $\log M$ is proportional to the number of bits
 	necessary to represent $\simplex$.
@@ -98,12 +99,14 @@ need to be able to quickly solve the following problem.
 Here the standard $k$-SUM algorithm can be applied, taking advantage of
 the fact that the coordinates lie in a small discrete set.
 \begin{lemma}\label{lem:ksum}
+	In the word-RAM model,
 	$k$-SUM on $n$ integers $\in [-V,V]$ can be solved in time
 	$\tilde{O}(n^{\ckt}\log V)$.
 \end{lemma}
 
 \begin{lemma}\label{lem:multiple}
-	Multiple $k$-SUM can be solved in time $\tilde{O}(dn^{\ckt+2}\log M)$.
+	In the word-RAM model,
+	multiple $k$-SUM can be solved in time $\tilde{O}(dn^{\ckt+2}\log M)$.
 \end{lemma}
 \begin{proof}
 	Let $\mu_{i,j}$ and $\delta_{i,j}$ be the numerator and denominator of

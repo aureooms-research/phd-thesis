@@ -10,7 +10,7 @@
 %could improve on the fraction following the '2-' in the exponent of the first
 %term (Corollary 1, page 11)? I do not think so. Maybe it is worth mentioning.}
 
-In this section, we combine a standard dominance reporting
+We combine a standard dominance reporting
 algorithm~\cite{PS85} with Matou\v{s}ek's algorithm~\cite{Ma93} to prove
 Lemma~\ref{lem:dominance}.
 For a pair of blue and red points in $\mathbb{R}^k$, we say that the blue point
@@ -183,10 +183,11 @@ By combining~(\ref{eq:tkn})~and~(\ref{eq:tn'}) we obtain
 	=
 	\max_{b^k N\le N'} T_k(N)
 	\le
+	c_1
 	\max_{b^k N\le N'} \mleft[
-	c_1r^{2d} \,T_{k-1}\mleft(N\mright)
-	+ c_1r^{2d} \,T_k\mleft(\frac{N}{r^{d+1}}\mright)
-	+ c_1 N\mright].
+	r^{2d} \,T_{k-1}\mleft(N\mright)
+	+ r^{2d} \,T_k\mleft(\frac{N}{r^{d+1}}\mright)
+	+ N\mright].
 \end{displaymath}
 The maximum of a sum is always bounded by the sum of the maxima of its terms,
 hence,
@@ -265,12 +266,12 @@ We want
 2c_1r^{d-1} - \frac{c_1}{c_2} \ge 1.
 \end{equation*}
 For the first inequality, we can set the left hand side to be equal to
-$c_1 r^{-\varepsilon'} = \frac{1}{2}$
-with some small $\varepsilon' = \frac{1 + \log c_1}{\log r}$.
+$c_1 r^{-\epsilon'} = \frac{1}{2}$
+with some small $\epsilon' = \frac{1 + \log c_1}{\log r}$.
 %
 Hence,
-$2d - \alpha(d+1) = -\varepsilon'$, and for $\varepsilon = \frac
-{\varepsilon'} {d+1}$, we get $\alpha = \frac{2d}{d+1} + \varepsilon$.
+$2d - \alpha(d+1) = -\epsilon'$, and for $\epsilon = \frac
+{\epsilon'} {d+1}$, we get $\alpha = \frac{2d}{d+1} + \epsilon$.
 %
 The second inequality is equivalent to
 $2r^{d-1} \ge \frac{1}{c_1} + \frac{1}{c_2}$,
@@ -279,20 +280,20 @@ $r > 1, d \ge 1, c_1 \ge 1, c_2 \ge 1$.
 
 We now have
 \begin{displaymath}
-	T(N') = O\mleft({N'}^{\frac{2d}{d+1}+\varepsilon}\mright),
+	T(N') = O\mleft({N'}^{\frac{2d}{d+1}+\epsilon}\mright),
 \end{displaymath}
 where
-$\varepsilon = \frac{1+\log c_1}{(d+1)\log r}$
+$\epsilon = \frac{1+\log c_1}{(d+1)\log r}$
 can be chosen arbitrarily small by picking
-$r = {(2c_1)}^{1/\varepsilon (d+1)}$
-arbitrarily large.
+an arbitrarily large
+$r = {(2c_1)}^{1/\epsilon (d+1)}$.
 
 \paragraph{Remark}
 The choice $b=r^{d+1}$ gives a simpler analysis. Although giving more
 freedom to the value of $b$ --- as in Chan's paper --- yields a slightly better
-relation between $\varepsilon$ and $r$, namely
-$r>c_1^{1/\varepsilon (d+1)}$, it does not get rid of the dependency
-of $\varepsilon$ in $r$, unless $c_1=1$.
+relation between $\epsilon$ and $r$, namely
+$r>c_1^{1/\epsilon (d+1)}$, it does not get rid of the dependency
+of $\epsilon$ in $r$, unless $c_1=1$.
 
 \paragraph{General case}
 When $N' \ge 2$ is not a power of $r^{d+1}$, we use the fact that
@@ -307,22 +308,22 @@ $T(N') \le T(N'+1)$ by definition,
 	\\
 	&=
 	O\mleft({(r^{d+1})}^{(\lfloor\log_{r^{d+1}} N'\rfloor + 1
-	)(\frac{2d}{d+1}+\varepsilon)}\mright)
+	)(\frac{2d}{d+1}+\epsilon)}\mright)
 	\\
 	&=
-	O\mleft({(r^{d+1})}^{\frac{2d}{d+1}+\varepsilon}
-	{{(r^{d+1})}^{\lfloor\log_{r^{d+1}} N'\rfloor}}^{\frac{2d}{d+1}+\varepsilon}\mright)
+	O\mleft({(r^{d+1})}^{\frac{2d}{d+1}+\epsilon}
+	{{(r^{d+1})}^{\lfloor\log_{r^{d+1}} N'\rfloor}}^{\frac{2d}{d+1}+\epsilon}\mright)
 	\\
 	&=
 	O\mleft({{(r^{d+1})}^{\lfloor\log_{r^{d+1}}
-	N'\rfloor}}^{\frac{2d}{d+1}+\varepsilon}\mright)
+	N'\rfloor}}^{\frac{2d}{d+1}+\epsilon}\mright)
 	\\
 	&=
 	O\mleft({{(r^{d+1})}^{\log_{r^{d+1}}
-	N'}}^{\frac{2d}{d+1}+\varepsilon}\mright)
+	N'}}^{\frac{2d}{d+1}+\epsilon}\mright)
 	\\
 	&=
-	O\mleft({N'}^{\frac{2d}{d+1}+\varepsilon}\mright).
+	O\mleft({N'}^{\frac{2d}{d+1}+\epsilon}\mright).
 \end{align*}
 \paragraph{Finally} We can now bound $T_k(N)$ using the upper bound for
 $T(N')$,
@@ -333,15 +334,15 @@ $T(N')$,
 	=
 	T(b^{k} N)
 	=
-	O\mleft({(b^{k} N)}^{\frac{2d}{d+1}+\varepsilon}\mright)
+	O\mleft({(b^{k} N)}^{\frac{2d}{d+1}+\epsilon}\mright)
 	=
-	2^{O(k)}{N}^{\frac{2d}{d+1}+\varepsilon}.
+	2^{O(k)}{N}^{\frac{2d}{d+1}+\epsilon}.
 \end{displaymath}
 Hence,
-$T_k(N) = 2^{O(k)}N^{\frac{2d}{d+1}+\varepsilon_r}$,
+$T_k(N) = 2^{O(k)}N^{\frac{2d}{d+1}+\epsilon_r}$,
 and since $d=\binom{\Delta+2}{2}-1$, we have
 \begin{displaymath}
-	T_k(N) = 2^{O(k)}N^{2-\frac{4}{{\Delta}^2+3\Delta+2}+\varepsilon_r}.
+	T_k(N) = 2^{O(k)}N^{2-\frac{4}{{\Delta}^2+3\Delta+2}+\epsilon_r}.
 \end{displaymath}
 To that complexity we add a constant time unit for each output
 pair in steps \textbf{1} and \textbf{2}.
@@ -350,6 +351,6 @@ pair in steps \textbf{1} and \textbf{2}.
 %\remark{} Note that, in our case, one could use the
 %$\gamma_{b,b'}$-$\hat{\gamma}_{a,a'}$ duality together with vertical
 %decomposition (as in \S\ref{sec:algo:point-curves-location}) and get
-%away with a complexity of $2^{O(k)}N^{\frac 43+\varepsilon}$. However, using
+%away with a complexity of $2^{O(k)}N^{\frac 43+\epsilon}$. However, using
 %the Veronese embedding and point-hyperplane duality is more general, as the
 %algorithm can be applied to any input polynomial inequalities.

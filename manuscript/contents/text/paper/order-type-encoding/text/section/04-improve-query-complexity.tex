@@ -305,15 +305,13 @@ list of subcells intersected by a given pseudoline. If we can achieve this in
 constant time, then we can also access the first intersection index this
 pseudoline has in this subcell.
 
-It is not hard to see that this operation boils down to computing
+It is not hard to see that this mapping operation boils down to computing
 \(\operatorname{rank}_{\texttt{10}}(j_i)\) where the data array is composed of
 the incidence bits of the given pseudoline. Hence this can be solved by adding
 an auxiliary rank-select data structure to each trace~\cite{RRS07,BH17}.
 Another solution is to reuse Observation~\ref{obs:small-universe-functions} to
 construct a lookup table for all \(2^{\Theta(r^2)}\) possible incidence
 vectors.
-%
-\aurelien{Maybe add rank-select data structure to preliminaries?}
 
 With the first solution, the space used by the traces stays the same up to a
 constant factor. With the second solution, the space used is dominated by the

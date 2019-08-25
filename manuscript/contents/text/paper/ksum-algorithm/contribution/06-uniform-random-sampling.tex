@@ -23,16 +23,15 @@ $\alpha_i$.
 	and preprocessing time $O(k^2 n)$.
 \end{lemma}
 \begin{proof}
-	We want to pick
-	an assignment
-	$a=\enum{(\alpha_1,x_{i_1}),(\alpha_2,x_{i_2}),\ldots,(\alpha_k,x_{i_k})}$
+	We want to pick an assignment
+	$a=\enum{(\alpha_1,x_{i_1}),\ldots,(\alpha_k,x_{i_k})}$
 	uniformly at random. Note that all $x_i$ are distinct while the $\alpha_j$
 	can be equal.
 
 	Without loss of generality, suppose $\alpha_1 \le \alpha_2 \le \cdots \le
 	\alpha_k$. There is a bijection between assignments and lexicographically
 	sorted $k$-tuples
-	$((\alpha_1,x_{i_1}),(\alpha_2,x_{i_2}),\ldots,(\alpha_k,x_{i_k}))$.
+	$((\alpha_1,x_{i_1}),\ldots,(\alpha_k,x_{i_k}))$.
 
 	Observe that $x_{i_j}$ can be drawn independently of $x_{i_{j'}}$ whenever
 	$\alpha_j \neq \alpha_{j'}$. Hence, it suffices to generate a lexicographically sorted

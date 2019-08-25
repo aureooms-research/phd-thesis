@@ -3,9 +3,9 @@ Since publication of those papers, a few developments have surfaced.
 Ezra and Sharir~\cite{ES17} show how trading simplices of the bottom-vertex
 triangulation for prisms of the vertical decomposition in Meiser's algorithm
 yields a shallower decision tree of depth \(O(n^2 \log n)\). Essentially, the
-improvement over our result in paper A lies in the fact that,
-for vertical decomposition, the sample size can be taken to be an order of
-magnitude smaller.
+improvement over our result in Paper~\ref{paper:ksum-algorithm}
+lies in the fact that, for vertical decomposition, the sample size can be taken
+to be an order of magnitude smaller.
 
 %All nonuniform algorithm for \(k\)-SUM we have mentioned query the input with
 %\(s\)-linear queries: a \(s\)-linear query asks for the sign of weighted sums of
@@ -18,13 +18,14 @@ magnitude smaller.
 %questions about the input: this algorithm probes the input
 %with (\(2k-2\))-linear queries while the others use \(n\)-linear queries.
 
-In a breakthrough paper, Kane, Lovett, and Moran~\cite{KLM18}, give a
-\(O(n \log^2 n)\) nonuniform linear decision tree for \(k\)-SUM, almost
-matching the \(\Omega(n \log n)\) lower bound. This improves both on paper A
-and Ezra and Sharir~\cite{ES17}.
+In a breakthrough paper, Kane, Lovett, and Moran~\cite{KLM18} give a
+linear decision tree of depth \(O(n \log^2 n)\) for \(k\)-SUM, almost
+matching the \(\Omega(n \log n)\) lower bound. This improves both on
+Paper~\ref{paper:ksum-algorithm} and Ezra and Sharir~\cite{ES17}.
 
 In~\cite{Ch18}, Chan shaves more logarithmic factors from the time complexity
 of uniform algorithms for 3SUM and 3POL. While we focused on applications that solve
-3SUM-hard geometric problems with one-dimensional input in paper B, he shows how
+3SUM-hard geometric problems with one-dimensional input in
+Paper~\ref{paper:3pol-algorithm}, he shows how
 the ideas that work for 3POL also work for some 3SUM-hard geometric problems
 with two-dimensional data.

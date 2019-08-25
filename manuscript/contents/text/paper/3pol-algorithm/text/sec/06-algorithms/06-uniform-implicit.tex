@@ -176,14 +176,15 @@ For each $A_i$ we have thus a single vector of reals
 	),
 \end{displaymath}
 and for each $B_j$ we have $2^{O(g^2)}$ vectors of linear inequalities
-\begin{displaymath}
+\begin{multline*}
 	q_j = (
 		x \bowtie_{u_{1,1}} u_{1,1}, x \bowtie_{v_{1,1}} v_{1,1},
 		x \bowtie_{u_{1,2}} u_{1,2}, x \bowtie_{v_{1,2}} v_{1,2},
-		\ldots,
+		\ldots \\
+		\ldots ,
 		x \bowtie_{u_{g,g}} u_{g,g}, x \bowtie_{v_{g,g}} v_{g,g},
 	),
-\end{displaymath}
+\end{multline*}
 where each $(\bowtie_{u_{k,l}}, u_{k,l}, \bowtie_{v_{k,l}}, v_{k,l})$ is an element of
 \begin{displaymath}
 	\{\, ( > , u , < , v ) \st (u,v) \in \mathcal{I}_{\rho(k,l)}\,\}

@@ -61,7 +61,7 @@ A decision tree is a constant-degree rooted tree whose internal nodes encode
 queries to an omniscient oracle and whose leaves encode the result of the
 computation.
 
-\todo{Define input class and \emph{Information Theoretic Lower Bound} (ITLB).}
+\todo{Define input class and \emph{Information Theoretic Lower Bound}.}
 
 \todo{Define oracle}
 
@@ -121,7 +121,8 @@ where \(p \in \mathbb{R}[x_1,\ldots, x_n]\) is a polynomial of constant
 degree. Again, operations not involving the input are free.
 
 \subsubsection{Algebraic Computation Trees}
-Computation trees differ from decision trees in that instead of asking
+Computation trees differ from decision trees in that instead of exclusively
+asking
 ``yes/no'' questions, they perform arithmetic operations on variables whose
 results can be remembered and reused as operands, but only inspected using
 comparison queries. This allows, for instance, to make decision based on

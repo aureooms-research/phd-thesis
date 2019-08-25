@@ -26,15 +26,17 @@ we show how to efficiently implement Meiser's algorithm in the word-RAM model
 when applied to \(k\)-SUM. Can the same be done for the algorithms of Ezra and
 Sharir~\cite{ES17} and Kane, Lovett, and Moran~\cite{KLM18}?
 \begin{openquestion}
-Is there a word-RAM algorithm for \(k\)-SUM using \(n^{3 - \Omega(1)}\)
-linear queries and running in time \(n^{\frac{k}{2}+O(1)}\)?
+Is there a word-RAM algorithm for \(k\)-SUM
+running in time \(n^{\frac{k}{2}+O(1)}\)
+accessing the input through \(n^{3 - \Omega(1)}\) \(n\)-linear queries only?
 \end{openquestion}
 
 We also have not managed to match the running time of the best known uniform
 algorithm (see \S\ref{sec:problem:sum:uniform-algorithms}).
 \begin{openquestion}
-Is there a word-RAM algorithm for \(k\)-SUM using \(n^{o(k)}\) linear queries and
-running in time \( \tilde{O}(n^{\lceil \frac k2 \rceil})\)?
+Is there a word-RAM algorithm for \(k\)-SUM
+running in time \( \tilde{O}(n^{\lceil \frac k2 \rceil})\)
+accessing the input through \(n^{o(k)}\) \(n\)-linear queries only?
 \end{openquestion}
 
 Gr\o nlund and Pettie~\cite{GP18}
@@ -75,7 +77,7 @@ there is no \(3\)-linear decision tree of depth \(o(n^2)\) for
 3SUM~\cite{Er99a} (see \S\ref{sec:problem:sum}).
 We want to know whether better \(4\)-linear decision trees exists for 3SUM.
 \begin{openquestion}
-	Is there a \(o(n^{3/2})\)-depth \(4\)-linear decision tree for 3SUM?
+	Is there a \(o(n^{\frac 32})\)-depth \(4\)-linear decision tree for 3SUM?
 \end{openquestion}
 
 If this is the case, then we would also like to know if this model of

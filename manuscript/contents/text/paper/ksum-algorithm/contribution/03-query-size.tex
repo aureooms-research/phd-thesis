@@ -12,7 +12,8 @@ forming a solution is found in exactly one of the subproblems.
 The transformation can be carried out in time $O(n\log n + b^{k-1})$.
 \end{lemma}
 \begin{proof}
-Given an instance on $n$ numbers, we can sort them in time $O(n\log n)$, then partition
+Given an instance on $n$ numbers, we can sort them in $O(n\log n)$ time.
+Partition
 the sorted sequence into \(b\) consecutive blocks \(B_1, B_2,\ldots ,B_b\) of equal size.
 This partition can be associated with a partition of the real line
 into $b$ intervals, say $I_1, I_2,\ldots ,I_b$. Now consider the partition of $\R^k$
@@ -31,18 +32,18 @@ second contribution.
 The following two corollaries are obtained by taking
 $b=\Theta(\polylog(n))$, and $b=\Theta(n^{\alpha})$, respectively
 \begin{corollary}\label{cor:logn}
-There exists an $o(n)$-linear decision tree of
+There exists a $o(n)$-linear decision tree of
 depth $\tilde{O}(n^3)$ solving the \(k\)-SUM problem.
-Moreover, this decision tree can be implemented as an
-$\tilde{O}(n^{\ceil{\frac{k}{2}}+8})$ Las Vegas algorithm.
+This decision tree can be implemented as a
+$\tilde{O}(n^{\ceil{\frac{k}{2}}+8})$ Las Vegas word-RAM algorithm.
 \end{corollary}
 \begin{corollary}\label{cor:ne}
 For any $\alpha$ such that $0<\alpha<1$,
-there exists an $O(n^{1-\alpha})$-linear decision tree of
-depth $\tilde{O} (n^{3+(k-4)\alpha})$ solving the \(k\)-SUM problem.
-Moreover, this decision tree can be implemented as an
+there exists a $O(n^{1-\alpha})$-linear decision tree of
+depth $\tilde{O}(n^{3+(k-4)\alpha})$ solving the \(k\)-SUM problem.
+This decision tree can be implemented as a
 $\tilde{O}(n^{(1+\alpha)\frac{k}{2} + 8.5})$
-Las Vegas algorithm.
+Las Vegas word-RAM algorithm.
 \end{corollary}
 
 Note that the latter query complexity improves on $\tilde{O}(n^{\frac{k}{2}})$

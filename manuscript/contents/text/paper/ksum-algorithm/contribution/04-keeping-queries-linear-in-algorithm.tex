@@ -39,9 +39,13 @@ Step \step{2} can thus be achieved using \(O(1)\) \((2k)\)-linear queries per
 hyperplane of \(\net\).
 
 In step \step{4}, the
-recursive step is carried out on \(q' = \nu + \lambda_{\theta} \vec{\nu q} = \nu -
+recursive step is carried out on
+\[
+	q' = \nu + \lambda_{\theta} \vec{\nu q} = \nu -
 \frac{c_{\theta} + d_{\theta} \cdot \nu}{d_{\theta} \cdot \vec{\nu q}}
-\vec{\nu q}\) hence comparing \(\lambda'_i\) to \(0\) amounts to performing the
+\vec{\nu q},
+\]
+hence, comparing \(\lambda'_i\) to \(0\) amounts to performing the
 query \(-\frac{d_i \cdot \vec{\nu q}'}{c_i + d_i \cdot \nu'}
 \ask{>} 0\), which is not linear in \(q\). The same goes for comparing
 \(\lambda'_i\) to \(\lambda'_j\) with the query
