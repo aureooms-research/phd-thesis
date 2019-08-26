@@ -1,11 +1,27 @@
-\chapter{Point Configurations}%
-\label{chaper:point-configurations}
+\chapter{Chirotopes}%
+\label{chapter:chirotopes}
+
+Chirotopes are the generalization of order types introduced in
+\S\ref{sec:problem:pol:lb}.
+%
+We generalize Definitions~\ref{def:order-type}
+and~\ref{def:realizable-order-type} to point sets in \(\mathbb{R}^d\).
+%
+\input{text/definition/chirotope}
 
 In this chapter,
-we give details on two essential ingredients of our algorithms:
+we give details on two essential ingredients of our data structures in
+Paper~\ref{paper:order-type-encoding}:
 the classic point-hyperplane duality
 and
-the canonical labeling of point configurations.
+the canonical labeling of order types and chirotopes.
+%
+The first one is necessary to be able to apply the encodings we obtain
+for line arrangements
+and hyperplane arrangements to point configurations.
+%
+The second is used to get the preprocessing time of those encodings down to
+\(O(n^d)\).
 
 \input{text/tool/duality}
 

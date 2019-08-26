@@ -1,0 +1,29 @@
+\begin{definition}[%
+	name={Chirotope of a Point Set in \(\mathbb{R}^d\)},
+	label=definition:chirotope%
+]
+	Given a set of
+	\(n\) points \(p_i = (p_{i,1},p_{i,2}, \ldots, p_{i,d}) \in \mathbb{R}^d\),
+	its (rank-(\(d+1\))) chirotope is the function \(\chi \colon\,
+	{[n]}^{d+1} \to \{\, - , 0 , +\,\}\) such that
+	\begin{displaymath}
+		\chi(i_1, i_2, \ldots, i_{d+1}) =
+		\det
+		\left(
+		\begin{matrix}
+			1 & p_{i_1,1} & p_{i_1,2} & \hdots & p_{i_1,d} \\
+			1 & p_{i_2,1} & p_{i_2,2} & \hdots & p_{i_2,d} \\
+			\vdots & \vdots & \vdots & \ddots & \vdots \\
+			1 & p_{i_{d+1},1} & p_{i_{d+1},2} & \hdots & p_{i_{d+1},d}
+		\end{matrix}
+		\right),
+	\end{displaymath}
+	up to isomorphism.
+\end{definition}
+%
+\begin{definition}[name={Realizable Chirotope},label={def:realizable-chirotope}]
+When considering an arbitrary function \(f \colon\, {[n]}^{d+1} \to \{\, -, 0,
++\,\}\) we say that \(f\) is a realizable chirotope if there is a
+\(n\)-set \(P \subset \mathbb{R}^2\)
+such that its chirotope is \(f\).
+\end{definition}
