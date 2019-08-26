@@ -2,8 +2,6 @@
 
 \todo{Add definition of the order type / chirotope function}
 
-\todo{Mention cuttings!!!}
-
 In Paper~\ref{paper:order-type-encoding},
 we are interested in \emph{compact} encodings for
 order types: we wish to design data structures using as few bits as possible
@@ -20,6 +18,10 @@ Moreover, since the information-theoretic lower bound for realizable order
 types is only \(\Omega(n \log n)\), we must ask if this space bound is
 approachable for those order types while keeping orientation queries reasonably
 efficient.
+%
+Our contributions rely heavily on the hierarchical cuttings of
+Chazelle~\cite{C93} described in detail in
+\S\ref{sec:divide-and-conquer:hierarchical-cuttings}.
 
 For ease of presentation, we state our results in terms of the encoding
 definition of \S\ref{sec:models-of-computation:data-structures:encodings} that

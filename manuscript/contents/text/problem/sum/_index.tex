@@ -82,18 +82,9 @@ Our algorithms apply to this more general problem with only minor changes.
 
 \subsection{Point Location}
 
-\todo{Rewrite this.}
-
-The \(k\)-SUM problem amounts to deciding in $n$-dimensional space, for each hyperplane
-\(H \in \mathcal{H}\) of equation \(x_{i_1} + x_{i_2} + \cdots +x_{i_k} = 0\), whether \(q\)
-lies on, above, or below \(H\). Hence this indeed amounts to locating the point
-$q$ in the arrangement \(\mathcal{A}(\mathcal{H})\) induced by those hyperplanes.
-We emphasize that the set of hyperplanes depends only on $k$ and $n$ and not on
-the actual input vector $q$.
+The Point Location problem is a classic problem in Computational Geometry.
 
 \input{text/definition/point-location}
-
-The Point Location problem is a classic problem in Computational Geometry.
 
 Because the bounds in \Cref{thm:buck} are attained when \(\mathcal{H}\) is in
 general position, there is a lower bound of \(\Omega(d \log m)\) on the depth
@@ -103,12 +94,22 @@ For our purpose, it is useful to see the \(k\)-SUM problem as a point location
 problem in \(\mathbb{R}^n\) where the coordinates of \(q\) are the input
 numbers and where \(\mathcal{H}\) is the set of all \(n \choose k\) hyperplanes
 of equation \(\sum_{j=1}^{k} x_{i_j} = 0\).
+%
+Locating \(q\) in \(\mathcal{A}(\mathcal{H})\)
+amounts to deciding in $n$-dimensional space, for each hyperplane
+\(H \in \mathcal{H}\), whether \(q\)
+lies on, above, or below \(H\). Since \(q\) lies on some \(H\) if and only if
+the \(k\)-SUM instance is degenerate, this constitutes a valid reduction.
+%
+We emphasize that in this reduction the set of hyperplanes depends only on $k$
+and $n$ and not on the actual input vector $q$.
 
 Sorting can also be seen as a point location problem in \(\mathbb{R}^n\).
 In this case \(\mathcal{H}\) is the set of all \(n \choose 2\) hyperplanes of
 equation \(x_i = x_j\). The arrangement \(\mathcal{A}(\mathcal{H})\) has
 exactly \(n!\) \(n\)-dimensional cell that correspond to the \(n!\)
-permutations the input might have.
+permutations the input might have. Identifying the cell containing the input
+point reveals its permutation, hence solving the sorting problem.
 
 See~\cite[Section~34.6]{Sn04} for more on point location in high dimension.
 
