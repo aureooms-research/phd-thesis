@@ -30,9 +30,14 @@
 \newcommand{\clearemptydoublepage}{\newpage{\pagestyle{empty}\cleardoublepage}}
 \newcommand{\blankpage}{\null\thispagestyle{empty}\addtocounter{page}{-1}\newpage}
 
+\declaretheoremstyle[
+    spaceabove=6pt,
+    spacebelow=6pt,
+    headformat={\NAME\ \NUMBER},
+]{contributionstyle}
 
 \declaretheorem[numberwithin=chapter]{theorem} % \begin{theorem}
-\declaretheorem{contribution} % \begin{contribution}
+\declaretheorem[style=contributionstyle]{contribution} % \begin{contribution}
 \declaretheorem[sibling=theorem]{lemma} % \begin{lemma}
 \declaretheorem[sibling=theorem]{corollary} % \begin{corollary}
 \declaretheorem[sibling=theorem]{observation} % \begin{observation}
@@ -42,6 +47,30 @@
 \declaretheorem[style=definition]{problem} % \begin{problem}
 \declaretheorem[numberwithin=chapter]{conjecture} % \begin{conjecture}
 \declaretheorem[name=Open Question]{openquestion} % \begin{openquestion}
+
+\def\ll@contribution{%
+  \protect\numberline{\csname the\thmt@envname\endcsname}%
+  \ifx\@empty\thmt@shortoptarg
+    \thmt@thmname
+  \else
+    \thmt@shortoptarg
+  \fi}
+\def\l@thmt@contribution{}
+
+\def\ll@openquestion{%
+  \protect\numberline{\csname the\thmt@envname\endcsname}%
+  \ifx\@empty\thmt@shortoptarg
+    \thmt@thmname
+  \else
+    \thmt@shortoptarg
+  \fi}
+\def\l@thmt@openquestion{}
+
+\newcommand{\restate}[1]{%
+  \dontputthminlisttrue%
+  #1%
+  \dontputthminlistfalse%
+}
 
 \newcommand{\remark}[1]{\paragraph{Remark} #1}
 
