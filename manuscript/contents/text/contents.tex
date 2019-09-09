@@ -30,16 +30,24 @@
 \cfoot{}
 \pagenumbering{roman}
 
+\clearemptydoublepage
 \frontmatter
-\input{text/summary}
+
+\input{text/short-summary}
+
+\clearemptydoublepage
 \input{text/acknowledgements}
+
+\clearemptydoublepage
 \input{text/toc}
-\input{text/lexicon}
+
+\clearemptydoublepage
+\input{text/notation}
 
 \clearemptydoublepage
 \mainmatter
 
-\input{text/birds-eye-view}
+\input{text/summary}
 
 \clearemptydoublepage
 \renewcommand{\sectionmark}[1]{\markright{#1}}
@@ -49,23 +57,29 @@
 \fancyhead[LO]{\nouppercase{\scshape\thechapter.\ \leftmark}}
 
 \clearemptydoublepage
-\input{text/results}
+\input{text/long-summary}
 
 \clearemptydoublepage
-\input{text/geometry/_index}
+\input{text/geometry}
 
 \appendix
 \input{text/papers}
 
-%\input{text/appendix}
-
 \clearemptydoublepage
 \backmatter
+
 \fancyhead[RE,LO]{\nouppercase{\scshape\leftmark}}
-\addcontentsline{toc}{chapter}{Bibliography}
 \bibliography{bibliography/bibliography}
+\addcontentsline{toc}{chapter}{Bibliography}
 
 \clearemptydoublepage
-\renewcommand{\listtheoremname}{List of Contributions and Open Questions}
-\addcontentsline{toc}{chapter}{List of Contributions and Open Questions}
-\listoftheorems[ignoreall,show={contribution,openquestion}]
+
+\renewcommand{\listtheoremname}{List of Contributions}
+\listoftheorems[ignoreall,show={contribution}]
+\addcontentsline{toc}{chapter}{List of Contributions}
+
+\clearemptydoublepage
+
+\renewcommand{\listtheoremname}{List of Open Questions}
+\listoftheorems[ignoreall,show={openquestion}]
+\addcontentsline{toc}{chapter}{List of Open Questions}

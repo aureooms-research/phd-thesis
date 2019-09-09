@@ -1,60 +1,86 @@
-\chapternonum{To the Profane}
+%\chapter{Bird's Eye View}
+\chapter{In a Dozen Pages}
 
-% REMINDER Avoid all technical terms here.
+\todo{Avoid definitions at all cost.}
 
-Solving a problem consists in mapping a given data to an output in some
-automated way.
-In Computer Science, we solve problems with computers: we organize the data
-with data structures, and process those structures with algorithms.
+\todo{Roadmap link to later chapters.}
+
+This thesis is a compilation of the contributions from four papers:
 %
-Solving problems consumes resources, for example, time.
-Problems are considered harder if they take more resources to solve.
-
-We, computer scientists, are lazy. We do not want to solve the same problem
-over and over with ad-hoc solutions depending on the data.
+\begin{enumerate}
+	\item[\ref{paper:ksum-algorithm}] ``\emph{Solving \(k\)-SUM Using Few
+		Linear Queries}''
+		with Jean Cardinal and John Iacono~\cite{CIO16}.
+	\item[\ref{paper:3pol-algorithm}] ``\emph{Subquadratic Algorithms for
+		Algebraic 3SUM}''
+		with Luis Barba, Jean Cardinal, John Iacono, Stefan Langerman, and Noam Solomon~\cite{BCILOS19}.
+	\item[\ref{paper:order-type-encoding}] ``\emph{Subquadratic Encodings for
+		Point Configurations}''
+		with Jean Cardinal, Timothy Chan, John Iacono, and Stefan Langerman~\cite{CCILO19}.
+	\item[\ref{paper:3sum-encoding}] ``\emph{Encoding 3SUM}''
+		with Sergio Cabello, Jean Cardinal, John Iacono, Stefan Langerman,
+		and Pat Morin~\cite{CCILMO19}.
+\end{enumerate}
 %
-By automated we really mean that the solutions we
-design work for any data, and in particular, they work for any data size
-``\(n\)''.
+Paper~\ref{paper:ksum-algorithm} was presented at CG:YRF 16 and ESA 16.
 %
-Ideally, the resource consumption of our solutions should scale well with this
-parameter.
+Paper~\ref{paper:3pol-algorithm} was presented at EuroCG 17 and SoCG 17. It is published in DCG.
 %
-This is why we study the behaviour of such solutions when applied to large%
-\footnote{%
-\emph{
-	Gigantic multiplied by colossal multiplied by staggeringly
-	huge is the sort of concept we're trying to get across here.
-}-- Douglas Adams, The Restaurant at the End of the Universe.
-}
-inputs.
-
-Geometry is about space, points, curves, surfaces \dots
-We study geometric problems:
+Paper~\ref{paper:order-type-encoding} was presented at FWCG 17, EuroCG 18, and SoCG 18. It is published in JoCG.
 %
-The given data is geometric, and the question about the data is geometric.
-The proposed algorithms and data structures therefore exploit geometry.
+Paper~\ref{paper:3sum-encoding} was presented at EuroCG 19.
 
-This thesis studies questions about geometric problems that are simple to
-formulate. However simple they are, nobody
-has managed to answer them. One of the problems asks to decide, given \(n\) points in the plane,
-whether three of them lie on a common line. Of course, we can solve this
-problem. The question of interest here is how fast it can be solved.
-
-It is easy to solve this problem by testing all possible candidates but that is
-quite inefficient. There is a
-more involved but standard construction that takes significantly less time to
-execute but that is still considered inefficient. As of today, we do not know of
-any reason why this problem would be much harder than simply
-reading the data from begin to end.
-
-Does this matter at all? It turns out simple problems appear to
-be bottlenecks of more complex ones: unless we manage to improve our
-understanding of the simple ones, we are stuck with inefficient solutions for
-all of them.
-
-In this thesis, we expose novel algorithms and data structures related to the
-problem stated above.
+We begin this thesis with an overview of the studied topic.
 %
-Hopefully, this contribution will one day, directly or indirectly, help us
-solve some of the interesting open questions about this problem.
+We explain the context in which those papers were written and expose
+the contributions contained in each of them.
+
+\section*{Degeneracy Testing Problems}
+\input{text/summary/degeneracy-testing-problems}
+
+\section*{GPT}
+\input{text/summary/gpt}
+
+\section*{Nonuniform Algorithms}
+\input{text/summary/nonuniform-algorithms}
+
+\section*{3SUM}
+\input{text/summary/3sum}
+
+\section*{\(k\)-SUM}
+\input{text/summary/ksum}
+\paragraph{Paper~\ref{paper:ksum-algorithm}}
+\input{text/summary/contrib-ksum}
+
+\section*{Sorting}
+\input{text/summary/sorting}
+
+\section*{A Zoo of Generalizations}
+\input{text/summary/generalization-zoo}
+
+%\section*{SUBSET-SUM}
+%Note that the unparameterized version of \(k\)-SUM is the SUBSET-SUM problem,
+%which is NP-complete... Discuss nonuniform polytime algo.
+
+%Because of that, we put Sorting and Element Uniqueness as problems at the
+%origin of a zoo of problems.
+
+% DONE
+% Mention Moshe and Chan's paper at some point and show how it applies to
+% other fields (string indexing).}
+
+\section*{Intermediate Problems}
+\input{text/summary/intermediate-problems}
+\paragraph{Paper~\ref{paper:3pol-algorithm}}
+\input{text/summary/contrib-intermediate-problems}
+
+\section*{Encodings}
+\input{text/summary/encodings}
+\paragraph{Papers~\ref{paper:order-type-encoding}~\&~\ref{paper:3sum-encoding}}
+\input{text/summary/contrib-encodings}
+
+\section*{The Secret Ingredient}
+\input{text/summary/geometric-divide-and-conquer}
+
+\section*{Wrapping it up}
+\input{text/summary/wrap-up}
