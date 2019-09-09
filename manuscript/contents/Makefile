@@ -11,6 +11,8 @@ BUILDDIR := _build
 
 FIGURES := $(shell sed -E -e 's/:.*$$//' Makefile | grep -E '^figures/[a-z0-9-]*\.pdf$$')
 
+STATIC := $(shell find static -type f)
+
 all: $(VERSIONS)
 
 figures: $(FIGURES)
@@ -88,6 +90,7 @@ figures/%.pdf:
 #$(BUILDDIR)/draft/src.tex: $(shell texdeps draft.tex)
 #$(BUILDDIR)/print/src.tex: $(shell texdeps print.tex)
 $(BUILDDIR)/proof/src.tex: $(shell texdeps proof.tex)
+$(BUILDDIR)/proof/paper.tex: static=$(STATIC)
 
 $(BUILDDIR)/%/src.tex:
 	mkdir -p $(dir $@)
