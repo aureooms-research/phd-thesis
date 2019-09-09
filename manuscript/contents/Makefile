@@ -1,7 +1,8 @@
 .PHONY: all figures clean nuke
 .SECONDARY:
 
-VERSIONS := dev.pdf draft.pdf print.pdf proof.pdf
+#VERSIONS := dev.pdf draft.pdf print.pdf proof.pdf
+VERSIONS := print.pdf
 
 LTX := pdflatex -interaction=nonstopmode -halt-on-error
 
@@ -87,9 +88,12 @@ figures/%.pdf:
 	killall -HUP mupdf || true
 
 #$(BUILDDIR)/dev/src.tex: $(shell texdeps dev.tex)
+$(BUILDDIR)/dev/paper.tex: static=$(STATIC)
 #$(BUILDDIR)/draft/src.tex: $(shell texdeps draft.tex)
-#$(BUILDDIR)/print/src.tex: $(shell texdeps print.tex)
-$(BUILDDIR)/proof/src.tex: $(shell texdeps proof.tex)
+$(BUILDDIR)/draft/paper.tex: static=$(STATIC)
+$(BUILDDIR)/print/src.tex: $(shell texdeps print.tex)
+$(BUILDDIR)/print/paper.tex: static=$(STATIC)
+#$(BUILDDIR)/proof/src.tex: $(shell texdeps proof.tex)
 $(BUILDDIR)/proof/paper.tex: static=$(STATIC)
 
 $(BUILDDIR)/%/src.tex:
