@@ -111,7 +111,7 @@ $(BUILDDIR)/%/paper.bib: $(BUILDDIR)/%/src-trim.tex
 		bibfilter $(shell sed -E -n 's/\\bibliography\{(.*)\}/\1/p' $<).bib \
 		> $(dir $@)paper.bib
 
-$(BUILDDIR)/%/paper.tex: $(BUILDDIR)/%/src.tex $(BUILDDIR)/%/paper.bib
+$(BUILDDIR)/%/paper.tex: $(BUILDDIR)/%/src-trim.tex $(BUILDDIR)/%/paper.bib
 	cp -t $(dir $@) $(shell texdeps $< | tail +2) $(static) 2>/dev/null || true
 	sed -E -e 's:\\bibliography\{.*\}:\\bibliography{paper}:g' \
 		   -e 's:\{figures/:{:g' $< > $@
