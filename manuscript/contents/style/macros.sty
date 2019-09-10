@@ -88,7 +88,11 @@
 \setcounter{chapter}{-1} % Start chapters at 0
 \renewcommand{\appendixname}{Paper}
 
-\newcommand{\chapternonum}[1]{\chapter*{#1}\addcontentsline{toc}{chapter}{#1}}
+\newcommand{\chapternonum}[1]{%
+\phantomsection%
+\addcontentsline{toc}{chapter}{#1}%
+\chapter*{#1}%
+}
 
 
 \newcommand\enet{\(\varepsilon\)-net}

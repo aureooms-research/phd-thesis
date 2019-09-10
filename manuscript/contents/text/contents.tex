@@ -71,18 +71,19 @@
 \clearemptydoublepage
 \backmatter
 
+\phantomsection
+\addcontentsline{toc}{chapter}{Bibliography}
 \fancyhead[RE,LO]{\nouppercase{\scshape\leftmark}}
 \bibliography{bibliography/bibliography}
-\addcontentsline{toc}{chapter}{Bibliography}
 
 \clearemptydoublepage
-
+\phantomsection
+\addcontentsline{toc}{chapter}{List of Contributions}
 \renewcommand{\listtheoremname}{List of Contributions}
 \listoftheorems[ignoreall,show={contribution}]
-\addcontentsline{toc}{chapter}{List of Contributions}
 
 \clearemptydoublepage
-
+\phantomsection
+\addcontentsline{toc}{chapter}{List of Open Questions}
 \renewcommand{\listtheoremname}{List of Open Questions}
 \listoftheorems[ignoreall,show={openquestion}]
-\addcontentsline{toc}{chapter}{List of Open Questions}
