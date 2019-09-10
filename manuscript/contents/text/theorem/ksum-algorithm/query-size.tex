@@ -1,14 +1,19 @@
 \begin{contribution}[%
-	name=Efficient Implementation of Meiser's Algorithm Applied to \(k\)-SUM
-	with Query-Size Tradeoff,%
+	name={
+		Efficient implementation of Meiser's algorithm
+		applied to \(k\)-SUM
+		with query-size tradeoff
+	},%
 	label=thm:query-size,%
 	restate=TheoremKSUMQuerySize%
 ]
-
+%
 For any integer $b>0$, there exists a $k\lceil \frac{n}{b}\rceil$-linear
 decision tree of depth \(\tilde{O}(b^{k-4} n^3)\) solving the \(k\)-SUM
 problem.
+%
 Moreover, this decision tree can be implemented as an
 $\tilde{O}(b^{\floor{\frac{k}{2}}-9}n^{\ceil{\frac{k}{2}}+8})$
 Las Vegas word-RAM algorithm.
+%
 \end{contribution}
