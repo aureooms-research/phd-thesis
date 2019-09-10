@@ -1,5 +1,5 @@
 \section{GPT \& 3POL}%
-\label{sec:problem:pol}
+\label{sec:history:pol}
 
 In the plane, the General Position Testing problem (GPT) asks whether, given
 \(n\) points, three of them are collinear~\cite{???}.
@@ -43,7 +43,7 @@ The problem is then assumed to be in the plane.
 When we consider a different parameterization we explicitly mention it.
 
 \subsection{Variants}%
-\label{sec:problem:pol:variants}
+\label{sec:history:pol:variants}
 
 Similarly to the 3SUM problem, we can study a
 variant of GPT where the tested triples come from different sets.
@@ -54,7 +54,7 @@ This variant is useful for a particular reduction from 3SUM.
 A similar variant can be defined for the \(d\)-dimensional problem.
 
 \subsection{Reductions from \(k\)-SUM}%
-\label{sec:problem:pol:reductions-from-ksum}
+\label{sec:history:pol:reductions-from-ksum}
 
 This section is divided into two parts.
 %
@@ -207,13 +207,13 @@ the cubic curve \(\omega_2(t) = (t, t^3)\) is also part of folklore.
 %from the reduction from 3SUM to GPT.
 
 \subsection{Lower Bounds and Order Types}%
-\label{sec:problem:pol:lb}
+\label{sec:history:pol:lb}
 
 Even though 3SUM and \(k\)-SUM reduce to GPT, it does not necessarily mean that
 the lower bounds for those problems carry over.
 %
 The lower bounds in
-\S\ref{sec:problem:sum:itlb} are in the linear decision tree model and we
+\S\ref{sec:history:sum:itlb} are in the linear decision tree model and we
 cannot hope to solve GPT in those models because they do not allow us to answer
 quadratic polynomial queries on the input.
 %
@@ -298,7 +298,7 @@ algebraic varieties~\cite{Mi64,Th65,BPR06}.
 %Complexity of an arrangement of surfaces~\cite[24.1.4]{Hal04}.
 
 \subsection{Algorithms}%
-\label{sec:problem:pol:algorithms}
+\label{sec:history:pol:algorithms}
 
 By brute-force, GPT can be solved in \(O(n^3)\) time.
 %
@@ -311,7 +311,7 @@ Essentially, nothing known.
 
 
 \subsection{More on Order Types}%
-\label{sec:problem:pol:order-types}
+\label{sec:history:pol:order-types}
 
 A great deal of the literature in computational geometry deals with the notion
 of order type~\cite{%
@@ -409,7 +409,7 @@ illustrated by the main tool used in the upper bound proofs (the
 POTM Theorem~\cite{Mi64,Th65,BPR06}).
 
 \subsection{Encodings}%
-\label{sec:problem:pol:encodings}
+\label{sec:history:pol:encodings}
 
 At SoCG'86, Bernard Chazelle asked~\cite{GP93}:
 \begin{quotation}
@@ -488,7 +488,7 @@ can be used to test for the isomorphism of two distinct point sets in the same
 amount of time~\cite{AILOW14}.
 
 \subsection{The Intermediate Problem}
-\label{sec:problem:pol:3pol}
+\label{sec:history:pol:3pol}
 
 On par with GPT we consider an algebraic generalization of the 3SUM problem:
 we replace the sum function by a constant-degree polynomial in three variables
@@ -503,14 +503,14 @@ instances of GPT: consider points in the plane that are constrained to
 lie on three parameterized polynomial curves of constant degree, then an
 algorithm for 3POL can determine whether any three of those points are
 collinear. Note that this generalizes the reductions from 3SUM found in
-\S\ref{sec:problem:pol:reductions-from-ksum}, where the input points either lie
+\S\ref{sec:history:pol:reductions-from-ksum}, where the input points either lie
 on three horizontal lines or on a single cubic curve.
 %
 In fact, this problem is not new: it has already been studied before from a
 combinatorics point of view as exposed in the next section.
 
 \subsection{Combinatorics}%
-\label{sec:problem:pol:combinatorics}
+\label{sec:history:pol:combinatorics}
 
 In a series of results spanning fifteen years,
 Elekes and Rónyai~\cite{ER00},
