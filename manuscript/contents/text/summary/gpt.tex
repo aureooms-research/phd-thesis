@@ -12,12 +12,14 @@ The General Position Testing problem (GPT) asks to decide if a given set of
 \(O(n^{d+1})\) time.
 We can do it an order of magnitude faster
 by constructing the dual arrangement of hyperplanes in
-\(O(n^d)\) time.
+\(O(n^d)\) time~\cite[Theorem 24.4.1]{Hal04}.
+%
 On the one hand,
 improving on this slightly better solution appears to be non-trivial: there
 exists a class of algorithms that cannot do better even though they
-exploit one of the core structures of the problem, the chirotope axioms.
-On the other hand, information theory only gives a decision tree
+exploit one of the core structures of the problem, the chirotope axioms~\cite{BLSWZ93}.
+%
+On the other hand, Information Theory only gives a decision tree
 lower bound of \(\Omega(n \log n)\).
 A popular conjecture is that no \(o(n^d)\) time real-RAM
 algorithm exists for this problem.
