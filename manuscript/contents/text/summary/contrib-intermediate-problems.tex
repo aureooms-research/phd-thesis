@@ -5,34 +5,10 @@ phase being an instance of 2D-2POL.\footnote{Note that according to the implied
 definition, \(d\)D-\(k\)-SUM is equivalent to \(k\)-SUM. Therefore, the 2SUM
 instance in the sorting phase of their 3SUM algorithm is an instance of 2D-2SUM
 in disguise.} Again, the implementation of the uniform algorithm solves this
-instance of 2D-2POL using dominance reporting (a generalization of it).
+instance of 2D-2POL using offline dominance reporting (a generalization of it).
 
 This result illustrates why a better understanding of the landscape of problems
 surrounding GPT helps to identify intermediate problems whose resolution marks
 progress towards the question of whether GPT admits subquadratic algorithms.
 %
 Figure~\ref{fig:landscape} depicts this landscape.
-
-\begin{figure}
-  \centering{}
-  \includegraphics[width=\linewidth]{figures/landscape}
-  \caption{%
-	The decision problems surrounding GPT.
-	%
-	Arrows indicate linear time reductions.
-	%
-	\(A = B\) indicates that \(A\) and \(B\) are the same problems.
-	%
-	Known upper bounds are indicated next to the problem's name.
-	%
-	When the uniform and nonuniform upper bounds differ, we place the best
-	uniform upper bound on the left.
-	%
-	Solid lines indicate apparent time-complexity differences between the best
-	known nonuniform algorithms.
-	%
-	Dotted lines indicate apparent
-	time-complexity differences between the best known uniform algorithms.%
-  }%
-  \label{fig:landscape}
-\end{figure}

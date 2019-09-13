@@ -1,3 +1,25 @@
+\begin{figure}
+  \centering{}
+  \includegraphics[width=\linewidth]{figures/landscape}
+  \caption{%
+	The decision problems surrounding GPT.
+	%
+	Arrows indicate linear time reductions.
+	%
+	Known upper bounds are indicated next to the problem's name.
+	%
+	When the uniform and nonuniform upper bounds differ, we place the best
+	uniform upper bound on the left.
+	%
+	Solid lines indicate time-complexity differences between the best
+	known nonuniform algorithms.
+	%
+	Dotted lines indicate
+	time-complexity differences between the best known uniform algorithms.%
+  }%
+  \label{fig:landscape}
+\end{figure}
+
 A perspicacious reader may have frowned at the previous paragraphs wondering
 whether this embryo of classification brings more insight than confusion.
 ``Sure!'', one may say, ``Many problems involve sorting, and therefore,
@@ -15,8 +37,9 @@ the sorting version of the 2SUM problem where the input numbers are the
 differences \(x_i - x_j\).\footnote{This observation generalizes to the \(k\)-SUM
 problem: any \(k\)-SUM instance can be reduced to a larger (\(k-1\))-SUM instance
 followed by a searching phase.} Moreover, to make the uniform algorithm
-practical, they implement the resolution of the 2SUM instance via dominance
-reporting.
+practical, they implement the resolution of the 2SUM instance via
+offline dominance reporting.
+%
 Note that this sorting problem is similar to the Sorting \(X+Y\) problem where
 the answers to most questions are not cared for.
 
@@ -41,7 +64,7 @@ the determinant
 \end{displaymath}
 is zero. This determinant is a degree-\(d\) (\(d^2 + d\))-variate polynomial.
 In particular, when \(d=2\), the determinant is a degree-\(2\) \(6\)-variate
-polynomial. The GPT testing problem then amounts to testing whether the
+polynomial. The GPT problem then amounts to deciding whether the
 coordinates of any combination of the input points yields a root of that
 polynomial. We therefore consider the more general \(d\)-dimensional-\(k\)-POL
 (\(d\)D-\(k\)-POL) problem:

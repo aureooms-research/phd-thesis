@@ -22,6 +22,7 @@ structure such that given any index in the input array, we can query for the
 corresponding index in the sorted array called the \emph{rank} of the element).
 To retrieve the result of a comparison of two elements of the input array we can
 compare their ranks in this permutation.
+%
 The usual way of defining the sorting problem restricts the data structure that
 should be used to encode the \(n \choose 2\) comparisons.
 The way we model the sorting problem lifts this restriction because it does not
@@ -32,9 +33,12 @@ The sorting problem also has its decision problem variant: Element Uniqueness.
 \input{text/definition/element-uniqueness}
 
 It is easy to see
+%
 that Sorting amounts to locating the point \(q\) in
 the arrangement of hyperplanes of equations \(x_i - x_j = 0\)%
+%
 , and
+%
 that Element Uniqueness reduces both to and from the 2SUM
 problem in linear time%
 .
@@ -42,7 +46,8 @@ problem in linear time%
 Actually, under reasonable assumptions on the computation model, sorting and
 element uniqueness are the same problems: if all questions we ask about the
 input are linear in the input numbers, then proving that the input
-does not contain any duplicate entries requires to sort the input.
+does not contain any duplicate entries requires to sort the input (see for
+instance~\cite{DL78,DL79}).
 %
 The same statement carries over to the \(k\)-SUM with respect to its ``sorting
 version'': computing the sign of all \(n \choose k\) sums of \(k\) input

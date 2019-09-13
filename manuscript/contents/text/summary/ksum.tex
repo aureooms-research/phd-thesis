@@ -12,9 +12,13 @@ and to 3SUM when \(k\) is odd. Those reductions yield a
 In their paper, in addition to the slightly subquadratic uniform algorithm for
 3SUM, Gr\o nlund and Pettie give a strongly subquadratic nonuniform
 algorithm for 3SUM. The algorithms runs in time \(\tilde{O}(n^{3/2})\), and,
-because of the aforementioned reduction, immediately yields an improved
+together with the aforementioned reduction, immediately yields an improved
 \(\tilde{O}(n^{\frac{k}{2}})\) nonuniform time complexity for \(k\)-SUM when
 \(k\) is odd.
+%
+Gold and Sharir~\cite{GS15} give an improvement on
+the polylogarithmic factors hidden by the \( \tilde{O}(\cdot) \)
+notation.
 
 As for uniform time complexity we do not know whether this nonuniform
 improvement can be transferred to the real-RAM model: we do not know of any

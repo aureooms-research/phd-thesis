@@ -1,7 +1,7 @@
 What makes the success of our methods are now-standard geometric
 divide-and-conquer tools: \(\varepsilon\)-nets and cuttings.
 
-The idea of an \(\varepsilon\)-net is simple, yet powerful. Given a sample of
+The idea of an \(\varepsilon\)-net is simple, yet powerful. Given a set of
 \(m\) hyperplanes in \(\mathbb{R}^d\), construct a sample of those hyperplanes
 of size \(f(d, \varepsilon)\) uniformly at random. Then, with high probability,
 any simplex that is not intersected by an hyperplane of the sample is intersected
@@ -15,7 +15,7 @@ of its arrangement that contains the query point, find the simplex of its
 triangulation that contains the query point, and recurse on the fraction of
 hyperplanes that intersect it.
 
-Triangulate the whole arrangement of the sample and you get a
+Triangulate the whole arrangement of the sample and you get an
 \(\varepsilon\)-cutting: a partition of space into simplices such
 that each simplex is intersected by at most \(\varepsilon m\) hyperplanes.
 We use cuttings in applications where multiple queries are made on the same set
