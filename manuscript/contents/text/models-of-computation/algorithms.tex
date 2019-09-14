@@ -93,9 +93,9 @@ queries that can be made.
 \subsubsection{Linear Decision Trees}
 
 A first natural way to restrict the complexity of the queries of our decision
-tree model is to only allow linear queries on the input. This will be
-sufficient to solve problems such as Sorting, Element Uniqueness, 3SUM,
-\(k\)-SUM, and subset-sum.
+tree model is to only allow linear queries on the input~\cite{DL78}.
+This will be sufficient to solve problems such as Sorting, Element Uniqueness,
+3SUM, \(k\)-SUM, and subset-sum.
 
 In the \emph{\(s\)-linear decision tree model}, queries consists
 in testing the sign of a linear function on at most \(s\) numbers \(q_{i_1},\ldots,q_{i_s}\) of the
@@ -138,12 +138,14 @@ Computation trees differ from decision trees in that instead of exclusively
 asking
 ``yes/no'' questions, they perform arithmetic operations on variables whose
 results can be remembered and reused as operands, but only inspected using
-comparison queries. This allows, for instance, to make decision based on
+comparison queries.
+In the case of \emph{algebraic computation trees}~\cite{Be83},
+this allows, for instance, to make decision based on
 arbitrary polynomial expressions of the input with a sane way of counting the
 complexity of constructing such an expression. This would not be allowed in
 the algebraic decision tree model.
 
-The internal nodes of an \emph{algebraic computation trees} are labeled with
+The internal nodes of an algebraic computation tree are labeled with
 arithmetic (\(r \gets o_1 \op o_2, \op \in \{\,+,-,\times,\div\,\}\)) and
 branching (\(z : 0\)) operations. Any internal node labeled \(r \gets o_1 \op
 o_2\) has outdegree one and is
