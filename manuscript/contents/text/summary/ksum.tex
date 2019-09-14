@@ -14,17 +14,20 @@ In their paper, in addition to the slightly subquadratic uniform algorithm for
 algorithm for 3SUM. The algorithms runs in time \(\tilde{O}(n^{3/2})\), and,
 together with the aforementioned reduction, immediately yields an improved
 \(\tilde{O}(n^{\frac{k}{2}})\) nonuniform time complexity for \(k\)-SUM when
-\(k\) is odd.
+\(k\) is odd.%
 %
+\footnote{%
 Gold and Sharir~\cite{GS15} give an improvement on
 the polylogarithmic factors hidden by the \( \tilde{O}(\cdot) \)
-notation.
+notation.%
+}
 
 As for uniform time complexity we do not know whether this nonuniform
 improvement can be transferred to the real-RAM model: we do not know of any
 real-RAM \(o(n^{\frac{k+1}{2}})\) time algorithm for \(k\)-SUM when
 \(k\) is odd.
 
+Shallower linear decision trees exist for \(k\)-SUM.
 The \(k\)-SUM problem reduces to the following point location problem: ``Given
 a input point \(q \in \mathbb{R}^n\), locate \(q\) in the arrangement of
 \(n \choose k\) hyperplanes of equation \(x_{i_1} + x_{i_2} + \cdots +
