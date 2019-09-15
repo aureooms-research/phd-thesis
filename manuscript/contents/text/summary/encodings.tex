@@ -24,14 +24,15 @@ all the information we need is encoded in the data structure. Since the nonunifo
 models of computation we consider do not care about computations not involving
 the input, the searching part does not cost anything.
 
-The case of 3SUM and \(k\)-SUM is more complex: The sorting phase only encodes
+The case of 3SUM and \(k\)-SUM is more complex~\cite{GP18}:
+The sorting phase only encodes
 a fraction of all possible queries. This leaves a significant amount of work
 for the searching phase. Therefore, both the sorting phase and the searching
 phase contribute to the nonuniform cost of those algorithms.
 
 The case of GPT is also interesting. The naive algorithm queries
 \(O(n^{d+1})\) input tuples while the better algorithm constructs the dual
-arrangement in \(O(n^d)\) time.
+arrangement in \(O(n^d)\) time~\cite[Theorem 24.4.1]{Hal04}.
 As in the case of Element Uniqueness,
 this dual arrangement is the data structure that encodes the answer to all
 \(O(n^{d+1})\) queries while achieving a significant space gain.
