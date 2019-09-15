@@ -28,19 +28,26 @@ therefore is allowed to grow with \(n\).
 Designing a nonuniform algorithm \(A\) amounts to describing a method
 that given \(n\) outputs \(A_n\).
 
-In this thesis, we study the uniform \emph{random access machine} (RAM) models
-real-RAM and word-RAM, and the nonuniform decision tree models algebraic
-computation tree, algebraic decision tree, and linear decision tree. Those are
-described in the following paragraphs.
+In this thesis, we study uniform
+\emph{random access machine} (RAM) models,
+the real-RAM and the word-RAM models,
+%
+and nonuniform decision tree models,
+the algebraic computation tree,
+algebraic decision tree,
+and linear decision tree models.
+%
+Those are described in the following paragraphs.
 
 \subsection{Random Access Machines}%
 \label{sec:models-of-computation:algorithms:ram}
 
-The real-RAM and word-RAM models have the RAM in common. They both assume
-a memory whose access cost is constant and a constant number of standard
-operations on the numbers they manipulate.
+The real-RAM and word-RAM models have the RAM in common. They both assume a
+memory storing numbers whose access cost is constant and a constant number of
+standard operations on the numbers they manipulate.
 
-The real-RAM model is a classic of Computational Geometry. The input is assumed
+Defined in 1978 by Shamos in his PhD thesis~\cite[Section~2.3]{Sha78},
+the real-RAM model is a classic of Computational Geometry. The input is assumed
 to consist of \(n\) real numbers and those numbers can be manipulated
 exactly at constant cost using arithmetic and comparison operators.
 This makes sense from the geometer's point of view since geometric data is
@@ -49,10 +56,15 @@ For data management purposes, the model also allows to manipulate \(\log
 n\)-bits integers with arithmetic, comparison, and bitwise operators but does
 not allow the conversion from a real number to an integer.
 
-The word-RAM model models computers as we know them more closely. It considers
-an input consisting of \(n\) integers called words and allows a constant number
-of standard unary or binary operators to be executed in constant time. Those
-words have bitsize \(w \geq \log n\).
+Defined in 1990 by Fredman and Willard~\cite{FW90},
+the word-RAM model models computers as we know them more closely. It considers
+an input consisting of \(n\) \(w\)-bits integers called words and allows a
+constant number of standard unary or binary operators to be executed in
+constant time.
+%
+Because of practical considerations,
+those words can be assumed to have bitsize \(w \geq \log n\) (also called the
+transdichotomous model).
 
 \subsection{Computation and Decision Trees}%
 \label{sec:models-of-computation:algorithms:trees}
@@ -93,7 +105,7 @@ queries that can be made.
 \subsubsection{Linear Decision Trees}
 
 A first natural way to restrict the complexity of the queries of our decision
-tree model is to only allow linear queries on the input~\cite{DL78}.
+tree model is to only allow linear queries on the input~\cite[Section~2]{DL78}.
 This will be sufficient to solve problems such as Sorting, Element Uniqueness,
 3SUM, \(k\)-SUM, and subset-sum.
 
