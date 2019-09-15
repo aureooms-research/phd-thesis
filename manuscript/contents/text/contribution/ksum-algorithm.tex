@@ -26,16 +26,14 @@ $\tilde{O}(d^4 \log m)$-depth algebraic computation tree;
 when viewing the \(k\)-SUM problem as a point
 location problem, with \(d=n\) and \(m = O(n^k)\),
 Meiser's algorithm can be applied
-to this problem, yielding a $\tilde{O}(n^4)$-depth algebraic computation tree.
+to this problem, yielding
+a \(\tilde{O}(n^4)\)-depth algebraic computation tree
+(or a \(\tilde{O}(n^3)\)-depth linear decision tree).
 %
-We show that while the original algorithm was cast as a nonuniform
-polynomial-time algorithm, it can be implemented in the linear decision tree
-model with an
-$\tilde{O}(n^3)$ upper bound.
-%
-Moreover, this result implies the same improved upper bound on the depth of
-algebraic computation trees for the $k$-SUM problem,
-as shown in \S\ref{app:act}.
+In \S\ref{app:act},
+we give a better analysis of this algorithm that
+improves the depth of the algebraic computation tree to
+\( \tilde{O}(n^3) \) for the \(k\)-SUM problem
 
 There are two subtleties to this result. The first is inherent to the chosen
 complexity model: even if the number of queries to the input is small (in
@@ -78,7 +76,7 @@ interest~\cite{SS95,CFJJM10,CFJJM13}.
 
 The second issue we address is that the linear queries in the above algorithm may
 have size $n$, that is, they may use all the components of the input.
-The lower bound of Erickson shows that if the queries are of minimal size, the number
+The lower bound of Erickson~\cite{Er99a} shows that if the queries are of minimal size, the number
 of queries cannot be a polynomial independent of $k$ such as what we obtain, so
 non-minimal query size is clearly essential to a drastic reduction in the number of queries needed.
 This gives rise to the natural question as to what is the relation between query size and number of queries.
