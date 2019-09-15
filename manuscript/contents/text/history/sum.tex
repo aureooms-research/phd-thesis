@@ -49,11 +49,11 @@ position testing~\cite{Er99b}.
 For all those reasons, 3SUM and \(k\)-SUM are considered as key subjects of an
 emerging theory of complexity-within-\(\textsc{P}\) (or ``fine-grained''
 complexity), on par with other problems such as
-all-pairs shortest paths,
-orthogonal vectors,
-boolean matrix multiplication,
+all-pairs shortest paths (APSP),
+orthogonal vectors (OV),
+boolean matrix multiplication (BMM),
 and conjectures such as
-the Strong Exponential Time Hypothesis~\cite{MO01,PW10,AVY15,HKNS15,CGIMPS16}.
+the Strong Exponential Time Hypothesis (SETH)~\cite{MO01,PW10,AVY15,HKNS15,CGIMPS16}.
 
 %Cite that paper that links \(n^2\)-hard problems to P vs NP?
 
@@ -116,7 +116,7 @@ See~\cite[Section~34.6]{Sn04} for more on point location in high dimension.
 \subsection{Information Theoretic Lower Bound}%
 \label{sec:history:sum:itlb}
 
-The ITLB for sorting is the logarithm of the number of possible
+The ITLB for Sorting is the logarithm of the number of possible
 permutations of the input, that is \(\lceil \log n! \rceil = \Omega(n \log
 n)\), for \emph{any} decision tree. This does not hold for element uniqueness:
 in an arbitrarily powerful decision tree model, using a single query, we can
@@ -124,8 +124,8 @@ find out whether the input contains duplicates. This matches the useless lower
 bound of \(\log 2 = 1\).
 
 This observation holds for any decision problem: if the problem amounts to
-retrieve a single bit of information, the ``yes/no'' answer, we cannot we derive
-any useful lower bound for arbitrary decision tree models.
+retrieve a single bit of information, the ``yes/no'' answer, we cannot
+derive a useful lower bound for arbitrary decision tree models.
 
 Restricting our model to only allow linear queries,
 we can derive a more useful lower bound for element uniqueness.
