@@ -8,13 +8,13 @@ In this section and the next, we prove the following first result.
 For a fixed set of hyperplanes \(\Hy\) and given input vertex \(q\) in \(\R^n\),
 Meiser's algorithm allows us to determine the cell of the arrangement
 $\arrangement(\Hy)$ that contains $q$ in its interior (or that \emph{is} $q$ if
-$q$ is a $0$-cell of $\arrangement(\Hy)$), that is, the positions $\sigma(H,q) \in
+$q$ is a $0$-cell of $\arrangement(\Hy)$), that is, the location $\sigma(H,q) \in
 \signset$ of \(q\) with respect to all hyperplanes $H \in \Hy$. In the \(k\)-SUM
 problem, the set $\Hy$ is the set of $\Theta(n^k)$ hyperplanes with equations of the
 form $x_{i_1} + x_{i_2} + \cdots + x_{i_k} = 0$.
 These equations can be modified accordingly for \(k\)-LDT.
 
-We use Theorem~\ref{thm:enet} to design a prune and search algorithm for
+We use Lemma~\ref{thm:enet} to design a prune and search algorithm for
 \(k\)-SUM as follows:
 (1) construct an \enet{} \(\net\),
 (2) compute the cell \(\cell\) of \(\arrangement(\net)\) containing the input
@@ -27,7 +27,7 @@ point $q$ in its interior,
 Proceeding this way with a constant $\varepsilon$ guarantees that at most a
 constant fraction \(\varepsilon\) of the hyperplanes remains after the pruning step,
 and thus the cumulative number of queries made to determine the enclosing cell at
-each step is $O(n^2 \log n \log \card{\Hy})$ when done in a brute-force way.
+each step is $O(|\net| \log \card{\Hy})$ when done in a brute-force way.
 However, we still need to explain how to find a simplex \(\simplex\) inscribed
 in \(\cell\) and containing \(q\) in its interior.
 %
@@ -51,7 +51,7 @@ of the arrangement \(\arrangement(\net \cup \B)\). Note that \(\card{\net \cup
 \B} = O(\card{\net})\) for all interesting values of \(\varepsilon\).
 
 We now explain how to construct \(\simplex\) under this assumption. The algorithm
-can be sketched as follows. (Recall that $\sigma(H,p)$ denotes the relative position
+can be sketched as follows. (Recall that $\sigma(H,p)$ denotes the location
 of $p$ with respect to the hyperplane $H$.)
 
 \begin{algorithm}[Constructing \(\simplex\)]\label{algo:simplex}
@@ -81,8 +81,8 @@ of $p$ with respect to the hyperplane $H$.)
 \item[4.] Return $\simplex$, the convex hull of \(\simplex' \cup \enum{\nu}\).
 \end{algorithm}
 
-Step \step{0} is the base case of the recursion: when there is only one point left, just return
-that point. This step uses no query.
+Step \step{0} is the base case of the recursion: when there is only one point left,
+just return that point. This step uses no query.
 
 We can solve step \step{1} by using linear programming with the known values
 of \(\sigma(H,q)\) as linear constraints. We arbitrarily choose an
@@ -101,7 +101,7 @@ equations that do not involve \(q\).
 In step \step{3}, the input conditions are satisfied, that is, $q' \in
 {[-1,1]}^n$, \(\I'\) is a set of hyperplanes not containing \(q'\), \(\E'\) is
 a set of hyperplanes in general position containing \(q'\), \(\cell'\) is a
-$d$-cell of \(\cell\) and is thus a bounded polytope. The value \(\sigma(H,q')\)
+face of \(\cell\) and is thus a bounded polytope. The value \(\sigma(H,q')\)
 differs from \(\sigma(H,q)\) only for hyperplanes that have been removed from
 \(\I\), and for those \(\sigma(H,q') = 0\), hence we know all necessary values
 \(\sigma(H,q')\) in advance.
@@ -119,7 +119,7 @@ Hence given an input point \(q \in [-1,1]\), an arrangement of hyperplanes
 by running Algorithm~\ref{algo:simplex} on \(q\),
 \(\I=\{\,H \in (\net\cup\B) \colon\, \sigma(H,q) \neq 0\,\}\), and
 \(\E \subseteq (\net\cup\B) \setminus\I\).
-This uses $O(n^3 \log n)$ linear queries.
+This uses $O( n | N | )$ linear queries.
 Figure~\ref{fig:meiser:step} illustrates a step of the algorithm.
 
 \begin{figure}
@@ -136,16 +136,28 @@ Illustration of a step of Algorithm~\ref{algo:simplex}.
 
 Let us summarize the algorithm
 \begin{algorithm}\label{algo:meiser}
-\item[input] \(q \in {[-1,1]}^n\)
-\item[1.] Pick \(O(n^2 \log n)\) hyperplanes of $\Hy$ at random and locate $q$
-in this arrangement. Call $\cell$ the cell containing $q$.
+\item[input] A point \(q \in {[-1,1]}^n\) and a set \(\mathcal{H}\) of hyperplanes in \(\mathbb{R}^n\).
+%\item[output] The location \(\sigma(H,q)\) for all \(H \in \mathcal{H}\).
+\item[output] All \(H \in \mathcal{H}\) such that \(\sigma(H,q) = 0\).
+\item[1.] Pick a sample \(\mathcal{N}\) of $\Hy$ uniformly at random and locate $q$
+	in the arrangement \(\mathcal{A}(\mathcal{N})\). Call $\cell$ the cell of
+	\(\mathcal{A}(\mathcal{N})\) containing $q$.
 \item[2.] Construct the simplex \(\simplex\) containing \(q\) and inscribed in
 \(\cell\), using Algorithm~\ref{algo:simplex}.
-\item[3.] For every hyperplane of $\Hy$ containing $\simplex$, output a solution.
+\item[3.]
+For every hyperplane of $H \in \Hy$ with $\simplex \subset H$, output
+	\(H\).
+%For every hyperplane of $H \in \Hy$ with $\simplex \subset H$, output
+	%\(\sigma(H,q) = 0\).
+%For every hyperplane of $H \in \Hy$ with $\simplex \subset H^-$, output
+	%\(\sigma(H,q) = -\).
+%For every hyperplane of $H \in \Hy$ with $\simplex \subset H^+$, output
+	%\(\sigma(H,q) = +\).
 \item[4.] Recurse on hyperplanes of $\Hy$ intersecting the interior of $\simplex$.
 \end{algorithm}
 
-The query complexity of step \step{1} is $O(n^2 \log n)$, and that of step
+By Lemma~\ref{thm:enet}, we can take \(| \mathcal{N} | = O(n^2 \log n)\).
+Hence, the query complexity of step \step{1} is $O(n^2 \log n)$, and that of step
 \step{2} is $O(n^3 \log n)$. Steps \step{3} and \step{4} do not involve any
 query at all. The recursion depth is $O(\log \card{\Hy})$, with $|\Hy|=O(n^k)$,
 hence the total query complexity of this algorithm is $O(n^3 \log^2 n)$. This
@@ -153,12 +165,13 @@ proves the first part of Theorem~\ref{thm:cube}.\\
 
 We can also consider the overall complexity of the algorithm in the RAM model,
 that is, taking into account the steps that do not require any query, but for
-which we still have to process the set $\Hy$. Note that the complexity
-bottleneck of the algorithm are steps \step{3}-\step{4}, where we need to prune
-the list of hyperplanes according to their relative positions with respect to
+which we still have to process the set $\Hy$. Note that, in this model,
+the complexity bottleneck of the algorithm are steps \step{3}-\step{4},
+where we need to prune
+the list of hyperplanes according to their location with respect to
 $\simplex$. For this purpose, we simply maintain explicitly the list of all
 hyperplanes, starting with the initial set corresponding to all $k$-tuples.
-Then the pruning step can be performed by looking at the position of each
+Then the pruning step can be performed by looking at the location of each
 vertex of $\simplex$ relative to each hyperplane of $\Hy$.
 Because in our case hyperplanes have only $k$ nonzero coefficients, this uses a
 number of integer arithmetic operations on $\tilde{O}(n)$ bits integers that is

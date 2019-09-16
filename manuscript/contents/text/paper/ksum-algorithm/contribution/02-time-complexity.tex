@@ -154,7 +154,7 @@ $\net$. For this, we observe that the above call to Algorithm~\ref{algo:meiser}
 involves computing a sequence of simplices for the successive pruning
 steps.
 %
-We save the description of those simplices. Recall that there are
+We store the description of those simplices. Recall that there are
 $O(\log n)$ of them, all of them contain the input $q$ and have vertices
 coinciding with vertices of the original arrangement $\arrangement(\Hy)$. In
 order to compute a simplex $\simplex$ avoiding all hyperplanes of
@@ -183,7 +183,7 @@ result of Lemma~\ref{lem:multiple} in time $\tilde{O}(n^{\lceil k/2\rceil +
 
 Finally, it remains to detect any solution that may lie in the remaining
 set of hyperplanes of size $O(n^{k/2})$. We can again fall back
-on Algorithm~\ref{algo:meiser}, restricted to those hyperplanes. The running
+to Algorithm~\ref{algo:meiser}, restricted to those hyperplanes. The running
 time is $\tilde{O}(n^{k/2 + 2})$, and the number of queries is still
 $O(n^3 \log^2 n)$.
 

@@ -2,10 +2,11 @@
 \label{app:keeplinear}
 
 In Algorithm~\ref{algo:simplex}, we want to ensure that the queries we make in step
-\step{2} are linear and that the queries we will make in the recursion step
+\step{2} are linear and that the queries we make in the recursion step
 remain linear too.
 \begin{lemma}
-	Algorithm~\ref{algo:simplex} can be implemented so that it uses $O(n\card{I})$ linear queries.
+	Algorithm~\ref{algo:simplex} can be implemented so that it uses
+	$O(n\card{\mathcal{I}})$ linear queries.
 \end{lemma}%
 \begin{proof}
 Let us first analyze what the queries of step \step{2} look like. In addition
@@ -74,7 +75,7 @@ and for all pairs of vectors \(d_i\) and \(\nu^{(s+1)}\)
 we have that \( (\prod_{k=0}^{s} d_{\theta_{k}} \cdot \vec{\nu q}^{(k)}) (d_i
 \cdot \vec{\nu q}^{(s+1)})\) is linear in \(q\).
 
-Hence at the $s$th recursive step of the algorithm, we will perform
+Hence at the $s$th recursive step of the algorithm, we perform
 at most \(\card{\net}\) linear queries of the type
 $$
 	-\left(\prod_{k=0}^{s-1} d_{\theta_{k}} \cdot \vec{\nu q}^{(k)}\right)
@@ -96,7 +97,7 @@ $$
 
 In order to detect all hyperplanes \(H_i\) such that \(\lambda_i =
 \lambda_\theta\) we can afford to compute the query $f(q) > g(q)$ for all query
-$f(q) < g(q)$ that we issue, and vice versa.
+$f(q) < g(q)$ that we make, and vice versa.
 
 Note that, without further analysis, the queries can become \(n\)-linear as
 soon as we enter the \(\frac{n}{k}^{\text{th}}\) recursive step.
