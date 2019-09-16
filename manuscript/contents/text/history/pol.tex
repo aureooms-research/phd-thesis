@@ -225,6 +225,16 @@ model where one is only allowed orientation queries. More generally, GPT in
 \(\mathbb{R}^d\) requires \(\Omega(n^{\lceil \frac{d+1}{2} \rceil})\) time in a
 model where one is only allowed to query the orientation of \(d\)-simplexes of
 the input points.
+%
+A stronger lower bound of \(\Omega(n^d)\) is derived by Erickson using the
+weird moment curve.
+\begin{lemma}[%
+    name={Erickson~\cite[Theorem~7.1]{Er99b}}
+]
+Any decision tree that decides whether a set of \(n\) points in
+\(\mathbb{R}^d\) is affinely nondegenerate, using only sidedness queries, must
+have depth \(\Omega(n^d)\).
+\end{lemma}
 
 However, neither those lower bounds, nor the weaker ones in the \(n\)-linear
 decision tree model, carry over in the more generous algebraic decision
