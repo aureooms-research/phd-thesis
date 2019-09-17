@@ -47,7 +47,7 @@ We just need to find a replacement for Lemma~\ref{lem:batch}.
 For their simple subquadratic 3SUM algorithm, Gr\o nlund and Pettie~\cite{GP18}
 explain that for a permutation to give the correct sorted order for a cell, that
 permutation defines a \emph{certificate} --- a set of inequalities --- that
-the cell must verify. They cleverly note --- using Fredman's Trick~\cite{Fr76}
+the cell must verify. They cleverly note --- using Fredman's trick~\cite{Fr76}
 as in Chan~\cite{Cha08} and Bremner et al.~\cite{BCDEHILPT14}
 --- that the verification of a single certificate by all cells amounts to
 solving a red/blue point dominance reporting problem.
@@ -99,8 +99,8 @@ only process the second certificate. For the sake of simplicity,
 we will write inequality when we mean either strict inequality or equation, and
 ``$\le$'' when we mean either ``$<$'' or ``$=$''.
 
-\paragraph{Fredman's Trick}
-This is where Fredman's Trick comes into play.
+\paragraph{Fredman's trick}
+This is where Fredman's trick comes into play.
 By Lemma~\ref{lem:fredman}, each inequality
 $f(a_{i,\pi_r(t)},b_{j,\pi_c(t)}) \le f(a_{i,\pi_r(t+1)},b_{j,\pi_c(t+1)})$
 of a certificate can be checked

@@ -9,10 +9,10 @@ This section is divided into four subsections:
 In \S\ref{sec:algo:explicit:nonuniform},
 we design a bounded-degree
 algebraic decision tree
-of depth $O(n^{\frac{12}{7}+\epsilon})$
+of depth $O(n^{12/7+\epsilon})$
 for explicit 3POL (\Cref{thm:explicit:nonuniform}), and in
 \S\ref{sec:algo:explicit:uniform}, we adapt this decision tree
-to run in time $O(n^2 {(\log \log n)}^{\frac 32} / {(\log n)}^{\frac 12})$
+to run in time $O(n^2 {(\log \log n)}^{3/2} / {(\log n)}^{1/2})$
 in the real-RAM model (\Cref{thm:explicit:uniform}).
 %
 In \S\ref{sec:algo:implicit:nonuniform}, we generalize the decision tree from
@@ -23,9 +23,12 @@ Finally, in \S\ref{sec:algo:implicit:uniform}, we give a real-RAM
 implementation of this second decision tree to solve 3POL as fast as
 explicit 3POL, up to constant factors (\Cref{thm:implicit:uniform}).
 
-Missing details are found in
-\S\ref{paper:3pol-algorithm:subproblems}
-and applications can be found in \S\ref{sec:applications}.
+Details for the implementation of the two main subroutines,
+offline polynomial dominance
+reporting and offline polynomial range searching,
+are found in
+\S\ref{paper:3pol-algorithm:subproblems}.
+Applications can be found in \S\ref{sec:applications}.
 
 \input{text/paper/3pol-algorithm/text/sec/06-algorithms/01-nonuniform-explicit}
 \input{text/paper/3pol-algorithm/text/sec/06-algorithms/03-uniform-explicit}

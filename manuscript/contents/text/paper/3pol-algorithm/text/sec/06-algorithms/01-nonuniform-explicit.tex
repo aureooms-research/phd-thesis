@@ -3,10 +3,10 @@
 
 We begin with the description of a nonuniform algorithm for explicit 3POL which
 we use later as a basis for other algorithms.
-
+%
 We recall the definition of the explicit 3POL problem
 %
-\ProblemPOLExplicit*
+\restate{\ProblemPOLExplicit*}
 
 We prove the following
 \restate{\TheoremPOLNonuniformExplicit*}
@@ -22,7 +22,7 @@ nlund and Pettie's paper~\cite{GP18} --- to quickly obtain a sorted order on
 those values, which provides us a logarithmic search time for each cell.
 Below is a sketch of the algorithm.
 \begin{algorithm}[Nonuniform algorithm for explicit 3POL]\label{algo:ne}
-\item[input] $A = \{\,a_1 < \cdots < a_n\,\},B = \{\,b_1<\cdots<b_n\,\},
+\item[input] $A = \{\,a_1 < \cdots < a_n\,\},B = \{\,b_1<\cdots<b_n\,\},\\
     C = \{\,c_1<\cdots<c_n\,\}
     \subset \mathbb{R}$.
 \item[output] \emph{accept} if $\exists\, (a,b,c) \in A \times B \times C$ such that $c

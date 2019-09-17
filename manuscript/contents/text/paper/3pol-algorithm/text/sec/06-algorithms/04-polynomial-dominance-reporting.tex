@@ -1,4 +1,4 @@
-\subsection{Polynomial Dominance Reporting}%
+\subsection{Offline Polynomial Dominance Reporting}%
 \label{sec:algo:dominance}
 
 %\improve{On the analysis of PDR in Section 3.4: we
@@ -18,12 +18,9 @@ For a pair of blue and red points in $\mathbb{R}^k$, we say that the blue point
 coordinate of the blue point is greater or equal to the $i$th coordinate of the
 red point.
 The standard algorithm in~\cite{PS85} solves the following problem:
-\begin{problem}
-	Given $N$ blue
-	%points
-	and $M$ red points in $\mathbb{R}^k$, report all
-	bichromatic dominating pairs.
-\end{problem}
+%
+\input{text/definition/offline-dominance-reporting}
+%
 Our problem is significantly more complicated and general. Instead of blue points we
 have blue $k$-tuples $p_i$ of $2$-dimensional points, instead of red points we have
 red $k$-tuples $q_j$ of bivariate polynomial inequalities, and we want to report
