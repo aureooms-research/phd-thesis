@@ -276,8 +276,10 @@ We can now refine the description of step~\textbf{2} in Algorithm~\ref{algo:ne}
 \item[input] $A = \{\,a_1<a_2<\cdots<a_n\,\},B = \{\,b_1<b_2<\cdots<b_n\,\}
     \subset \mathbb{R}$
 \item[output] The sets $f(A_i \times B_j)$, sorted.
-\item[2.1.] Locate each point $(a,a') \in \cup_i [A_i \times A_i]$ w.r.t.\
-    each $\gamma_{b,b'}, (b,b') \in \cup_j [B_j \times B_j]$.
+\item[2.1.] Locate each point $(a,a') \in \cup_i [A_i \times A_i]$
+    %w.r.t.\
+    with respect to
+    each $\gamma_{b,b'}$ with $(b,b') \in \cup_j [B_j \times B_j]$.
 %\footnote{See Algorithm~\ref{algo:pbrs} for the implementation.}
 \item[2.2.] Sort the sets $f(A_i \times B_j)$ using the
     information retrieved in step \textbf{2.1}.
@@ -294,21 +296,18 @@ our nonuniform model.
 To implement step~\textbf{2.1}, we use a modified\footnote{The original
 algorithm relies on hierarchical cuttings which cannot be
 implemented in the bounded-degree ADT model.}
-version of the $N^{\frac{4}{3}} 2^{O(\log^* N)}$ algorithm of
+version of the $N^{\frac 43} 2^{O(\log^* N)}$ algorithm of
 Matou\v{s}ek~\cite{Ma93} for Hopcroft's problem.
 In \S~\ref{sec:algo:point-curves-location}, we prove the following upper bound:
-\begin{lemma}\label{lem:batch}
-Polynomial Batch Range Searching can be solved in
-$O(N^{\frac{4}{3}+\varepsilon})$ time in the real-RAM model when the input
-curves are the $\gamma_{b,b'}$.
-\end{lemma}
+%
+\input{text/theorem/3pol-algorithm/offline-polynomial-range-searching}
 
 %Note that we do not get the nicer $2^{O(\log^*N)}$ factor because of the
 %limitations of the tools we use.
 
 \paragraph{Analysis}
 Combining Lemma~\ref{lem:preprocessing} and Lemma~\ref{lem:batch} yields a $O(
-{(ng)}^{4/3+\varepsilon} + n^2 \log g / g)$-depth bounded-degree ADT for
-explicit 3POL\@. By optimizing over $g$, we get $g = \Theta(n^{2/7-\varepsilon})$, and
-the previous expression simplifies to $O(n^{12/7+\varepsilon})$, proving
+{(ng)}^{4/3+\epsilon} + n^2 \log g / g)$-depth bounded-degree ADT for
+explicit 3POL\@. By optimizing over $g$, we get $g = \Theta(n^{2/7-\epsilon})$, and
+the previous expression simplifies to $O(n^{12/7+\epsilon})$, proving
 \Cref{thm:explicit:nonuniform}.
