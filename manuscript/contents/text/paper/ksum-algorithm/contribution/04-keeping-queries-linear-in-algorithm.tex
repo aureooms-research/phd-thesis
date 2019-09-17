@@ -5,8 +5,9 @@ In Algorithm~\ref{algo:simplex}, we want to ensure that the queries we make in s
 \step{2} are linear and that the queries we make in the recursion step
 remain linear too.
 \begin{lemma}
+	Step \step{2} of
 	Algorithm~\ref{algo:simplex} can be implemented so that it uses
-	$O(n\card{\mathcal{I}})$ linear queries.
+	$O(\card{\mathcal{I}})$ linear queries.
 \end{lemma}%
 \begin{proof}
 Let us first analyze what the queries of step \step{2} look like. In addition

@@ -4,7 +4,7 @@
 In this section and the next, we prove the following first result.
 \restate{\TheoremKSUMCube*}
 
-\subsubsection{Algorithm outline}
+\paragraph{Algorithm outline}
 For a fixed set of hyperplanes \(\Hy\) and given input vertex \(q\) in \(\R^n\),
 Meiser's algorithm allows us to determine the cell of the arrangement
 $\arrangement(\Hy)$ that contains $q$ in its interior (or that \emph{is} $q$ if
@@ -14,14 +14,17 @@ problem, the set $\Hy$ is the set of $\Theta(n^k)$ hyperplanes with equations of
 form $x_{i_1} + x_{i_2} + \cdots + x_{i_k} = 0$.
 These equations can be modified accordingly for \(k\)-LDT.
 
-We use Lemma~\ref{thm:enet} to design a prune and search algorithm for
-\(k\)-SUM as follows:
-(1) construct an \enet{} \(\net\),
+We design a prune and search algorithm for \(k\)-SUM relying on
+a lemma on the size of \(\varepsilon\)-nets for the range-space consisting of
+the ground set \(\mathcal{H}\) and the ranges obtained by intersecting
+\(\mathcal{H}\) with simplices (Lemma~\ref{thm:enet}):
+(1) construct an \enet{} \(\net\) for this range space,
 (2) compute the cell \(\cell\) of \(\arrangement(\net)\) containing the input
 point $q$ in its interior,
 (3) construct a simplex \(\simplex\) inscribed in \(\cell\) and containing
-\(q\) in its interior,
-(4) recurse on the hyperplanes of \(\Hy\) intersecting the interior of
+\(q\) in its interior (\(S\) need not be full-dimensional),
+(4) report any hyperplane \(H \in \mathcal{H}\) such that \(S \subset H\),
+(5) recurse on the hyperplanes of \(\Hy\) intersecting the interior of
 \(\simplex\).
 
 Proceeding this way with a constant $\varepsilon$ guarantees that at most a
@@ -35,7 +38,7 @@ This procedure corresponds to the well-known
 \emph{bottom vertex decomposition} (or \emph{triangulation}) of a hyperplane
 arrangement (see \S\ref{sec:arrangements:triangulation}).
 
-\subsubsection{Finding a simplex}
+\paragraph{Finding a simplex}
 
 In order to simplify the exposition of the algorithm, we assume, without
 loss of generality, that the input numbers $q_i$ all lie in the interval $[-1,1]$.
@@ -54,7 +57,9 @@ We now explain how to construct \(\simplex\) under this assumption. The algorith
 can be sketched as follows. (Recall that $\sigma(H,p)$ denotes the location
 of $p$ with respect to the hyperplane $H$.)
 
-\begin{algorithm}[Constructing \(\simplex\)]\label{algo:simplex}
+\begin{algorithm}%
+[Constructing \(\simplex\)]%
+\label{algo:simplex}
 \item[input] A point \(q\) in ${[-1,1]}^n$, a set $\I$ of hyperplanes not
 	containing \(q\), and a set $\E$ of hyperplanes in general position
 	containing \(q\), such that the cell
@@ -69,7 +74,7 @@ of $p$ with respect to the hyperplane $H$.)
 \item[output] A simplex \(\simplex \in \cell\) that contains \(q\) in
 	its interior (if it is not a point), and all vertices
 	of which are vertices of \(\cell\).
-\item[0.] If $\card{\E}=n$, return $q$.
+\item[0.] If $\card{\E}=n$, return $ \cap_{H \in \mathcal{E}} H = q$.
 \item[1.] Determine a vertex \(\nu\) of $\cell$.
 \item[2.] Let \(q'\) be the projection of \(q\) along \(\vec{\nu q}\) on the
 	boundary of \(\cell\). Compute \(\I_\theta \subseteq \I\), the subset of
@@ -111,16 +116,29 @@ Since \(\card{\I'} < \card{\I}\), \(\card{\E'} > \card{\E}\), and
 recursive call is no more than that of the parent call, and the maximal depth
 of the recursion is \(n\). Thus, the total number of
 linear queries made to compute \(\simplex\) is \(O(n\card{\I})\).
-\todo{Add lemma for this statement goddammit.}
+%
+\begin{lemma}[%
+	label={lem:simplex}%
+]
+	Algorithm~\ref{algo:simplex} uses \(O(n | \mathcal{I} |)\) \(n\)-linear
+	queries.
+\end{lemma}
 
-Hence given an input point \(q \in [-1,1]\), an arrangement of hyperplanes
+With the following corollary:
+%
+\begin{corollary}[%
+	label={cor:simplex}%
+]
+Given an input point \(q \in [-1,1]\), an arrangement of hyperplanes
 \(\arrangement(\net)\), and the value of \(\sigma(H,q)\) for all
 \(H \in (\net\cup\B)\), we can compute the desired simplex \(\simplex\)
 by running Algorithm~\ref{algo:simplex} on \(q\),
 \(\I=\{\,H \in (\net\cup\B) \colon\, \sigma(H,q) \neq 0\,\}\), and
 \(\E \subseteq (\net\cup\B) \setminus\I\).
-This uses $O( n | N | )$ linear queries.
-Figure~\ref{fig:meiser:step} illustrates a step of the algorithm.
+This uses $O( n | \mathcal{N} | )$ linear queries.
+\end{corollary}
+
+Figure~\ref{fig:meiser:step} illustrates a step of this algorithm.
 
 \begin{figure}
 \begin{center}
@@ -132,19 +150,33 @@ Illustration of a step of Algorithm~\ref{algo:simplex}.
 \end{center}
 \end{figure}
 
-\subsubsection{Assembling the pieces}
-
-Let us summarize the algorithm
+\paragraph{Assembling the pieces}
+Following the outline sketched earlier and plugging in
+Lemma~\ref{thm:enet} and
+the results for
+Algorithm~\ref{algo:simplex} we get the following algorithm:
+%
 \begin{algorithm}\label{algo:meiser}
 \item[input] A point \(q \in {[-1,1]}^n\) and a set \(\mathcal{H}\) of hyperplanes in \(\mathbb{R}^n\).
-%\item[output] The location \(\sigma(H,q)\) for all \(H \in \mathcal{H}\).
-\item[output] All \(H \in \mathcal{H}\) such that \(\sigma(H,q) = 0\).
-\item[1.] Pick a sample \(\mathcal{N}\) of $\Hy$ uniformly at random and locate $q$
-	in the arrangement \(\mathcal{A}(\mathcal{N})\). Call $\cell$ the cell of
-	\(\mathcal{A}(\mathcal{N})\) containing $q$.
-\item[2.] Construct the simplex \(\simplex\) containing \(q\) and inscribed in
+\item[output] All \(H \in \mathcal{H}\) such that \(\sigma(H,q) = 0\).%
+\footnote{%
+Note that it is easy to modify this decision tree to,
+%
+with asymptotically the same number of linear queries
+%
+and
+%
+in addition to deciding whether \(q\) lies on any \(H \in \mathcal{H}\),
+%
+compute the location \(\sigma(H,q)\) for all \(H \in \mathcal{H}\).%
+}
+\item[0.] Stop if \(| \mathcal{H} | = 0\).
+\item[1.] Pick a sample \(\mathcal{N}\) of $\Hy$ uniformly at random.
+\item[2.] Locate $q$ in the arrangement \(\mathcal{A}(\mathcal{N})\). Call
+	$\cell$ the cell of \(\mathcal{A}(\mathcal{N})\) containing $q$.
+\item[3.] Construct the simplex \(\simplex\) containing \(q\) and inscribed in
 \(\cell\), using Algorithm~\ref{algo:simplex}.
-\item[3.]
+\item[4.]
 For every hyperplane of $H \in \Hy$ with $\simplex \subset H$, output
 	\(H\).
 %For every hyperplane of $H \in \Hy$ with $\simplex \subset H$, output
@@ -153,20 +185,26 @@ For every hyperplane of $H \in \Hy$ with $\simplex \subset H$, output
 	%\(\sigma(H,q) = -\).
 %For every hyperplane of $H \in \Hy$ with $\simplex \subset H^+$, output
 	%\(\sigma(H,q) = +\).
-\item[4.] Recurse on hyperplanes of $\Hy$ intersecting the interior of $\simplex$.
+\item[5.] Recurse on hyperplanes of $\Hy$ intersecting the interior of $\simplex$.
 \end{algorithm}
 
 By Lemma~\ref{thm:enet}, we can take \(| \mathcal{N} | = O(n^2 \log n)\).
-Hence, the query complexity of step \step{1} is $O(n^2 \log n)$, and that of step
-\step{2} is $O(n^3 \log n)$. Steps \step{3} and \step{4} do not involve any
-query at all. The recursion depth is $O(\log \card{\Hy})$, with $|\Hy|=O(n^k)$,
-hence the total query complexity of this algorithm is $O(n^3 \log^2 n)$. This
-proves the first part of Theorem~\ref{thm:cube}.\\
+Hence, the query complexity of step \step{2} is $O(n^2 \log n)$, and that of step
+\step{3} is $O(n^3 \log n)$ by Corollary~\ref{cor:simplex}.
+%
+Steps \step{1}, \step{4} and \step{5} do not involve any
+query at all.
+%
+The recursion depth is $O(\log \card{\Hy})$, with $|\Hy|=O(n^k)$,
+hence the total query complexity of this algorithm is $O(n^3 \log^2 n)$.
+%
+This proves the first part of Theorem~\ref{thm:cube}.
 
+\paragraph{A Remark}
 We can also consider the overall complexity of the algorithm in the RAM model,
 that is, taking into account the steps that do not require any query, but for
 which we still have to process the set $\Hy$. Note that, in this model,
-the complexity bottleneck of the algorithm are steps \step{3}-\step{4},
+the complexity bottleneck of the algorithm are steps \step{4}-\step{5},
 where we need to prune
 the list of hyperplanes according to their location with respect to
 $\simplex$. For this purpose, we simply maintain explicitly the list of all
@@ -175,9 +213,11 @@ Then the pruning step can be performed by looking at the location of each
 vertex of $\simplex$ relative to each hyperplane of $\Hy$.
 Because in our case hyperplanes have only $k$ nonzero coefficients, this uses a
 number of integer arithmetic operations on $\tilde{O}(n)$ bits integers that is
-proportional to the number of vertices times the number of hyperplanes.
-(For the justification of the bound on the number of bits needed to represent
-vertices of the arrangement see \S\ref{app:bound}.)
+proportional to the number of vertices times the number of hyperplanes.%
+\footnote{%
+For the justification of the bound on the number of bits needed to represent
+vertices of the arrangement see \S\ref{app:bound}.%
+}
 Since we recurse on a fraction of the set, the overall complexity is
 $\tilde{O}(n^2\card{\Hy}) = \tilde{O}(n^{k+2})$. The next section is devoted
 to improving this running time.

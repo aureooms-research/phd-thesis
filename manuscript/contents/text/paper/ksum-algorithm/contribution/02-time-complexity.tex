@@ -76,7 +76,7 @@ The overall running time for this implementation will therefore be
 $\tilde{O}(n^2 (n^{\lceil \frac k2 \rceil} \log M + Z))$, where $Z$ is at most the
 number of intersecting hyperplanes and $M$ is to be determined later.
 This provides an implementation of the pruning step in Meiser's algorithm, that
-is, step~\step{4} of Algorithm~\ref{algo:meiser}.
+is, step~\step{5} of Algorithm~\ref{algo:meiser}.
 
 \begin{corollary}\label{cor:double}
 	In the word-RAM model,
@@ -86,7 +86,7 @@ is, step~\step{4} of Algorithm~\ref{algo:meiser}.
 	necessary to represent $\simplex$.
 \end{corollary}
 
-In order to detect solutions in step~\step{3} of Algorithm~\ref{algo:meiser}, we also
+In order to detect solutions in step~\step{4} of Algorithm~\ref{algo:meiser}, we also
 need to be able to quickly solve the following problem.
 \begin{problem}[multiple $k$-SUM]
 	Given $d$ points $\nu_1,\nu_2,\ldots,\nu_d \in \R^n$, where the coordinates of
@@ -128,7 +128,7 @@ the fact that the coordinates lie in a small discrete set.
 	$O(dn^2 \log M)$ bits.
 \end{proof}
 
-We now have efficient implementations of steps \step{3} and \step{4}
+We now have efficient implementations of steps \step{4} and \step{5}
 of Algorithm~\ref{algo:meiser} and can proceed to the proof of the second part
 of Theorem~\ref{thm:cube}.
 

@@ -10,10 +10,10 @@ the analysis of the linearity of queries
 
 \begin{proof}
 We go through each step of Algorithm~\ref{algo:meiser}.
-Indeed, each \(k\)-linear query of step \step{1} can be implemented as
-\(O(k)\) arithmetic operations, so step \step{1} has complexity
+Indeed, each \(k\)-linear query of step \step{2} can be implemented as
+\(O(k)\) arithmetic operations, so step \step{2} has complexity
 \(O(\card{\net})\).
-The construction of the simplex in step \step{2} must be handled carefully.
+The construction of the simplex in step \step{3} must be handled carefully.
 What we need to show is that each \(n\)-linear query we use can be implemented
 using $O(k)$ arithmetic operations. It is not difficult to see from the
 expressions given in~\S\ref{app:keeplinear} that a constant number of arithmetic
@@ -28,10 +28,11 @@ d_{\theta_{k}} \cdot \vec{\nu q}^{(k)}\), but this is equivalent to
 	\vec{\nu q}^{(s)})\)
 where the first factor has already been computed during a previous step and
 the second factor is of constant complexity. Since each query costs a constant
-number of arithmetic operations and branching operations, step \step{2}
+number of arithmetic operations and branching operations, step \step{3}
 has complexity \(O(n\card{\net})\).
-Finally, steps \step{3} and \step{4} are free since they do not involve the
-input. The complexity of Algorithm~\ref{algo:meiser} in this model is thus also \(O(n^3
-\log n \log \card{\Hy})\).
+Finally, steps \step{1}, \step{4} and \step{5} are free since they do not involve the
+input.
+The complexity of Algorithm~\ref{algo:meiser} in this model is thus also
+\(O(n^3 \log n \log \card{\Hy})\).
 \end{proof}
 
