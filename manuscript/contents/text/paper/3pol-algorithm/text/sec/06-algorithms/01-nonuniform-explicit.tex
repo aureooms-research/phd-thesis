@@ -268,10 +268,8 @@ There are $N \coloneqq \frac ng \cdot g^2 = ng$ pairs $(a,a') \in \cup_i [A_i \t
 A_i]$ and there are $N$ pairs $(b,b') \in \cup_j [B_j \times B_j]$.  Sorting
 the $f(A_i\times B_j)$ for all $(A_i, B_j)$ amounts to solving the
 following problem:
-\begin{problem}[Polynomial Batch Range Searching]
-    Given $N$ points and $N$ polynomial curves in $\mathbb{R}^2$, locate
-    each point with respect to each curve.
-\end{problem}
+%
+\input{text/definition/offline-polynomial-range-searching}
 
 We can now refine the description of step~\textbf{2} in Algorithm~\ref{algo:ne}
 \begin{algorithm}[Sorting the $f(A_i \times B_j)$ with a nonuniform algorithm]\label{algo:sfaixbj}
