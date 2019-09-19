@@ -24,9 +24,9 @@ Since this primitive is used at each level of the hierarchy, the
 
 To get past this difficulty,
 the trick is to encode approximations of the traces
-\(\textsc{Tr}(\mathcal{C}, p')\) to still allow constant intersection location.
+\(\textsc{Tr}(\mathcal{C}, L)\) to still allow constant intersection location.
 We call those approximations \emph{signatures} and denote them by
-\(\textsc{Sig}(\mathcal{C}, p')\).
+\(\textsc{Sig}(\mathcal{C}, L)\).
 %
 We define those signatures so that they approximately encode the cyclic
 permutation of the intersections around each subcell. By carefully choosing some
@@ -43,11 +43,11 @@ an additional lookup table.
 %
 Because those situations rarely arise, this table also is small.
 
-Once we have located the intersection \(p_a' \cap p_b'\), we still need to deal
-with \(p_c'\). We change the layout of a trace to locate the subcell containing
-\(p_a' \cap p_b'\) with respect to \(p_c'\) in constant time.
+Once we have located the intersection \(L_a \cap L_b\), we still need to deal
+with \(L_c\). We change the layout of a trace to locate the subcell containing
+\(L_a \cap L_b\) with respect to \(L_c\) in constant time.
 %
-In case \(p_c'\) properly intersects the subcell, we need to recurse on the
+In case \(L_c\) properly intersects the subcell, we need to recurse on the
 subcell. To do that, we need to map the pseudoline indices \(a\), \(b\), and
 \(c\) to the indices those pseudolines have in that subcell. This is
 done with one indirection:
@@ -95,17 +95,17 @@ As in \S\ref{sec:lines-and-pseudolines}, we store a combinatorial representation
 this hierarchical cutting. We make some tweaks to this representation.
 
 We augment the traces of \S\ref{sec:lines-and-pseudolines} with a \emph{signature}.
-The trace \(\textsc{Tr}(\mathcal{C}, p')\) of a cell-pseudoline pair
+The trace \(\textsc{Tr}(\mathcal{C}, L)\) of a cell-pseudoline pair
 is composed of two parts:
 The incidence bits
 that tell us for each subcell of the cell whether the pseudoline lies above, lies below, intersects
 or contains it, and the cyclic permutation bits used to locate the intersection
 of two pseudolines inside the cell.
 The first part uses \(\Theta(r^2)\) bits.
-The second part uses \(\Theta(r \log{\frac{N}{r^{i+1}}})\) bits for a cell of
+The second part uses \(\Theta(r \log{\frac{n}{r^{i+1}}})\) bits for a cell of
 level \(i\).
 
-To construct the signature \(\textsc{Sig}(\mathcal{C}, p')\),
+To construct the signature \(\textsc{Sig}(\mathcal{C}, L)\),
 we keep the \(\Theta(r^2) = \Theta(\log^{2\alpha} n)\) incidence bits because
 they fit in sublogarithmic space for sufficiently small \(\alpha\).
 The second part would use superlogarithmic space if handled as before.
@@ -129,7 +129,7 @@ of each signature only uses \(O(r \log \beta) = O(\log^{2\alpha})\) bits.
 Intersection Oracle\else%
 Intersection oracle\fi}
 We construct a lookup table to compute in constant time,
-for any given cell of any given level, the subcell in which \(q_i \cap q_j\)
+for any given cell of any given level, the subcell in which \(L_a \cap L_b\)
 lies.
 %Computing it via scanning with so many subcells to check would waste any
 %further savings.
@@ -178,7 +178,7 @@ direct addressing into an array.
 
 Note that the output of this oracle is the same no matter what level or cell we
 consider: for non-ambiguous inputs, all the information required to locate
-\(q_i \cap q_j\) is included in the input.
+\(L_a \cap L_b\) is included in the input.
 We thus only need a single lookup table, and the space needed is proportional to
 \begin{displaymath}
   2^g h
@@ -212,10 +212,10 @@ inputs for all cells of each level \(i \in \{\, 0,1, \ldots, \ell -1\,\}\).
 %
 This table maps a triple of a cell
 \(\mathcal{C}_{0,j_1,j_2,\ldots,j_i}\),
-a pseudoline \(p_a'\),
-and a pseudoline \(p_b'\) to the index \( j_{i+1} \in \{\, 0,1, \ldots, O(r^2)\,\}\) of
+a pseudoline \(L_a\),
+and a pseudoline \(L_b\) to the index \( j_{i+1} \in \{\, 0,1, \ldots, O(r^2)\,\}\) of
 the subcell \(\mathcal{C}_{0,j_1,j_2,\ldots,j_i,j_{i+1}}\) containing the
-intersection \(p_a' \cap p_b'\).
+intersection \(L_a \cap L_b\).
 %
 Summing over all subcells of each level, we obtain that the
 number of entries in this table is bounded above by
@@ -253,7 +253,7 @@ first intersection indices as depicted in Figure~\ref{fig:new-trace}.
   \centering{}
   \includegraphics[width=\linewidth]{figures/new-trace}
   \caption{%
-	  An augmented trace \(\textsc{Tr}'(\mathcal{C}, p')\)
+	  An augmented trace \(\textsc{Tr}'(\mathcal{C}, L)\)
       for the same cell-pseudoline pair as in Figure~\ref{fig:trace}.
   }\label{fig:new-trace}
 \end{figure}
@@ -384,13 +384,13 @@ is quadratic.
 For realizable order types, the total space is dominated by the term
 \(\frac{n^2}{t} \log^{\alpha} n\).
 Indeed, we can take \(\alpha\) as small as desired
-to make the factor \(\log^{\alpha} n = O(\log^{\varepsilon} n)\).
+to make the factor \(\log^{\alpha} n = O(\log^{\epsilon} n)\).
 %
 This proves the space constraints in
 Theorems~\ref{thm:abstract-loglog}~and~\ref{thm:realizable-loglog}.
 %
 Unfortunately, the present solution incurs a nonabsorbable
-extra \(\log^{\varepsilon} n\) factor in the realizable case. Note that a
+extra \(\log^{\epsilon} n\) factor in the realizable case. Note that a
 \(\log{\log{\log{n}}}\) factor can be squeezed from the query time without
 increasing the space usage by choosing \(r = \Theta(\log \log n)\) instead.
 
@@ -398,17 +398,17 @@ increasing the space usage by choosing \(r = \Theta(\log \log n)\) instead.
 \paragraph*{\iftitlecase%
 Correctness and Query Complexity\else%
 Correctness and query complexity\fi}
-Given a query \(p_a', p_b', p_c'\) and a cell \(\mathcal{C}\),
+Given a query \(L_a, L_b, L_c\) and a cell \(\mathcal{C}\),
 %at each level,
-the subcell \(\mathcal{C}'\) containing \(p_a' \cap p_b'\) is found in constant
+the subcell \(\mathcal{C}'\) containing \(L_a \cap L_b\) is found in constant
 time via the
 intersection oracle and, if necessary, the disambiguation table.
-The location of that subcell with respect to \(p_c'\) can then be retrieved by
-a single lookup in the incidence bits of \(\textsc{Tr}'(\mathcal{C}, p_c')\).
+The location of that subcell with respect to \(L_c\) can then be retrieved by
+a single lookup in the incidence bits of \(\textsc{Tr}'(\mathcal{C}, L_c)\).
 In case of recursion, we can compute the address of the traces
-\(\textsc{Tr}'(\mathcal{C}', p_a')\),
-\(\textsc{Tr}'(\mathcal{C}', p_b')\), and
-\(\textsc{Tr}'(\mathcal{C}', p_c')\) in constant time using the subcell mapper.
+\(\textsc{Tr}'(\mathcal{C}', L_a)\),
+\(\textsc{Tr}'(\mathcal{C}', L_b)\), and
+\(\textsc{Tr}'(\mathcal{C}', L_c)\) in constant time using the subcell mapper.
 The base case is handled in constant time as before: using the pointers,
 canonical labelings and order type lookup tables.
 
@@ -423,7 +423,7 @@ Preprocessing Time\else%
 Preprocessing time\fi}
 We prove Theorem~\ref{thm:preprocessing-loglog}.
 \begin{proof}
-  As before, the hierarchical cutting and all traces \(\textsc{Tr}'(C, p')\)
+  As before, the hierarchical cutting and all traces \(\textsc{Tr}'(C, L)\)
   can be computed in \(O(nr^\ell)\) time (with or without rank-select data
   structures). The lookup tables and leaf-table pointers can be computed in
   \(O(n^2)\) time. The intersection oracle, the disambiguation table, and the

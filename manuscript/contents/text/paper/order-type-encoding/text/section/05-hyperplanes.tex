@@ -204,19 +204,19 @@ subcell\ifeurocg\else, that is, whether the hyperplane lies above
 (\texttt{00}), lies below (\texttt{01}), intersects the interior of that
 subcell (\texttt{10}), or contains the subcell (\texttt{11})\fi.
 %
-When a hyperplane \(H_{i}\) intersects the interior of a subcell \(\mathcal{C}'\),
+When a hyperplane \(H\) intersects the interior of a subcell \(\mathcal{C}'\),
 we also store the two \(O(\log \frac{n}{r^{i+1}})\)-bits two-dimensional
 intersections indices this hyperplane has in each of the
-\(O\left({\left(\frac{n}{r^{i+1}}\right)}^{d-2}\right)\)
+\(O\mleft({\left(\frac{n}{r^{i+1}}\right)}^{d-2}\mright)\)
 query suffixes \((H_{i_3} \cap H_{i_4} \cap \ldots \cap H_{i_d})\) with each of the
 \(H_{i_j}\) properly intersecting \(\mathcal{C}'\).
 
 This representation takes
-\(O\left(
+\(O\mleft(
   \frac{n}{r^i}
   +
   {\left(\frac{n}{r^{i+1}}\right)}^{d-1} \log{\frac{n}{r^{i+1}}}
-\right)\)
+\mright)\)
 bits per subcell of level \(i\) by storing for each
 hyperplane its location and, when needed, the bits they hold in
 the encoding of the intersection function of the subcell.

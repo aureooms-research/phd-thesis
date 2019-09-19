@@ -22,16 +22,16 @@ logarithm (as in~\cite{Ma93}).\footnote{%
   trivially achievable with no constraint on \(w\).%
 }
 Let \(\mathcal{C} = \mathcal{C}_{0}\).
-First, find the subcell \(\mathcal{C}'\) of \(\mathcal{C}\) containing \(p_a'
-\cap p_b'\) by testing for each subcell whether
-\(p_a'\) and \(p_b'\) alternate in its cyclic permutation.
+First, find the subcell \(\mathcal{C}'\) of \(\mathcal{C}\) containing \(L_a
+\cap L_b\) by testing for each subcell whether
+\(L_a\) and \(L_b\) alternate in its cyclic permutation.
 This can be done in \(O(r^2)\) time by scanning \(\textsc{Tr}(\mathcal{C},
-p_a')\) and \(\textsc{Tr}(\mathcal{C}, p_b')\) in parallel. Note that non-full
-dimensional cells and subcells are easier to test. Next, if \(p_c'\) does
+L_a)\) and \(\textsc{Tr}(\mathcal{C}, L_b)\) in parallel. Note that non-full
+dimensional cells and subcells are easier to test. Next, if \(L_c\) does
 not properly intersect \(\mathcal{C}'\), answer the query accordingly. If on
-the other hand \(p_c'\) does properly intersect the subcell we recurse on
+the other hand \(L_c\) does properly intersect the subcell we recurse on
 \(\mathcal{C}'\). This can be tested by scanning \(\textsc{Tr}(\mathcal{C},
-p_c')\) in \(O(r^2)\) time. Note that in case that the subcell is
+L_c)\) in \(O(r^2)\) time. Note that in case that the subcell is
 non-full-dimensional we can already answer the query. When we
 reach the relative interior of a subcell of the last level of the hierarchy
 without having found a satisfactory answer, we can answer the query by table
@@ -54,5 +54,5 @@ t)\) to reduce the depth of the hierarchy, without changing the
 space requirements by more than a constant factor.
 However, if no additional care is taken, this would slow the queries down by a
 \(\Theta(\log^2 t / \log \log t)\) factor because of the scanning approach
-taken when locating the intersection \(p_a' \cap p_b'\). We show how to handle
+taken when locating the intersection \(L_a \cap L_b\). We show how to handle
 small but superconstant \(r\) properly in the next section.

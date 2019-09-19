@@ -1,8 +1,8 @@
 \paragraph*{Intersection Location}
 %
 When the arrangement consists of straight lines,
-locating the intersection \(p_a' \cap p_b'\) in \(\Xi\) is trivial if we
-know the real parameters of \(p_a'\) and \(p_b'\) and of the descriptions
+locating the intersection \(L_a \cap L_b\) in \(\Xi\) is trivial if we
+know the real parameters of \(L_a\) and \(L_b\) and of the descriptions
 of the subcells of \(\Xi\). However, in our model we are not allowed to store
 real numbers. To circumvent this annoyance, and to handle arrangements of
 pseudolines, we make an observation illustrated by
@@ -13,12 +13,12 @@ Figure~\ref{fig:permutation}.
 \begin{subfigure}[t]{0.5\textwidth}
 \centering{}
 \includegraphics[scale=.\ifeurocg7\else9\fi]{figures/permutation-0}
-\caption{\(p_a' \cap p_b' \cap \mathcal{C} = \emptyset\).}
+\caption{\(L_a \cap L_b \cap \mathcal{C} = \emptyset\).}
 \end{subfigure}%
 \begin{subfigure}[t]{0.5\textwidth}
 \centering{}
 \includegraphics[scale=.\ifeurocg7\else9\fi]{figures/permutation-1}
-\caption{\(p_a' \cap p_b' \cap \mathcal{C} \neq \emptyset\).}
+\caption{\(L_a \cap L_b \cap \mathcal{C} \neq \emptyset\).}
 \end{subfigure}
 \caption{Cyclic permutations (\(\pi\)).}\label{fig:permutation}
 \end{figure}
@@ -31,9 +31,9 @@ Figure~\ref{fig:permutation}.
 \end{definition}
 %
 \begin{observation}
-    Two pseudolines \(p_a'\) and \(p_b'\)
+    Two pseudolines \(L_a\) and \(L_b\)
     intersect in the interior of a pseudodisk \(\mathcal{C}\) if and only if
-    the intersections of \(p_a'\) and \(p_b'\) with \(\mathcal{C}\)
+    the intersections of \(L_a\) and \(L_b\) with \(\mathcal{C}\)
     alternate on the boundary of \(\mathcal{C}\).
 \end{observation}
 %
@@ -42,7 +42,7 @@ We construct \(\Xi\) so that its cells are pseudodisks for the pseudolines that
 intersect them.
 %
 Hence, this observation gives us a way to encode the location of the
-intersection of \(p_a'\) and \(p_b'\) in \(\Xi\) using only bits.
+intersection of \(L_a\) and \(L_b\) in \(\Xi\) using only bits.
 %
 We formalize this observation with the following definition:
 \begin{definition}[Cyclic Permutation]

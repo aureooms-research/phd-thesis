@@ -23,7 +23,7 @@ we do not give the details for those sections.
   %\includegraphics[scale=.8]{figures/layout}
   %\caption{Memory layout of the encoding.
     %Here, \(\textsc{Tr}(a, C_{i,j}(a))\) is used as a shorthand
-    %for \(\textsc{Tr}(p_a', C_{i,j}(a))\) and \(-1\) is used as a shorthand
+    %for \(\textsc{Tr}(L_a, C_{i,j}(a))\) and \(-1\) is used as a shorthand
     %for ``last index''. The symbols \(\pi_j\) and
     %\(\textsc{Ptr}_j\) represent the canonical labeling and the pointer for leaf
     %\(j\), respectively. The symbol \(\textsc{Table}_{\tau}\) represents the lookup
@@ -50,8 +50,8 @@ Cells are then ordered lexicographically.
 For each leaf cell we store its pointer and canonical labeling.
 %
 For each internal cell \(\mathcal{C}\) we store the traces
-\(\textsc{Tr}(\mathcal{C}, p')\) in a certain permutation of the pseudolines
-\(p'\).
+\(\textsc{Tr}(\mathcal{C}, L)\) in a certain permutation of the pseudolines
+\(L\).
 %
 To order the pseudolines, we use the first index of each pseudoline
 in the cyclic permutation of the cell (for the root cell \(\mathcal{C}_0\) this
@@ -114,15 +114,15 @@ j_{i} - 1\)
   .
 \end{displaymath}
 
-The address of the trace \(\textsc{Tr}(\mathcal{C}, p_a')\),
+The address of the trace \(\textsc{Tr}(\mathcal{C}, L_a)\),
 where
 \(0 \leq a \leq 2 \lfloor \frac{N}{r^{i}} \rfloor - 1\) is the first intersection
-index of \(p_a'\) in the cyclic permutation of the level-\(i\) cell
+index of \(L_a\) in the cyclic permutation of the level-\(i\) cell
 \(\mathcal{C}\),
 is
 %
 \begin{displaymath}
-  \textsc{Addr}(\mathcal{C}, p_a')
+  \textsc{Addr}(\mathcal{C}, L_a)
   =
   \textsc{Addr}(\mathcal{C})
   + a \cdot |\textsc{Tr}_{i}|.

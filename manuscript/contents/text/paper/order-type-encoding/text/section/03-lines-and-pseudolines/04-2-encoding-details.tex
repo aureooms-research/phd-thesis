@@ -26,23 +26,23 @@ the number of bits stored for a single intersecting cell-pseudoline
 pair at level \(i\) is bounded by
 \(|\textsc{Tr}_i| = O(r^2 + r \log{\frac{n}{r^{i+1}}})\).
 This bound allows us to store all bits belonging to a given cell-pseudoline pair
-\((\mathcal{C},p')\)
-in a contiguous block of memory, denoted by \(\textsc{Tr}(\mathcal{C},p')\),
+\((\mathcal{C},L)\)
+in a contiguous block of memory, denoted by \(\textsc{Tr}(\mathcal{C},L)\),
 whose address in memory is easy to compute (as detailed later on).
 %
 The overall number of bits stored stays the same up to a constant factor.
 %
 We call
-\(\textsc{Tr}(\mathcal{C},p')\) the \emph{trace} of \(p'\) in \(\mathcal{C}\).
+\(\textsc{Tr}(\mathcal{C},L)\) the \emph{trace} of \(L\) in \(\mathcal{C}\).
 Figure~\ref{fig:trace} depicts an example trace.
 %
 \begin{figure}
   \centering{}
   \includegraphics[width=\linewidth]{figures/trace}
   \caption{%
-	  A trace \(\textsc{Tr}(\mathcal{C}, p')\). The cell \(\mathcal{C}\) has
+	  A trace \(\textsc{Tr}(\mathcal{C}, L)\). The cell \(\mathcal{C}\) has
 	  eight subcells. Each subcell is intersected by at most four pseudolines.
-	  The pseudoline \(p'\) lies above two of them, lies below two of them,
+	  The pseudoline \(L\) lies above two of them, lies below two of them,
 	  contains one of them, and intersects three of them at indices
 	  \((2,6)\), \((5,7)\), and \((0, 3)\).
   }\label{fig:trace}

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE ipe SYSTEM "ipe.dtd">
-<ipe version="70206" creator="Ipe 7.2.11">
-<info created="D:20170812095718" modified="D:20190408161418"/>
+<ipe version="70212" creator="Ipe 7.2.12">
+<info created="D:20170812095718" modified="D:20190919200653"/>
 <ipestyle name="basic">
 <symbol name="arrow/arc(spx)">
 <path stroke="sym-stroke" fill="sym-stroke" pen="sym-pen">
@@ -532,12 +532,12 @@ h
 <text matrix="1 0 0 1 48 0" transformations="translations" pos="144 692" stroke="black" type="label" width="18.265" height="3.655" depth="0" valign="baseline" style="math">\longleftrightarrow</text>
 <text matrix="1 0 0 1 184 8" transformations="translations" pos="76 668" stroke="black" type="label" width="45.938" height="6.926" depth="1.93" valign="baseline" style="math">y = ax - b</text>
 <use matrix="1 0 0 1 180 4" name="mark/disk(sx)" pos="96 700" size="normal" stroke="black"/>
-<text matrix="1 0 0 1 184 8" transformations="translations" pos="96 700" stroke="black" type="label" width="40.921" height="7.49" depth="2.49" valign="baseline" style="math">l&apos; = (c,d)</text>
+<text matrix="1 0 0 1 184 8" transformations="translations" pos="96 700" stroke="black" type="label" width="44.532" height="7.49" depth="2.49" valign="baseline" style="math">L&apos; = (c,d)</text>
 <path matrix="1.3125 0 0 1 9 0" stroke="black" pen="heavier">
 176 692 m
 240 684 l
 </path>
-<text matrix="1 0 0 1 4 -4" transformations="translations" pos="80 680" stroke="black" type="label" width="3.169" height="6.918" depth="0" valign="baseline" style="math">l</text>
+<text matrix="1 0 0 1 4 -4" transformations="translations" pos="80 680" stroke="black" type="label" width="6.78" height="6.808" depth="0" valign="baseline" style="math">L</text>
 <text matrix="1 0 0 1 80 0" transformations="translations" pos="236 688" stroke="black" type="label" width="7.808" height="7.497" depth="1.93" valign="baseline" style="math">p&apos;</text>
 </page>
 <page>

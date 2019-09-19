@@ -1,8 +1,9 @@
-\ifeurocg\else
-To make our statements clear, we use the concept of an encoding.
-We recall its definition
+To make our statements clear, we use the concept of an encoding
+(see \S\ref{sec:models-of-computation:data-structures:encodings}).
 %
-\DefinitionEncoding*
+We recall its definition:
+%
+\restate{\DefinitionEncoding*}
 %
 In this section, we use this definition with \(f\) being some order
 type,\footnote{%
@@ -26,11 +27,8 @@ For instance, Theorem~\ref{thm:realizable} implies that for any set of points
 \log n)}^2 / \log n)\) bits such that given this string and any triple of
 indices \((a,b,c) \in {[n]}^3\) we can compute the value of \(\chi(a,b,c) =
 \nabla(p_a, p_b, p_c)\) in \(O(\log n)\) time.
-\fi
 
-\ifeurocg
-We \else
-Throughout the rest of this paper, we \fi
+Throughout the rest of this paper, we
 assume that we can access some arrangement of pairwise intersecting lines or
 pseudolines that realizes the order type we want to encode. We thus exclusively
 focus on the problem of encoding the order type of a given arrangement. This
