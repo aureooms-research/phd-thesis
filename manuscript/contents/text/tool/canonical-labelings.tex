@@ -5,7 +5,12 @@ Given a point set, the composition of its order type \(\chi\) with a
 permutation \(\rho\) produces a new order type \(\chi' = \chi \circ \rho\).
 This composition corresponds to a relabeling of the point set.
 %
-Aloupis et al.~\cite{AILOW14} defined the canonical labeling \(\rho^*(\chi)\)
+Aloupis,
+Iacono,
+Langerman,
+{\"{O}}zkan,
+and Wuhrer~\cite{AILOW14}
+defined the canonical labeling \(\rho^*(\chi)\)
 of an order type \(\chi\) to be a permutation such that for all permutations
 \(\pi\) we have \(\rho^*(\chi \circ \pi) = \pi^{-1} \circ \rho^*(\chi)\).
 In other words, given two isomorphic order types \(\chi\) and \(\chi'\), we
@@ -28,7 +33,16 @@ This second tool is useful to quickly compare two order types (a naive solution
 would take \(\Theta(n^3)\) time by first computing a canonical labeling, and
 then comparing all triples).
 
-\begin{lemma}[Aloupis et al.~\cite{AILOW14}]\label{lem:canonical-labeling}
+\begin{lemma}[%
+  name={%
+    Aloupis,
+    Iacono,
+    Langerman,
+    {\"{O}}zkan,
+    and Wuhrer~\cite{AILOW14}%
+  },%
+  label={lem:canonical-labeling}%
+]
   Given an order type presented as an oracle,
   its canonical labeling of \(O(n \log n)\) bits
   and
@@ -40,7 +54,16 @@ then comparing all triples).
 Both tools generalize to chirotopes of point configurations in any dimension
 \(d\) and, more generally, to chirotopes of rank \(d+1\).
 
-\begin{lemma}[Aloupis et al.~\cite{AILOW14}]\label{lem:canonical-labeling-d}
+\begin{lemma}[%
+  name={%
+    Aloupis,
+    Iacono,
+    Langerman,
+    {\"{O}}zkan,
+    and Wuhrer~\cite{AILOW14}%
+  },%
+  label={lem:canonical-labeling-d}%
+]
   For all \(d \geq 2\),
   given a rank-(\(d+1\)) chirotope presented as an oracle,
   its canonical labeling of \(O(n \log n)\) bits
