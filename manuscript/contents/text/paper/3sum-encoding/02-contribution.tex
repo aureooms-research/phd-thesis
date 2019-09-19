@@ -20,10 +20,13 @@ Consider the subset of $\mathbb{R}^{3n}$
       \Delta = \{ (x_1,\ldots,x_n,y_1,\ldots,y_n,z_1,\ldots,z_n) \colon\, \\
 			      x_i<x_{i+1}, ~y_j<y_{j+1}, ~ z_k<z_{k+1}~ \forall i,j,k \in [n-1]\}
 \end{multline*}
-and the set $\Pi$ of $n^3$ hyperplanes $x_i+y_j+z_k=0$, where $i,j,k\in [n]$.
+and the set \(\mathcal{H}\) of $n^3$ hyperplanes $x_i+y_j+z_k=0$, where $i,j,k\in [n]$.
 Let $\mathcal{A}$ be the arrangement defined
-by $\Pi$ \emph{inside $\Delta$}. Instances of 3SUM correspond to points in $\Delta$.
-Moreoever, two 3SUM instances have the same 3SUM type if and only if they are
+by \(\mathcal{H}\) \emph{inside} $\Delta$.
+%
+Instances of 3SUM correspond to points in $\Delta$.
+%
+Moreover, two 3SUM instances have the same 3SUM type if and only if they are
 in the same cell of $\mathcal{A}$.
 
 Consider an instance $\langle A,B,C \rangle$ and let $\sigma=\sigma(A,B,C)$
@@ -85,7 +88,7 @@ each row of $M_i$ has at most $4$ non-zero entries.
 We conclude that the solution to the system $M [x~ y ~z]^T=\delta$
 are rationals that can be expressed with $O(n)$ bits. This solution gives
 a 3SUM instance with rationals that is equivalent to $\langle A, B, C \rangle$.
-Since all the rationals have the common denominator ($\det(M)$), we can scale the result
+Since all the rationals have the common denominator $\det(M)$, we can scale the result
 by $\det(M)$ and we get an equivalent instance with integers, where
 each integer has $O(n)$ bits.
 
@@ -109,13 +112,13 @@ the explicit representation of which can be shown to require exponentially many 
 \label{s:space}
 
 By considering the arrangement of hyperplanes defining the 3SUM problem, we get an
-information-theoretic lower bound on the number of bits in a 3SUM-type.
+information-theoretic lower bound on the number of bits in a 3SUM type.
 
 \begin{lemma}
-  There are $2^{\Theta(n\log n)}$ distinct 3SUM-types of size $n$.
+  There are $2^{\Theta(n\log n)}$ distinct 3SUM types of size $n$.
 \end{lemma}
 \begin{proof}
-  3SUM-types of size $n$ are in one-to-one correspondence with cells of the
+  3SUM types of size $n$ are in one-to-one correspondence with cells of the
   arrangement of $n^3$ hyperplanes in $\mathbb{R}^{3n}$. The
   number of such cells is $O(n^{9n})$ and at least ${(n!)}^2$.
 \end{proof}
@@ -127,15 +130,15 @@ requires to construct the whole arrangement which takes \(n^{O(n)}\) time.
 An alternative solution is to store a
 vertex of the arrangement of hyperplanes \(a_i + b_j + c_k \in \{\,
 -1, 0, 1\,\}\).
-There exists such a vertex that has the same 3SUM-type as the input point, as
+There exists such a vertex that has the same 3SUM type as the input point, as
 shown in the proof of Contribution~\ref{lem:bitsize}.
 To answer any query, either recompute the vertex from the basis then answer the query using arithmetic,
 or use linear programming.
 Hence we can build a data structure of $O(n\log n)$ bits such that triple queries can be answered in polynomial time.
 
 Note that we do not exploit much of the 3SUM structure here. In particular, the
-same essentially holds for $k$-SUM, and can also be generalized to a {\sc
-Subset Sum} data structure of $O(n^2)$ bits, from which we can extract the sign
+same essentially holds for $k$-SUM, and can also be generalized to a
+subset-sum data structure of $O(n^2)$ bits, from which we can extract the sign
 of the sum of any subset of numbers.
 
 \section{Subquadratic Space and Constant Query Time}%
@@ -196,14 +199,18 @@ $c_k$ and thus using
 the square neighbors table we can determine the location of the predecessor and
 successor of $c_k$ in this square; suppose they are at $G[s_i,s_j]$ and
 $G[p_i,p_j]$ and thus $G[s_i,s_j] \leq c_k \leq G[p_i,p_j]$. One need only
-determine how these two compare to $G[i,j]=a_i+b_j$ to answer the query. But
-this can be done using the differences as follows: to compare $G[s_i,s_j]$ to
-$G[i,j]$ this would be determining the sign of $(a_i+b_j)-(a_{s_i}+b_{s_j})$
+determine how these two compare to $G[i,j]=a_i+b_j$ to answer the query.
+%
+This can be done using the differences as follows: to compare $G[s_i,s_j]$ to
+$G[i,j]$ would be determining the sign of $(a_i+b_j)-(a_{s_i}+b_{s_j})$
 which is equivalent to determining the result of comparing $a_i-a_{s_i}$ and
-$b_j-b_{s_j}$, which since both are in the same square, these differences are
-in $D$ and the comparison can be obtained by examining their stored ranks. By
-doing this for the predecessor and successor we will determine the relationship
-between $a_i+b_j$ and $c_k$.
+$b_j-b_{s_j}$.
+%
+Since both are in the same square, these differences are
+in $D$ and the comparison can be obtained by examining their stored ranks.
+%
+By doing this for the predecessor and successor we determine the
+relationship between $a_i+b_j$ and $c_k$.
 
 \begin{figure}
 \centering
