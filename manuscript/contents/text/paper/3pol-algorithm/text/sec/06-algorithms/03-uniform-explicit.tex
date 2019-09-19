@@ -20,12 +20,13 @@ We use the same partitioning scheme as before except we choose $g$ to be much
 smaller.
 This allows to
 store all permutations on $g^2$ items in a lookup table, where
-$g$ is chosen small enough to make the size of the lookup table $\Theta(n^\varepsilon)$.
+$g$ is chosen small enough to make the size of the lookup table $\Theta(n^\epsilon)$.
 The preprocessing part of the previous algorithm is replaced by $ g^2! $ calls to
 an algorithm that determines for which cells a given permutation gives the
 correct sorted
 order. This preprocessing step stores a constant-size%
-\footnote{In the real-RAM and word-RAM models.}
+\footnote{A constant number of integer words
+in the real-RAM and word-RAM models.}
 pointer from each cell to
 the corresponding permutation in the lookup table.
 Search can now be done efficiently: when searching a value $c$ in $f(A_i
@@ -50,7 +51,7 @@ permutation defines a \emph{certificate} --- a set of inequalities --- that
 the cell must verify. They cleverly note --- using Fredman's trick~\cite{Fr76}
 as in Chan~\cite{Cha08} and Bremner et al.~\cite{BCDEHILPT14}
 --- that the verification of a single certificate by all cells amounts to
-solving a red/blue point dominance reporting problem.
+solving a red/blue point offline dominance reporting problem.
 We generalize their method.
 For each permutation $\pi\colon\,[g^2]\to{[g]}^2$, where $\pi =
 (\pi_r,\pi_c)$ is decomposed into row and column functions
@@ -130,19 +131,19 @@ $t \in [g^2-1]$, the point $p_{i,t}$ verifies the inequality $q_{j,t}$.
 Enumerating all cells $A_i\times B_j$ for which the
 certificate holds therefore amounts to solving the following problem:
 %
-\begin{problem}[Polynomial Dominance Reporting (PDR)]
-Given $N$ $k$-tuples $p_i$ of points in $\mathbb{R}^2$ and $N$ $k$-tuples $q_j$
-of bivariate polynomial inequalities of degree at most $\Delta$,
-output all pairs $(p_i,q_j)$ where, for all $t \in [k]$,
-the point $p_{i,t}$ verifies the inequality $q_{j,t}$.
-\end{problem}
+\input{text/definition/offline-polynomial-dominance-reporting}
 %
-In \S~\ref{sec:algo:dominance}, we explain how to solve PDR efficiently
-and prove the following:
-\begin{lemma}\label{lem:dominance}
-    We can output
-    all $\ell$ such pairs in time
-    $2^{O(k)} N^{2-\frac{4}{\Delta^2+3\Delta+2}+\varepsilon} + O(\ell)$.
+In \S~\ref{sec:algo:dominance},
+we give an efficient output-sensitive real-RAM algorithm
+for offline PDR.
+%
+\begin{lemma}[%
+    label={lem:dominance}%
+]
+    Offline Polynomial Dominance Reporting can be solved in
+    $2^{O(k)} N^{2-\frac{4}{\Delta^2+3\Delta+2}+\epsilon} + O(\ell)$
+    time in the real-RAM model,
+    where \(\ell\) is the number of output pairs.
 \end{lemma}
 
 We can now give a uniform implementation of step~\textbf{2} in
@@ -158,11 +159,16 @@ Algorithm~\ref{algo:ne}:
 \item[2.2.2.1.] If there is any ``$=$'' symbol that corresponds to a
     lexicographically decreasing
     pair of tuples of indices in $\pi$, skip this choice of symbols.
-\item[2.2.2.2.] Solve the PDR instance associated
+\item[2.2.2.2.] Solve the offline PDR instance associated
     with $A,B,\pi$ and the choice of symbols.
 %\footnote{See Algorithm~\ref{algo:pdr} for the implementation.}
-\item[2.2.2.3.] For each output pair $(i,j)$, store a pointer
-    to the last entry in the table.
+\item[2.2.2.3.] For each output pair $(i,j)$ in the previous step,
+    output a pointer to the last entry in the table.\footnote{%
+	Those pointers have bit-size \(\lceil\log{{g^2}!}\rceil = O(g^2 \log g)\).
+	Later we choose \(g = O(\sqrt{\log n / \log \log n})\).
+	Hence,
+	those pointers fit in a constant number of machine words.
+    }
     %from $A_i^* \times B_j^*$ to the last entry in the lookup table.
 \end{algorithm}
 
@@ -174,7 +180,7 @@ get that
 explicit 3POL can be solved in time
 \begin{displaymath}
     (g^2!)2^{g^2}2^{O(g^2)}
-    {(n/g)}^{2-\frac{4}{{\deg(f)}^2+3\deg(f)+2}+\varepsilon} + O({(n/g)}^2) +
+    {(n/g)}^{2-\frac{4}{{\deg(f)}^2+3\deg(f)+2}+\epsilon} + O({(n/g)}^2) +
     O(n^2 \log g / g).
 \end{displaymath}
 The first two terms correspond to the complexity of step~\textbf{2} in
@@ -185,7 +191,7 @@ $g = c_{\deg(f)}\sqrt{\log n/\log \log n}$,
 because then
 for some appropriate choice of the constant factor $c_{\deg(f)}$,
 $(g^2)!2^{g^2}2^{O(g^2)} = n^{\delta}$ where $\delta<
-4/({\deg(f)}^2+3\deg(f)+2) - \varepsilon$, making the first term negligible.
+4/({\deg(f)}^2+3\deg(f)+2) - \epsilon$, making the first term negligible.
 The complexity of the algorithm is dominated by $O(n^2 \log g / g) = O(n^2
 {(\log \log n)}^{3/2} / {(\log n)}^{1/2} )$.
 This proves Theorem~\ref{thm:explicit:uniform}.
