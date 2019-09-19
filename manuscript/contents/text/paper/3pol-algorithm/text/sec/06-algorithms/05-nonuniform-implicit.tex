@@ -16,7 +16,7 @@ The idea is the same as for explicit 3POL\@. Partition the plane
 into $A^*_i \times B^*_j$ cells.
 Note that for a fixed $c \in C$, the curve $F(x,y,c)$ intersects $O(\frac ng)$
 cells $A^*_i \times B^*_j$. The algorithm is the following: (1) for each cell
-$A^*_i \times B^*_j$, sort the real roots of the $F(a,b,z)
+$A^*_i \times B^*_j$, sort the real roots of the univariate polynomials $F(a,b,z)
 \in \mathbb{R}[z]$ taking the union over all $(a,b) \in A_i \times B_j$,
 (2) for each $c \in C$,
 for each cell $A^*_i \times B^*_j$ intersected by $F(x,y,c)$, binary search on
@@ -82,7 +82,7 @@ It is possible that a degenerate case arises where we cannot associate an
 interleaving to \(\mathcal{C}\) because one of the polynomials is the zero
 polynomial. We can easily tackle these degeneracies,
 because, if any point \((a,a')\) is contained in such a cell,
-we can immediately answer the instance with the affirmative.
+we can immediately answer the 3POL instance with the affirmative.
 %
 Identifying the interleaving associated with each cell of each
 $(b,b')$-partition, then locating each $(a,a')$ inside each $(b,b')$-partition
@@ -193,6 +193,10 @@ which lies in the $xz$-plane.
     The number of
     vertical lines we draw is constant because the degree of $F$ is
     constant.
+    %
+    Note that \(\delta_b\) may contain vertical lines that correspond to
+    an infinite number of vertical tangency points.
+    We refer to those as degenerate lines.
     %
     Figure~\ref{fig:deltab} depicts this drawing.
     %
@@ -320,9 +324,9 @@ This gives us the information needed for the binary search in step (2).
 The analysis mirrors the explicit case (described immediately after
 Lemma~\ref{lem:batch}). Combining Lemma~\ref{lem:preprocessing-implicit} and
 Lemma~\ref{lem:batch} yields a
-bounded-degree ADT of depth $O({(ng)}^{4/3+\varepsilon} + n^2 \log g / g)$
+bounded-degree ADT of depth $O({(ng)}^{4/3+\epsilon} + n^2 \log g / g)$
 for 3POL\@.
 %
 By optimizing over $g$, we get $g =
-\Theta(n^{2/7-\varepsilon})$, and the previous expression simplifies to
-$O(n^{12/7+\varepsilon})$, proving Theorem~\ref{thm:implicit:nonuniform}.
+\Theta(n^{2/7-\epsilon})$, and the previous expression simplifies to
+$O(n^{12/7+\epsilon})$, proving Theorem~\ref{thm:implicit:nonuniform}.
