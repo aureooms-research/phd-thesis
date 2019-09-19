@@ -45,10 +45,10 @@ Algorithm~\ref{algo:sfaixbj-uniform} with more complex certificates. We explain 
 construct those new certificates. The first part of the explanation consists in
 generalizing the definition of a certificate. The rest of the
 explanation focuses on the implementation of the verification of those
-certificates via Polynomial Dominance Reporting.
+certificates via offline Polynomial Dominance Reporting.
 
 \paragraph{The certificates}
-For a fixed pair $(a,b)$, $F(a,b,z) \in \reals[z]$ is a polynomial in $z$ of
+For a fixed pair $(a,b)$, $F(a,b,z) \in \reals[z]$ is a univariate polynomial in $z$ of
 degree at most $\deg(F)$. Hence, $F(a,b,z)$ has at most $\deg(F)$ real roots.
 For each cell $A_i^* \times B_j^*$, let
 \begin{displaymath}
@@ -65,10 +65,10 @@ For each cell $A_i^* \times B_j^*$, let
 Let $\rho
 \colon {[g]}^2 \to \{\,0,1,\ldots,\deg(F)\,\}$ be a function that maps a pair $(k,l)$ to the
 number of real roots of $F(a_{i,k},b_{j,l},z)$. Let $\Sigma_\rho = \sum_{(i,j)
-\in {[g]}^2} \rho(i,j) \le \deg(F) g^2$.
+\in {[g]}^2} \rho(i,j) \le g^2 \deg(F)$.
 Given a function $\rho$, let
 $\pi\colon\,[\Sigma_\rho]\to {[g]}^2 \times
-\{\,0,1,\ldots,\deg(F)\,\}$ be a permutation of the union of the real roots of all
+\{\,1,2,\ldots,\deg(F)\,\}$ be a permutation of the union of the real roots of all
 $g^2$ polynomials
 \begin{displaymath}
 F(a_{i,1},b_{j,1},z),
@@ -84,7 +84,7 @@ prescribed by $\rho$.
 Decompose $\pi = (\pi_r,\pi_c,\pi_s)$ into
 row,
 column and real root number functions $\pi_r,\pi_c\colon\,[\Sigma_\rho]\to[g]$,
-and $\pi_s\colon\,[\Sigma_\rho]\to\{\,0,1,\ldots,\deg(F)\,\}$.
+and $\pi_s\colon\,[\Sigma_\rho]\to\{\,1,2,\ldots,\deg(F)\,\}$.
 Let $\diamond(a,b,s)$ denote the $s$th real root of $F(a,b,z)$.
 To fix the permutation of the union of the real roots of all
 $g^2$ polynomials, we define the following
@@ -140,7 +140,7 @@ that partition, pick a sample point $(a,a')$, compute the interleaving
 $\mathcal{I}((F(a,b,z),F(a',b',z)))$. Store that information for future lookup.
 All this takes $O(ng)$ time.
 
-\paragraph{PDR instance for $\Psi_\rho$}
+\paragraph{Offline PDR instance for $\Psi_\rho$}
 For a fixed pair $(a,b)$, suppose $F(a,b,z)$ has $r$ real roots. Then $a$ must
 lie in one of the open intervals or be one of the breaking points defined by
 the VTP, SIP and DL of $\delta_b$ that fixes the number of real roots of
@@ -158,7 +158,7 @@ of real roots of $F(a_{i,k},b_{j,l},z)$ to $\rho(k,l)$, and
 $\mathcal{B}_{\rho(k,l)}$ denotes the set of breaking points fixing the number
 of real roots of $F(a_{i,k},b_{j,l},z)$ to $\rho(k,l)$.
 
-The PDR algorithm can only check conjunctions of polynomial inequalities.
+The offline PDR algorithm can only check conjunctions of polynomial inequalities.
 However, we can transform $\Psi_{\rho}$ into disjunctive normal form~(DNF) by
 splitting the certificate into distinct branches, each consisting of a
 conjunction of polynomial inequalities.
@@ -193,14 +193,14 @@ where each $(\bowtie_{u_{k,l}}, u_{k,l}, \bowtie_{v_{k,l}}, v_{k,l})$ is an elem
 \end{displaymath}
 
 For a fixed function $\rho$,
-the sets of vectors $p_i$ and $q_j$ is a valid PDR instance
+the sets of vectors $p_i$ and $q_j$ is a valid offline PDR instance
 of size $N = (n/g) \cdot 2^{O(g)} = n2^{O(g)}$ and with parameter $k = 2g^2$
 that will
 output all cells $A^*_i \times B^*_j$ such that $F(a_{i,k},b_{j,l},z) \in
 \mathbb{R}[z]$ has exactly $\rho(k,l)$ real roots for all $(a_{i,k},a_{j,l}) \in A_i
 \times B_j$.
 
-\paragraph{PDR instance for $\Phi_{\rho,\pi}$}
+\paragraph{Offline PDR instance for $\Phi_{\rho,\pi}$}
 
 For fixed pairs $(a,b)$ and $(a',b')$, suppose the $s$-th real root of
 $F(a,b,z)$ is smaller or equal to the $q$-th real root of $F(a,b,z)$. Then,
@@ -222,7 +222,7 @@ the number of real roots of $F(a_{i,\pi_r(t+1)},b_{j,\pi_c(t+1)},z)$,
 and ordering the $\pi_s(t)$-th root of $F(a_{i,\pi_r(t)},b_{j,\pi_c(t)},z)$
 before the $\pi_s(t+1)$-th root of $F(a_{i,\pi_r(t+1)},b_{j,\pi_c(t+1)},z)$.
 
-The PDR algorithm can only check conjunctions of polynomial inequalities.
+The offline PDR algorithm can only check conjunctions of polynomial inequalities.
 However, we can transform $\Phi_{\rho,\pi}$ in DNF as we did for $\Psi_{\rho}$.
 Again the number of cells considered above is constant for each $t$, the
 description of each cell is constant, hence, the number of branches to test is
@@ -287,34 +287,36 @@ its last component so that it has length $\omega$.
 
 For a fixed function $\rho$,
 for a fixed function $\pi$,
-the sets of vectors $p_i$ and $q_j$ is a valid PDR instance
+the sets of vectors $p_i$ and $q_j$ is a valid offline PDR instance
 of size $N = n 2^{O(g)}$ and with parameter $k = \Theta(g^2)$
 that will
 output all cells $A^*_i \times B^*_j$ such that
 the number of real roots of $F(a_{i,\pi_r(t)},b_{j,\pi_c(t)},z)$
 is $\rho(\pi_r(t),\pi_c(t))$,
 the number of real roots of $F(a_{i,\pi_r(t+1)},b_{j,\pi_c(t+1)},z)$
-is \\ $\rho(\pi_r(t+1),\pi_c(t+1))$,
+is $\rho(\pi_r(t+1),\pi_c(t+1))$,
 and the $\pi_s(t)$-th root of $F(a_{i,\pi_r(t)},b_{j,\pi_c(t)},z)$
 comes before the $\pi_s(t+1)$-th root of
 $F(a_{i,\pi_r(t+1)},b_{j,\pi_c(t+1)},z)$,
 for all $t \in [\Sigma_\rho-1]$.
 
-\paragraph{PDR instance for $\Upsilon_{\rho,\pi}$}
+\paragraph{Offline PDR instance for $\Upsilon_{\rho,\pi}$}
 
 We can combine the certificates given above for $\Psi_\rho$ and
 $\Phi_{\rho,\pi}$ to obtain the ones for $\Upsilon_{\rho,\pi}$: concatenate the
 $p_i$ and $q_j$ together (add a dummy $y$ variable for the $p_i$ and $q_j$ of
 $\Psi_\rho$).
+% TODO it seems to me that only the implementation of \(\Phi_{\rho, \pi}\) is
+% necessary.
 %
 For a fixed function $\rho$,
 for a fixed function $\pi$,
-the sets of vectors $p_i$ and $q_j$ is a valid PDR instance
+the sets of vectors $p_i$ and $q_j$ is a valid offline PDR instance
 of size $N = n 2^{O(g)}$ and with parameter $k = \Theta(g^2)$
 that will
 output all cells $A^*_i \times B^*_j$ such that
 $F(a_{i,k},b_{j,l},z) \in
-\mathbb{R}[z]$ has exactly $\rho(k,l)$ real roots for all $(a_{i,k},a_{j,l}) \in A_i
+\mathbb{R}[z]$ has exactly $\rho(k,l)$ real roots for all $(a_{i,k},b_{j,l}) \in A_i
 \times B_j$,
 and the $\pi_s(t)$-th root of $F(a_{i,\pi_r(t)},b_{j,\pi_c(t)},z)$
 comes before the $\pi_s(t+1)$-th root of $F(a_{i,\pi_r(t+1)},b_{j,\pi_c(t+1)},z)$
