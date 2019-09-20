@@ -1,0 +1,2104 @@
+<page>
+<layer name="bg"/>
+<layer name="veil"/>
+<layer name="title"/>
+<layer name="authors"/>
+<layer name="date"/>
+<layer name="affiliation"/>
+<view layers="bg veil title authors affiliation" active="veil"/>
+<path layer="bg" stroke="dark grey" dash="dashed" pen="heavier">
+0 512 m
+800 512 l
+</path>
+<path matrix="1 0 0 1 0 -64" stroke="dark grey" dash="dashed" pen="heavier">
+0 512 m
+800 512 l
+</path>
+<path matrix="1 0 0 1 0 -256" stroke="dark grey" dash="dashed" pen="heavier">
+0 512 m
+800 512 l
+</path>
+<path matrix="1 0 0 1 0 -384" stroke="dark grey" dash="dashed" pen="heavier">
+0 512 m
+800 512 l
+</path>
+<path stroke="dark grey" dash="dashed" pen="heavier">
+128 608 m
+128 0 l
+</path>
+<path matrix="1 0 0 1 256 0" stroke="dark grey" dash="dashed" pen="heavier">
+128 608 m
+128 0 l
+</path>
+<path matrix="1 0 0 1 320 0" stroke="dark grey" dash="dashed" pen="heavier">
+128 608 m
+128 0 l
+</path>
+<path fill="red" opacity="30%">
+128 608 m
+128 256 l
+384 256 l
+384 608 l
+h
+</path>
+<path fill="red" opacity="30%">
+384 448 m
+384 256 l
+448 256 l
+448 448 l
+h
+</path>
+<path fill="red" opacity="30%">
+448 448 m
+448 -16 l
+816 -16 l
+816 448 l
+h
+</path>
+<image layer="affiliation" matrix="0.223415 0 0 0.223415 110.253 -14.7503" rect="259 159 541 441" bitmap="1"/>
+<image matrix="0.223415 0 0 0.223415 238.253 -14.7503" rect="259 159 541 441" bitmap="1"/>
+<image matrix="0.223415 0 0 0.223415 382.253 -14.7503" rect="259 159 541 441" bitmap="1"/>
+<image matrix="0.223415 0 0 0.223415 638.253 -14.7503" rect="259 159 541 441" bitmap="1"/>
+<path layer="veil" fill="white" opacity="20%">
+-16 624 m
+-16 -16 l
+816 -16 l
+816 624 l
+h
+</path>
+<text layer="authors" matrix="1 0 0 1 0.338583 -460.37" transformations="translations" pos="0 576" stroke="dark grey" type="minipage" width="800" height="14.7792" depth="2.808" valign="top" size="small" style="center">\footnotesize{Sergio Cabello, Jean Cardinal, John Iacono, Stefan Langerman,
+Pat Morin, \underline{Aur\&apos;elien Ooms}}</text>
+<text layer="date" matrix="1 0 0 1 -309.099 -26.6201" transformations="translations" pos="640 64" stroke="dark grey" type="minipage" width="448" height="14.2992" depth="2.304" valign="top" size="small" style="center">Aur\&apos;elien Ooms -- 2019-03-18 -- EuroCG 2019</text>
+<text layer="title" matrix="1 0 0 1 0.338583 -236.37" transformations="translations" pos="0 576" stroke="black" type="minipage" width="800" height="40.576" depth="20.64" valign="top" size="massive" style="center">3SUM Encodings</text>
+<image layer="affiliation" matrix="0.726405 0 0 0.726405 -213.276 -165.864" rect="356.8 256.92 443.2 343.08" bitmap="6"/>
+<image matrix="0.976299 0 0 0.976299 214.958 -240.519" rect="369.28 257.4 430.72 342.6" bitmap="5"/>
+</page>
+<page>
+<layer name="the-real-line"/>
+<layer name="the-points"/>
+<layer name="john"/>
+<layer name="john-splits-the-line"/>
+<layer name="above-and-below"/>
+<layer name="jean-is-above"/>
+<layer name="timothy-is-below"/>
+<layer name="permutation"/>
+<layer name="space"/>
+<layer name="query"/>
+<layer name="solved"/>
+<view layers="the-real-line" active="the-real-line"/>
+<view layers="the-real-line the-points" active="the-points"/>
+<view layers="the-real-line the-points john" active="john"/>
+<view layers="the-real-line the-points john john-splits-the-line" active="john-splits-the-line"/>
+<view layers="the-real-line the-points john john-splits-the-line above-and-below" active="above-and-below"/>
+<view layers="the-real-line the-points john john-splits-the-line above-and-below jean-is-above" active="jean-is-above"/>
+<view layers="the-real-line the-points john john-splits-the-line above-and-below jean-is-above timothy-is-below" active="timothy-is-below"/>
+<path layer="john-splits-the-line" fill="green" opacity="50%">
+0 320 m
+0 -16 l
+816 -16 l
+816 320 l
+h
+</path>
+<path fill="blue" opacity="50%">
+0 320 m
+0 608 l
+816 608 l
+816 320 l
+h
+</path>
+<path layer="the-real-line" matrix="1 0 0 1 16 0" stroke="black" pen="heavier">
+384 608 m
+384 0 l
+</path>
+<use layer="the-points" matrix="1 0 0 1 0 -16" name="mark/disk(sx)" pos="400 592" size="small" stroke="black"/>
+<use name="mark/disk(sx)" pos="400 544" size="small" stroke="black"/>
+<use matrix="1 0 0 1 0 -16" name="mark/disk(sx)" pos="400 528" size="small" stroke="black"/>
+<use name="mark/disk(sx)" pos="400 448" size="small" stroke="black"/>
+<use name="mark/disk(sx)" pos="400 400" size="small" stroke="black"/>
+<use matrix="1 0 0 1 0 -16" name="mark/disk(sx)" pos="400 384" size="small" stroke="black"/>
+<use name="mark/disk(sx)" pos="400 320" size="small" stroke="black"/>
+<use name="mark/disk(sx)" pos="400 208" size="small" stroke="black"/>
+<use name="mark/disk(sx)" pos="400 64" size="small" stroke="black"/>
+<path layer="john" fill="white" opacity="20%">
+-16 608 m
+-16 -16 l
+816 -16 l
+816 608 l
+h
+</path>
+<image matrix="1 0 0 1 -0.52419 25.4178" rect="372.64 264.48 427.36 335.52" bitmap="18"/>
+<image layer="timothy-is-below" matrix="1 0 0 1 -0.785409 -84.5705" rect="372.014 259.883 427.986 340.117" bitmap="45"/>
+<image layer="jean-is-above" matrix="1 0 0 1 1.45871 151.596" rect="373.84 262.08 426.16 337.92" bitmap="7"/>
+<path layer="above-and-below" matrix="1 0 0 1 0 -2.85721" fill="blue">
+6.63737 595.739 m
+6.63737 531.583 l
+246.221 531.583 l
+246.221 595.739 l
+h
+</path>
+<text matrix="1 0 0 1 -16 -16" transformations="translations" pos="30.4717 554.144" stroke="white" type="label" width="221.804" height="47.82" depth="0" valign="baseline" size="massive">``above&apos;&apos;</text>
+<path matrix="1 0 0 1 543.814 -527.919" fill="green">
+6.63737 595.739 m
+6.63737 531.583 l
+246.221 531.583 l
+246.221 595.739 l
+h
+</path>
+<text matrix="1 0 0 1 528 -544" transformations="translations" pos="30.4717 554.144" stroke="white" type="label" width="218.68" height="47.82" depth="0" valign="baseline" size="massive">``below&apos;&apos;</text>
+<text layer="permutation" matrix="1 0 0 1 0 -16" transformations="translations" pos="448 592" stroke="black" type="label" width="13.9468" height="17.976" depth="0" valign="baseline" style="math">1</text>
+<text transformations="translations" pos="448 544" stroke="black" type="label" width="13.9468" height="17.976" depth="0" valign="baseline" style="math">2</text>
+<text matrix="1 0 0 1 0 -16" transformations="translations" pos="448 528" stroke="black" type="label" width="13.9468" height="17.976" depth="0" valign="baseline" style="math">3</text>
+<text transformations="translations" pos="448 448" stroke="black" type="label" width="13.9468" height="17.976" depth="0" valign="baseline" style="math">4</text>
+<text transformations="translations" pos="448 400" stroke="black" type="label" width="13.9468" height="17.976" depth="0" valign="baseline" style="math">5</text>
+<text matrix="1 0 0 1 0 -16" transformations="translations" pos="448 384" stroke="black" type="label" width="13.9468" height="17.976" depth="0" valign="baseline" style="math">6</text>
+<text transformations="translations" pos="448 320" stroke="black" type="label" width="13.9468" height="17.976" depth="0" valign="baseline" style="math">7</text>
+<text transformations="translations" pos="448 208" stroke="black" type="label" width="13.9468" height="17.976" depth="0" valign="baseline" style="math">8</text>
+<text transformations="translations" pos="448 64" stroke="black" type="label" width="16.744" height="12.0092" depth="0" valign="baseline" style="math">n</text>
+<text matrix="0 -1 1 0 309.707 617.118" pos="448 144" stroke="black" type="label" width="60.438" height="3.8752" depth="0" valign="baseline" size="huge">\ldots</text>
+<path layer="space" matrix="1 0 0 1 -452.926 -418.086" fill="lightgreen">
+468.03 507.288 m
+468.03 437.427 l
+786.149 437.427 l
+786.149 507.288 l
+h
+</path>
+<text matrix="1 0 0 1 -74.1094 -294.246" transformations="translations" pos="96 336" stroke="black" type="label" width="283.724" height="36.1088" depth="12.012" valign="baseline" size="huge">$O(n \log n)$ bits</text>
+<path layer="query" matrix="0.652292 0 0 1 273.825 -107.809" fill="blue">
+468.03 507.288 m
+468.03 437.427 l
+786.149 437.427 l
+786.149 507.288 l
+h
+</path>
+<text matrix="1 0 0 1 489.904 16.0314" transformations="translations" pos="96 336" stroke="black" type="label" width="191.901" height="36.1088" depth="12.012" valign="baseline" size="huge">$O(1)$ time</text>
+<path layer="solved" fill="white" opacity="30%">
+-16 608 m
+-16 -16 l
+816 -16 l
+816 608 l
+h
+</path>
+<text matrix="0.707107 0.707107 -0.707107 0.707107 354.647 -193.752" pos="111.392 271.445" stroke="red" type="label" width="599.62" height="119.55" depth="0" valign="baseline" size="enormous">SOLVED</text>
+<text layer="the-real-line" matrix="1 0 0 1 -347.829 -311.508" transformations="translations" pos="752 320" stroke="black" type="label" width="20.146" height="19.2164" depth="0" valign="baseline" style="math">\mathbb{R}</text>
+</page>
+<page>
+<layer name="grid"/>
+<layer name="above-and-below"/>
+<layer name="total-order"/>
+<layer name="size"/>
+<layer name="plus-and-minus"/>
+<view layers="grid above-and-below" active="grid"/>
+<view layers="grid above-and-below total-order" active="total-order"/>
+<view layers="grid above-and-below total-order size" active="size"/>
+<view layers="grid total-order size plus-and-minus" active="plus-and-minus"/>
+<path layer="total-order" fill="blue" opacity="70%">
+336 224
+144 224
+64 496
+448 656
+784 432
+592 208 u
+</path>
+<path matrix="1 0 0 1 65.546 11.3183" fill="blue" opacity="70%">
+144 64
+64 160
+368 128 u
+</path>
+<path layer="grid" matrix="0.5 0 0 1 232 16" stroke="black" pen="heavier">
+16 448 m
+784 448 l
+</path>
+<image matrix="1 0 0 1 42.291 213.902" rect="372.014 259.883 427.986 340.117" bitmap="45"/>
+<image matrix="1 0 0 1 -39.8007 209.959" rect="373.84 262.08 426.16 337.92" bitmap="7"/>
+<image matrix="1 0 0 1 -122.712 117.534" rect="372.64 264.48 427.36 335.52" bitmap="18"/>
+<path matrix="1 0 0 1.25 144 -80" stroke="black" pen="heavier">
+176 512 m
+176 256 l
+</path>
+<text layer="above-and-below" matrix="0.707107 0.707107 -0.707107 0.707107 728.417 -28.3386" pos="19.6069 565.82" stroke="black" type="label" width="67.802" height="19.3704" depth="0" valign="baseline">above</text>
+<text matrix="0.707107 0.707107 -0.707107 0.707107 808.416 -28.3384" pos="19.6069 565.82" stroke="black" type="label" width="66.4832" height="19.3704" depth="0" valign="baseline">below</text>
+<text layer="grid" matrix="1 0 0 1 160 0" pos="352 496" stroke="black" type="label" width="86.34" height="5.536" depth="0" valign="baseline" size="massive">\ldots</text>
+<text matrix="0 -1 1 0 -215.598 685.938" pos="352 496" stroke="black" type="label" width="86.34" height="5.536" depth="0" valign="baseline" size="massive">\ldots</text>
+<path matrix="1 0 0 1.25 224 -80" stroke="black" pen="heavier">
+176 512 m
+176 256 l
+</path>
+<path matrix="1 0 0 1.25 304 -80" stroke="black" pen="heavier">
+176 512 m
+176 256 l
+</path>
+<text matrix="1 0 0 1 160 -80" pos="352 496" stroke="black" type="label" width="86.34" height="5.536" depth="0" valign="baseline" size="massive">\ldots</text>
+<text matrix="0 -1 1 0 -135.598 685.938" pos="352 496" stroke="black" type="label" width="86.34" height="5.536" depth="0" valign="baseline" size="massive">\ldots</text>
+<text matrix="0 -1 1 0 -55.598 685.938" pos="352 496" stroke="black" type="label" width="86.34" height="5.536" depth="0" valign="baseline" size="massive">\ldots</text>
+<text matrix="0.707107 -0.707107 0.707107 0.707107 -92.9396 233.513" pos="352 496" stroke="black" type="label" width="86.34" height="5.536" depth="0" valign="baseline" size="massive">\ldots</text>
+<text layer="total-order" matrix="1 0 0 1 0 -96" transformations="translations" pos="16 240" stroke="black" type="minipage" width="768" height="21.8596" depth="7.896" valign="top" size="large" style="center">\emph{Total Order} of the set of points.</text>
+<path layer="grid" matrix="0.5 0 0 1 232 -80" stroke="black" pen="heavier">
+16 448 m
+784 448 l
+</path>
+<path layer="size" matrix="0.750698 0 0 1 175.755 -258.086" fill="blue">
+468.03 507.288 m
+468.03 437.427 l
+786.149 437.427 l
+786.149 507.288 l
+h
+</path>
+<text matrix="1 0 0 1 437.891 -134.246" transformations="translations" pos="96 336" stroke="black" type="label" width="221.194" height="39.0628" depth="12.012" valign="baseline" size="huge">$O(n^2)$ pairs</text>
+<text layer="plus-and-minus" matrix="1 0 0 1 -18.4648 0" transformations="translations" pos="352 400" stroke="black" type="label" width="53.56" height="40.188" depth="5.72" valign="baseline" size="massive" style="math">-</text>
+<text matrix="1 0 0 1 61.5352 0" transformations="translations" pos="352 400" stroke="black" type="label" width="49.568" height="38.812" depth="4.36" valign="baseline" size="massive" style="math">+</text>
+</page>
+<page>
+<layer name="the-real-line"/>
+<layer name="rotate-it"/>
+<layer name="the-points"/>
+<layer name="john"/>
+<layer name="john-splits-the-line"/>
+<layer name="above-and-below"/>
+<layer name="jean-is-above"/>
+<layer name="timothy-is-below"/>
+<layer name="permutation"/>
+<layer name="space"/>
+<layer name="query"/>
+<layer name="sorting"/>
+<layer name="lower-bounds"/>
+<layer name="solved"/>
+<layer name="jean-index"/>
+<layer name="john-index"/>
+<view layers="rotate-it the-points john john-splits-the-line above-and-below jean-is-above timothy-is-below sorting" active="permutation"/>
+<view layers="rotate-it the-points john john-splits-the-line above-and-below jean-is-above timothy-is-below permutation sorting jean-index john-index" active="space"/>
+<view layers="rotate-it the-points john john-splits-the-line above-and-below jean-is-above timothy-is-below permutation space sorting jean-index john-index" active="query"/>
+<view layers="rotate-it the-points john john-splits-the-line above-and-below jean-is-above space sorting" active="jean-index"/>
+<view layers="rotate-it the-points john john-splits-the-line above-and-below jean-is-above space sorting jean-index john-index" active="sorting"/>
+<view layers="rotate-it the-points john john-splits-the-line above-and-below jean-is-above space query sorting jean-index john-index" active="sorting"/>
+<view layers="rotate-it the-points john john-splits-the-line above-and-below jean-is-above timothy-is-below permutation space query sorting lower-bounds jean-index john-index" active="lower-bounds"/>
+<view layers="rotate-it the-points john john-splits-the-line above-and-below jean-is-above timothy-is-below permutation space query sorting lower-bounds solved jean-index john-index" active="solved"/>
+<path layer="john-splits-the-line" fill="green" opacity="50%">
+0 320 m
+0 -16 l
+816 -16 l
+816 320 l
+h
+</path>
+<path fill="blue" opacity="50%">
+0 320 m
+0 608 l
+816 608 l
+816 320 l
+h
+</path>
+<path layer="the-real-line" stroke="black" pen="heavier">
+0 304 m
+800 304 l
+</path>
+<path layer="rotate-it" matrix="1 0 0 1 16 0" stroke="black" pen="heavier">
+384 608 m
+384 0 l
+</path>
+<use layer="the-points" matrix="1 0 0 1 0 -16" name="mark/disk(sx)" pos="400 592" size="small" stroke="black"/>
+<use name="mark/disk(sx)" pos="400 544" size="small" stroke="black"/>
+<use matrix="1 0 0 1 0 -16" name="mark/disk(sx)" pos="400 528" size="small" stroke="black"/>
+<use name="mark/disk(sx)" pos="400 448" size="small" stroke="black"/>
+<use name="mark/disk(sx)" pos="400 400" size="small" stroke="black"/>
+<use matrix="1 0 0 1 0 -16" name="mark/disk(sx)" pos="400 384" size="small" stroke="black"/>
+<use name="mark/disk(sx)" pos="400 320" size="small" stroke="black"/>
+<use name="mark/disk(sx)" pos="400 208" size="small" stroke="black"/>
+<use name="mark/disk(sx)" pos="400 64" size="small" stroke="black"/>
+<path layer="john" fill="white" opacity="20%">
+-16 608 m
+-16 -16 l
+816 -16 l
+816 608 l
+h
+</path>
+<image matrix="1 0 0 1 -0.52419 25.4178" rect="372.64 264.48 427.36 335.52" bitmap="18"/>
+<image layer="timothy-is-below" matrix="1 0 0 1 -0.785409 -84.5705" rect="372.014 259.883 427.986 340.117" bitmap="45"/>
+<image layer="jean-is-above" matrix="1 0 0 1 1.45871 151.596" rect="373.84 262.08 426.16 337.92" bitmap="7"/>
+<path layer="above-and-below" matrix="1 0 0 1 0 -2.85721" fill="blue">
+6.63737 595.739 m
+6.63737 531.583 l
+246.221 531.583 l
+246.221 595.739 l
+h
+</path>
+<text matrix="1 0 0 1 -16 -16" transformations="translations" pos="30.4717 554.144" stroke="white" type="label" width="221.804" height="47.82" depth="0" valign="baseline" size="massive">``above&apos;&apos;</text>
+<path matrix="1 0 0 1 543.814 -527.919" fill="green">
+6.63737 595.739 m
+6.63737 531.583 l
+246.221 531.583 l
+246.221 595.739 l
+h
+</path>
+<text matrix="1 0 0 1 528 -544" transformations="translations" pos="30.4717 554.144" stroke="white" type="label" width="218.68" height="47.82" depth="0" valign="baseline" size="massive">``below&apos;&apos;</text>
+<text layer="permutation" matrix="1 0 0 1 0 -16" transformations="translations" pos="448 592" stroke="black" type="label" width="13.9468" height="17.976" depth="0" valign="baseline" style="math">1</text>
+<text transformations="translations" pos="448 544" stroke="black" type="label" width="13.9468" height="17.976" depth="0" valign="baseline" style="math">2</text>
+<text matrix="1 0 0 1 0 -16" transformations="translations" pos="448 528" stroke="black" type="label" width="13.9468" height="17.976" depth="0" valign="baseline" style="math">3</text>
+<text layer="jean-index" transformations="translations" pos="448 448" stroke="black" type="label" width="13.9468" height="17.976" depth="0" valign="baseline" style="math">4</text>
+<text layer="permutation" transformations="translations" pos="448 400" stroke="black" type="label" width="13.9468" height="17.976" depth="0" valign="baseline" style="math">5</text>
+<text matrix="1 0 0 1 0 -16" transformations="translations" pos="448 384" stroke="black" type="label" width="13.9468" height="17.976" depth="0" valign="baseline" style="math">6</text>
+<text layer="john-index" transformations="translations" pos="448 320" stroke="black" type="label" width="13.9468" height="17.976" depth="0" valign="baseline" style="math">7</text>
+<text layer="permutation" transformations="translations" pos="448 208" stroke="black" type="label" width="13.9468" height="17.976" depth="0" valign="baseline" style="math">8</text>
+<text transformations="translations" pos="448 64" stroke="black" type="label" width="16.744" height="12.0092" depth="0" valign="baseline" style="math">n</text>
+<text matrix="0 -1 1 0 309.707 617.118" pos="448 144" stroke="black" type="label" width="60.438" height="3.8752" depth="0" valign="baseline" size="huge">\ldots</text>
+<path layer="space" matrix="1 0 0 1 -452.926 -242.086" fill="lightgreen">
+468.03 507.288 m
+468.03 437.427 l
+786.149 437.427 l
+786.149 507.288 l
+h
+</path>
+<text matrix="1 0 0 1 -74.1094 -118.246" transformations="translations" pos="96 336" stroke="black" type="label" width="283.724" height="36.1088" depth="12.012" valign="baseline" size="huge">$O(n \log n)$ bits</text>
+<path layer="query" matrix="0.652292 0 0 1 -286.175 -411.809" fill="blue">
+468.03 507.288 m
+468.03 437.427 l
+786.149 437.427 l
+786.149 507.288 l
+h
+</path>
+<text matrix="1 0 0 1 -70.096 -287.969" transformations="translations" pos="96 336" stroke="black" type="label" width="191.901" height="36.1088" depth="12.012" valign="baseline" size="huge">$O(1)$ time</text>
+<path layer="sorting" matrix="1 0 0 1 -452.926 -66.086" fill="orange">
+468.03 507.288 m
+468.03 437.427 l
+786.149 437.427 l
+786.149 507.288 l
+h
+</path>
+<text matrix="1 0 0 1 -74.1094 57.754" transformations="translations" pos="96 336" stroke="black" type="label" width="299.088" height="36.1088" depth="12.012" valign="baseline" size="huge">$O(n \log n)$ time</text>
+<path layer="lower-bounds" matrix="0.650977 0 0 1 232.549 -179.238" fill="yellow">
+468.03 507.288 m
+468.03 437.427 l
+786.149 437.427 l
+786.149 507.288 l
+h
+</path>
+<text matrix="1 0 0 1 448.013 -55.3983" transformations="translations" pos="96 336" stroke="black" type="label" width="195.614" height="36.1088" depth="12.012" valign="baseline" size="huge" style="math">\Omega(n \log n)</text>
+<text layer="space" matrix="1 0 0 1 0 112" transformations="translations" pos="16 176" stroke="black" type="label" width="175.896" height="47.816" depth="13.4" valign="baseline" size="massive">Space:</text>
+<text layer="query" matrix="1 0 0 1 0 -64" transformations="translations" pos="16 176" stroke="black" type="label" width="218.788" height="47.816" depth="8.64" valign="baseline" size="massive">Queries:</text>
+<text layer="sorting" matrix="1 0 0 1 0 288" transformations="translations" pos="16 176" stroke="black" type="label" width="211.012" height="47.816" depth="13.4" valign="baseline" size="massive">Sorting:</text>
+<text layer="lower-bounds" matrix="1 0 0 1 545.85 160.582" transformations="translations" pos="16 176" stroke="black" type="label" width="158.044" height="47.82" depth="0" valign="baseline" size="massive">ITLB:</text>
+<path layer="solved" fill="white" opacity="50%">
+-16 608 m
+-16 -16 l
+816 -16 l
+816 608 l
+h
+</path>
+<path matrix="0.966322 0 0 0.977201 -13.6854 -2.64598" fill="white" opacity="70%">
+240 48 m
+704 496 l
+594.274 609.644 l
+130.274 161.644 l
+h
+</path>
+<text matrix="0.707107 0.707107 -0.707107 0.707107 330.848 -208.031" pos="111.392 271.445" stroke="red" type="label" width="599.62" height="119.55" depth="0" valign="baseline" size="enormous">SOLVED</text>
+<path matrix="0.966322 0 0 0.977201 -13.6854 -2.64598" stroke="red" pen="ultrafat">
+240 48 m
+704 496 l
+594.274 609.644 l
+130.274 161.644 l
+h
+</path>
+</page>
+<page>
+<layer name="points"/>
+<layer name="stefan-and-timothy"/>
+<layer name="the-line-they-define"/>
+<layer name="partition"/>
+<layer name="above-and-below"/>
+<layer name="jean"/>
+<layer name="john"/>
+<layer name="this-is-primal"/>
+<view layers="points" active="points"/>
+<view layers="points stefan-and-timothy" active="stefan-and-timothy"/>
+<view layers="points stefan-and-timothy the-line-they-define" active="the-line-they-define"/>
+<view layers="points stefan-and-timothy the-line-they-define partition" active="partition"/>
+<view layers="points stefan-and-timothy the-line-they-define partition above-and-below" active="above-and-below"/>
+<view layers="points stefan-and-timothy the-line-they-define partition above-and-below john" active="jean"/>
+<view layers="points stefan-and-timothy the-line-they-define partition above-and-below jean john" active="john"/>
+<view layers="points stefan-and-timothy the-line-they-define partition above-and-below jean john this-is-primal" active="above-and-below"/>
+<path layer="partition" fill="green" opacity="50%">
+52.1377 -22.6117 m
+501.876 608 l
+816 608 l
+816 -16 l
+h
+</path>
+<use layer="points" name="mark/disk(sx)" pos="479.089 186.858" size="small" stroke="black"/>
+<path layer="partition" fill="blue" opacity="50%">
+501.876 608 m
+-16 608 l
+-16 -16 l
+52.1377 -22.6117 l
+h
+</path>
+<use layer="points" name="mark/disk(sx)" pos="377.216 284.153" size="small" stroke="black"/>
+<use name="mark/disk(sx)" pos="194.073 471.874" size="small" stroke="black"/>
+<use name="mark/disk(sx)" pos="289.078 539.408" size="small" stroke="black"/>
+<use name="mark/disk(sx)" pos="443.605 367.712" size="small" stroke="black"/>
+<use name="mark/disk(sx)" pos="665.666 378.013" size="small" stroke="black"/>
+<use name="mark/disk(sx)" pos="606.145 478.742" size="small" stroke="black"/>
+<use name="mark/disk(sx)" pos="459.63 508.503" size="small" stroke="black"/>
+<use name="mark/disk(sx)" pos="92.1998 285.297" size="small" stroke="black"/>
+<use name="mark/disk(sx)" pos="251.305 101.01" size="small" stroke="black"/>
+<use name="mark/disk(sx)" pos="596.988 130.771" size="small" stroke="black"/>
+<use name="mark/disk(sx)" pos="704.584 234.933" size="small" stroke="black"/>
+<use name="mark/disk(sx)" pos="126.539 374.58" size="small" stroke="black"/>
+<use name="mark/disk(sx)" pos="92.1998 518.805" size="small" stroke="black"/>
+<use name="mark/disk(sx)" pos="118.527 137.638" size="small" stroke="black"/>
+<use name="mark/disk(sx)" pos="440.171 112.456" size="small" stroke="black"/>
+<use name="mark/disk(sx)" pos="730.911 470.73" size="small" stroke="black"/>
+<use name="mark/disk(sx)" pos="574.095 301.322" size="small" stroke="black"/>
+<use name="mark/disk(sx)" pos="567.227 569.169" size="small" stroke="black"/>
+<use name="mark/disk(sx)" pos="519.152 63.2365" size="small" stroke="black"/>
+<use name="mark/disk(sx)" pos="189.494 42.633" size="small" stroke="black"/>
+<use name="mark/disk(sx)" pos="25.8105 127.337" size="small" stroke="black"/>
+<use name="mark/disk(sx)" pos="718.32 94.1419" size="small" stroke="black"/>
+<use name="mark/disk(sx)" pos="323.418 197.16" size="small" stroke="black"/>
+<use name="mark/disk(sx)" pos="68.1623 418.076" size="small" stroke="black"/>
+<use name="mark/disk(sx)" pos="308.537 470.73" size="small" stroke="black"/>
+<path layer="stefan-and-timothy" fill="white" opacity="20%">
+-16 608 m
+-16 -16 l
+816 -16 l
+816 608 l
+h
+</path>
+<use layer="points" name="mark/disk(sx)" pos="262.752 272.706" size="small" stroke="black"/>
+<path layer="the-line-they-define" stroke="red" pen="ultrafat">
+578.673 715.683 m
+473.366 568.024 l
+473.366 568.024 l
+262.752 272.706 l
+157.445 125.047 l
+52.1377 -22.6117 l
+</path>
+<path layer="this-is-primal" fill="yellow">
+663.419 582.46 m
+663.419 538.453 l
+796.614 538.453 l
+796.614 582.46 l
+h
+</path>
+<text matrix="1 0 0 1 43.8927 -16" transformations="translations" pos="624 560" stroke="dark grey" type="label" width="123.455" height="33.474" depth="0" valign="baseline" size="huge">Primal</text>
+<use layer="points" name="mark/disk(sx)" pos="368.059 420.365" size="small" stroke="black"/>
+<image layer="stefan-and-timothy" matrix="1 0 0 1 -29.6863 121.834" rect="372.014 259.883 427.986 340.117" bitmap="45"/>
+<image matrix="1 0 0 1 -135.056 -25.3053" rect="371.44 263.52 428.56 336.48" bitmap="29"/>
+<image layer="jean" matrix="1 0 0 1 77.4457 -110.546" rect="373.84 262.08 426.16 337.92" bitmap="7"/>
+<image layer="john" matrix="1 0 0 1 -272.78 75.287" rect="372.64 264.48 427.36 335.52" bitmap="18"/>
+<path layer="above-and-below" matrix="1 0 0 1 0 -2.85721" fill="blue">
+6.63737 595.739 m
+6.63737 531.583 l
+246.221 531.583 l
+246.221 595.739 l
+h
+</path>
+<text matrix="1 0 0 1 -16 -16" transformations="translations" pos="30.4717 554.144" stroke="white" type="label" width="221.804" height="47.82" depth="0" valign="baseline" size="massive">``above&apos;&apos;</text>
+<path matrix="1 0 0 1 543.814 -527.919" fill="green">
+6.63737 595.739 m
+6.63737 531.583 l
+246.221 531.583 l
+246.221 595.739 l
+h
+</path>
+<text matrix="1 0 0 1 528 -544" transformations="translations" pos="30.4717 554.144" stroke="white" type="label" width="218.68" height="47.82" depth="0" valign="baseline" size="massive">``below&apos;&apos;</text>
+</page>
+<page>
+<layer name="this-is-the-dual"/>
+<layer name="lines"/>
+<layer name="stefan-and-timothy"/>
+<layer name="the-point-they-define"/>
+<layer name="jean"/>
+<layer name="john"/>
+<view layers="this-is-the-dual" active="this-is-the-dual"/>
+<view layers="this-is-the-dual lines" active="this-is-the-dual"/>
+<view layers="this-is-the-dual lines stefan-and-timothy" active="stefan-and-timothy"/>
+<view layers="this-is-the-dual lines stefan-and-timothy the-point-they-define" active="the-point-they-define"/>
+<view layers="this-is-the-dual lines stefan-and-timothy the-point-they-define john" active="john"/>
+<view layers="this-is-the-dual lines stefan-and-timothy the-point-they-define jean john" active="jean"/>
+<path layer="lines" stroke="black" pen="heavier">
+-56.1173 483.225 m
+971.963 7.7375 l
+</path>
+<path stroke="black" pen="heavier">
+-37.9612 420.428 m
+818.912 609.778 l
+</path>
+<path stroke="black" pen="heavier">
+56.0024 621.607 m
+811.815 374.4 l
+</path>
+<path stroke="black" pen="heavier">
+886.658 493.199 m
+-31.657 80.9672 l
+</path>
+<path stroke="black" pen="heavier">
+-32.8449 553.787 m
+540.953 -21.1998 l
+</path>
+<path stroke="black" pen="heavier">
+324.359 -58.7595 m
+524.678 637.347 l
+</path>
+<path stroke="black" pen="heavier">
+86.1179 644.908 m
+381.011 -91.0654 l
+</path>
+<path stroke="black" pen="heavier">
+264.912 629.154 m
+20.7742 -69.0809 l
+</path>
+<path stroke="black" pen="heavier">
+-62.2361 136.811 m
+886.452 60.9802 l
+</path>
+<path stroke="black" pen="heavier">
+597.651 664.397 m
+733.177 -66.4796 l
+</path>
+<path layer="stefan-and-timothy" fill="white" opacity="50%">
+-16 608 m
+-16 -16 l
+816 -16 l
+816 608 l
+h
+</path>
+<path layer="this-is-the-dual" fill="yellow">
+702.732 580.113 m
+702.732 539.626 l
+796.027 539.626 l
+796.027 580.113 l
+h
+</path>
+<text matrix="1 0 0 1 80 -16" transformations="translations" pos="624 560" stroke="dark grey" type="label" width="88.4716" height="33.474" depth="0" valign="baseline" size="huge">Dual</text>
+<path layer="lines" stroke="black" pen="heavier">
+-119.198 223.885 m
+842.706 541.264 l
+</path>
+<path stroke="black" pen="heavier">
+302.539 647.053 m
+501.295 -96.6769 l
+</path>
+<use layer="the-point-they-define" name="mark/disk(sx)" pos="372.29 386.051" size="large" stroke="red"/>
+<image layer="stefan-and-timothy" matrix="1 0 0 1 -8.3726 34.2868" rect="372.014 259.883 427.986 340.117" bitmap="45"/>
+<image matrix="1 0 0 1 -82.1761 83.9423" rect="371.44 263.52 428.56 336.48" bitmap="29"/>
+<path layer="jean" stroke="green" pen="ultrafat">
+-56.1173 483.225 m
+971.963 7.7375 l
+</path>
+<image matrix="1 0 0 1 -85.7198 4.38396" rect="373.84 262.08 426.16 337.92" bitmap="7"/>
+<path layer="john" stroke="blue" pen="ultrafat">
+56.0024 621.607 m
+811.815 374.4 l
+</path>
+<image matrix="1 0 0 1 -114.508 246.53" rect="372.64 264.48 427.36 335.52" bitmap="18"/>
+</page>
+<page>
+<layer name="pseudolines"/>
+<layer name="stefan-and-timothy"/>
+<layer name="the-point-they-define"/>
+<layer name="jean"/>
+<layer name="john"/>
+<view layers="pseudolines" active="pseudolines"/>
+<view layers="pseudolines stefan-and-timothy" active="stefan-and-timothy"/>
+<view layers="pseudolines stefan-and-timothy the-point-they-define" active="the-point-they-define"/>
+<view layers="pseudolines stefan-and-timothy the-point-they-define john" active="pseudolines"/>
+<view layers="pseudolines stefan-and-timothy the-point-they-define jean john" active="john"/>
+<path layer="pseudolines" matrix="1 0 0 1 -26.4518 -40.5645" stroke="black" pen="heavier">
+16.4747 634.62 m
+121.744 288.058
+713.147 282.144
+865.729 94.0778 c
+</path>
+<path stroke="black" pen="heavier">
+-53.0072 436.123 m
+240.008 488.656
+704.629 304.208
+893.746 501.497 c
+</path>
+<path matrix="1 0 0 1 63.8036 -40.8547" stroke="black" pen="heavier">
+-69.5785 59.6039 m
+445.357 113.088
+543.617 324.534
+711.531 511.105
+827.205 586.977 c
+</path>
+<path stroke="black" pen="heavier">
+-23.6005 549.932 m
+102.854 400.1
+129.42 253.456
+358.95 77.0572
+581.042 158.881
+789.319 213.075
+861.579 204.574 c
+</path>
+<path layer="stefan-and-timothy" fill="white" opacity="50%">
+-16 608 m
+-16 -16 l
+816 -16 l
+816 608 l
+h
+</path>
+<path layer="pseudolines" matrix="1 0 0 1 4.17127 5.83978" stroke="black" pen="heavier">
+248.179 654.425 m
+357.914 374.251
+490.996 167.623
+746.655 132.602
+827.205 -6.31775 c
+</path>
+<path stroke="black" pen="heavier">
+-40.971 506.13 m
+146.844 259.856
+447.844 370.555
+696.605 368.068
+858.3 283.489 c
+</path>
+<path matrix="2.3909 0 0 1 -1107.19 0" fill="yellow">
+702.732 580.113 m
+702.732 539.626 l
+796.027 539.626 l
+796.027 580.113 l
+h
+</path>
+<text matrix="1 0 0 1 -48 -16" transformations="translations" pos="624 560" stroke="dark grey" type="label" width="218.047" height="33.474" depth="0" valign="baseline" size="huge">Pseudolines</text>
+<image layer="stefan-and-timothy" matrix="1 0 0 1 59.7635 -6.86518" rect="372.014 259.883 427.986 340.117" bitmap="45"/>
+<image matrix="1 0 0 1 -48.2938 44.7721" rect="371.44 263.52 428.56 336.48" bitmap="29"/>
+<use layer="the-point-they-define" matrix="1 0 0 1 34.757 -49.5456" name="mark/disk(sx)" pos="372.29 386.051" size="large" stroke="red"/>
+<path layer="jean" matrix="1 0 0 1 -26.4518 -40.5645" stroke="green" pen="ultrafat">
+16.4747 634.62 m
+121.744 288.058
+713.147 282.144
+865.729 94.0778 c
+</path>
+<image matrix="1 0 0 1 -11.08 -37.7005" rect="373.84 262.08 426.16 337.92" bitmap="7"/>
+<path layer="john" stroke="blue" pen="ultrafat">
+-53.0072 436.123 m
+240.008 488.656
+704.629 304.208
+893.746 501.497 c
+</path>
+<image matrix="1 0 0 1 131.267 121.238" rect="372.64 264.48 427.36 335.52" bitmap="18"/>
+</page>
+<page>
+<layer name="grid"/>
+<layer name="order-type"/>
+<layer name="size"/>
+<layer name="bits"/>
+<layer name="entries"/>
+<view layers="grid entries" active="grid"/>
+<view layers="grid order-type entries" active="order-type"/>
+<view layers="grid order-type size entries" active="size"/>
+<view layers="grid order-type size bits" active="bits"/>
+<path layer="order-type" fill="blue" opacity="70%">
+336 224
+144 224
+64 496
+448 656
+784 432
+592 208 u
+</path>
+<path matrix="1 0 0 1 -3.258 2.4435" fill="blue" opacity="70%">
+144 64
+64 160
+368 128 u
+</path>
+<path layer="grid" matrix="0.604167 0 0 1 150.333 16" stroke="black" pen="heavier">
+16 448 m
+784 448 l
+</path>
+<image matrix="1 0 0 1 -132.383 117.018" rect="372.014 259.883 427.986 340.117" bitmap="45"/>
+<image matrix="1 0 0 1 -204.461 117.122" rect="371.44 263.52 428.56 336.48" bitmap="29"/>
+<image matrix="1 0 0 1 40.6413 207.307" rect="373.84 262.08 426.16 337.92" bitmap="7"/>
+<image matrix="1 0 0 1 -38.7336 207.346" rect="372.64 264.48 427.36 335.52" bitmap="18"/>
+<path matrix="1 0 0 1.25 144 -80" stroke="black" pen="heavier">
+176 512 m
+176 256 l
+</path>
+<text layer="entries" matrix="0.707107 0.707107 -0.707107 0.707107 728.417 -28.3386" pos="19.6069 565.82" stroke="black" type="label" width="67.802" height="19.3704" depth="0" valign="baseline">above</text>
+<text matrix="0.707107 0.707107 -0.707107 0.707107 808.416 -28.3384" pos="19.6069 565.82" stroke="black" type="label" width="66.4832" height="19.3704" depth="0" valign="baseline">below</text>
+<text layer="grid" matrix="1 0 0 1 160 0" pos="352 496" stroke="black" type="label" width="86.34" height="5.536" depth="0" valign="baseline" size="massive">\ldots</text>
+<text matrix="0 -1 1 0 -263.598 685.938" pos="352 496" stroke="black" type="label" width="86.34" height="5.536" depth="0" valign="baseline" size="massive">\ldots</text>
+<path matrix="1 0 0 1.25 224 -80" stroke="black" pen="heavier">
+176 512 m
+176 256 l
+</path>
+<path matrix="1 0 0 1.25 304 -80" stroke="black" pen="heavier">
+176 512 m
+176 256 l
+</path>
+<text matrix="1 0 0 1 160 -80" pos="352 496" stroke="black" type="label" width="86.34" height="5.536" depth="0" valign="baseline" size="massive">\ldots</text>
+<text matrix="0 -1 1 0 -135.598 685.938" pos="352 496" stroke="black" type="label" width="86.34" height="5.536" depth="0" valign="baseline" size="massive">\ldots</text>
+<text matrix="0 -1 1 0 -55.598 685.938" pos="352 496" stroke="black" type="label" width="86.34" height="5.536" depth="0" valign="baseline" size="massive">\ldots</text>
+<text matrix="0.707107 -0.707107 0.707107 0.707107 -92.9396 233.513" pos="352 496" stroke="black" type="label" width="86.34" height="5.536" depth="0" valign="baseline" size="massive">\ldots</text>
+<text layer="order-type" matrix="1 0 0 1 0 -48" transformations="translations" pos="16 240" stroke="black" type="minipage" width="768" height="77.2016" depth="63.392" valign="top" size="large" style="center">\emph{Order Type} of the set of
+$\begin{cases}
+\text{points,}\\
+\text{lines,}\\
+\text{pseudolines.}
+\end{cases}$</text>
+<path layer="grid" matrix="0.604167 0 0 1 150.333 -80" stroke="black" pen="heavier">
+16 448 m
+784 448 l
+</path>
+<path layer="size" matrix="0.818509 0 0 0.961065 127.897 -222.335" fill="blue">
+468.03 507.288 m
+468.03 437.427 l
+786.149 437.427 l
+786.149 507.288 l
+h
+</path>
+<text matrix="1 0 0 1 421.891 -118.246" transformations="translations" pos="96 336" stroke="black" type="label" width="246.708" height="39.0628" depth="12.012" valign="baseline" size="huge">$O(n^3)$ triples</text>
+<text layer="bits" matrix="1 0 0 1 -18.4648 0" transformations="translations" pos="352 400" stroke="black" type="label" width="53.56" height="40.188" depth="5.72" valign="baseline" size="massive" style="math">-</text>
+<text matrix="1 0 0 1 61.5352 0" transformations="translations" pos="352 400" stroke="black" type="label" width="49.568" height="38.812" depth="4.36" valign="baseline" size="massive" style="math">+</text>
+</page>
+<page>
+<layer name="space"/>
+<layer name="query"/>
+<view layers="space query" active="space"/>
+<path layer="space" stroke="black" dash="dashed" pen="heavier">
+496 284.103 m
+800 412.102 l
+</path>
+<path matrix="0.5 0 0 1 400 0" fill="orange">
+192 284.103 m
+192 156.103 l
+800 156.103 l
+800 284.103 l
+h
+</path>
+<path layer="query" fill="gold">
+192 156.103 m
+192 28.1032 l
+800 28.1032 l
+800 156.103 l
+h
+</path>
+<path layer="space" matrix="0.5 0 0 1 96 0" fill="green">
+192 284.103 m
+192 156.103 l
+800 156.103 l
+800 284.103 l
+h
+</path>
+<path layer="query" matrix="1 0 0 1.33333 0 -142.563" stroke="black" pen="ultrafat">
+0 416 m
+0 128 l
+800 128 l
+800 416 l
+h
+</path>
+<path layer="space" matrix="1 0 0 1 0 28.1032" stroke="black" pen="ultrafat">
+0 256 m
+800 256 l
+</path>
+<path layer="query" matrix="1 0 0 1 0 -99.8968" stroke="black" pen="ultrafat">
+0 256 m
+800 256 l
+</path>
+<text layer="space" matrix="1 0 0 1 16 -67.8968" transformations="translations" pos="272 272" stroke="black" type="label" width="117.48" height="39.0628" depth="12.012" valign="baseline" size="huge" style="math">O(n^2)</text>
+<text matrix="1 0 0 1 288 -67.8968" transformations="translations" pos="272 272" stroke="black" type="label" width="195.745" height="49.0756" depth="27.832" valign="baseline" size="huge" style="math">O(\frac{n^2}{\log^{1-\varepsilon} n})</text>
+<path layer="query" matrix="1 0 0 1 0 -35.8968" stroke="black" pen="ultrafat">
+192 448 m
+192 64 l
+</path>
+<text layer="space" matrix="1 0 0 1 0 -35.8968" transformations="translations" pos="32 240" stroke="black" type="label" width="110.536" height="33.4712" depth="9.38" valign="baseline" size="huge">Space</text>
+<text layer="query" matrix="1 0 0 1 0 -163.897" transformations="translations" pos="32 240" stroke="black" type="label" width="113.112" height="33.4712" depth="9.38" valign="baseline" size="huge">Query</text>
+<path matrix="1 0 0 1 0 -35.8968" stroke="black" pen="ultrafat">
+496 448 m
+496 64 l
+</path>
+<text matrix="1 0 0 1 -31.6364 -31.786" transformations="translations" pos="272 112" stroke="black" type="label" width="193.614" height="44.674" depth="23.156" valign="baseline" size="huge" style="math">O(\frac{\log n}{\log \log n})</text>
+<text matrix="1 0 0 1 288.364 -31.786" transformations="translations" pos="272 112" stroke="black" type="label" width="193.614" height="44.674" depth="23.156" valign="baseline" size="huge" style="math">O(\frac{\log n}{\log \log n})</text>
+<path layer="space" matrix="0.325759 0 0 0.325759 684.924 250.318" stroke="black">
+48 160 m
+272 368 l
+</path>
+<path matrix="0.325759 0 0 0.325759 684.924 250.318" stroke="black">
+128 336 m
+272 144 l
+</path>
+<path matrix="0.325759 0 0 0.325759 684.924 250.318" stroke="black">
+80 224 m
+288 192 l
+</path>
+<path matrix="0.276003 0 0 0.276003 173.52 266.169" stroke="black">
+448 368 m
+624 384
+688 192
+752 192 c
+</path>
+<path matrix="0.276003 0 0 0.276003 173.52 266.169" stroke="black">
+544 400 m
+560 208
+720 160 c
+</path>
+<path matrix="0.276003 0 0 0.276003 173.52 266.169" stroke="black">
+480 176 m
+656 208
+640 336
+704 368 c
+</path>
+<text matrix="1 0 0 1 0 -51.8613" transformations="translations" pos="0 592" stroke="black" type="minipage" width="800" height="40.576" depth="20.64" valign="top" size="massive" style="center">Order Type Encoding</text>
+<use matrix="1 0 0 1 -27.9072 12.3311" name="mark/disk(sx)" pos="570.318 340.915" size="normal" stroke="dark grey"/>
+<use matrix="1 0 0 1 -27.9072 12.3311" name="mark/disk(sx)" pos="596.279 364.929" size="normal" stroke="dark grey"/>
+<use matrix="1 0 0 1 -27.9072 12.3311" name="mark/disk(sx)" pos="609.259 333.776" size="normal" stroke="dark grey"/>
+</page>
+<page>
+<layer name="3SUM"/>
+<layer name="GPT"/>
+<layer name="SoCG'18"/>
+<layer name="EuroCG'19"/>
+<view layers="3SUM" active="3SUM"/>
+<view layers="3SUM GPT" active="GPT"/>
+<view layers="3SUM GPT SoCG'18" active="SoCG'18"/>
+<view layers="3SUM GPT SoCG'18 EuroCG'19" active="EuroCG'19"/>
+<path layer="EuroCG'19" matrix="1 0 0 1 0 3.06791" fill="green">
+246.518 344.677
+362.415 403.071
+802.377 413.769
+784.101 327.738
+739.971 288.511
+376.233 285.837
+312.044 313.028 u
+</path>
+<path layer="SoCG'18" fill="blue">
+340.57 30.0417
+296.438 103.379
+336.676 146.863
+999.242 121.883
+469.722 -17.9847 u
+</path>
+<text layer="3SUM" matrix="1 0 0 1 0 -64" transformations="translations" pos="32 576" stroke="dark grey" type="label" width="169.144" height="47.82" depth="0" valign="baseline" size="massive">3SUM</text>
+<text layer="GPT" matrix="1 0 0 1 0 -336" transformations="translations" pos="32 576" stroke="dark grey" type="label" width="658.828" height="47.816" depth="13.4" valign="baseline" size="massive">General Position Testing</text>
+<text layer="3SUM" matrix="1 0 0 1 0 -48" transformations="translations" pos="32 512" stroke="dark grey" type="minipage" width="736" height="36.0948" depth="22.176" valign="top">Given real sets $A,B,C$, decide whether there exist $a \in A, b \in B, c \in C$ such that $a + b + c = 0$.</text>
+<text layer="GPT" matrix="1 0 0 1 0 -320" transformations="translations" pos="32 512" stroke="dark grey" type="minipage" width="736" height="36.0948" depth="22.176" valign="top">Given point sets $A,B,C$, decide whether there exist $a \in A, b \in B, c \in C$ such that $a$, $b$, and $c$ are collinear.</text>
+<text layer="SoCG'18" matrix="1 0 0 1 -6.96984 -23.0006" transformations="translations" pos="320 112" stroke="dark grey" type="label" width="478.408" height="20.9244" depth="6.972" valign="baseline">Point Configuration Encoding (SoCG&apos;18)</text>
+<image matrix="0.677938 0 0 0.677938 164.454 -152.164" rect="372.014 259.883 427.986 340.117" bitmap="45"/>
+<image matrix="0.677938 0 0 0.677938 262.537 -153.638" rect="371.44 263.52 428.56 336.48" bitmap="29"/>
+<image matrix="0.677938 0 0 0.677938 108.457 -152.436" rect="373.84 262.08 426.16 337.92" bitmap="7"/>
+<image matrix="0.677938 0 0 0.677938 215.321 -154.882" rect="372.64 264.48 427.36 335.52" bitmap="18"/>
+<image matrix="0.677938 0 0 0.677938 314.857 -152.07" rect="373.24 258.48 426.76 341.52" bitmap="16"/>
+<image layer="EuroCG'19" matrix="0.677938 0 0 0.677938 308.928 120.396" rect="371.44 263.52 428.56 336.48" bitmap="29"/>
+<image matrix="0.677938 0 0 0.677938 217.069 121.916" rect="373.84 262.08 426.16 337.92" bitmap="7"/>
+<image matrix="0.677938 0 0 0.677938 261.206 120.042" rect="372.64 264.48 427.36 335.52" bitmap="18"/>
+<image matrix="0.677938 0 0 0.677938 406.269 122.976" rect="373.24 258.48 426.76 341.52" bitmap="16"/>
+<text matrix="1 0 0 1 -8.64108 -18.5234" transformations="translations" pos="392.866 389.905" stroke="dark grey" type="label" width="347.57" height="20.9244" depth="6.972" valign="baseline">3SUM Encoding (EuroCG&apos;19)</text>
+<image matrix="1 0 0 1 229.007 25.2806" rect="378.28 272.4 421.72 327.6" bitmap="42"/>
+<image matrix="1.50602 0 0 1.50602 -163.13 -125.782" rect="383.2 281.64 416.8 318.36" bitmap="38"/>
+</page>
+<page>
+<layer name="grid"/>
+<layer name="order-type"/>
+<layer name="size"/>
+<layer name="bits"/>
+<layer name="entries"/>
+<view layers="grid entries" active="entries"/>
+<view layers="grid order-type entries" active="order-type"/>
+<view layers="grid order-type size entries" active="size"/>
+<view layers="grid order-type size bits" active="bits"/>
+<path layer="order-type" matrix="1.30936 0 0 1.01078 -130.205 -6.26918" fill="blue" opacity="70%">
+336 224
+144 224
+64 496
+448 656
+784 432
+592 208 u
+</path>
+<path layer="grid" matrix="0.916667 0 0 1 33.333 16" stroke="black" pen="heavier">
+16 448 m
+784 448 l
+</path>
+<image matrix="1 0 0 1 -261.547 117.122" rect="371.44 263.52 428.56 336.48" bitmap="29"/>
+<image matrix="1 0 0 1 -63.3958 207.346" rect="372.64 264.48 427.36 335.52" bitmap="18"/>
+<path matrix="1 0 0 1.25 80 -80" stroke="black" pen="heavier">
+176 512 m
+176 256 l
+</path>
+<text matrix="1 0 0 1 272 0" pos="352 496" stroke="black" type="label" width="86.34" height="5.536" depth="0" valign="baseline" size="massive">\ldots</text>
+<text matrix="0 -1 1 0 -311.598 685.938" pos="352 496" stroke="black" type="label" width="86.34" height="5.536" depth="0" valign="baseline" size="massive">\ldots</text>
+<path matrix="1 0 0 1.25 240 -80" stroke="black" pen="heavier">
+176 512 m
+176 256 l
+</path>
+<path matrix="1 0 0 1.25 400 -80" stroke="black" pen="heavier">
+176 512 m
+176 256 l
+</path>
+<text matrix="1 0 0 1 272 -80" pos="352 496" stroke="black" type="label" width="86.34" height="5.536" depth="0" valign="baseline" size="massive">\ldots</text>
+<text matrix="0 -1 1 0 -163.055 685.938" pos="352 496" stroke="black" type="label" width="86.34" height="5.536" depth="0" valign="baseline" size="massive">\ldots</text>
+<text matrix="0 -1 1 0 -2.6311 685.938" pos="352 496" stroke="black" type="label" width="86.34" height="5.536" depth="0" valign="baseline" size="massive">\ldots</text>
+<text matrix="0.707107 -0.707107 0.707107 0.707107 19.0604 233.513" pos="352 496" stroke="black" type="label" width="86.34" height="5.536" depth="0" valign="baseline" size="massive">\ldots</text>
+<path matrix="0.916667 0 0 1 33.333 -80" stroke="black" pen="heavier">
+16 448 m
+784 448 l
+</path>
+<path layer="size" matrix="0.818509 0 0 0.961065 127.897 -222.335" fill="blue">
+468.03 507.288 m
+468.03 437.427 l
+786.149 437.427 l
+786.149 507.288 l
+h
+</path>
+<text matrix="1 0 0 1 421.891 -118.246" transformations="translations" pos="96 336" stroke="black" type="label" width="246.708" height="39.0628" depth="12.012" valign="baseline" size="huge">$O(n^3)$ triples</text>
+<text layer="bits" matrix="1 0 0 1 -39.882 0" transformations="translations" pos="352 400" stroke="black" type="label" width="53.56" height="40.188" depth="5.72" valign="baseline" size="massive" style="math">-</text>
+<text matrix="1 0 0 1 121.893 0" transformations="translations" pos="352 400" stroke="black" type="label" width="49.568" height="38.812" depth="4.36" valign="baseline" size="massive" style="math">+</text>
+<image layer="entries" matrix="0.419938 0 0 0.419938 272.957 288.184" rect="371.44 263.52 428.56 336.48" bitmap="29"/>
+<text matrix="1 0 0 1 353.628 255.178" transformations="translations" pos="105.278 153.336" stroke="dark grey" type="label" width="18.5976" height="13.9488" depth="1.992" valign="baseline" size="small" style="math">+</text>
+<text matrix="1 0 0 1 409.118 255.178" transformations="translations" pos="105.278 153.336" stroke="dark grey" type="label" width="18.5976" height="13.9488" depth="1.992" valign="baseline" size="small" style="math">+</text>
+<image matrix="0.419938 0 0 0.419938 112.957 288.184" rect="371.44 263.52 428.56 336.48" bitmap="29"/>
+<text matrix="1 0 0 1 193.628 255.178" transformations="translations" pos="105.278 153.336" stroke="dark grey" type="label" width="18.5976" height="13.9488" depth="1.992" valign="baseline" size="small" style="math">+</text>
+<text matrix="1 0 0 1 249.118 255.178" transformations="translations" pos="105.278 153.336" stroke="dark grey" type="label" width="18.5976" height="13.9488" depth="1.992" valign="baseline" size="small" style="math">+</text>
+<image matrix="0.440816 0 0 0.440816 214.483 281.685" rect="372.64 264.48 427.36 335.52" bitmap="18"/>
+<path layer="order-type" matrix="1 0 0 1 52.4288 3.21174" fill="blue" opacity="70%">
+144 64
+64 160
+368 128 u
+</path>
+<text matrix="1 0 0 1 0 -104.186" transformations="translations" pos="16 240" stroke="black" type="minipage" width="768" height="21.8596" depth="7.896" valign="top" size="large" style="center">\emph{3SUM type} of the set of numbers</text>
+<image layer="grid" matrix="1.37582 0 0 1.37582 -53.2377 93.9069" rect="378.28 272.4 421.72 327.6" bitmap="42"/>
+<image matrix="2.07201 0 0 2.07201 -620.019 -204.246" rect="383.2 281.64 416.8 318.36" bitmap="38"/>
+<image layer="entries" matrix="0.909157 0 0 0.909157 -28.1586 141.482" rect="383.2 281.64 416.8 318.36" bitmap="38"/>
+<image matrix="0.909157 0 0 0.909157 131.567 141.482" rect="383.2 281.64 416.8 318.36" bitmap="38"/>
+<image matrix="0.537459 0 0 0.537459 335.54 252.817" rect="378.28 272.4 421.72 327.6" bitmap="42"/>
+</page>
+<page>
+<layer name="alpha"/>
+<layer name="beta"/>
+<layer name="gamma"/>
+<layer name="delta"/>
+<layer name="epsilon"/>
+<layer name="zeta"/>
+<view layers="alpha" active="alpha"/>
+<view layers="alpha beta" active="beta"/>
+<view layers="alpha beta gamma" active="gamma"/>
+<view layers="alpha beta gamma delta" active="delta"/>
+<view layers="alpha beta gamma delta epsilon" active="epsilon"/>
+<view layers="alpha beta gamma delta epsilon zeta" active="zeta"/>
+<path layer="zeta" matrix="1.07917 0 0 1 -0.409624 0" fill="red">
+129.111 369.177 m
+129.111 341.86 l
+5.1742 341.86 l
+5.1742 369.177 l
+h
+</path>
+<path layer="epsilon" fill="green">
+693.147 277.616 m
+693.147 244.735 l
+778.132 244.735 l
+778.132 277.616 l
+h
+</path>
+<path layer="delta" fill="blue">
+550.494 483.502 m
+550.494 453.656 l
+632.95 453.656 l
+632.95 483.502 l
+h
+</path>
+<path layer="gamma" fill="red">
+246.471 491.975
+253.553 515.245
+413.405 507.151
+253.553 441.894 u
+</path>
+<path fill="blue">
+40.0787 468.705
+21.3618 494.504
+71.4422 536.997
+166.544 499.057
+85.1005 455.047 u
+</path>
+<path fill="green">
+134.675 481.858
+147.322 530.42
+264.176 511.198
+223.707 473.764
+184.25 460.611
+151.874 463.647 u
+</path>
+<path layer="beta" matrix="1 0 0 1 -0.505863 13.6583" fill="yellow">
+672 480
+672 512
+816 528
+768 432
+688 464 u
+</path>
+<text layer="alpha" matrix="1 0 0 1 0 64" transformations="translations" pos="0 512" stroke="black" type="minipage" width="800" height="33.86" depth="13.96" valign="top" size="massive" style="center">3SUM reduces to GPT</text>
+<text layer="beta" matrix="1 0 0 1 32 -21.8827" transformations="translations" pos="656 512" stroke="black" type="label" width="82.5216" height="25.102" depth="8.372" valign="baseline" size="large">(dual)</text>
+<text layer="gamma" matrix="1 0 0 1 -87.0084 -19.7286" transformations="translations" pos="123.04 501.586" stroke="black" type="label" width="310.442" height="23.254" depth="9.352" valign="baseline" size="large" style="math">a_i \in A, b_j \in B, c_k \in C</text>
+<path layer="delta" matrix="1 0 0 1.04167 0 -34.6667" stroke="blue">
+192 64 m
+192 448 l
+</path>
+<path matrix="1 0 0 1.04167 16 -34.6667" stroke="blue">
+192 64 m
+192 448 l
+</path>
+<path matrix="1 0 0 1.04167 144 -34.6667" stroke="blue">
+192 64 m
+192 448 l
+</path>
+<path matrix="1 0 0 1.04167 320 -34.6667" stroke="blue">
+192 64 m
+192 448 l
+</path>
+<path matrix="1 0 0 1.04167 336 -34.6667" stroke="blue">
+192 64 m
+192 448 l
+</path>
+<path matrix="1 0 0 1.04167 448 -34.6667" stroke="blue">
+192 64 m
+192 448 l
+</path>
+<path matrix="1 0 0 1.04167 192 -34.6667" stroke="blue">
+192 64 m
+192 448 l
+</path>
+<path matrix="1 0 0 1.04167 -16 -34.6667" stroke="blue">
+192 64 m
+192 448 l
+</path>
+<path matrix="1 0 0 1.04167 240 -34.6667" stroke="blue">
+192 64 m
+192 448 l
+</path>
+<path layer="epsilon" stroke="green">
+160 416 m
+656 416 l
+</path>
+<path matrix="1 0 0 1 0 -368" stroke="green">
+160 416 m
+656 416 l
+</path>
+<path matrix="1 0 0 1 0 -352" stroke="green">
+160 416 m
+656 416 l
+</path>
+<path matrix="1 0 0 1 0 -288" stroke="green">
+160 416 m
+656 416 l
+</path>
+<path matrix="1 0 0 1 0 -272" stroke="green">
+160 416 m
+656 416 l
+</path>
+<path matrix="1 0 0 1 0 -240" stroke="green">
+160 416 m
+656 416 l
+</path>
+<path matrix="1 0 0 1 0 -48" stroke="green">
+160 416 m
+656 416 l
+</path>
+<path matrix="1 0 0 1 0 -96" stroke="green">
+160 416 m
+656 416 l
+</path>
+<path matrix="1 0 0 1 0 -128" stroke="green">
+160 416 m
+656 416 l
+</path>
+<path layer="zeta" stroke="red">
+160 432 m
+560 32 l
+</path>
+<path matrix="1 0 0 1 96 0" stroke="red">
+160 432 m
+560 32 l
+</path>
+<path stroke="red">
+608 432 m
+656 384 l
+</path>
+<path stroke="red">
+160 112 m
+240 32 l
+</path>
+<path stroke="red">
+160 192 m
+320 32 l
+</path>
+<path stroke="red">
+160 208 m
+336 32 l
+</path>
+<path stroke="red">
+160 352 m
+480 32 l
+</path>
+<path stroke="red">
+400 432 m
+656 176 l
+</path>
+<path stroke="red">
+432 432 m
+656 208 l
+</path>
+<text layer="delta" matrix="1 0 0 1 -128 48" transformations="translations" pos="688 416" stroke="black" type="label" width="66.144" height="10.3056" depth="3.576" valign="baseline" size="small" style="math">x = a_i</text>
+<path stroke="blue">
+512 432 m
+525.707 473.131
+553.023 469.085 c
+</path>
+<path layer="epsilon" stroke="green">
+656 288 m
+688 288
+704 272 c
+</path>
+<text matrix="1 0 0 1 16 -160" transformations="translations" pos="688 416" stroke="black" type="label" width="64.7976" height="16.6056" depth="6.84" valign="baseline" size="small" style="math">y = b_j</text>
+<path layer="zeta" stroke="red">
+160 352 m
+144 384
+112 368 c
+</path>
+<text matrix="1 0 0 1 -679.27 -66.5293" transformations="translations" pos="688 416" stroke="black" type="label" width="128.059" height="13.9656" depth="4.632" valign="baseline" size="small" style="math">y = -x -c_k</text>
+</page>
+<page>
+<layer name="space"/>
+<layer name="query"/>
+<layer name="alpha"/>
+<layer name="beta"/>
+<view layers="space query alpha beta" active="space"/>
+<path layer="alpha" matrix="0.5 0 0 1 96 -128" fill="orange">
+192 284.103 m
+192 156.103 l
+800 156.103 l
+800 284.103 l
+h
+</path>
+<path layer="beta" matrix="0.5 0 0 1 400 -128" fill="green">
+192 284.103 m
+192 156.103 l
+800 156.103 l
+800 284.103 l
+h
+</path>
+<path layer="alpha" matrix="0.5 0 0 1 96 0" fill="green">
+192 284.103 m
+192 156.103 l
+800 156.103 l
+800 284.103 l
+h
+</path>
+<path layer="beta" matrix="0.5 0 0 1 400 0" fill="yellow">
+192 284.103 m
+192 156.103 l
+800 156.103 l
+800 284.103 l
+h
+</path>
+<path layer="query" matrix="1 0 0 1.33333 0 -142.563" stroke="black" pen="ultrafat">
+0 416 m
+0 128 l
+800 128 l
+800 416 l
+h
+</path>
+<path layer="space" matrix="1 0 0 1 0 28.1032" stroke="black" pen="ultrafat">
+0 256 m
+800 256 l
+</path>
+<path layer="query" matrix="1 0 0 1 0 -99.8968" stroke="black" pen="ultrafat">
+0 256 m
+800 256 l
+</path>
+<text layer="beta" matrix="1 0 0 1 256 -67.8968" transformations="translations" pos="272 272" stroke="black" type="label" width="244.09" height="39.0628" depth="12.012" valign="baseline" size="huge" style="math">O(n^{1.5} \log n)</text>
+<text layer="alpha" matrix="1 0 0 1 -32 -67.8968" transformations="translations" pos="272 272" stroke="black" type="label" width="200.813" height="36.1088" depth="12.012" valign="baseline" size="huge" style="math">O(n \log n)</text>
+<path layer="query" matrix="1 0 0 1 0 -35.8968" stroke="black" pen="ultrafat">
+192 448 m
+192 64 l
+</path>
+<text layer="space" matrix="1 0 0 1 0 -35.8968" transformations="translations" pos="32 240" stroke="black" type="label" width="110.536" height="33.4712" depth="9.38" valign="baseline" size="huge">Space</text>
+<text layer="query" matrix="1 0 0 1 0 -163.897" transformations="translations" pos="32 240" stroke="black" type="label" width="113.112" height="33.4712" depth="9.38" valign="baseline" size="huge">Query</text>
+<path matrix="1 0 0 1 0 -35.8968" stroke="black" pen="ultrafat">
+496 448 m
+496 64 l
+</path>
+<text layer="beta" matrix="1 0 0 1 336.364 -31.786" transformations="translations" pos="272 112" stroke="black" type="label" width="93.6292" height="36.1088" depth="12.012" valign="baseline" size="huge" style="math">O(1)</text>
+<text layer="alpha" matrix="1 0 0 1 32.364 -31.786" transformations="translations" pos="272 112" stroke="black" type="label" width="97.4092" height="42.5992" depth="0" valign="baseline" size="huge" style="math">n^{O(1)}</text>
+<text layer="space" matrix="1 0 0 1 0 -51.8613" transformations="translations" pos="0 592" stroke="black" type="minipage" width="800" height="40.576" depth="20.64" valign="top" size="massive" style="center">3SUM Type Encoding</text>
+<text transformations="translations" pos="192 384" stroke="black" type="minipage" width="304" height="44.344" depth="24.4" valign="top" size="massive" style="center">(a)</text>
+<text matrix="1 0 0 1 304 0" transformations="translations" pos="192 384" stroke="black" type="minipage" width="304" height="44.344" depth="24.4" valign="top" size="massive" style="center">(b)</text>
+</page>
+<page>
+<layer name="alpha"/>
+<layer name="beta"/>
+<layer name="gamma"/>
+<view layers="alpha" active="alpha"/>
+<view layers="alpha beta" active="beta"/>
+<view layers="alpha beta gamma" active="gamma"/>
+<text layer="alpha" matrix="1 0 0 1 0 -48" transformations="translations" pos="0 576" stroke="black" type="minipage" width="800" height="33.86" depth="13.96" valign="top" size="massive" style="center">Results</text>
+<text layer="beta" matrix="1 0 0 1 48 -128" transformations="translations" pos="16 480" stroke="black" type="label" width="279.396" height="51.584" depth="17.16" valign="baseline" size="massive">1) Bounds</text>
+<text layer="gamma" matrix="1 0 0 1 48 -112" transformations="translations" pos="16 288" stroke="black" type="label" width="353.228" height="51.584" depth="17.16" valign="baseline" size="massive">2) Encodings</text>
+</page>
+<page>
+<layer name="motivation"/>
+<layer name="exponential"/>
+<layer name="R1"/>
+<layer name="data"/>
+<layer name="rounded"/>
+<layer name="alpha"/>
+<layer name="beta"/>
+<layer name="gamma"/>
+<view layers="motivation" active="motivation"/>
+<view layers="motivation R1 data" active="R1"/>
+<view layers="motivation R1 rounded" active="data"/>
+<view layers="motivation exponential R1 rounded" active="rounded"/>
+<view layers="motivation exponential R1 rounded alpha" active="alpha"/>
+<view layers="motivation exponential R1 rounded alpha beta" active="beta"/>
+<view layers="motivation exponential R1 rounded alpha beta gamma" active="gamma"/>
+<path layer="alpha" stroke="black">
+520.648 262.06 m
+524.695 232.214
+572.246 234.744 c
+</path>
+<path layer="gamma" fill="orange">
+10.2328 72.3618 m
+10.2328 11.1524 l
+427.064 11.1524 l
+427.064 72.3618 l
+h
+</path>
+<path layer="beta" fill="yellow">
+39.5729 194.781 m
+39.5729 79.4439 l
+737.157 79.4439 l
+737.157 194.781 l
+h
+</path>
+<path layer="alpha" matrix="1.15409 0 0 1.06923 -77.0246 21.6015" fill="red">
+558.967 226.144 m
+558.967 182.134 l
+738.549 182.134 l
+738.549 226.144 l
+h
+</path>
+<path layer="exponential" matrix="1 0 0 1 32 48" fill="red">
+294.984 267.198 m
+294.984 206.764 l
+528.479 206.764 l
+528.479 267.198 l
+h
+</path>
+<text layer="motivation" matrix="1 0 0 1 16 -32" transformations="translations" pos="0 608" stroke="black" type="minipage" width="768" height="31.0408" depth="17.08" valign="top" size="huge">1) Bounds on number representation</text>
+<text layer="exponential" matrix="1 0 0 1 32 48" transformations="translations" pos="0 384" stroke="black" type="minipage" width="768" height="91" depth="77.224" valign="top" size="huge">[GPS89] Goodman, Pollack, Sturmfels:
+``Coordinate Representation of Order Types Requires Exponential Storage&apos;&apos;</text>
+<path layer="R1" matrix="1 0 0 1 0 368" stroke="black" pen="heavier">
+-16 96 m
+816 96 l
+</path>
+<use layer="data" matrix="1 0 0 1 0 368" name="mark/disk(sx)" pos="64 96" size="normal" stroke="black"/>
+<use matrix="1 0 0 1 0 368" name="mark/disk(sx)" pos="192 96" size="normal" stroke="black"/>
+<use matrix="1 0 0 1 0 368" name="mark/disk(sx)" pos="256 96" size="normal" stroke="black"/>
+<use matrix="1 0 0 1 0 368" name="mark/disk(sx)" pos="432 96" size="normal" stroke="black"/>
+<use matrix="1 0 0 1 0 368" name="mark/disk(sx)" pos="608 96" size="normal" stroke="black"/>
+<use matrix="1 0 0 1 0 368" name="mark/disk(sx)" pos="752 96" size="normal" stroke="black"/>
+<text matrix="1 0 0 1 8.3791 377.217" transformations="translations" pos="48 96" stroke="black" type="label" width="28.4564" height="12.0232" depth="4.172" valign="baseline" style="math">x_1</text>
+<text matrix="1 0 0 1 8.3791 377.217" transformations="translations" pos="176 96" stroke="black" type="label" width="28.4564" height="12.0232" depth="4.172" valign="baseline" style="math">x_2</text>
+<text matrix="1 0 0 1 8.3791 377.217" transformations="translations" pos="240 96" stroke="black" type="label" width="28.4564" height="12.0232" depth="4.172" valign="baseline" style="math">x_3</text>
+<text matrix="1 0 0 1 8.3791 377.217" transformations="translations" pos="416 96" stroke="black" type="label" width="28.4564" height="12.0232" depth="4.172" valign="baseline" style="math">x_4</text>
+<text matrix="1 0 0 1 8.3791 377.217" transformations="translations" pos="592 96" stroke="black" type="label" width="28.4564" height="12.0232" depth="4.172" valign="baseline" style="math">x_5</text>
+<text matrix="1 0 0 1 8.3791 377.217" transformations="translations" pos="736 96" stroke="black" type="label" width="31.1276" height="12.0232" depth="4.172" valign="baseline" style="math">x_n</text>
+<text matrix="1 0 0 1 40.3791 377.217" transformations="translations" pos="624 96" stroke="black" type="label" width="37.1924" height="12.3984" depth="0" valign="baseline" style="math">\cdots</text>
+<use layer="rounded" matrix="1 0 0 1 48 368" name="mark/disk(sx)" pos="128 96" size="normal" stroke="black"/>
+<use matrix="1 0 0 1 48 368" name="mark/disk(sx)" pos="192 96" size="normal" stroke="black"/>
+<use matrix="1 0 0 1 48 368" name="mark/disk(sx)" pos="256 96" size="normal" stroke="black"/>
+<use matrix="1 0 0 1 48 368" name="mark/disk(sx)" pos="320 96" size="normal" stroke="black"/>
+<use matrix="1 0 0 1 48 368" name="mark/disk(sx)" pos="384 96" size="normal" stroke="black"/>
+<use matrix="1 0 0 1 112 368" name="mark/disk(sx)" pos="512 96" size="normal" stroke="black"/>
+<text matrix="1 0 0 1 120.379 377.217" transformations="translations" pos="48 96" stroke="black" type="label" width="13.9468" height="17.976" depth="0" valign="baseline" style="math">1</text>
+<text matrix="1 0 0 1 56.3791 377.217" transformations="translations" pos="176 96" stroke="black" type="label" width="13.9468" height="17.976" depth="0" valign="baseline" style="math">2</text>
+<text matrix="1 0 0 1 56.3791 377.217" transformations="translations" pos="240 96" stroke="black" type="label" width="13.9468" height="17.976" depth="0" valign="baseline" style="math">3</text>
+<text matrix="1 0 0 1 -55.6209 377.217" transformations="translations" pos="416 96" stroke="black" type="label" width="13.9468" height="17.976" depth="0" valign="baseline" style="math">4</text>
+<text matrix="1 0 0 1 -167.621 377.217" transformations="translations" pos="592 96" stroke="black" type="label" width="13.9468" height="17.976" depth="0" valign="baseline" style="math">5</text>
+<text matrix="1 0 0 1 -119.621 377.217" transformations="translations" pos="736 96" stroke="black" type="label" width="16.744" height="12.0092" depth="0" valign="baseline" style="math">n</text>
+<text matrix="1 0 0 1 -119.621 377.217" transformations="translations" pos="624 96" stroke="black" type="label" width="37.1924" height="12.3984" depth="0" valign="baseline" style="math">\cdots</text>
+<text layer="alpha" matrix="1 0 0 1 3.03518 38.258" transformations="translations" pos="576 192" stroke="black" type="label" width="197.086" height="32.5892" depth="6.496" valign="baseline" size="large" style="math">1, 2, \ldots, 2^{2^{O(n)}}</text>
+<text layer="beta" matrix="1 0 0 1 -16 60.459" transformations="translations" pos="32 128" stroke="black" type="minipage" width="736" height="59.052" depth="45.164" valign="top" size="huge" style="center">``3SUM Types can be represented by numbers in $1, 2, \ldots, 2^{O(n)}$.&apos;&apos;</text>
+<text layer="gamma" matrix="1 0 0 1 -144 0" transformations="translations" pos="160 32" stroke="black" type="label" width="769.983" height="36.1088" depth="12.012" valign="baseline" size="huge">Sometimes necessary! ($c_{i} = a_{i-1} + b_{i-2}$)</text>
+</page>
+<page>
+<layer name="alpha"/>
+<layer name="beta"/>
+<layer name="gamma"/>
+<layer name="delta"/>
+<layer name="epsilon"/>
+<layer name="zeta"/>
+<layer name="eta"/>
+<layer name="theta"/>
+<layer name="iota"/>
+<layer name="kappa"/>
+<layer name="lambda"/>
+<layer name="mu"/>
+<layer name="nu"/>
+<layer name="xi"/>
+<view layers="alpha" active="alpha"/>
+<view layers="alpha beta" active="beta"/>
+<view layers="alpha beta gamma" active="gamma"/>
+<view layers="alpha beta gamma delta" active="delta"/>
+<view layers="alpha beta gamma delta epsilon" active="epsilon"/>
+<view layers="alpha beta gamma delta epsilon zeta" active="zeta"/>
+<view layers="alpha beta gamma delta epsilon zeta eta" active="eta"/>
+<view layers="alpha beta gamma delta epsilon zeta eta mu" active="mu"/>
+<view layers="alpha beta gamma delta epsilon zeta eta iota" active="iota"/>
+<view layers="alpha beta gamma delta epsilon zeta eta theta iota" active="theta"/>
+<view layers="alpha beta gamma delta epsilon zeta eta theta iota nu" active="nu"/>
+<view layers="alpha beta gamma delta epsilon zeta eta theta iota kappa nu" active="kappa"/>
+<view layers="alpha beta gamma delta epsilon zeta eta theta iota kappa nu xi" active="xi"/>
+<view layers="alpha beta gamma delta epsilon zeta eta theta iota kappa lambda nu xi" active="lambda"/>
+<path layer="mu" fill="orange" opacity="70%">
+244.194 233.22 m
+242.46 250.718 l
+249.154 274.219 l
+303.355 236.676 l
+250.445 225.763 l
+250.445 225.763 l
+h
+</path>
+<path layer="kappa" fill="blue">
+22.6265 104.611 m
+22.6265 17.6022 l
+378.248 17.6022 l
+378.248 104.611 l
+h
+</path>
+<path layer="lambda" fill="green">
+453.621 104.105 m
+453.621 13.5553 l
+740.951 13.5553 l
+740.951 104.105 l
+h
+</path>
+<path layer="theta" matrix="1 0 0 1 101.678 -26.3049" fill="light grey">
+283.399 192.251
+261.647 206.415
+258.611 339.457
+688.089 284.318
+399.747 152.794 u
+</path>
+<path layer="iota" fill="light grey">
+568.705 340.975
+530.765 324.787
+487.767 386.503
+565.67 389.032
+639.526 389.538
+540.377 459.347
+828.719 401.678
+779.144 315.176 u
+</path>
+<text layer="beta" matrix="1 0 0 1 32 -112" transformations="translations" pos="32 576" stroke="black" type="label" width="681.293" height="27.3924" depth="8.372" valign="baseline" size="large" style="math">(a_1, a_2, \ldots, a_n, b_1, b_2, \ldots, b_n, c_1, c_2, \ldots, c_n) \in \mathbb{R}^{3N}</text>
+<text layer="alpha" matrix="1 0 0 1 0 -16" transformations="translations" pos="0 592" stroke="black" type="minipage" width="800" height="23.702" depth="9.772" valign="top" size="huge" style="center">3SUM as Point Location</text>
+<text layer="gamma" matrix="1 0 0 1 0 -48" transformations="translations" pos="64 448" stroke="black" type="label" width="222.538" height="23.254" depth="9.352" valign="baseline" size="large" style="math">a_i + b_j + c_k = 0</text>
+<path layer="delta" stroke="black">
+492.699 452.138 m
+509.899 429.374 l
+</path>
+<text matrix="1 0 0 1 2.02345 -12.1407" transformations="translations" pos="508.887 417.234" stroke="black" type="label" width="72.6824" height="23.2456" depth="0" valign="baseline" size="large">Point</text>
+<path layer="epsilon" stroke="black">
+265.061 389.917 m
+286.813 364.118 l
+</path>
+<text transformations="translations" pos="292.884 343.378" stroke="black" type="label" width="152.998" height="23.2596" depth="6.496" valign="baseline" size="large">Hyperplane</text>
+<path layer="zeta" matrix="1 0 0 1 105.219 -26.3049" stroke="black">
+60.1868 222.982 m
+160.853 325.673 l
+</path>
+<path matrix="1 0 0 1 105.219 -26.3049" stroke="black">
+111.279 323.143 m
+221.557 246.758 l
+</path>
+<path matrix="1 0 0 1 105.219 -26.3049" stroke="black">
+207.899 274.075 m
+159.336 154.185 l
+</path>
+<path matrix="1 0 0 1 105.219 -26.3049" stroke="black">
+217.004 204.265 m
+78.9037 179.984 l
+</path>
+<path matrix="1 0 0 1 105.219 -26.3049" stroke="black">
+66.763 262.946 m
+179.57 162.785 l
+</path>
+<path matrix="1 0 0 1 105.219 -26.3049" stroke="black">
+104.703 162.785 m
+151.242 326.178 l
+</path>
+<path matrix="1 0 0 1 105.219 -26.3049" stroke="black">
+99.6441 306.45 m
+201.828 184.537 l
+</path>
+<path matrix="1 0 0 1 105.219 -26.3049" stroke="black">
+148.713 161.267 m
+132.019 329.719 l
+</path>
+<path matrix="1 0 0 1 105.219 -26.3049" stroke="black">
+81.433 285.204 m
+212.957 198.195 l
+</path>
+<path matrix="1 0 0 1 105.219 -26.3049" stroke="black">
+220.039 267.498 m
+58.1633 234.111 l
+</path>
+<use layer="eta" matrix="1 0 0 1 105.219 -26.3049" name="mark/disk(sx)" pos="154.783 271.039" size="normal" stroke="black"/>
+<text layer="theta" matrix="1 0 0 1 312.117 -208.359" transformations="translations" pos="64 448" stroke="black" type="label" width="248.576" height="23.254" depth="9.352" valign="baseline" size="large" style="math">a_i + b_j + c_k = -1</text>
+<text matrix="1 0 0 1 313.635 -264.004" transformations="translations" pos="64 448" stroke="black" type="label" width="222.538" height="23.254" depth="9.352" valign="baseline" size="large" style="math">a_i + b_j + c_k = 1</text>
+<path matrix="1 0 0 1 105.219 -26.3049" stroke="black" arrow="normal/normal">
+265.567 275.592 m
+222.569 262.44 l
+</path>
+<path matrix="1 0 0 1 105.219 -42.3049" stroke="black">
+60.1868 222.982 m
+160.853 325.673 l
+</path>
+<path matrix="1 0 0 1 105.219 -42.3049" stroke="black">
+111.279 323.143 m
+221.557 246.758 l
+</path>
+<path matrix="1 0 0 1 105.219 -42.3049" stroke="black">
+207.899 274.075 m
+159.336 154.185 l
+</path>
+<path matrix="1 0 0 1 105.219 -42.3049" stroke="black">
+217.004 204.265 m
+78.9037 179.984 l
+</path>
+<path matrix="1 0 0 1 105.219 -42.3049" stroke="black">
+66.763 262.946 m
+179.57 162.785 l
+</path>
+<path matrix="1 0 0 1 105.219 -42.3049" stroke="black">
+104.703 162.785 m
+151.242 326.178 l
+</path>
+<path matrix="1 0 0 1 105.219 -42.3049" stroke="black">
+99.6441 306.45 m
+201.828 184.537 l
+</path>
+<path matrix="1 0 0 1 105.219 -42.3049" stroke="black">
+148.713 161.267 m
+132.019 329.719 l
+</path>
+<path matrix="1 0 0 1 105.219 -42.3049" stroke="black">
+81.433 285.204 m
+212.957 198.195 l
+</path>
+<path matrix="1 0 0 1 105.219 -42.3049" stroke="black">
+220.039 267.498 m
+58.1633 234.111 l
+</path>
+<path matrix="1 0 0 1 105.219 -10.3049" stroke="black">
+60.1868 222.982 m
+160.853 325.673 l
+</path>
+<path matrix="1 0 0 1 105.219 -10.3049" stroke="black">
+111.279 323.143 m
+221.557 246.758 l
+</path>
+<path matrix="1 0 0 1 105.219 -10.3049" stroke="black">
+207.899 274.075 m
+159.336 154.185 l
+</path>
+<path matrix="1 0 0 1 105.219 -10.3049" stroke="black">
+217.004 204.265 m
+78.9037 179.984 l
+</path>
+<path matrix="1 0 0 1 105.219 -10.3049" stroke="black">
+66.763 262.946 m
+179.57 162.785 l
+</path>
+<path matrix="1 0 0 1 105.219 -10.3049" stroke="black">
+104.703 162.785 m
+151.242 326.178 l
+</path>
+<path matrix="1 0 0 1 105.219 -10.3049" stroke="black">
+99.6441 306.45 m
+201.828 184.537 l
+</path>
+<path matrix="1 0 0 1 105.219 -10.3049" stroke="black">
+148.713 161.267 m
+132.019 329.719 l
+</path>
+<path matrix="1 0 0 1 105.219 -10.3049" stroke="black">
+81.433 285.204 m
+212.957 198.195 l
+</path>
+<path matrix="1 0 0 1 105.219 -10.3049" stroke="black">
+220.039 267.498 m
+58.1633 234.111 l
+</path>
+<text layer="iota" matrix="1 0 0 1 -64 -32" transformations="translations" pos="592 448" stroke="black" type="minipage" width="240" height="42.7924" depth="28.868" valign="top" size="large" style="center">Scale
+
+$|a_i + b_j + c_k| \ge 1$</text>
+<text layer="kappa" matrix="1 0 0 1 0 48" transformations="translations" pos="16 48" stroke="black" type="minipage" width="352" height="41.3672" depth="27.44" valign="top" size="large" style="center">Cramer&apos;s rule
+
+$\implies$ $2^{O(n)}$ Upper Bound</text>
+<text layer="lambda" matrix="1 0 0 1 0 -16" transformations="translations" pos="400 112" stroke="black" type="minipage" width="384" height="42.2772" depth="28.392" valign="top" size="large" style="center">Encode Basis
+
+$\implies$ Encoding (a)</text>
+<path layer="xi" stroke="green" pen="heavier">
+216.498 280.838 m
+326.776 204.453 l
+</path>
+<path stroke="green" pen="heavier">
+325.258 257.193 m
+163.382 223.806 l
+</path>
+<use layer="nu" name="mark/disk(sx)" pos="267.757 245.333" size="normal" stroke="blue"/>
+<path layer="theta" matrix="1 0 0 1 105.219 -26.3049" stroke="black" arrow="normal/normal">
+264.555 216.406 m
+212.451 231.076 l
+</path>
+</page>
+<page>
+<layer name="alpha"/>
+<layer name="beta"/>
+<layer name="gamma"/>
+<layer name="delta"/>
+<layer name="epsilon"/>
+<layer name="zeta"/>
+<layer name="eta"/>
+<layer name="theta"/>
+<layer name="iota"/>
+<layer name="kappa"/>
+<layer name="lambda"/>
+<layer name="mu"/>
+<layer name="nu"/>
+<layer name="xi"/>
+<layer name="omicron"/>
+<layer name="pi"/>
+<layer name="rho"/>
+<layer name="sigma"/>
+<layer name="tau"/>
+<layer name="upsilon"/>
+<layer name="phi"/>
+<layer name="chi"/>
+<layer name="psi"/>
+<view layers="alpha beta" active="alpha"/>
+<view layers="alpha" active="beta"/>
+<view layers="alpha gamma" active="gamma"/>
+<view layers="alpha gamma delta" active="delta"/>
+<view layers="alpha gamma delta epsilon" active="epsilon"/>
+<view layers="alpha gamma delta epsilon zeta" active="zeta"/>
+<view layers="alpha gamma delta epsilon zeta eta" active="eta"/>
+<view layers="alpha" active="theta"/>
+<view layers="alpha psi" active="psi"/>
+<view layers="alpha theta" active="theta"/>
+<view layers="alpha theta phi" active="phi"/>
+<view layers="alpha theta chi" active="chi"/>
+<view layers="alpha theta iota" active="iota"/>
+<view layers="alpha theta iota kappa" active="kappa"/>
+<view layers="alpha theta iota kappa lambda" active="lambda"/>
+<view layers="alpha theta iota kappa mu" active="mu"/>
+<view layers="alpha theta iota kappa mu nu" active="nu"/>
+<view layers="alpha theta iota kappa mu nu xi" active="xi"/>
+<view layers="alpha theta iota kappa mu nu xi omicron" active="omicron"/>
+<view layers="alpha theta iota kappa mu nu xi omicron rho" active="rho"/>
+<view layers="alpha theta iota kappa mu nu xi omicron rho sigma" active="sigma"/>
+<view layers="alpha theta iota kappa mu nu xi omicron rho sigma tau" active="tau"/>
+<view layers="alpha theta iota kappa mu nu xi omicron pi rho sigma tau" active="tau"/>
+<view layers="alpha theta iota kappa mu nu xi omicron pi rho sigma tau upsilon" active="upsilon"/>
+<path layer="chi" fill="dark grey" opacity="40%">
+176 480 m
+176 80 l
+672 80 l
+672 480 l
+h
+</path>
+<path layer="phi" fill="dark grey" opacity="40%">
+496 480 m
+496 352 l
+672 352 l
+672 480 l
+h
+</path>
+<path layer="beta" matrix="1 0 0 1 16 48" fill="red">
+246.471 491.975
+253.553 515.245
+413.405 507.151
+253.553 441.894 u
+</path>
+<path matrix="1 0 0 1 16 48" fill="blue">
+40.0787 468.705
+21.3618 494.504
+71.4422 536.997
+166.544 499.057
+85.1005 455.047 u
+</path>
+<path matrix="1 0 0 1 16 48" fill="green">
+134.675 481.858
+147.322 530.42
+264.176 511.198
+223.707 473.764
+184.25 460.611
+151.874 463.647 u
+</path>
+<path layer="upsilon" fill="yellow" opacity="60%">
+10.9328 315.665 m
+10.9328 278.025 l
+139.984 278.025 l
+139.984 315.665 l
+h
+</path>
+<path layer="tau" matrix="1 0 0 1 384 -16" fill="lightgreen" opacity="40%">
+7.54216 61.6549 m
+7.54216 20.5124 l
+177.887 20.5124 l
+177.887 61.6549 l
+h
+</path>
+<path matrix="0.601122 0 0 0.912716 515.008 505.008" fill="lightgreen" opacity="40%">
+7.54216 61.6549 m
+7.54216 20.5124 l
+177.887 20.5124 l
+177.887 61.6549 l
+h
+</path>
+<path matrix="0.601122 0 0 0.912716 645.774 505.008" fill="lightgreen" opacity="40%">
+7.54216 61.6549 m
+7.54216 20.5124 l
+177.887 20.5124 l
+177.887 61.6549 l
+h
+</path>
+<path layer="rho" matrix="1 0 0 1 0 -16" fill="purple" opacity="40%">
+7.54216 61.6549 m
+7.54216 20.5124 l
+177.887 20.5124 l
+177.887 61.6549 l
+h
+</path>
+<path layer="iota" matrix="0.909091 0 0 1 16 0" fill="red" opacity="40%">
+176 480 m
+176 352 l
+528 352 l
+528 480 l
+h
+</path>
+<path fill="red" opacity="40%">
+288 352 m
+288 80 l
+496 80 l
+496 352 l
+h
+</path>
+<path fill="red" opacity="40%">
+496 183.651 m
+496 80 l
+672 80 l
+672 183.651 l
+h
+</path>
+<path layer="eta" fill="yellow" opacity="40%">
+256 48
+320 64
+464 48
+368 16
+272 32 u
+</path>
+<path layer="epsilon" matrix="2.2314 0 0 1.16236 -57.1252 -566.992" fill="purple" opacity="50%">
+28.3246 515.053
+30.596 546.284
+164.608 541.742
+80.5665 483.821 u
+</path>
+<path layer="gamma" fill="red" opacity="40%">
+192 464 m
+192 416 l
+208 416 l
+208 464 l
+h
+</path>
+<path fill="red" opacity="40%">
+176 480 m
+176 464 l
+192 464 l
+192 480 l
+h
+</path>
+<path fill="red" opacity="40%">
+208 464 m
+208 416 l
+224 416 l
+224 464 l
+h
+</path>
+<path fill="red" opacity="40%">
+224 464 m
+224 416 l
+352 416 l
+352 464 l
+h
+</path>
+<path fill="red" opacity="40%">
+224 416 m
+224 224 l
+352 224 l
+352 416 l
+h
+</path>
+<path fill="red" opacity="40%">
+352 336 m
+352 224 l
+448 224 l
+448 336 l
+h
+</path>
+<path fill="red" opacity="40%">
+400 224 m
+400 192 l
+448 192 l
+448 224 l
+h
+</path>
+<path fill="red" opacity="40%">
+448 224 m
+448 112 l
+528 112 l
+528 224 l
+h
+</path>
+<path fill="red" opacity="40%">
+528 176 m
+528 96 l
+544 96 l
+544 176 l
+h
+</path>
+<path fill="red" opacity="40%">
+544 112 m
+544 80 l
+656 80 l
+656 112 l
+h
+</path>
+<path fill="red" opacity="40%">
+176 464 m
+176 416 l
+192 416 l
+192 464 l
+h
+</path>
+<path layer="beta" matrix="1.08083 0 0 1.05774 15.5818 26.6837" fill="red">
+129.111 369.177 m
+129.111 341.86 l
+5.1742 341.86 l
+5.1742 369.177 l
+h
+</path>
+<path matrix="1 0 0 1 16 48" fill="green">
+693.147 277.616 m
+693.147 244.735 l
+778.132 244.735 l
+778.132 277.616 l
+h
+</path>
+<path matrix="1 0 0 1 16 48" fill="blue">
+550.494 483.502 m
+550.494 453.656 l
+632.95 453.656 l
+632.95 483.502 l
+h
+</path>
+<text matrix="1 0 0 1 -71.0084 28.2714" transformations="translations" pos="123.04 501.586" stroke="black" type="label" width="310.442" height="23.254" depth="9.352" valign="baseline" size="large" style="math">a_i \in A, b_j \in B, c_k \in C</text>
+<path layer="alpha" matrix="1 0 0 1.04167 16 13.3333" stroke="blue">
+192 64 m
+192 448 l
+</path>
+<path matrix="1 0 0 1.04167 32 13.3333" stroke="blue">
+192 64 m
+192 448 l
+</path>
+<path matrix="1 0 0 1.04167 160 13.3333" stroke="blue">
+192 64 m
+192 448 l
+</path>
+<path matrix="1 0 0 1.04167 336 13.3333" stroke="blue">
+192 64 m
+192 448 l
+</path>
+<path matrix="1 0 0 1.04167 352 13.3333" stroke="blue">
+192 64 m
+192 448 l
+</path>
+<path matrix="1 0 0 1.04167 464 13.3333" stroke="blue">
+192 64 m
+192 448 l
+</path>
+<path matrix="1 0 0 1.04167 208 13.3333" stroke="blue">
+192 64 m
+192 448 l
+</path>
+<path matrix="1 0 0 1.04167 0 13.3333" stroke="blue">
+192 64 m
+192 448 l
+</path>
+<path matrix="1 0 0 1.04167 256 13.3333" stroke="blue">
+192 64 m
+192 448 l
+</path>
+<path matrix="1 0 0 1 16 48" stroke="green">
+160 416 m
+656 416 l
+</path>
+<path matrix="1 0 0 1 16 -320" stroke="green">
+160 416 m
+656 416 l
+</path>
+<path matrix="1 0 0 1 16 -304" stroke="green">
+160 416 m
+656 416 l
+</path>
+<path matrix="1 0 0 1 16 -240" stroke="green">
+160 416 m
+656 416 l
+</path>
+<path matrix="1 0 0 1 16 -224" stroke="green">
+160 416 m
+656 416 l
+</path>
+<path matrix="1 0 0 1 16 -192" stroke="green">
+160 416 m
+656 416 l
+</path>
+<path matrix="1 0 0 1 16 0" stroke="green">
+160 416 m
+656 416 l
+</path>
+<path matrix="1 0 0 1 16 -48" stroke="green">
+160 416 m
+656 416 l
+</path>
+<path matrix="1 0 0 1 16 -80" stroke="green">
+160 416 m
+656 416 l
+</path>
+<path matrix="1 0 0 1 16 48" stroke="red">
+160 432 m
+560 32 l
+</path>
+<path layer="beta" matrix="1 0 0 1 112 48" stroke="red">
+160 432 m
+560 32 l
+</path>
+<path matrix="1 0 0 1 16 48" stroke="red">
+608 432 m
+656 384 l
+</path>
+<path matrix="1 0 0 1 16 48" stroke="red">
+160 112 m
+240 32 l
+</path>
+<path matrix="1 0 0 1 16 48" stroke="red">
+160 192 m
+320 32 l
+</path>
+<path matrix="1 0 0 1 16 48" stroke="red">
+160 208 m
+336 32 l
+</path>
+<path matrix="1 0 0 1 16 48" stroke="red">
+160 352 m
+480 32 l
+</path>
+<path matrix="1 0 0 1 16 48" stroke="red">
+400 432 m
+656 176 l
+</path>
+<path matrix="1 0 0 1 16 48" stroke="red">
+432 432 m
+656 208 l
+</path>
+<text matrix="1 0 0 1 -112 96" transformations="translations" pos="688 416" stroke="black" type="label" width="66.144" height="10.3056" depth="3.576" valign="baseline" size="small" style="math">x = a_i</text>
+<path matrix="1 0 0 1 16 48" stroke="blue">
+512 432 m
+525.707 473.131
+553.023 469.085 c
+</path>
+<path matrix="1 0 0 1 16 48" stroke="green">
+656 288 m
+688 288
+704 272 c
+</path>
+<text matrix="1 0 0 1 32 -112" transformations="translations" pos="688 416" stroke="black" type="label" width="64.7976" height="16.6056" depth="6.84" valign="baseline" size="small" style="math">y = b_j</text>
+<path matrix="1 0 0 1 16 48" stroke="red">
+160 352 m
+144 384
+112 368 c
+</path>
+<text matrix="1 0 0 1 -663.27 -18.5293" transformations="translations" pos="688 416" stroke="black" type="label" width="128.059" height="13.9656" depth="4.632" valign="baseline" size="small" style="math">y = -x -c_k</text>
+<use layer="delta" name="mark/disk(sx)" pos="208 464" size="normal" stroke="purple"/>
+<use name="mark/disk(sx)" pos="208 416" size="normal" stroke="purple"/>
+<use name="mark/disk(sx)" pos="224 464" size="normal" stroke="purple"/>
+<use name="mark/disk(sx)" pos="224 416" size="normal" stroke="purple"/>
+<use name="mark/disk(sx)" pos="352 336" size="normal" stroke="purple"/>
+<use name="mark/disk(sx)" pos="352 224" size="normal" stroke="purple"/>
+<use name="mark/disk(sx)" pos="400 336" size="normal" stroke="purple"/>
+<use name="mark/disk(sx)" pos="400 224" size="normal" stroke="purple"/>
+<use name="mark/disk(sx)" pos="448 224" size="normal" stroke="purple"/>
+<use name="mark/disk(sx)" pos="448 192" size="normal" stroke="purple"/>
+<use name="mark/disk(sx)" pos="528 176" size="normal" stroke="purple"/>
+<use name="mark/disk(sx)" pos="528 112" size="normal" stroke="purple"/>
+<use name="mark/disk(sx)" pos="656 96" size="normal" stroke="purple"/>
+<use name="mark/disk(sx)" pos="544 176" size="normal" stroke="purple"/>
+<use name="mark/disk(sx)" pos="544 96" size="normal" stroke="purple"/>
+<use name="mark/disk(sx)" pos="192 480" size="normal" stroke="purple"/>
+<use name="mark/disk(sx)" pos="192 416" size="normal" stroke="purple"/>
+<text layer="epsilon" matrix="1 0 0 1 -16 -480" transformations="translations" pos="40.9592 515.479" stroke="black" type="label" width="186.222" height="22.708" depth="6.972" valign="baseline">$O(n^2 \log n)$ bits</text>
+<use layer="zeta" name="mark/cross(sx)" pos="448 368" size="normal" stroke="dark grey"/>
+<text transformations="translations" pos="160 368" stroke="dark grey" type="label" width="13.0844" height="18.4184" depth="5.404" valign="baseline" style="math">j</text>
+<text transformations="translations" pos="448 496" stroke="dark grey" type="label" width="9.6096" height="18.3988" depth="0" valign="baseline" style="math">i</text>
+<text transformations="translations" pos="576 64" stroke="dark grey" type="label" width="15.4" height="19.3704" depth="0" valign="baseline" style="math">k</text>
+<path stroke="dark grey">
+176 480 m
+576 80 l
+</path>
+<text layer="eta" matrix="1 0 0 1 247.515 -429.292" transformations="translations" pos="32 464" stroke="dark grey" type="label" width="118.292" height="20.9244" depth="6.972" valign="baseline">$O(1)$ time</text>
+<path layer="theta" stroke="dark grey" dash="dashed">
+288 480 m
+288 80 l
+</path>
+<path matrix="1 0 0 1 208 0" stroke="dark grey" dash="dashed">
+288 480 m
+288 80 l
+</path>
+<path stroke="dark grey" dash="dashed">
+176 352 m
+672 352 l
+</path>
+<path matrix="1 0 0 1 0 -168.349" stroke="dark grey" dash="dashed">
+176 352 m
+672 352 l
+</path>
+<use layer="iota" name="mark/disk(sx)" pos="288 352" size="normal" stroke="purple"/>
+<use name="mark/disk(sx)" pos="288 480" size="normal" stroke="purple"/>
+<use name="mark/disk(sx)" pos="496 480" size="normal" stroke="purple"/>
+<use name="mark/disk(sx)" pos="496 80" size="normal" stroke="purple"/>
+<use name="mark/disk(sx)" pos="672 80" size="normal" stroke="purple"/>
+<use name="mark/disk(sx)" pos="672 183.651" size="normal" stroke="purple"/>
+<use name="mark/disk(sx)" pos="176 352" size="normal" stroke="purple"/>
+<use name="mark/disk(sx)" pos="176 480" size="normal" stroke="purple"/>
+<use layer="kappa" name="mark/square(sx)" pos="192 464" size="normal" stroke="dark grey"/>
+<use name="mark/box(sx)" pos="224 416" size="normal" stroke="dark grey"/>
+<use name="mark/box(sx)" pos="448 192" size="normal" stroke="dark grey"/>
+<use name="mark/square(sx)" pos="448 224" size="normal" stroke="dark grey"/>
+<use name="mark/square(sx)" pos="352 368" size="normal" stroke="dark grey"/>
+<use name="mark/square(sx)" pos="544 112" size="normal" stroke="dark grey"/>
+<use name="mark/box(sx)" pos="528 112" size="normal" stroke="dark grey"/>
+<use layer="lambda" name="mark/cross(sx)" pos="528 336" size="normal" stroke="dark grey"/>
+<use layer="mu" name="mark/cross(sx)" pos="400 336" size="normal" stroke="dark grey"/>
+<text layer="nu" matrix="1 0 0 1 -16 -32" transformations="translations" pos="80 592" stroke="dark grey" type="label" width="21.6972" height="17.7548" depth="3.78" valign="baseline" style="math">\le</text>
+<use matrix="1 0 0 1 -14.3656 12.7312" name="mark/cross(sx)" pos="57.712 554.029" size="normal" stroke="dark grey"/>
+<use matrix="1 0 0 1 49.6344 12.7312" name="mark/box(sx)" pos="57.712 554.029" size="normal" stroke="dark grey"/>
+<text matrix="1 0 0 1 -16 -80" transformations="translations" pos="80 592" stroke="dark grey" type="label" width="21.6972" height="15.036" depth="1.092" valign="baseline" style="math">&gt;</text>
+<use matrix="1 0 0 1 -14.3656 -35.2688" name="mark/cross(sx)" pos="57.712 554.029" size="normal" stroke="dark grey"/>
+<use matrix="1 0 0 1 49.6344 -35.2688" name="mark/square(sx)" pos="57.712 554.029" size="normal" stroke="dark grey"/>
+<path layer="xi" stroke="dark grey" arrow="normal/normal">
+128 544 m
+192 544 l
+</path>
+<text matrix="1 0 0 1 -0.544798 -6.08913" transformations="translations" pos="208 544" stroke="dark grey" type="label" width="215.989" height="19.3732" depth="7.98" valign="baseline" style="math">a_i + b_j \le a_{i&apos;} + b_{j&apos;}</text>
+<path layer="omicron" matrix="1 0 0 1 320 0" stroke="dark grey" arrow="normal/normal">
+128 544 m
+192 544 l
+</path>
+<text matrix="1 0 0 1 319.455 -6.08913" transformations="translations" pos="208 544" stroke="dark grey" type="label" width="215.989" height="19.3732" depth="7.98" valign="baseline" style="math">a_i - a_{i&apos;} \le b_{j&apos;} - b_j</text>
+<text layer="pi" matrix="1 0 0 1 -0.541245 -8.11867" transformations="translations" pos="160 336" stroke="dark grey" type="label" width="13.0844" height="18.4184" depth="5.404" valign="baseline" style="math">j</text>
+<text matrix="1 0 0 1 -0.541245 -8.11867" transformations="translations" pos="160 192" stroke="dark grey" type="label" width="20.9104" height="20.9916" depth="5.404" valign="baseline" style="math">j&apos;</text>
+<text matrix="1 0 0 1 -4.8712 -8.11867" transformations="translations" pos="448 64" stroke="dark grey" type="label" width="17.4356" height="20.972" depth="0" valign="baseline" style="math">i&apos;</text>
+<text matrix="1 0 0 1 -4.8712 -8.11867" transformations="translations" pos="400 64" stroke="dark grey" type="label" width="9.6096" height="18.3988" depth="0" valign="baseline" style="math">i</text>
+<text layer="rho" matrix="1 0 0 1 0 -16" transformations="translations" pos="16 32" stroke="dark grey" type="label" width="152.827" height="22.708" depth="6.972" valign="baseline" style="math">O(n^{1.5} \log n)</text>
+<path layer="sigma" matrix="1 0 0 1 192 -16" fill="dark grey" opacity="40%">
+7.54216 61.6549 m
+7.54216 20.5124 l
+177.887 20.5124 l
+177.887 61.6549 l
+h
+</path>
+<text matrix="1 0 0 1 192 -16" transformations="translations" pos="16 32" stroke="dark grey" type="label" width="152.827" height="22.708" depth="6.972" valign="baseline" style="math">O(n^{1.5} \log n)</text>
+<text layer="tau" matrix="1 0 0 1 384 -16" transformations="translations" pos="16 32" stroke="dark grey" type="label" width="152.827" height="22.708" depth="6.972" valign="baseline" style="math">O(n^{1.5} \log n)</text>
+<path layer="sigma" fill="lightgreen">
+400 32 m
+400 48 l
+400 48 l
+400 32 l
+h
+</path>
+<text matrix="1 0 0 1 -3.64405 -5.76974" transformations="translations" pos="182.217 21.956" stroke="black" type="label" width="21.6972" height="16.2736" depth="2.324" valign="baseline" style="math">+</text>
+<text layer="tau" matrix="1 0 0 1 188.356 -5.76974" transformations="translations" pos="182.217 21.956" stroke="black" type="label" width="21.6972" height="16.2736" depth="2.324" valign="baseline" style="math">+</text>
+<text layer="upsilon" transformations="translations" pos="16 288" stroke="black" type="label" width="118.292" height="20.9244" depth="6.972" valign="baseline">$O(1)$ time</text>
+<use layer="kappa" name="mark/box(sx)" pos="448 176" size="normal" stroke="black"/>
+<text layer="alpha" matrix="1 0 0 1 204.116 -66.0805" transformations="translations" pos="400 112" stroke="black" type="minipage" width="185.196" height="23.702" depth="9.772" valign="top" size="large" style="center">Encoding (b)</text>
+<use layer="phi" name="mark/cross(sx)" pos="528 464" size="normal" stroke="black"/>
+<use name="mark/cross(sx)" pos="544 464" size="normal" stroke="black"/>
+<use name="mark/cross(sx)" pos="528 416" size="normal" stroke="black"/>
+<use name="mark/cross(sx)" pos="544 416" size="normal" stroke="black"/>
+<use name="mark/cross(sx)" pos="528 368" size="normal" stroke="black"/>
+<use name="mark/cross(sx)" pos="544 368" size="normal" stroke="black"/>
+<use name="mark/cross(sx)" pos="656 368" size="normal" stroke="black"/>
+<use name="mark/cross(sx)" pos="656 416" size="normal" stroke="black"/>
+<use name="mark/cross(sx)" pos="656 464" size="normal" stroke="black"/>
+<text matrix="1 0 0 1 30.8576 -32.8811" transformations="translations" pos="496 528" stroke="black" type="label" width="114.075" height="22.3188" depth="6.692" valign="baseline" style="math">\sqrt{n} \times \sqrt{n}</text>
+<use layer="chi" name="mark/cross(sx)" pos="240 416" size="large" stroke="black"/>
+<use matrix="1 0 0 1 160 0" name="mark/cross(sx)" pos="240 416" size="large" stroke="black"/>
+<use matrix="1 0 0 1 160 -144" name="mark/cross(sx)" pos="240 416" size="large" stroke="black"/>
+<use matrix="1 0 0 1 0 -144" name="mark/cross(sx)" pos="240 416" size="large" stroke="black"/>
+<use matrix="1 0 0 1 0 -288" name="mark/cross(sx)" pos="240 416" size="large" stroke="black"/>
+<use matrix="1 0 0 1 160 -288" name="mark/cross(sx)" pos="240 416" size="large" stroke="black"/>
+<use matrix="1 0 0 1 336 -288" name="mark/cross(sx)" pos="240 416" size="large" stroke="black"/>
+<use matrix="1 0 0 1 336 -144" name="mark/cross(sx)" pos="240 416" size="large" stroke="black"/>
+<use matrix="1 0 0 1 336 0" name="mark/cross(sx)" pos="240 416" size="large" stroke="black"/>
+<text matrix="1 0 0 1 48 -16" transformations="translations" pos="272 544" stroke="black" type="label" width="195.602" height="38.5672" depth="11.564" valign="baseline" size="huge" style="math">\sqrt{n} \times \sqrt{n}</text>
+<text layer="omicron" matrix="1 0 0 1 -32 0" transformations="translations" pos="448 560" stroke="black" type="label" width="155.551" height="16.6032" depth="0" valign="baseline" size="small">Fredman&apos;s trick</text>
+<text layer="psi" transformations="translations" pos="304 528" stroke="black" type="label" width="417.614" height="36.1088" depth="12.012" valign="baseline" size="huge">(Gr\o nlund and Pettie)</text>
+</page>
+<page>
+<layer name="title"/>
+<layer name="sorting"/>
+<layer name="3SUM"/>
+<layer name="lb-gpt"/>
+<layer name="c)"/>
+<view layers="title" active="title"/>
+<view layers="title sorting" active="sorting"/>
+<view layers="title sorting 3SUM" active="3SUM"/>
+<view layers="title sorting 3SUM lb-gpt" active="lb-gpt"/>
+<view layers="title sorting 3SUM lb-gpt c)" active="c)"/>
+<text layer="title" transformations="translations" pos="16 576" stroke="black" type="minipage" width="768" height="40.576" depth="20.64" valign="top" size="massive" style="center">Open Question</text>
+<text layer="c)" matrix="1 0 0 1 -1.6748 -392.88" transformations="translations" pos="16 496" stroke="black" type="minipage" width="768" height="32.8664" depth="18.928" valign="top" size="huge">\underline{Q}: $O(n \log n)$ bits and $O(1)$ queries?</text>
+<path layer="sorting" matrix="0.95014 0 0 1 -381.59 -98.086" fill="orange">
+468.03 507.288 m
+468.03 437.427 l
+786.149 437.427 l
+786.149 507.288 l
+h
+</path>
+<text matrix="1 0 0 1 -26.1094 25.754" transformations="translations" pos="96 336" stroke="black" type="label" width="283.724" height="36.1088" depth="12.012" valign="baseline" size="huge">$O(n \log n)$ bits</text>
+<text matrix="1 0 0 1 48 256" transformations="translations" pos="16 176" stroke="black" type="label" width="351.788" height="47.82" depth="0" valign="baseline" size="massive">Permutation:</text>
+<path matrix="0.650977 0 0 1 152.549 -99.238" fill="yellow">
+468.03 507.288 m
+468.03 437.427 l
+786.149 437.427 l
+786.149 507.288 l
+h
+</path>
+<text matrix="1 0 0 1 368.013 24.6017" transformations="translations" pos="96 336" stroke="black" type="label" width="195.614" height="36.1088" depth="12.012" valign="baseline" size="huge" style="math">\Omega(n \log n)</text>
+<text layer="3SUM" matrix="1 0 0 1 48 80" transformations="translations" pos="16 176" stroke="black" type="label" width="701.836" height="47.816" depth="13.4" valign="baseline" size="massive">Encoding the 3SUM type:</text>
+<path matrix="1.10495 0 0 1 -454.047 -274.086" fill="orange">
+468.03 507.288 m
+468.03 437.427 l
+786.149 437.427 l
+786.149 507.288 l
+h
+</path>
+<text matrix="1 0 0 1 -26.1094 -150.246" transformations="translations" pos="96 336" stroke="black" type="label" width="327.001" height="39.0628" depth="12.012" valign="baseline" size="huge">$O(n^{1.5} \log n)$ bits</text>
+<path layer="lb-gpt" matrix="0.650977 0 0 1 152.549 -275.238" fill="yellow">
+468.03 507.288 m
+468.03 437.427 l
+786.149 437.427 l
+786.149 507.288 l
+h
+</path>
+<text matrix="1 0 0 1 368.013 -151.398" transformations="translations" pos="96 336" stroke="black" type="label" width="195.614" height="36.1088" depth="12.012" valign="baseline" size="huge" style="math">\Omega(n \log n)</text>
+</page>
+<page>
+<layer name="alpha"/>
+<view layers="alpha" active="alpha"/>
+<text layer="alpha" matrix="1 0 0 1 0 -80" transformations="translations" pos="0 448" stroke="black" type="minipage" width="800" height="84.65" depth="34.9" valign="top" size="enormous" style="center">Last Slide</text>
+</page>
