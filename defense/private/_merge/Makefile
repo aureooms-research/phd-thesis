@@ -1,9 +1,14 @@
-.PHONY: all clean
+.PHONY: all pdf clean
 
 BITMAPS=src/ksum-algorithm-bitmaps.ipe src/3pol-algorithm-bitmaps.ipe src/order-type-encoding-bitmaps.ipe src/3sum-encoding-bitmaps.ipe
 PAGES=src/ksum-algorithm-pages.ipe src/3pol-algorithm-pages.ipe src/order-type-encoding-pages.ipe src/3sum-encoding-pages.ipe
 
 all: merged.ipe
+
+pdf: merged.pdf
+
+merged.pdf: merged.ipe
+	ipetoipe -pdf -export $< $@
 
 src/bitmaps.ipe: $(BITMAPS)
 	cat $^ > $@

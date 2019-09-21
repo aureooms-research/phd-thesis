@@ -2,7 +2,9 @@
 <!DOCTYPE ipe SYSTEM "ipe.dtd">
 <ipe version="70206" creator="Ipe 7.2.7">
 <info created="D:20170322174102" modified="D:20170702202828"/>
-<preamble>\usepackage{amsfonts}\usepackage{amsmath}</preamble>
+<preamble>\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{xfrac}</preamble>
 <ipestyle name="talk">
 <symbol name="arrow/arc(spx)">
 <path stroke="sym-stroke" fill="sym-stroke" pen="sym-pen">
