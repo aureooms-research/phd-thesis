@@ -3,10 +3,35 @@
 \usepackage{authblk}
 \usepackage[protrusion=true,expansion=true]{microtype}
 
+\ifprint
+\usepackage[x11names,dvipdfx,cmyk]{xcolor}
+\definecolor{printColor}{cmyk}{0 ,0 ,0 ,1}
+\color{printColor}
+\else
 \usepackage[x11names]{xcolor}
 \xdefinecolor{linkblue}{RGB}{20,65,109}
-\usepackage[colorlinks,linkcolor=linkblue,cite color=linkblue,pagebackref=true]{hyperref} % for hyperlinks
-%\usepackage[colorlinks,linkcolor=linkblue,cite color=linkblue]{hyperref} % for hyperlinks
+\fi
+
+\usepackage{hyperref} % for hyperlinks
+
+\ifprint
+\hypersetup{
+  colorlinks = true, % colours links instead of ugly boxes
+  allcolors = printColor,
+  hidelinks = true,
+  pagebackref = true
+}
+\else
+\hypersetup{
+  colorlinks = true, % colours links instead of ugly boxes
+  linkcolor = linkblue,
+  citecolor = linkblue,
+  pagebackref = true
+}
+\fi
+
+\urlstyle{same}
+
 \usepackage{fancyhdr}
 \usepackage{graphicx} % \includegraphics
 

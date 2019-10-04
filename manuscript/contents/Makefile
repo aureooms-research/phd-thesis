@@ -1,8 +1,8 @@
 .PHONY: all figures clean nuke
 .SECONDARY:
 
-#VERSIONS := dev.pdf draft.pdf print.pdf proof.pdf
-VERSIONS := print.pdf
+#VERSIONS := dev.pdf draft.pdf print.pdf digital.pdf proof.pdf
+VERSIONS := print.pdf digital.pdf
 
 LTX := pdflatex -interaction=nonstopmode -halt-on-error
 
@@ -93,6 +93,8 @@ $(BUILDDIR)/dev/paper.tex: static=$(STATIC)
 $(BUILDDIR)/draft/paper.tex: static=$(STATIC)
 $(BUILDDIR)/print/src.tex: $(shell texdeps print.tex)
 $(BUILDDIR)/print/paper.tex: static=$(STATIC)
+$(BUILDDIR)/digital/src.tex: $(shell texdeps digital.tex)
+$(BUILDDIR)/digital/paper.tex: static=$(STATIC)
 #$(BUILDDIR)/proof/src.tex: $(shell texdeps proof.tex)
 $(BUILDDIR)/proof/paper.tex: static=$(STATIC)
 
