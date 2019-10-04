@@ -251,7 +251,7 @@ sends each triple of input points to its orientation.
 %
 If we consider the problem of identifying the order type of a set of points, we
 can achieve a lower bound that holds in any arbitrary decision tree model. It
-suffices for that to bound the number of possible order types.
+suffices to bound the number of possible order types.
 %
 \input{text/theorem/GP86}
 %
@@ -316,11 +316,12 @@ By brute-force, GPT can be solved in \(O(n^3)\) time.
 Quadratic time can be achieved by constructing the dual
 arrangement~\cite[Theorem 24.4.1]{Hal04}.
 %
-No subquadratic algorithm known, uniform or nonuniform.
+For integer input, the techniques in~\cite{BDP08} can be adapted to yield
+slightly subquadratic word-RAM algorithms for GPT\footnote{See Timothy
+Chan's talk on \emph{The Art of Shaving Logs}.}.
 %
-Essentially, nothing known.
-%
-\todo{Mention the Art of Shaving logs?}
+For real input,
+no subquadratic uniform or nonuniform algorithm is known.
 
 
 \subsection{More on Order Types}%
