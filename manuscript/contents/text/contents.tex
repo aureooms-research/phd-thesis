@@ -53,11 +53,11 @@
 \input{text/summary}
 
 \clearemptydoublepage
-\renewcommand{\sectionmark}[1]{\markright{#1}}
-\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection.~#1}}
+\renewcommand{\chaptermark}[1]{\markboth{\thechapter.~#1}{}}
 \fancyhead[LE,RO]{\small\thepage}
-\fancyhead[RE]{\nouppercase{\scshape\thesection.\ \rightmark}}
-\fancyhead[LO]{\nouppercase{\scshape\thechapter.\ \leftmark}}
+\fancyhead[RE]{\nouppercase{\scshape\rightmark}}
+\fancyhead[LO]{\nouppercase{\scshape\leftmark}}
 
 \clearemptydoublepage
 \input{text/long-summary}
@@ -65,7 +65,9 @@
 \clearemptydoublepage
 \input{text/geometry}
 
+\clearemptydoublepage
 \appendix
+
 \input{text/papers}
 
 \clearemptydoublepage
