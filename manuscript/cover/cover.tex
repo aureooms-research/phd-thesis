@@ -16,7 +16,7 @@
     left=0cm,
     colback=darkblue,
     colframe=white,
-    width=14.5cm,
+    width=12.65cm,
     height=4.62cm,
     boxsep=.5cm,
     halign=right,
@@ -25,13 +25,6 @@
     sharp corners=all
 }
 \pagenumbering{gobble}
-
-\usepackage{afterpage}
-\newcommand\blankpage{%
-    \null
-    \thispagestyle{empty}%
-    \addtocounter{page}{-1}%
-    \newpage}
 
 \begin{document}
 \includegraphics[width=12.3cm, height=3.07cm]{sciences.png} \\ \\
@@ -46,7 +39,7 @@
 \color{darkblue}
 \large{\textbf{Thèse présentée par Aurélien OOMS}} \\
 \color{black}
-\small{en vue de l'obtention du grade académique de docteur en Sciences \\
+\small{en vue de l'obtention du grade académique de Docteur en Sciences \\
 Année académique 2019-2020}
 
 \vspace{2cm}
@@ -62,7 +55,7 @@ Algorithms Research Group
 
 
 \begin{wrapfigure}{r}{3.45cm}
-\includegraphics[width=3.45cm]{algorithms.png}
+\includegraphics[trim=0 0 0 -2.1cm,width=3.45cm]{fnrs.png}
 \end{wrapfigure}
 \noindent
 \textbf{Jury de thèse : } \\  \\
@@ -73,5 +66,4 @@ Prof.~John Iacono (Université libre de Bruxelles) \\
 Prof.~Moshe Lewenstein (Bar Ilan University) \\
 Prof.~Nabil Mustafa (ESIEE Paris) \\
 
-\afterpage{\blankpage}
 \end{document}
