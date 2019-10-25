@@ -9,4 +9,4 @@ manuscript:
 
 toc:
 	make -C contents print.pdf
-	mutool merge -o toc.pdf contents/print.pdf 9-12
+	mutool merge -o toc.pdf contents/print.pdf 11-14
